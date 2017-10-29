@@ -116,7 +116,7 @@ return [
         ],
         [
             'text'        => 'Cadastrar Paciente',
-            'url'         => 'paciente/cadPaciente',
+            'url'         => 'paciente/cadastro',
             'icon'        => 'user',
             'label_color' => 'success',
         ],

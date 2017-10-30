@@ -33,6 +33,10 @@ Route::resource('/estadocivil', 'EstadoCivilController');
 
 Route::resource('/prestador', 'PrestadorController');
 
+Route::resource('/tipoprestador', 'TipoPrestadorController');
+
+Route::resource('/ala', 'AlaController');
+
 //Route::get('/paciente/cadastro', function () {
 //    return 'Hello World';
 //});

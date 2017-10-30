@@ -138,6 +138,16 @@ return [
             'url'  => 'prestador',
             'icon' => 'user-md',
         ],
+        [
+            'text' => 'Tipo de Prestador',
+            'url'  => 'tipoprestador',
+//            'icon' => 'user-md',
+        ],
+        [
+            'text' => 'Alas',
+            'url'  => 'ala',
+            'icon' => 'bed',
+        ],
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',

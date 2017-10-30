@@ -16,7 +16,7 @@ class EstadoCivilController extends Controller
 
     public function index()
     {
-        $estadocivils =  EstadoCivil::all()->sortBy("descricao");
+        $estadocivils =  EstadoCivil::paginate(10);
         $title = 'Cadastro de Estado Civil';
 
         return view('estadocivil.consEstadoCivil', compact('title', 'estadocivils'));

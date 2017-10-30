@@ -19,12 +19,14 @@
     {{--@endshield--}}
     <br><br>
     <table class="table table-striped">
+        <thead>
         <tr>
             <th>Descrição</th>
             <th width="100px">Ações</th>
         </tr>
+        </thead>
         @foreach ($estadocivils as $estadocivil)
-            <tr>
+            <tbody>
                 <td>{{ $estadocivil->descricao }}</td>
                 <td>
                     {{--@shield('estadocivil.editar')--}}
@@ -59,12 +61,10 @@
                             </div>
                         </div>
                     </div>
-                    </div>
                 </td>
-            </tr>
+            </tbody>
 
         @endforeach
     </table>
-
+    {{ $estadocivils->links() }}
 @endsection
-

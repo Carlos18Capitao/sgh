@@ -26,8 +26,10 @@
 
     @if(config('adminlte.plugins.datatables'))
         <!-- DataTables -->
-        <link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-    @endif
+        {{--<link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">--}}
+        <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/dataTables.bootstrap.min.css') }}">
+
+            @endif
 
     @yield('adminlte_css')
 

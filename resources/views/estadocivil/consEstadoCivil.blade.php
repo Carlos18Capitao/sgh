@@ -21,7 +21,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Descrição</th>
+            <th>@sortablelink('descricao','Descrição')</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
@@ -66,5 +66,5 @@
 
         @endforeach
     </table>
-    {{ $estadocivils->links() }}
+    {!! $estadocivils->appends(\Request::except('page'))->render() !!}
 @endsection

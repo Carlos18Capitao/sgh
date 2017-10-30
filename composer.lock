@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ad1e5221ab803ac43fe936ecc024489",
+    "content-hash": "22f0d7e60342904828e6dc83c5e6d095",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -455,6 +455,63 @@
                 "laravel"
             ],
             "time": "2017-10-02T14:52:05+00:00"
+        },
+        {
+            "name": "kyslik/column-sortable",
+            "version": "5.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kyslik/column-sortable.git",
+                "reference": "f929a42934c697d155f2a0b5d95332054e362cae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kyslik/column-sortable/zipball/f929a42934c697d155f2a0b5d95332054e362cae",
+                "reference": "f929a42934c697d155f2a0b5d95332054e362cae",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.5.*",
+                "illuminate/support": "5.5.*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.5.*",
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kyslik\\ColumnSortable\\ColumnSortableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kyslik\\ColumnSortable\\": "src/ColumnSortable/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Kiesel",
+                    "email": "martin.kiesel@gmail.com",
+                    "role": "Developer and maintainer"
+                }
+            ],
+            "description": "Package for handling column sorting in Laravel 5.x",
+            "keywords": [
+                "column",
+                "laravel",
+                "sort",
+                "sortable",
+                "sorting"
+            ],
+            "time": "2017-10-27T19:58:59+00:00"
         },
         {
             "name": "laravel/framework",

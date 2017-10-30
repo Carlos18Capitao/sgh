@@ -29,6 +29,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/paciente/cadastro', 'PacienteController@index');
 
+Route::resource('/estadocivil', 'EstadoCivilController');
+
+Route::resource('/prestador', 'PrestadorController');
+
 //Route::get('/paciente/cadastro', function () {
 //    return 'Hello World';
 //});

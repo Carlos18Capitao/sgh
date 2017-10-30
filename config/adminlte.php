@@ -127,6 +127,17 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+        'TABELAS',
+        [
+            'text' => 'Estado Civil',
+            'url'  => 'estadocivil',
+            'icon' => 'table',
+        ],
+        [
+            'text' => 'Prestador',
+            'url'  => 'prestador',
+            'icon' => 'user-md',
+        ],
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',

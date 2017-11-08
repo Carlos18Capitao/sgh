@@ -15,7 +15,7 @@ return [
 
     'title' => 'SGH',
 
-    'title_prefix' => '',
+    'title_prefix' => 'SGH - ',
 
     'title_postfix' => '',
 
@@ -120,13 +120,13 @@ return [
             'icon'        => 'user',
             'label_color' => 'success',
         ],
-        [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
+//        [
+//            'text'        => 'Pages',
+//            'url'         => 'admin/pages',
+//            'icon'        => 'file',
+//            'label'       => 4,
+//            'label_color' => 'success',
+//        ],
         'TABELAS',
         [
             'text' => 'Estado Civil',
@@ -134,82 +134,99 @@ return [
             'icon' => 'table',
         ],
         [
-            'text' => 'Prestador',
-            'url'  => 'prestador',
-            'icon' => 'user-md',
-        ],
-        [
-            'text' => 'Tipo de Prestador',
-            'url'  => 'tipoprestador',
+            'text'    => 'Prestador',
+            'icon'    => 'user-md',
+            'submenu' => [
+                [
+                    'text' => 'Cadastro Prestador',
+                    'url'  => 'prestador',
+                ],
+                [
+                    'text' => 'Tipo de Prestador',
+                    'url'  => 'tipoprestador',
 //            'icon' => 'user-md',
+                ],
+            ],
         ],
+//        [
+//            'text' => 'Prestador',
+//            'url'  => 'prestador',
+//            'icon' => 'user-md',
+//        ],
+//        [
+//            'text' => 'Tipo de Prestador',
+//            'url'  => 'tipoprestador',
+////            'icon' => 'user-md',
+//        ],
         [
             'text' => 'Alas',
             'url'  => 'ala',
             'icon' => 'bed',
         ],
-        'ACCOUNT SETTINGS',
-        [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
-        ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],
-        [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
-        ],
+//        'ACCOUNT SETTINGS',
+//        [
+//            'text' => 'Profile',
+//            'url'  => 'admin/settings',
+//            'icon' => 'user',
+//        ],
+//        [
+//            'text' => 'Change Password',
+//            'url'  => 'admin/settings',
+//            'icon' => 'lock',
+//        ],
+//        [
+//            'text'    => 'Multilevel',
+//            'icon'    => 'share',
+//            'submenu' => [
+//                [
+//                    'text' => 'Level One',
+//                    'url'  => '#',
+//                ],
+//                ],
+//                ],
+//                [
+//                    'text'    => 'Level One',
+//                    'url'     => '#',
+//                    'submenu' => [
+//                        [
+//                            'text' => 'Level Two',
+//                            'url'  => '#',
+//                        ],
+//                        [
+//                            'text'    => 'Level Two',
+//                            'url'     => '#',
+//                            'submenu' => [
+//                                [
+//                                    'text' => 'Level Three',
+//                                    'url'  => '#',
+//                                ],
+//                                [
+//                                    'text' => 'Level Three',
+//                                    'url'  => '#',
+//                                ],
+//                            ],
+//                        ],
+//                    ],
+//                ],
+//                [
+//                    'text' => 'Level One',
+//                    'url'  => '#',
+//                ],
+//            ],
+//        ],
+//        'LABELS',
+//        [
+//            'text'       => 'Important',
+//            'icon_color' => 'red',
+//        ],
+//        [
+//            'text'       => 'Warning',
+//            'icon_color' => 'yellow',
+//        ],
+//        [
+//            'text'       => 'Information',
+//            'icon_color' => 'aqua',
+//        ],
     ],
 
     /*

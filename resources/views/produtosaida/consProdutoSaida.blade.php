@@ -14,36 +14,40 @@
         </div>
     @endif
 
-    {{--@shield('produto.cadastrar')--}}
-    <a href="{{ route('produto.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
+    {{--@shield('produtosaida.cadastrar')--}}
+    <a href="{{ route('saida.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     {{--@endshield--}}
     <br><br>
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>@sortablelink('produto','Produto')</th>
-            <th>@sortablelink('categoria_id','Categoria')</th>
-            <th>@sortablelink('unidade','Unidade')</th>
+            <th>@sortablelink('produto_id','Produto')</th>
+            <th>@sortablelink('qtd','Qtd')</th>
+            <th>@sortablelink('setor_id','Setor')</th>
+            <th>@sortablelink('obs','Observação')</th>
+            <th>@sortablelink('created_at','Data de Saída')</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
-        @foreach ($produtos as $produto)
+        @foreach ($produtosaidas as $produtosaida)
             <tbody>
-                <td><a href="{{ route('produto.show',$produto->id) }}">{{ $produto->produto }}</a></td>
-                <td>{{ $produto->unidade }}</td>
-                <td>{{ $produto->categoria->descricao  }}</td>
+                <td>{{ $produtosaida->produto->produto }}</td>
+                <td>{{ $produtosaida->qtd }}</td>
+                <td>{{ $produtosaida->setor->setor }}</td>
+                <td>{{ $produtosaida->created_at }}</td>
+                <td>{{ $produtosaida->obs  }}</td>
                 <td>
-                    {{--@shield('produto.editar')--}}
-                    <a class = "btn btn-sm btn-default" href="{{ route('produto.edit',$produto->id)}}">
+                    {{--@shield('produtosaida.editar')--}}
+                    <a class = "btn btn-sm btn-default" href="{{ route('saida.edit',$produtosaida->id)}}">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
                     {{--@endshield--}}
-                    <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$produto->id}}">
+                    <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$produtosaida->id}}">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
 
                     <!-- Modal EXCLUIR-->
-                    <div class="modal fade" id="excluir{{$produto->id}}" tabindex="-1" role="dialog" aria-labelledby="excluir">
+                    <div class="modal fade" id="excluir{{$produtosaida->id}}" tabindex="-1" role="dialog" aria-labelledby="excluir">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -53,11 +57,11 @@
                                 </div>
                                 <div class="modal-body">
                                     <div align="center">
-                                        <b>{{ $produto->produto }}</b>
+                                        <b>{{ $produtosaida->produtosaida }}</b>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    {!! Form::open(['route'=> ['produto.destroy',$produto->id], 'method'=>'DELETE']) !!}
+                                    {!! Form::open(['route'=> ['saida.destroy',$produtosaida->id], 'method'=>'DELETE']) !!}
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                     <button type="submit" class = "btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Excluir </button>
                                     {!! Form::close() !!}
@@ -70,5 +74,5 @@
 
         @endforeach
     </table>
-    {!! $produtos->appends(\Request::except('page'))->render() !!}
+    {!! $produtosaidas->appends(\Request::except('page'))->render() !!}
 @endsection

@@ -19,4 +19,8 @@ class Setor extends Model
 
     public $sortable = ['setor','ramal'];
 
+    public function produtosaida()
+    {
+        return $this->hasMany('App\Models\ProdutoSaida');
+    }
 }

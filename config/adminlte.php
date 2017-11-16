@@ -157,6 +157,10 @@ return [
                     'url'  => 'estoque/entrada',
                 ],
                 [
+                    'text' => 'Saída para Setor',
+                    'url'  => 'estoque/saida',
+                ],
+                [
                     'text' => 'Produtos',
                     'url'  => 'estoque/produto',
                 ],
@@ -169,6 +173,11 @@ return [
                     'url'  => 'estoque/categoria',
 //            'icon' => 'user-md',
                 ],
+                [
+                    'text'    => 'Relatório - Posição Estoque',
+//                    'icon'    => 'cart-plus',
+                    'url'  => 'estoque/posicao',
+                        ],
             ],
         ],
 //        [

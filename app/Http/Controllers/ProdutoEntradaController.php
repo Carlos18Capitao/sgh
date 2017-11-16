@@ -19,14 +19,14 @@ class ProdutoEntradaController extends Controller
     {
         $produtoentradas =  ProdutoEntrada::sortable()->paginate(10);
 //        dd($produtoentradas);
-        $title = 'Cadastro de Entrada de Produtos';
+        $title = 'Entrada de Produtos no Estoque';
 
         return view('produtoentrada.consProdutoEntrada', compact('title', 'produtoentradas'));
     }
 
     public function create()
     {
-        $title = 'Cadastro de Entrada de Produtos';
+        $title = 'Entrada de Produtos no Estoque';
         $produtos = Produto::all();
 
         return view('produtoentrada.cadProdutoEntrada', compact('title','produtos'));
@@ -64,9 +64,9 @@ class ProdutoEntradaController extends Controller
         $update = $produtoentradas->update($dataForm);
 
         if ($update)
-            return redirect()->route('produtoentrada.index', $id);
+            return redirect()->route('entrada.index', $id);
         else
-            return redirect()->route('produtoentrada.edit', $id)->with(['errors' => 'Falha ao editar']);
+            return redirect()->route('entrada.edit', $id)->with(['errors' => 'Falha ao editar']);
     }
 
     public function destroy($id)
@@ -78,8 +78,8 @@ class ProdutoEntradaController extends Controller
         $delete = $produtoentradas->delete();
 
         if ($delete)
-            return redirect()->route('produtoentrada.index');
+            return redirect()->route('entrada.index');
         else
-            return redirect()->route('produtoentrada.index')->with(['errors' => 'Falha ao editar']);
+            return redirect()->route('entrada.index')->with(['errors' => 'Falha ao editar']);
     }
 }

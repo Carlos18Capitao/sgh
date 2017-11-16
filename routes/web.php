@@ -45,6 +45,8 @@ Route::resource('/estoque/produto', 'ProdutoController');
 
 Route::resource('/estoque/entrada', 'ProdutoEntradaController');
 
+Route::resource('/estoque/saida', 'ProdutoSaidaController');
+
 //Route::get('/paciente/cadastro', function () {
 //    return 'Hello World';
 //});

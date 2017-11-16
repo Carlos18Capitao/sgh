@@ -29,4 +29,9 @@ class Produto extends Model
     {
         return $this->hasMany('App\Models\ProdutoEntrada');
     }
+
+    public function produtosaida()
+    {
+        return $this->hasMany('App\Models\ProdutoSaida');
+    }
 }

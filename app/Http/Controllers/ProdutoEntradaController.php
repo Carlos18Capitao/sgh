@@ -2,83 +2,84 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use Illuminate\Http\Request;
+use App\Models\ProdutoEntrada;
 
 class ProdutoEntradaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $produtoentrada;
+
+    public function __construct(ProdutoEntrada $produtoentrada, Produto $produto)
+    {
+        $this->produtoentrada = $produtoentrada;
+    }
+
     public function index()
     {
-        //
+        $produtoentradas =  ProdutoEntrada::sortable()->paginate(10);
+//        dd($produtoentradas);
+        $title = 'Cadastro de Entrada de Produtos';
+
+        return view('produtoentrada.consProdutoEntrada', compact('title', 'produtoentradas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $title = 'Cadastro de Entrada de Produtos';
+        $produtos = Produto::all();
+
+        return view('produtoentrada.cadProdutoEntrada', compact('title','produtos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $dataForm = $request->all();
+        $insert = $this->produtoentrada->create($dataForm);
+
+        if ($insert)
+            return redirect()->route('entrada.index');
+        else {
+            return redirect()->back();
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $produtoentradas = ProdutoEntrada::find($id);
+        $title = "Editar produtoentrada: $produtoentradas->descricao";
+
+        return view('produtoentrada.cadProdutoEntrada', compact('title', 'produtoentradas'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $dataForm = $request->all();
+        $produtoentradas = ProdutoEntrada::find($id);
+        $update = $produtoentradas->update($dataForm);
+
+        if ($update)
+            return redirect()->route('produtoentrada.index', $id);
+        else
+            return redirect()->route('produtoentrada.edit', $id)->with(['errors' => 'Falha ao editar']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $produtoentradas = ProdutoEntrada::find($id);
+
+//         $produtoentrada->delete();
+//        $produtoentradas = $this->produtoentrada->find($id);
+        $delete = $produtoentradas->delete();
+
+        if ($delete)
+            return redirect()->route('produtoentrada.index');
+        else
+            return redirect()->route('produtoentrada.index')->with(['errors' => 'Falha ao editar']);
     }
 }

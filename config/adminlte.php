@@ -153,6 +153,10 @@ return [
             'icon'    => 'cart-plus',
             'submenu' => [
                 [
+                    'text' => 'Entrada de Produtos',
+                    'url'  => 'estoque/entrada',
+                ],
+                [
                     'text' => 'Produtos',
                     'url'  => 'estoque/produto',
                 ],

@@ -37,6 +37,12 @@ Route::resource('/tipoprestador', 'TipoPrestadorController');
 
 Route::resource('/ala', 'AlaController');
 
+Route::resource('/estoque/setor', 'SetorController');
+
+Route::resource('/estoque/categoria', 'CategoriaController');
+
+Route::resource('/estoque/produto', 'ProdutoController');
+
 //Route::get('/paciente/cadastro', function () {
 //    return 'Hello World';
 //});

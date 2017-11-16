@@ -148,6 +148,25 @@ return [
                 ],
             ],
         ],
+        [
+            'text'    => 'Estoque',
+            'icon'    => 'cart-plus',
+            'submenu' => [
+                [
+                    'text' => 'Produtos',
+                    'url'  => 'estoque/produto',
+                ],
+                [
+                    'text' => 'Setores',
+                    'url'  => 'estoque/setor',
+                ],
+                [
+                    'text' => 'Categoria',
+                    'url'  => 'estoque/categoria',
+//            'icon' => 'user-md',
+                ],
+            ],
+        ],
 //        [
 //            'text' => 'Prestador',
 //            'url'  => 'prestador',

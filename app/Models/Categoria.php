@@ -6,17 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
-class TipoPrestadors extends Model
+class Categoria extends Model
 {
-    use Sortable;
-    use SoftDeletes;
+    use SoftDeletes, Sortable;
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['descricao',
-                            'created_by',
-                            'updated_by'];
+    protected $fillable = [
+        'descricao',
+    ];
 
     public $sortable = ['descricao'];
 
+    public function produto()
+    {
+        return $this->hasMany('App\Models\Produto');
+    }
 }

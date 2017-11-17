@@ -18,17 +18,17 @@
     <div class="form-group">
         {!! Form::label('setor', 'Setor:'); !!}
         @if (isset($produtosaidas))
-            {!! Form::select('setor_id', $produtosaidas->setor->pluck('setor','id'), null, ['class' => 'form-control', 'placeholder' => 'Selecione um setor...']) !!}
+            {!! Form::select('setor_id', $produtosaidas->setor->pluck('setor','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione um setor...']) !!}
         @else
-            {!! Form::select('setor_id', $setors->pluck('setor','id'), null, ['class' => 'form-control', 'placeholder' => 'Selecione um setor...']) !!}
+            {!! Form::select('setor_id', $setors->pluck('setor','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione um setor...']) !!}
         @endif
     </div>
     <div class="form-group">
         {!! Form::label('produto', 'Produto:'); !!}
         @if (isset($produtosaidas))
-            {!! Form::select('produto_id', $produtosaidas->produto->pluck('produto','id'), null, ['class' => 'form-control', 'placeholder' => 'Selecione um produto...']) !!}
+            {!! Form::select('produto_id', $produtosaidas->produto->pluck('produto','id'), null, ['class' => 'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!}
         @else
-            {!! Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' => 'form-control', 'placeholder' => 'Selecione um produto...']) !!}
+            {!! Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' => 'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!}
         @endif
     </div>
     <div class="form-group">
@@ -52,4 +52,14 @@
     {!! Form::close() !!}
     {{--@endshield--}}
 
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('.js-produto').select2(),
+            $('.js-setor').select2()
+            ;
+        });
+    </script>
 @endsection

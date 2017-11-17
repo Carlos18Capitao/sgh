@@ -18,7 +18,7 @@ class CreateProdutoSaidasTable extends Migration
             $table->integer('produto_id')->unsigned();
             $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
             $table->boolean('qtd');
-            $table->text('obs');
+            $table->text('obs')->nullable();
             $table->integer('setor_id')->unsigned();
             $table->foreign('setor_id')->references('id')->on('setors')->onDelete('cascade');
             $table->softDeletes();

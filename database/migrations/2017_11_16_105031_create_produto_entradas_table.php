@@ -20,7 +20,7 @@ class CreateProdutoEntradasTable extends Migration
             $table->integer('produto_id')->unsigned();
             $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
             $table->boolean('qtd');
-            $table->text('obs');
+            $table->text('obs')->nullable();
             $table->integer('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updated_by')->unsigned()->nullable();

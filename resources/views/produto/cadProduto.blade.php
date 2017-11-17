@@ -27,9 +27,9 @@
     <div class="form-group">
         {!! Form::label('categoria', 'Categoria:'); !!}
         @if (isset($produtos))
-            {!! Form::select('categoria_id', $produtos->categoria->pluck('descricao','id'),null, ['class' => 'form-control', 'placeholder' => 'Selecione uma categoria...']) !!}
+            {!! Form::select('categoria_id', $produtos->categoria->pluck('descricao','id'),null, ['class' => 'js-categoria form-control', 'placeholder' => 'Selecione uma categoria...']) !!}
         @else
-            {!! Form::select('categoria_id', $categorias->pluck('descricao','id'),null, ['class' => 'form-control', 'placeholder' => 'Selecione uma categoria...']) !!}
+            {!! Form::select('categoria_id', $categorias->pluck('descricao','id'),null, ['class' => 'js-categoria form-control', 'placeholder' => 'Selecione uma categoria...']) !!}
         @endif
     </div>
     {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
@@ -37,4 +37,12 @@
     {!! Form::close() !!}
     {{--@endshield--}}
 
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('.js-categoria').select2();
+        });
+    </script>
 @endsection

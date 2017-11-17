@@ -16,6 +16,8 @@ class Produto extends Model
         'produto',
         'unidade',
         'categoria_id',
+        'created_by',
+        'updated_by'
     ];
 
     public $sortable = ['produto','unidade','categoria_id'];

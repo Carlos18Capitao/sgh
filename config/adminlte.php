@@ -176,7 +176,7 @@ return [
                 [
                     'text'    => 'Relatório - Posição Estoque',
 //                    'icon'    => 'cart-plus',
-                    'url'  => 'estoque/posicao',
+                    'url'  => 'estoque/relposicaoestoque',
                         ],
             ],
         ],

@@ -10,10 +10,10 @@
 
     @if (isset($produtos))
         {!! Form::model($produtos, ['route' => ['produto.update', $produtos->id], 'class' => 'Form', 'method' => 'PUT']) !!}
-{{--        {!! Form::hidden('updated_by',Auth::user()->name) !!}--}}
+        {!! Form::hidden('updated_by',Auth::user()->id) !!}
     @else
         {!! Form::open(['route' => 'produto.store', 'class' => 'form']) !!}
-{{--        {!! Form::hidden('created_by',Auth::user()->name) !!}--}}
+        {!! Form::hidden('created_by',Auth::user()->id) !!}
     @endif
 
     <div class="form-group">

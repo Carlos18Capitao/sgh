@@ -42,6 +42,7 @@ Route::resource('/estoque/setor', 'SetorController');
 Route::resource('/estoque/categoria', 'CategoriaController');
 
 Route::resource('/estoque/produto', 'ProdutoController');
+Route::get('/estoque/relposicaoestoque', 'ProdutoController@relposicaoestoque')->name('relposicaoestoque');
 
 Route::resource('/estoque/entrada', 'ProdutoEntradaController');
 

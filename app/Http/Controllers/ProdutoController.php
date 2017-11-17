@@ -87,4 +87,12 @@ class ProdutoController extends Controller
         else
             return redirect()->route('produto.index')->with(['errors' => 'Falha ao editar']);
     }
+
+    public function relposicaoestoque()
+    {
+        $produtos =  Produto::sortable()->paginate(10);
+        $title = 'Posição de Estoque';
+
+        return view('produto.relPosicaoEstoque', compact('title', 'produtos'));
+    }
 }

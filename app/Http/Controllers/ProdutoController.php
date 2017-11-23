@@ -50,7 +50,7 @@ class ProdutoController extends Controller
         $produtos = Produto::find($id);
         $title = "Detalhes do Produto";
 
-        return view('produto.ShowProduto', compact('title','produtos'));
+        return view('produto.showProduto', compact('title','produtos'));
 
     }
 
@@ -90,7 +90,7 @@ class ProdutoController extends Controller
 
     public function relposicaoestoque()
     {
-        $produtos =  Produto::sortable()->paginate(10);
+        $produtos =  Produto::sortable()->paginate(100);
         $title = 'Posição de Estoque';
 
         return view('produto.relPosicaoEstoque', compact('title', 'produtos'));

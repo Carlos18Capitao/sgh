@@ -32,8 +32,8 @@
             <tbody>
                 <td>{{ $produtoentrada->produto->produto }}</td>
                 <td>{{ $produtoentrada->qtd }}</td>
-                <td>{{ $produtoentrada->created_at }}</td>
                 <td>{{ $produtoentrada->obs  }}</td>
+                <td>{{ $produtoentrada->created_at }}</td>
                 <td>
                     {{--@shield('produtoentrada.editar')--}}
                     <a class = "btn btn-sm btn-default" href="{{ route('entrada.edit',$produtoentrada->id)}}">

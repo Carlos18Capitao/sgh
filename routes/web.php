@@ -21,11 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/paciente/cadastro', 'PacienteController@index');
 
@@ -37,17 +37,15 @@ Route::resource('/tipoprestador', 'TipoPrestadorController');
 
 Route::resource('/ala', 'AlaController');
 
-Route::resource('/estoque/setor', 'SetorController');
-
-Route::resource('/estoque/categoria', 'CategoriaController');
-
-Route::resource('/estoque/produto', 'ProdutoController');
-Route::get('/estoque/relposicaoestoque', 'ProdutoController@relposicaoestoque')->name('relposicaoestoque');
-
-Route::resource('/estoque/entrada', 'ProdutoEntradaController');
-
-Route::resource('/estoque/saida', 'ProdutoSaidaController');
-
+Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|estoque']], function () {
+//Route::group(['prefix'  =>  'estoque'], function () {
+    Route::resource('/setor', 'SetorController');
+    Route::resource('/categoria', 'CategoriaController');
+    Route::resource('/produto', 'ProdutoController');
+    Route::get('/relposicaoestoque', 'ProdutoController@relposicaoestoque')->name('relposicaoestoque');
+    Route::resource('/entrada', 'ProdutoEntradaController');
+    Route::resource('/saida', 'ProdutoSaidaController');
+});
 //Route::get('/paciente/cadastro', function () {
 //    return 'Hello World';
 //});

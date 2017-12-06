@@ -14,9 +14,11 @@
         </div>
     @endif
 
-    {{--@shield('produtoentrada.cadastrar')--}}
+@permission('ver')
     <a href="{{ route('entrada.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
-    {{--@endshield--}}
+@endpermission
+
+
     <br><br>
     <table class="table table-striped">
         <thead>

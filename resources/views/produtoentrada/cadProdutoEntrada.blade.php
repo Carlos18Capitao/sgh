@@ -6,7 +6,7 @@
         <h3>{{ $title }}</h3>
     </div>
 
-    {{--@shield('unidade.cadastrar')--}}
+@role('estoque')
 
     @if (isset($produtoentradas))
         {!! Form::model($produtoentradas, ['route' => ['entrada.update', $produtoentradas->id], 'class' => 'Form', 'method' => 'PUT']) !!}
@@ -43,7 +43,7 @@
     {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
 {{--    {{ Form::button('<i class="glyphicon glyphicon-floppy-disk"> Salvar</i>', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}--}}
     {!! Form::close() !!}
-    {{--@endshield--}}
+   @endrole
 
 @endsection
 

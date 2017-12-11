@@ -12,13 +12,7 @@ class Produto extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = [
-        'produto',
-        'unidade',
-        'categoria_id',
-        'created_by',
-        'updated_by'
-    ];
+    protected $fillable = ['produto','unidade','categoria_id','created_by','updated_by'];
 
     public $sortable = ['produto','unidade','categoria_id'];
 

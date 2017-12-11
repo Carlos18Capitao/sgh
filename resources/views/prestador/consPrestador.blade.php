@@ -19,14 +19,29 @@
     {{--@endshield--}}
     <br><br>
     <table class="table table-striped">
+      <thead>
         <tr>
-            <th>Descrição</th>
+            <th>@sortablelink('descricao','Descrição')</th>
+            <th>@sortablelink('cnes','CNES')</th>
+            <th>@sortablelink('assistente','Assistente')</th>
+            <th>@sortablelink('executante','Executante')</th>
+            <th>@sortablelink('tipo_prestador_id','Tipo')</th>
+            <th>@sortablelink('ala_id','Ala')</th>
+            <th>@sortablelink('telefone','Telefone')</th>
             <th width="100px">Ações</th>
         </tr>
+      </thead>
         @foreach ($prestadors as $prestador)
+          <tbody>
             <tr>
-                <td>{{ $prestador->nome }}</td>
-                <td>
+              <td>{{ $prestador->nome }}</td>
+              <td>{{ $prestador->cnes }}</td>
+              <td>{{ $prestador->assistente }}</td>
+              <td>{{ $prestador->executante }}</td>
+              <td>{{-- $prestador->tipo_prestador_id --}}  {{-- $prestador->tipoprestador->descricao --}}</td>
+              <td>{{ $prestador->ala->descricao }}</td>
+              <td>{{ $prestador->telefone }}</td>
+              <td>
                     {{--@shield('prestador.editar')--}}
                     <a class = "btn btn-sm btn-default" href="{{ route('prestador.edit',$prestador->id)}}">
                         <span class="glyphicon glyphicon-pencil"></span>
@@ -62,9 +77,10 @@
                     </div>
                 </td>
             </tr>
-
+          </tbody>
         @endforeach
     </table>
 
-@endsection
+    {!! $prestadors->appends(\Request::except('page'))->render() !!}
 
+@endsection

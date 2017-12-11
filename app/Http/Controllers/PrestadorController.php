@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Prestadors;
+use App\Models\Prestador;
 use Illuminate\Http\Request;
 
 class PrestadorController extends Controller
 {
     private $prestador;
 
-    public function __construct(Prestadors $prestador)
+    public function __construct(Prestador $prestador)
     {
         $this->prestador = $prestador;
     }
 
     public function index()
     {
-        $prestadors =  Prestadors::all()->sortBy("nome");
+        $prestadors = Prestador::with('TipoPrestador')->sortable()->paginate(100);
         $title = 'Cadastro de Prestadores';
 
         return view('prestador.consPrestador', compact('title', 'prestadors'));

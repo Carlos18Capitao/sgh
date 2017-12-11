@@ -3,21 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TipoPrestadors;
+use App\Models\TipoPrestador;
 
 class TipoPrestadorController extends Controller
 {
-
     private $tipoprestador;
 
-    public function __construct(TipoPrestadors $tipoprestador)
+    public function __construct(TipoPrestador $tipoprestador)
     {
         $this->tipoprestador = $tipoprestador;
     }
 
     public function index()
     {
-        $tipoprestadors =  TipoPrestadors::sortable()->paginate(10);
+        $tipoprestadors =  TipoPrestador::sortable()->paginate(10);
         $title = 'Cadastro de Tipos de Prestadores';
 
         return view('tipoprestador.consTipoPrestador', compact('title', 'tipoprestadors'));
@@ -49,7 +48,7 @@ class TipoPrestadorController extends Controller
 
     public function edit($id)
     {
-        $tipoprestadors = TipoPrestadors::find($id);
+        $tipoprestadors = TipoPrestador::find($id);
         $title = "Editar tipo de prestador: $tipoprestadors->descricao";
 
         return view('tipoprestador.cadTipoPrestador', compact('title', 'tipoprestadors'));
@@ -58,7 +57,7 @@ class TipoPrestadorController extends Controller
     public function update(Request $request, $id)
     {
         $dataForm = $request->all();
-        $tipoprestadors = TipoPrestadors::find($id);
+        $tipoprestadors = TipoPrestador::find($id);
         $update = $tipoprestadors->update($dataForm);
 
         if ($update)
@@ -69,7 +68,7 @@ class TipoPrestadorController extends Controller
 
     public function destroy($id)
     {
-        $tipoprestadors = TipoPrestadors::find($id);
+        $tipoprestadors = TipoPrestador::find($id);
 
 //         $tipoprestador->delete();
 //        $tipoprestadors = $this->tipoprestador->find($id);

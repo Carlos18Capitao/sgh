@@ -25,12 +25,14 @@
     <table class="table table-striped">
     <thead>
     <tr>
+        <th>@sortablelink('created_by','Usuário')</th>
         <th>@sortablelink('created_at','Data de Entrada')</th>
         <th>@sortablelink('qtd','Qtd')</th>
     </tr>
     </thead>
 @foreach($produtos->produtoentrada as $entproduto)
             <tbody>
+                <td>{{ $entproduto->user->name }}</td>
                 <td>{{ $entproduto->created_at }}</td>
                 <td>{{ $entproduto->qtd }}</td>
             </tbody>
@@ -46,6 +48,7 @@
             <th>@sortablelink('setor_id','Setor')</th>
             <th>@sortablelink('created_at','Data de Entrada')</th>
             <th>@sortablelink('qtd','Qtd')</th>
+            <th>@sortablelink('created_by','Usuário')</th>
         </tr>
         </thead>
         @foreach($produtos->produtosaida as $saiproduto)
@@ -53,6 +56,7 @@
             <td>{{ $saiproduto->setor->setor }}</td>
             <td>{{ $saiproduto->created_at }}</td>
             <td>{{ $saiproduto->qtd }}</td>
+            <td>{{ $saiproduto->user->name }}</td>
             </tbody>
         @endforeach
     </table>

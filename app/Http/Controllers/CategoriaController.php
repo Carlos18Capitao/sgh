@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categoria;
+use App\Http\Requests\CategoriaFormRequest;
 
 class CategoriaController extends Controller
 {
@@ -29,7 +30,7 @@ class CategoriaController extends Controller
         return view('categoria.cadCategoria', compact('title'));
     }
 
-    public function store(Request $request)
+    public function store(CategoriaFormRequest $request)
     {
         $dataForm = $request->all();
         $insert = $this->categoria->create($dataForm);

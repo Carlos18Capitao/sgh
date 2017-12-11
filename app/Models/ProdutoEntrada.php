@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
@@ -25,6 +26,16 @@ class ProdutoEntrada extends Model
     public function produto()
     {
         return $this->belongsTo('App\Models\Produto');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User','created_by');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y - h:i');
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use App\Models\ProdutoEntrada;
+use App\Http\Requests\ProdutoEntradaFormRequest;
 
 class ProdutoEntradaController extends Controller
 {
@@ -27,12 +28,12 @@ class ProdutoEntradaController extends Controller
     public function create()
     {
         $title = 'Entrada de Produtos no Estoque';
-        $produtos = Produto::all();
+        $produtos = Produto::all()->sortBy('produto');
 
         return view('produtoentrada.cadProdutoEntrada', compact('title','produtos'));
     }
 
-    public function store(Request $request)
+    public function store(ProdutoEntradaFormRequest $request)
     {
         $dataForm = $request->all();
         $insert = $this->produtoentrada->create($dataForm);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Http\Requests\ProdutoFormRequest;
 
 class ProdutoController extends Controller
 {
@@ -33,7 +34,7 @@ class ProdutoController extends Controller
         return view('produto.cadProduto', compact('title','categorias'));
     }
 
-    public function store(Request $request)
+    public function store(ProdutoFormRequest $request)
     {
         $dataForm = $request->all();
         $insert = $this->produto->create($dataForm);

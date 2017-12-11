@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Setor;
+use App\Http\Requests\SetorFormRequest;
 
 class SetorController extends Controller
 {
@@ -29,7 +30,7 @@ class SetorController extends Controller
         return view('setor.cadSetor', compact('title'));
     }
 
-    public function store(Request $request)
+    public function store(SetorFormRequest $request)
     {
         $dataForm = $request->all();
         $insert = $this->setor->create($dataForm);

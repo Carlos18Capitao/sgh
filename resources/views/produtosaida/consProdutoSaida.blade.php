@@ -24,8 +24,8 @@
             <th>@sortablelink('produto_id','Produto')</th>
             <th>@sortablelink('qtd','Qtd')</th>
             <th>@sortablelink('setor_id','Setor')</th>
-            <th>@sortablelink('obs','Observação')</th>
             <th>@sortablelink('created_at','Data de Saída')</th>
+            <th>@sortablelink('obs','Observação')</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>

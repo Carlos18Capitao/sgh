@@ -6,6 +6,13 @@
         <h3>{{ $title }}</h3>
     </div>
 
+    @if (isset($errors) && count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
 
     @if (isset($produtoentradas))
         {!! Form::model($produtoentradas, ['route' => ['entrada.update', $produtoentradas->id], 'class' => 'Form', 'method' => 'PUT']) !!}
@@ -20,7 +27,18 @@
         @if (isset($produtoentradas))
             {!! Form::select('produto_id', $produtoentradas->produto->pluck('produto','id'), null, ['class' => 'js-produto form-control','placeholder' => 'Selecione um produto...']) !!}
         @else
-            {!! Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' =>'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!}
+            {{-- {!! Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' =>'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!} --}}
+
+             <select class="js-produto form-control" name="produto_id">
+                <option selected="selected" value="">Selecione um produto...</option>                               
+                    @foreach($produtos as $produto)
+                        @if( $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') > 0)
+                            <option value="{{ $produto->id }}">
+                                {{ $produto->produto . ' - ' . $produto->unidade }}
+                            </option>
+                        @endif
+                    @endforeach
+            </select>
         @endif
     </div>
     <div class="form-group">

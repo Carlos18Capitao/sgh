@@ -6,6 +6,7 @@ use App\Models\Produto;
 use App\Models\Setor;
 use Illuminate\Http\Request;
 use App\Models\ProdutoSaida;
+use App\Http\Requests\ProdutoSaidaFormRequest;
 
 class ProdutoSaidaController extends Controller
 {
@@ -30,13 +31,13 @@ class ProdutoSaidaController extends Controller
     public function create()
     {
         $title = 'Saida de Produtos por Setor';
-        $produtos = Produto::all();
-        $setors = Setor::all();
+        $produtos = Produto::all()->sortBy('produto');
+        $setors = Setor::all()->sortBy('setor');
 
         return view('produtosaida.cadProdutoSaida', compact('title','produtos','setors'));
     }
 
-    public function store(Request $request)
+    public function store(ProdutoSaidaFormRequest $request)
     {
         $dataForm = $request->all();
         $insert = $this->produtosaida->create($dataForm);

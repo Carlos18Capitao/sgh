@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\EstadoCivil;
 
 class PacienteController extends Controller
 {
@@ -14,8 +15,8 @@ class PacienteController extends Controller
     public function index()
     {
         $title = 'Cadastro de Pacientes';
-
-        return view('paciente.cadPaciente', compact('title'));
+        $estadocivils = EstadoCivil::all();
+        return view('paciente.cadPaciente', compact('title','estadocivils'));
     }
 
     /**

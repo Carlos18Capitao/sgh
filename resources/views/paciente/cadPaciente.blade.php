@@ -44,9 +44,18 @@
     </div>
     <div class="form-group">
         {!! Form::label('civil', 'Estado civil:'); !!}
-        {!! Form::select('civil', ['S' => 'Solteiro', 'C' => 'Casado', 'SP' => 'Separado', 'D' => 'Divorciado', 'A' => 'Amasiado', 'V' => 'Viúvo'], ['class' => 'form-control', 'placeholder' => 'Estado Civil']) !!}
+      {{--  {!! Form::select('civil', ['S' => 'Solteiro', 'C' => 'Casado', 'SP' => 'Separado', 'D' => 'Divorciado', 'A' => 'Amasiado', 'V' => 'Viúvo'],null,['class' => 'js-estadocivil form-control', 'placeholder' => 'Estado Civil']) !!} --}}
+        {!! Form::select('civil', $estadocivils->pluck('descricao','id'),null,['class' => 'js-estadocivil form-control', 'placeholder' => 'Selecione o estado civil...']) !!}
+
     </div>
     {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}
 
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('.js-estadocivil').select2();
+        });
+    </script>
 @endsection

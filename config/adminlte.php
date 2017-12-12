@@ -134,6 +134,11 @@ return [
             'icon' => 'table',
         ],
         [
+            'text' => 'Tipo de Alta',
+            'url'  => 'tipoalta',
+            'icon' => 'table',
+        ],
+        [
             'text'    => 'Prestador',
             'icon'    => 'user-md',
             'submenu' => [

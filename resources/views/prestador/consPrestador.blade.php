@@ -21,6 +21,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
+            <th width="50px">@sortablelink('id','#')</th>
             <th>@sortablelink('descricao','Descrição')</th>
             <th>@sortablelink('cnes','CNES')</th>
             <th>@sortablelink('assistente','Assistente')</th>
@@ -31,14 +32,15 @@
             <th width="100px">Ações</th>
         </tr>
       </thead>
-        @foreach ($prestadors as $prestador)
+        @forelse ($prestadors as $prestador)
           <tbody>
             <tr>
+              <td>{{ $prestador->id }}</td>
               <td>{{ $prestador->nome }}</td>
               <td>{{ $prestador->cnes }}</td>
               <td>{{ $prestador->assistente }}</td>
               <td>{{ $prestador->executante }}</td>
-              <td>{{-- $prestador->tipo_prestador_id --}}  {{-- $prestador->tipoprestador->descricao --}}</td>
+              <td>{{ $prestador->tipoprestador->descricao }}</td>
               <td>{{ $prestador->ala->descricao }}</td>
               <td>{{ $prestador->telefone }}</td>
               <td>
@@ -78,7 +80,9 @@
                 </td>
             </tr>
           </tbody>
-        @endforeach
+        @empty
+          .
+        @endforelse
     </table>
 
     {!! $prestadors->appends(\Request::except('page'))->render() !!}

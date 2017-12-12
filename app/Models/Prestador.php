@@ -14,7 +14,7 @@ class Prestador extends Model
 
     protected $fillable = ['created_by','updated_by','nome','cnes','assistente','executante','ala_id','telefone','tipo_prestador_id'];
 
-    public $sortable = ['nome','cnes','assistente','executante','ala_id','telefone','tipo_prestador_id'];
+    public $sortable = ['id','nome','cnes','assistente','executante','ala_id','telefone','tipo_prestador_id'];
 
     public function getAssistenteAttribute($value)
       {

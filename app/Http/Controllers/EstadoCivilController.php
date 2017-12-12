@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\EstadoCivil;
+use App\Http\Requests\EstadoCivilFormRequest;
 
 class EstadoCivilController extends Controller
 {
@@ -29,7 +30,7 @@ class EstadoCivilController extends Controller
         return view('estadocivil.cadEstadoCivil', compact('title'));
     }
 
-    public function store(Request $request)
+    public function store(EstadoCivilFormRequest $request)
     {
         $dataForm = $request->all();
         $insert = $this->estadocivil->create($dataForm);

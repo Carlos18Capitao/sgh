@@ -6,7 +6,13 @@
         <h3>{{ $title }}</h3>
     </div>
 
-    {{--@shield('unidade.cadastrar')--}}
+    @if (isset($errors) && count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
 
     @if (isset($estadocivils))
         {!! Form::model($estadocivils, ['route' => ['estadocivil.update', $estadocivils->id], 'class' => 'Form', 'method' => 'PUT']) !!}
@@ -23,6 +29,5 @@
     {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
 {{--    {{ Form::button('<i class="glyphicon glyphicon-floppy-disk"> Salvar</i>', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}--}}
     {!! Form::close() !!}
-    {{--@endshield--}}
 
 @endsection

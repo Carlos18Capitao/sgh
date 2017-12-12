@@ -21,6 +21,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th width="50px">@sortablelink('id','#')</th>
             <th>@sortablelink('descricao','Descrição')</th>
             <th>@sortablelink('ramal','Ramal')</th>
             <th width="100px">Ações</th>
@@ -28,6 +29,7 @@
         </thead>
         @foreach ($alas as $ala)
             <tbody>
+                <td>{{ $ala->id }}</td>
                 <td>{{ $ala->descricao }}</td>
                 <td>{{ $ala->ramal }}</td>
                 <td>

@@ -15,4 +15,6 @@ class Ala extends Model
 
     protected $fillable = ['descricao','ramal','created_by','updated_by'];
 
+    protected $sortable = ['id','descricao','ramal'];
+
 }

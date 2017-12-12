@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ala;
 use Illuminate\Http\Request;
+use App\Http\Requests\AlaFormRequest;
 
 class AlaController extends Controller
 {
@@ -29,7 +30,7 @@ class AlaController extends Controller
         return view('ala.cadAla', compact('title'));
     }
 
-    public function store(Request $request)
+    public function store(AlaFormRequest $request)
     {
         $dataForm = $request->all();
         $insert = $this->ala->create($dataForm);

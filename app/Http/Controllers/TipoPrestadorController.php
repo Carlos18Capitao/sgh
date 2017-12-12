@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TipoPrestador;
+use App\Http\Requests\TipoPrestadorFormRequest;
 
 class TipoPrestadorController extends Controller
 {
@@ -29,7 +30,7 @@ class TipoPrestadorController extends Controller
         return view('tipoprestador.cadTipoPrestador', compact('title'));
     }
 
-    public function store(Request $request)
+    public function store(TipoPrestadorFormRequest $request)
     {
         $dataForm = $request->all();
         $insert = $this->tipoprestador->create($dataForm);

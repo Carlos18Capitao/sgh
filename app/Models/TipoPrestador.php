@@ -15,6 +15,11 @@ class TipoPrestador extends Model
 
     protected $fillable = ['descricao','created_by','updated_by'];
 
-    public $sortable = ['descricao'];
+    public $sortable = ['id','descricao'];
+
+    public function prestador()
+    {
+        return $this->hasMany('App\Models\Prestador');
+    }
 
 }

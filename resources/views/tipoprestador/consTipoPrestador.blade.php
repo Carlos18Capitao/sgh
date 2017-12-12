@@ -21,12 +21,14 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>@sortablelink('id','#')</th>
             <th>@sortablelink('descricao','Descrição')</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
         @foreach ($tipoprestadors as $tipoprestador)
             <tbody>
+                <td width="50px">{{ $tipoprestador->id }}</td>
                 <td>{{ $tipoprestador->descricao }}</td>
                 <td>
                     {{--@shield('tipoprestador.editar')--}}

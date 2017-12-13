@@ -16,10 +16,10 @@
 
     @if (isset($tipoaltas))
         {!! Form::model($tipoaltas, ['route' => ['tipoalta.update', $tipoaltas->id], 'class' => 'Form', 'method' => 'PUT']) !!}
-{{--        {!! Form::hidden('updated_by',Auth::user()->name) !!}--}}
+       {!! Form::hidden('updated_by',Auth::user()->id) !!}
     @else
         {!! Form::open(['route' => 'tipoalta.store', 'class' => 'form']) !!}
-{{--        {!! Form::hidden('created_by',Auth::user()->name) !!}--}}
+       {!! Form::hidden('created_by',Auth::user()->id) !!}
     @endif
 <form class="inline">
 

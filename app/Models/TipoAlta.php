@@ -12,7 +12,7 @@ class TipoAlta extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['codigo','descricao'];
+    protected $fillable = ['codigo','descricao','created_by','updated_by'];
 
     protected $sortable = ['codigo','descricao'];
 }

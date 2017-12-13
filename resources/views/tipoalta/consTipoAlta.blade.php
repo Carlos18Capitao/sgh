@@ -19,14 +19,16 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th width="50px">@sortablelink('id','#')</th>
+            {{-- <th width="50px">@sortablelink('id','#')</th> --}}
+            <th width="80px">@sortablelink('codigo','Código')</th>
             <th>@sortablelink('descricao','Descrição')</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
         @foreach ($tipoaltas as $tipoalta)
             <tbody>
-                <td>{{ $tipoalta->id }}</td>
+                {{-- <td>{{ $tipoalta->id }}</td> --}}
+                <td>{{ $tipoalta->codigo }}</td>
                 <td>{{ $tipoalta->descricao }}</td>
                 <td>
                     {{--@shield('tipoalta.editar')--}}

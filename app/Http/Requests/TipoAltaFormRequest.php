@@ -13,7 +13,7 @@ class TipoAltaFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,24 @@ class TipoAltaFormRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
-        return [
-            //
-        ];
-    }
+     public function rules()
+     {
+         return [
+             'descricao'       =>'required|min:10|max:80|unique:tipo_altas',
+             'codigo'       =>'required|max:10|unique:tipo_altas',
+         ];
+     }
+
+     public function messages()
+     {
+         return [
+             'descricao.required'  =>'Informe a descrição do TIPO DE ALTA!',
+             'descricao.min'       =>'A descrição do TIPO DE ALTA deve conter pelo menos dez caracteres!',
+             'descricao.max'       =>'A descrição do TIPO DE ALTA deve conter no máximo cem caracteres!',
+             'descricao.unique'    =>'Esse TIPO DE ALTA já se encontra cadastrado!',
+             'codigo.required'     =>'Informe o CÓDIGO DA ALTA!',
+             'codigo.max'          =>'O CÓDIGO deve conter no máximo dez caracteres!',
+             'codigo.unique'       =>'Esse CÓDIGO já se encontra cadastrado!',
+         ];
+     }
 }

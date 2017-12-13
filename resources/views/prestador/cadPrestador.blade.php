@@ -48,7 +48,7 @@
         @else
               {!! Form::radio('assistente','1',false,["id"=>"assistenteSim"]); !!}
               {!! Form::label('assistenteSim', 'Sim'); !!}
-              {!! Form::radio('assistente','0',true,["id"=>"assistenteNao"]); !!}
+              {!! Form::radio('assistente','0',false,["id"=>"assistenteNao"]); !!}
               {!! Form::label('assistenteNao', 'Não'); !!}
         @endif
 
@@ -70,7 +70,7 @@
   @else
         {!! Form::radio('executante','1',false,["id"=>"executanteSim"]); !!}
         {!! Form::label('executanteSim', 'Sim'); !!}
-        {!! Form::radio('executante','0',true,["id"=>"executanteNao"]); !!}
+        {!! Form::radio('executante','0',false,["id"=>"executanteNao"]); !!}
         {!! Form::label('executanteNao', 'Não'); !!}
   @endif
     </div>

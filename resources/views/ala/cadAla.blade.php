@@ -6,7 +6,13 @@
         <h3>{{ $title }}</h3>
     </div>
 
-    {{--@shield('unidade.cadastrar')--}}
+    @if (isset($errors) && count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
 
     @if (isset($alas))
         {!! Form::model($alas, ['route' => ['ala.update', $alas->id], 'class' => 'Form', 'method' => 'PUT']) !!}

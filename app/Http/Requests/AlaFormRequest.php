@@ -25,7 +25,7 @@ class AlaFormRequest extends FormRequest
      {
          return [
              'descricao'   =>'required|min:3|max:60|unique:alas',
-             'ramal'       =>'required|min:4|max:20',
+             'ramal'       =>'required|min:4|max:20|unique:alas',
          ];
      }
 
@@ -38,7 +38,8 @@ class AlaFormRequest extends FormRequest
              'descricao.unique'    =>'Essa ALA já se encontra cadastrada!!',
              'ramal.required'      =>'Informe o RAMAL!',
              'ramal.min'           =>'O RAMAL deve conter pelo menos 4 caracteres!',
-             'ramal.max'           =>'A ALA deve conter no máximo 20 caracteres!
+             'ramal.max'           =>'O RAMAL deve conter no máximo 20 caracteres!',
+             'ramal.unique'           =>'RAMAL cadastrado para outro setor!',
          ];
      }
 }

@@ -74,6 +74,12 @@ class PrestadorController extends Controller
 
     public function destroy($id)
     {
-        //
+      $prestadors = Prestador::find($id);
+      $delete = $prestadors->delete();
+
+      if ($delete)
+          return redirect()->route('prestador.index');
+      else
+          return redirect()->route('prestador.index')->with(['errors' => 'Falha ao editar']);
     }
 }

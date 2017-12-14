@@ -179,6 +179,10 @@ return [
 //            'icon' => 'user-md',
                 ],
                 [
+                    'text' => 'Estoque',
+                    'url'  => 'estoque/estoque',
+                ],
+                [
                     'text'    => 'Relatório - Posição Estoque',
 //                    'icon'    => 'cart-plus',
                     'url'  => 'estoque/relposicaoestoque',

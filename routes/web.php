@@ -47,6 +47,8 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|estoque']], 
     Route::get('/relposicaoestoque', 'ProdutoController@relposicaoestoque')->name('relposicaoestoque');
     Route::resource('/entrada', 'ProdutoEntradaController');
     Route::resource('/saida', 'ProdutoSaidaController');
+    Route::resource('/estoque', 'EstoqueController');
+
 });
 //Route::get('/paciente/cadastro', function () {
 //    return 'Hello World';

@@ -38,4 +38,9 @@ class Estoque extends Model
 
     }
 
+    public function user()
+    {
+        return $this->belongsToMany('App\User', 'user_estoques');
+    }
+
 }

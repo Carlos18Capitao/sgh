@@ -48,8 +48,11 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|estoque']], 
     Route::resource('/entrada', 'ProdutoEntradaController');
     Route::resource('/saida', 'ProdutoSaidaController');
     Route::resource('/estoque', 'EstoqueController');
+    // Route::get('/userstore/{id}', 'EstoqueController@userstore')->name('userstore');
+    Route::post('/{id}/userstore', ['as' => 'estoque.userstore','uses' => 'EstoqueController@userstore']);
+    });
 
-});
+
 //Route::get('/paciente/cadastro', function () {
 //    return 'Hello World';
 //});

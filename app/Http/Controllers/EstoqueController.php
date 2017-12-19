@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Estoque;
+use App\User;
 
 class EstoqueController extends Controller
 {
     private $estoque;
 
-    public function __construct(Estoque $estoque)
+    public function __construct(Estoque $estoque, User $user)
     {
       $this->estoque = $estoque;
+      $this->user    = $user;
     }
     public function index()
     {
@@ -40,9 +42,25 @@ class EstoqueController extends Controller
       }
     }
 
+    public function userstore($estoque_id, Request $request)
+    {
+      $estoque = Estoque::find($estoque_id);
+      $user_id = $request['user_id'];
+
+      $estoque->user()->attach($user_id);
+
+      // return view('estoque.showEstoque', compact('title','estoque','users'));
+      return redirect()->back()->with(['success'=>'Usuário vinculado com sucesso!!!']);
+    }
+
     public function show($id)
     {
-        //
+        $estoque = Estoque::find($id);
+        $title = 'Estoque';
+        $users = User::all();
+        // dd($estoque);
+
+        return view('estoque.showEstoque', compact('title','estoque','users'));
     }
 
     public function edit($id)

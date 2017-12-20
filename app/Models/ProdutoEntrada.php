@@ -33,6 +33,11 @@ class ProdutoEntrada extends Model
         return $this->belongsTo('App\User','created_by');
     }
 
+    public function estoque()
+    {
+        return $this->belongsTo(Estoque::class);
+    }
+
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y - h:i');

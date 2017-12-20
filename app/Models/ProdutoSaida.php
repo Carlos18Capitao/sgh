@@ -28,7 +28,7 @@ class ProdutoSaida extends Model
     {
         return $this->belongsTo('App\Models\Produto');
     }
-    
+
     public function setor()
     {
         return $this->belongsTo('App\Models\Setor');
@@ -37,6 +37,11 @@ class ProdutoSaida extends Model
     public function user()
     {
         return $this->belongsTo('App\User','created_by');
+    }
+
+    public function estoque()
+    {
+        return $this->belongsTo(Estoque::class);
     }
 
     public function getCreatedAtAttribute($value)

@@ -18,7 +18,6 @@
     <a href="{{ route('entrada.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
 @endpermission
 
-
     <br><br>
     <table class="table table-striped">
         <thead>

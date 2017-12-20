@@ -31,6 +31,6 @@ class User extends Authenticatable
 
     public function estoques()
     {
-        return $this->belongsToMany(Estoque::class, 'user_estoques');
+        return $this->belongsToMany('App\Models\Estoque', 'user_estoques');
     }
 }

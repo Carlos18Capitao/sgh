@@ -157,6 +157,10 @@ return [
             'text'    => 'Estoque',
             'icon'    => 'cart-plus',
             'submenu' => [
+              [ 
+                  'text' => 'Selecionar Estoque',
+                  'url'  => 'estoque/select',
+              ],
                 [
                     'text' => 'Entrada de Produtos',
                     'url'  => 'estoque/entrada',

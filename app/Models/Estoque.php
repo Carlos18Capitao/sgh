@@ -24,7 +24,6 @@ class Estoque extends Model
         return 'Sim';
       } else {
         return 'Não'; }
-
     }
 
     public function getValidadeFormattedAttribute()
@@ -35,12 +34,10 @@ class Estoque extends Model
         return 'Sim';
       } else {
         return 'Não'; }
-
     }
 
     public function user()
     {
         return $this->belongsToMany('App\User', 'user_estoques');
     }
-
 }

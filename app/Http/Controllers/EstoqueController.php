@@ -23,6 +23,14 @@ class EstoqueController extends Controller
       return view('estoque.consEstoque', compact('title', 'estoques'));
     }
 
+    public function select()
+    {
+      $estoques =  Estoque::sortable()->get();
+      $title = 'Estoques';
+
+      return view('estoque.selectEstoque', compact('title', 'estoques'));
+    }
+
     public function create()
     {
       $title = 'Estoque';
@@ -58,7 +66,6 @@ class EstoqueController extends Controller
         $estoque = Estoque::find($id);
         $title = 'Estoque';
         $users = User::all();
-        // dd($estoque);
 
         return view('estoque.showEstoque', compact('title','estoque','users'));
     }

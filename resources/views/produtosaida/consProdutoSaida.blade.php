@@ -15,7 +15,7 @@
     @endif
 
     {{--@shield('produtosaida.cadastrar')--}}
-    <a href="{{ route('saida.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
+    <a href="{{ route('create',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     {{--@endshield--}}
     <br><br>
     <table class="table table-striped">

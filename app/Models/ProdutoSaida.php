@@ -19,7 +19,8 @@ class ProdutoSaida extends Model
         'obs',
         'created_by',
         'updated_by',
-        'setor_id'
+        'setor_id',
+        'estoque_id'
     ];
 
     public $sortable = ['produto_id','qtd','obs','created_at','setor_id'];

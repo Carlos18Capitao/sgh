@@ -157,18 +157,18 @@ return [
             'text'    => 'Estoque',
             'icon'    => 'cart-plus',
             'submenu' => [
-              [ 
+              [
                   'text' => 'Selecionar Estoque',
                   'url'  => 'estoque/select',
               ],
-                [
-                    'text' => 'Entrada de Produtos',
-                    'url'  => 'estoque/entrada',
-                ],
-                [
-                    'text' => 'Saída para Setor',
-                    'url'  => 'estoque/saida',
-                ],
+                // [
+                //     'text' => 'Entrada de Produtos',
+                //     'url'  => 'estoque/entrada',
+                // ],
+                // [
+                //     'text' => 'Saída para Setor',
+                //     'url'  => 'estoque/saida',
+                // ],
                 [
                     'text' => 'Produtos',
                     'url'  => 'estoque/produto',

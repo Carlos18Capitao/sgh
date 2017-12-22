@@ -31,12 +31,14 @@
     </div>
     <div class="form-group">
         {!! Form::label('produto', 'Produto:'); !!}
+        {!! Form::hidden('estoque_id',$estoque_id) !!}
+
         @if (isset($produtosaidas))
             {!! Form::select('produto_id', $produtosaidas->produto->pluck('produto','id'), null, ['class' => 'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!}
         @else
           {{--  {!!Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' => 'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!}--}}
             <select class="js-produto form-control" name="produto_id">
-                <option selected="selected" value="">Selecione um produto...</option>                               
+                <option selected="selected" value="">Selecione um produto...</option>
                     @foreach($produtos as $produto)
                         @if( $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') > 0)
                             <option value="{{ $produto->id }}">

@@ -6,44 +6,48 @@ use App\Models\Produto;
 use App\Models\Setor;
 use Illuminate\Http\Request;
 use App\Models\ProdutoSaida;
+use App\Models\Estoque;
 use App\Http\Requests\ProdutoSaidaFormRequest;
 
 class ProdutoSaidaController extends Controller
 {
     private $produtosaida;
 
-    public function __construct(ProdutoSaida $produtosaida, Produto $produto, Setor $setor)
+    public function __construct(ProdutoSaida $produtosaida, Produto $produto, Setor $setor, Estoque $estoque)
     {
         $this->produtosaida = $produtosaida;
-        $this->produto = $produto;
-        $this->setor = $setor;
+        $this->produto      = $produto;
+        $this->setor        = $setor;
+        $this->estoque      = $estoque;
     }
 
-    public function index()
+    public function index($estoque_id)
     {
-        $produtosaidas =  ProdutoSaida::sortable()->paginate(10);
-//        dd($produtosaidas);
-        $title = 'Saida de Produtos por Setor';
+        $produtosaidas  =  ProdutoSaida::sortable()->where('estoque_id','=',$estoque_id)->paginate(10);
+        $title          = 'Saida de Produtos por Setor';
 
-        return view('produtosaida.consProdutoSaida', compact('title', 'produtosaidas'));
+        return view('produtosaida.consProdutoSaida', compact('title', 'produtosaidas','estoque_id'));
     }
 
-    public function create()
+    public function create($estoque_id)
     {
-        $title = 'Saida de Produtos por Setor';
+        $title    = 'Saida de Produtos por Setor';
         $produtos = Produto::all()->sortBy('produto');
-        $setors = Setor::all()->sortBy('setor');
+        $setors   = Setor::all()->sortBy('setor');
 
-        return view('produtosaida.cadProdutoSaida', compact('title','produtos','setors'));
+        return view('produtosaida.cadProdutoSaida', compact('title','produtos','setors','estoque_id'));
     }
 
     public function store(ProdutoSaidaFormRequest $request)
     {
         $dataForm = $request->all();
-        $insert = $this->produtosaida->create($dataForm);
+
+
+        $insert   = $this->produtosaida->create($dataForm);
+         // dd($insert);
 
         if ($insert)
-            return redirect()->route('saida.index');
+            return redirect()->route('saida.index',[$insert->estoque_id]);
         else {
             return redirect()->back();
         }
@@ -57,16 +61,16 @@ class ProdutoSaidaController extends Controller
     public function edit($id)
     {
         $produtosaidas = ProdutoSaida::find($id);
-        $title = "Editar produtosaida: $produtosaidas->descricao";
+        $title          = "Editar produtosaida: $produtosaidas->descricao";
 
         return view('produtosaida.cadProdutoSaida', compact('title', 'produtosaidas'));
     }
 
     public function update(Request $request, $id)
     {
-        $dataForm = $request->all();
+        $dataForm      = $request->all();
         $produtosaidas = ProdutoSaida::find($id);
-        $update = $produtosaidas->update($dataForm);
+        $update        = $produtosaidas->update($dataForm);
 
         if ($update)
             return redirect()->route('saida.index', $id);

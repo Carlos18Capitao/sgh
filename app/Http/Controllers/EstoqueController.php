@@ -31,6 +31,14 @@ class EstoqueController extends Controller
       return view('estoque.selectEstoque', compact('title', 'estoques'));
     }
 
+    public function menu($id)
+    {
+        $estoque = Estoque::find($id);
+        $title = $estoque->descricao;
+
+        return view('estoque.menuEstoque', compact('title','estoque'));
+    }
+
     public function create()
     {
       $title = 'Estoque';
@@ -57,7 +65,6 @@ class EstoqueController extends Controller
 
       $estoque->user()->attach($user_id);
 
-      // return view('estoque.showEstoque', compact('title','estoque','users'));
       return redirect()->back()->with(['success'=>'Usuário vinculado com sucesso!!!']);
     }
 

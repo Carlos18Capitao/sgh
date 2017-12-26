@@ -42,7 +42,7 @@ class ProdutoSaida extends Model
 
     public function estoque()
     {
-        return $this->belongsTo(Estoque::class);
+        return $this->belongsTo('App\Models\Estoque');
     }
 
     public function getCreatedAtAttribute($value)

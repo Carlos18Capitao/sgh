@@ -32,10 +32,11 @@ class ProdutoSaidaController extends Controller
     public function create($estoque_id)
     {
         $title    = 'Saida de Produtos por Setor';
+        $estoques = Estoque::with('produto')->where('id','=',$estoque_id)->get();
         $produtos = Produto::all()->sortBy('produto');
         $setors   = Setor::all()->sortBy('setor');
 
-        return view('produtosaida.cadProdutoSaida', compact('title','produtos','setors','estoque_id'));
+        return view('produtosaida.cadProdutoSaida', compact('title','produtos','setors','estoque_id','estoques'));
     }
 
     public function store(ProdutoSaidaFormRequest $request)

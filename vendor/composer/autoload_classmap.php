@@ -49,6 +49,7 @@ return array(
     'App\\Models\\Prestador' => $baseDir . '/app/Models/Prestador.php',
     'App\\Models\\Produto' => $baseDir . '/app/Models/Produto.php',
     'App\\Models\\ProdutoEntrada' => $baseDir . '/app/Models/ProdutoEntrada.php',
+    'App\\Models\\ProdutoEstoque' => $baseDir . '/app/Models/ProdutoEstoque.php',
     'App\\Models\\ProdutoSaida' => $baseDir . '/app/Models/ProdutoSaida.php',
     'App\\Models\\Setor' => $baseDir . '/app/Models/Setor.php',
     'App\\Models\\TipoAlta' => $baseDir . '/app/Models/TipoAlta.php',

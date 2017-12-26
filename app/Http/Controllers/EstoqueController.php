@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Estoque;
+use App\Models\Produto;
 use App\User;
 
 class EstoqueController extends Controller
 {
     private $estoque;
 
-    public function __construct(Estoque $estoque, User $user)
+    public function __construct(Estoque $estoque, User $user, Produto $produto)
     {
       $this->estoque = $estoque;
       $this->user    = $user;
+      $this->produto    = $produto;
     }
     public function index()
     {
@@ -68,13 +70,24 @@ class EstoqueController extends Controller
       return redirect()->back()->with(['success'=>'Usuário vinculado com sucesso!!!']);
     }
 
+    public function produtostore($estoque_id, Request $request)
+    {
+      $estoque = Estoque::find($estoque_id);
+      $produto_id = $request['produto_id'];
+
+      $estoque->produto()->attach($produto_id);
+
+      return redirect()->back()->with(['success'=>'Produto vinculado com sucesso!!!']);
+    }
+
     public function show($id)
     {
-        $estoque = Estoque::find($id);
-        $title = 'Estoque';
-        $users = User::all();
+        $estoque  = Estoque::find($id);
+        $title    = 'Estoque';
+        $users    = User::all()->sortBy('name');
+        $produtos  = Produto::all()->sortBy('produto');
 
-        return view('estoque.showEstoque', compact('title','estoque','users'));
+        return view('estoque.showEstoque', compact('title','estoque','users','produtos'));
     }
 
     public function edit($id)
@@ -106,5 +119,13 @@ class EstoqueController extends Controller
           return redirect()->route('estoque.index');
       else
           return redirect()->route('estoque.index')->with(['errors' => 'Falha ao editar']);
+    }
+
+    public function relposicaoestoque($id)
+    {
+        $produtos =  Produto::sortable()->paginate(100);
+        $title = 'Posição de Estoque';
+
+        return view('estoque.relPosicaoEstoque', compact('title', 'produtos'));
     }
 }

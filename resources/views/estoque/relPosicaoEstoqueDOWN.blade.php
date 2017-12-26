@@ -14,6 +14,7 @@
         </div>
     @endif
 
+
     {{--@shield('produto.cadastrar')--}}
     {{--<a href="{{ route('produto.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>--}}
     {{--@endshield--}}
@@ -28,7 +29,18 @@
             {{--<th width="100px">Ações</th>--}}
         </tr>
         </thead>
+{{-- {{ $estoque_id }} --}}
+        {{-- {{ dd($estoques) }} --}}
         @foreach ($produtos as $produto)
+
+            @foreach ($produto->produtoentrada as $entrada)
+            @foreach ($produto->produtosaida as $saida)
+
+              @if($entrada->estoque_id == $estoque_id && $saida->estoque_id == $estoque_id or $produto->id !== $entrada->estoque_id)
+                  {{-- {{$entrada->estoque_id}} --}}
+
+            {{-- @endif --}}
+
             <tbody>
             <td>{{ $produto->categoria->descricao  }}</td>
             <td><a href="{{ route('produto.show',$produto->id) }}">{{ $produto->produto }}</a></td>
@@ -69,8 +81,12 @@
                     {{--</div>--}}
                 {{--</td>--}}
             </tbody>
+          @endif
+
+        @endforeach
+        @endforeach
 
         @endforeach
     </table>
-    {!! $produtos->appends(\Request::except('page'))->render() !!}
+    {{-- {!! $produtos->appends(\Request::except('page'))->render() !!} --}}
 @endsection

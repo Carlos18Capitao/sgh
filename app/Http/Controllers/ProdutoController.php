@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\Estoque;
 use App\Http\Requests\ProdutoFormRequest;
 
 class ProdutoController extends Controller
 {
     private $produto;
 
-    public function __construct(Produto $produto, Categoria $categoria)
+    public function __construct(Produto $produto, Categoria $categoria, Estoque $estoque)
     {
         $this->produto = $produto;
         $this->categoria = $categoria;
+        $this->estoque = $estoque;
     }
 
     public function index()
@@ -52,7 +54,6 @@ class ProdutoController extends Controller
         $title = "Detalhes do Produto";
 
         return view('produto.showProduto', compact('title','produtos'));
-
     }
 
     public function edit($id)
@@ -89,11 +90,15 @@ class ProdutoController extends Controller
             return redirect()->route('produto.index')->with(['errors' => 'Falha ao editar']);
     }
 
-    public function relposicaoestoque()
+    public function relposicaoestoque($estoque_id)
     {
-        $produtos =  Produto::sortable()->paginate(100);
-        $title = 'Posição de Estoque';
+        // $produtos = Produto::with('estoque','produto_id')->sortable()->get();
+        $estoques = Estoque::with('produto')->where('id','=',$estoque_id)->sortable()->get();
+        // dd($estoques);
+        $title    = 'Posição de Estoque';
+        // $estoque_id = Estoque::where('id','=',$estoque_id)->value('id');
+        // dd($estoques);
 
-        return view('produto.relPosicaoEstoque', compact('title', 'produtos'));
+        return view('produto.relPosicaoEstoque', compact('title', 'produtos','estoques'));
     }
 }

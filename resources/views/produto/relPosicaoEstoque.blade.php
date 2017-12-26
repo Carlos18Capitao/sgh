@@ -28,7 +28,9 @@
             {{--<th width="100px">Ações</th>--}}
         </tr>
         </thead>
-        @foreach ($produtos as $produto)
+        @foreach ($estoques as $estoque)
+
+          @foreach ($estoque->produto as $produto)
             <tbody>
             <td>{{ $produto->categoria->descricao  }}</td>
             <td><a href="{{ route('produto.show',$produto->id) }}">{{ $produto->produto }}</a></td>
@@ -69,8 +71,9 @@
                     {{--</div>--}}
                 {{--</td>--}}
             </tbody>
+          @endforeach
 
         @endforeach
     </table>
-    {!! $produtos->appends(\Request::except('page'))->render() !!}
+    {{-- {!! $produtos->appends(\Request::except('page'))->render() !!} --}}
 @endsection

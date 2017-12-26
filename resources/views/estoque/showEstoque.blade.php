@@ -38,23 +38,47 @@
       </div>
     @endif
 
-<p><b>Vincular usuário ao estoque:</b></p>
-    {!! Form::open(['route' => ['estoque.userstore',$estoque->id], 'class' => 'form']) !!}
-    {!! Form::hidden('estoque_id',$estoque->id) !!}
-    {!! Form::select('user_id',$users->pluck('name','id'),null,['class'=>'js-user form-inline','placeholder'=>'Selecione o usuário...'])!!}
-    {!! Form::submit('Vincular', ['class' => 'btn btn-primary']) !!}
-    {!! Form::close(); !!}
+<div class="row">
+    <div class="col-sm-4">
+
+        <b>Vincular USUÁRIO ao estoque:</b>
+            {!! Form::open(['route' => ['estoque.userstore',$estoque->id], 'class' => 'form']) !!}
+            {!! Form::hidden('estoque_id',$estoque->id) !!}
+            {!! Form::select('user_id',$users->pluck('name','id'),null,['class'=>'js-user form-inline', 'data-width="300px"','placeholder'=>'Selecione o usuário...'])!!}
+            {!! Form::submit('Vincular', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close(); !!}
+    </div>
+
+    <div class="col-sm-5">
+        <b>Vincular PRODUTO ao estoque:</b>
+            {!! Form::open(['route' => ['estoque.produtostore',$estoque->id], 'class' => 'form']) !!}
+            {!! Form::hidden('estoque_id',$estoque->id) !!}
+            {!! Form::select('produto_id',$produtos->pluck('produto','id'),null,['class'=>'js-produto form-inline','data-width="400px"','placeholder'=>'Selecione o produto...'])!!}
+            {!! Form::submit('Vincular', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close(); !!}
+      </div>
+</div>
 
     <br><br>
 
-<p><b>Usuários Vinculados:</b></p>
-    @foreach ($estoque->user as $user)
-
-      <ul>
-        <li>{{ $user->name }}</li>
-      </ul>
-
-    @endforeach
+<div class="row">
+    <div class="col-sm-4">
+        <p><b>Usuários Vinculados:</b></p>
+            @foreach ($estoque->user as $user)
+              <ul>
+                <li>{{ $user->name }}</li>
+              </ul>
+            @endforeach
+    </div>
+    <div class="col-sm-5">
+        <p><b>Produtos Vinculados:</b></p>
+            @foreach ($estoque->produto as $produto)
+              <ul>
+                <li>{{ $produto->produto }}</li>
+              </ul>
+            @endforeach
+    </div>
+</div>
 
                     <!-- Modal EXCLUIR-->
                     <div class="modal fade" id="excluir{{$estoque->id}}" tabindex="-1" role="dialog" aria-labelledby="excluir">
@@ -83,7 +107,8 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('.js-user').select2();
+            $('.js-user').select2(),
+            $('.js-produto').select2();
         });
     </script>
 @endsection

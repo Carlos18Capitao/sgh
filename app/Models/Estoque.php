@@ -40,4 +40,19 @@ class Estoque extends Model
     {
         return $this->belongsToMany('App\User', 'user_estoques');
     }
+
+    public function produto()
+    {
+        return $this->belongsToMany('App\Models\Produto', 'produto_estoques');
+    }
+
+    public function produtoentrada()
+    {
+        return $this->hasMany('App\Models\ProdutoEntrada');
+    }
+
+    public function saida()
+    {
+        return $this->hasMany('App\Models\ProdutoSaida');
+    }
 }

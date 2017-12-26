@@ -23,7 +23,7 @@ class ProdutoSaidaController extends Controller
 
     public function index($estoque_id)
     {
-        $produtosaidas  =  ProdutoSaida::sortable()->where('estoque_id','=',$estoque_id)->paginate(10);
+        $produtosaidas  =  ProdutoSaida::sortable()->where('estoque_id','=',$estoque_id)->paginate(20);
         $title          = 'Saida de Produtos por Setor';
 
         return view('produtosaida.consProdutoSaida', compact('title', 'produtosaidas','estoque_id'));
@@ -41,13 +41,10 @@ class ProdutoSaidaController extends Controller
     public function store(ProdutoSaidaFormRequest $request)
     {
         $dataForm = $request->all();
-
-
         $insert   = $this->produtosaida->create($dataForm);
-         // dd($insert);
 
         if ($insert)
-            return redirect()->route('saida.index',[$insert->estoque_id]);
+            return redirect()->route('estoque.saida',[$insert->estoque_id]);
         else {
             return redirect()->back();
         }

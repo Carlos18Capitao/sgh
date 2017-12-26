@@ -18,7 +18,8 @@ class ProdutoEntrada extends Model
                         'qtd',
                         'obs',
                         'created_by',
-                        'updated_by'
+                        'updated_by',
+                        'estoque_id'
                         ];
 
     public $sortable = ['produto_id','qtd','obs','created_at'];

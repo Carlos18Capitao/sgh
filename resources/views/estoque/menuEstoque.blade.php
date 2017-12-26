@@ -19,8 +19,8 @@
 {{-- <i class="fa fa-fw fa-cart-arrow-down fa-4x"></i> --}}
 
 <div class="col-sm-2">
-       <a href="{{url('/estoque/entrada')}}">
-       {{-- <a href="{{route('estoque.entrada')}}"> --}}
+       {{-- <a href="{{url('/estoque/entrada')}}"> --}}
+       <a href="{{route('estoque.entrada',$estoque->id)}}">
 
          {{-- <a href="{{ route('estoque.menu',$estoque->id) }}"> --}}
 
@@ -61,6 +61,26 @@
   	       </div>
          </a>
     </div>
+
+    <div class="col-sm-2">
+          <a href="{{route('relposicaoestoque',$estoque->id)}}">
+             <div class="panel panel-yellow">
+                 <div class="panel-heading">
+                     <div class="row">
+                         <div class="col-xs-2">
+                                <i class="fa fa-fw fa-cart-arrow-down fa-4x"></i>
+                         </div>
+                     </div>
+                 </div>
+
+                   <div class="panel-footer">
+                       <span class="pull-left">Relatório Posição de Estoque</span>
+                       <span class="pull-right"><i class="fa fa-fw fa-lg fa-arrow-right"></i></span>
+                       <div class="clearfix"></div>
+                   </div>
+             </div>
+           </a>
+      </div>
 
 @endsection
 

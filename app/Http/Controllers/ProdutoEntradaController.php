@@ -22,20 +22,20 @@ class ProdutoEntradaController extends Controller
         $this->user           = $user;
     }
 
-    public function index()
+    public function index($estoque_id)
     {
-        $produtoentradas =  ProdutoEntrada::sortable()->paginate(20);
+        $produtoentradas =  ProdutoEntrada::sortable()->where('estoque_id','=',$estoque_id)->paginate(20);
         $title           = 'Entrada de Produtos no Estoque';
 
-        return view('produtoentrada.consProdutoEntrada', compact('title', 'produtoentradas'));
+        return view('produtoentrada.consProdutoEntrada', compact('title', 'produtoentradas','estoque_id'));
     }
 
-    public function create()
+    public function create($estoque_id)
     {
         $title    = 'Entrada de Produtos no Estoque';
         $produtos = Produto::all()->sortBy('produto');
 
-        return view('produtoentrada.cadProdutoEntrada', compact('title','produtos'));
+        return view('produtoentrada.cadProdutoEntrada', compact('title','produtos','estoque_id'));
     }
 
     public function store(ProdutoEntradaFormRequest $request)
@@ -44,7 +44,7 @@ class ProdutoEntradaController extends Controller
         $insert   = $this->produtoentrada->create($dataForm);
 
         if ($insert)
-            return redirect()->route('entrada.index');
+            return redirect()->route('estoque.entrada',[$insert->estoque_id]);
         else {
             return redirect()->back();
         }

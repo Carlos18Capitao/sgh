@@ -15,7 +15,7 @@
     @endif
 
 @permission('ver')
-    <a href="{{ route('entrada.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
+    <a href="{{ route('createentrada',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
 @endpermission
 
     <br><br>

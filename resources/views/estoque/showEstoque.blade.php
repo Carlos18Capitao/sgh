@@ -74,7 +74,7 @@
         <p><b>Produtos Vinculados:</b></p>
             @foreach ($estoque->produto as $produto)
               <ul>
-                <li>{{ $produto->produto }}</li>
+                <li>{{ $produto->produto . ' - ' . $produto->unidade }}</li>
               </ul>
             @endforeach
     </div>

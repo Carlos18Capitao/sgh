@@ -159,38 +159,36 @@ return [
             'submenu' => [
               [
                   'text' => 'Selecionar Estoque',
+                  'icon' => 'check-square-o',
                   'url'  => 'estoque/select',
               ],
+              [
+                  'text'    => 'Cadastros',
+                  'icon'    => 'gear',
+                  'submenu' => [
+                    [
+                        'text' => 'Estoques',
+                        'url'  => 'estoque/estoque',
+                    ],
+                    [
+                        'text' => 'Setores',
+                        'url'  => 'estoque/setor',
+                    ],
+                    [
+                        'text' => 'Categorias',
+                        'url'  => 'estoque/categoria',
+                    ],
+                    [
+                        'text' => 'Produtos',
+                        'url'  => 'estoque/produto',
+                    ],
+              ],
+            ],
                 // [
-                //     'text' => 'Entrada de Produtos',
-                //     'url'  => 'estoque/entrada',
-                // ],
-                // [
-                //     'text' => 'Saída para Setor',
-                //     'url'  => 'estoque/saida',
-                // ],
-                [
-                    'text' => 'Produtos',
-                    'url'  => 'estoque/produto',
-                ],
-                [
-                    'text' => 'Setores',
-                    'url'  => 'estoque/setor',
-                ],
-                [
-                    'text' => 'Categoria',
-                    'url'  => 'estoque/categoria',
-//            'icon' => 'user-md',
-                ],
-                [
-                    'text' => 'Estoque',
-                    'url'  => 'estoque/estoque',
-                ],
-                [
-                    'text'    => 'Relatório - Posição Estoque',
+                    // 'text'    => 'Relatório - Posição Estoque',
 //                    'icon'    => 'cart-plus',
-                    'url'  => 'estoque/relposicaoestoque',
-                        ],
+                    // 'url'  => 'estoque/relposicaoestoque',
+                        // ],
             ],
         ],
 //        [

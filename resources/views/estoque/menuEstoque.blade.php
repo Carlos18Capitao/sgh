@@ -67,8 +67,8 @@
              <div class="panel panel-yellow">
                  <div class="panel-heading">
                      <div class="row">
-                         <div class="col-xs-2">
-                                <i class="fa fa-fw fa-cart-arrow-down fa-4x"></i>
+                         <div class="col-xs-2"> 
+                                <i class="fa fa-fw fa-file-text fa-4x"></i>
                          </div>
                      </div>
                  </div>

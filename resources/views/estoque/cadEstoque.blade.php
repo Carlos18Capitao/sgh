@@ -13,7 +13,7 @@
             @endforeach
         </div>
     @endif
-
+ @role('admin')
     @if (isset($estoques))
         {!! Form::model($estoques, ['route' => ['estoque.update', $estoques->id], 'class' => 'Form', 'method' => 'PUT']) !!}
        {!! Form::hidden('updated_by',Auth::user()->id) !!}
@@ -36,7 +36,7 @@
       @else
         {!! Form::select('lote', ['1'=>'Sim','0'=>'Não'],null, ['class' => 'form-control']) !!}
       @endif
-      
+
       {!! Form::label('validade', 'Controla Validade?'); !!}
       @if (isset($estoques))
         @if ($estoques->validade == 1)
@@ -52,5 +52,5 @@
     {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
 {{--    {{ Form::button('<i class="glyphicon glyphicon-floppy-disk"> Salvar</i>', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}--}}
     {!! Form::close() !!}
-
+  @endrole
 @endsection

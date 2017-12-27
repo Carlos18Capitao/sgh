@@ -14,9 +14,9 @@
         </div>
     @endif
 
-@permission('ver')
+{{-- @permission('ver') --}}
     <a href="{{ route('createentrada',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
-@endpermission
+{{-- @endpermission --}}
 
     <br><br>
     <table class="table table-striped">

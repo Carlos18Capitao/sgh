@@ -35,7 +35,11 @@
             <td>{{ $produto->categoria->descricao  }}</td>
             <td><a href="{{ route('produto.show',$produto->id) }}">{{ $produto->produto }}</a></td>
             <td>{{ $produto->unidade }}</td>
-            <td>{{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}</td>
+            <td>{{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}
+                @if($produto->unidade == 'Grama')
+                    {{ '  |  ' . ($produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd'))/1000 .'kg' }}
+                @endif
+            </td>
                 {{--<td>--}}
                     {{--@shield('produto.editar')--}}
                     {{--<a class = "btn btn-sm btn-default" href="{{ route('produto.edit',$produto->id)}}">--}}

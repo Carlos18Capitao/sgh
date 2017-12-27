@@ -15,8 +15,12 @@
     @endif
 
     <br><br>
-{{-- <i class="fa fa-fw fa-truck fa-4x"></i> --}}
-{{-- <i class="fa fa-fw fa-cart-arrow-down fa-4x"></i> --}}
+{{-- {{ $estoque->id }} --}}
+@foreach (Auth::user()->estoques as $stoq)
+
+  @if ($estoque->id == $stoq->pivot->estoque_id)
+
+{{-- @if($estoque->id == Auth::user()->user_estoques->id) --}}
 
 <div class="col-sm-2">
        {{-- <a href="{{url('/estoque/entrada')}}"> --}}
@@ -67,7 +71,7 @@
              <div class="panel panel-yellow">
                  <div class="panel-heading">
                      <div class="row">
-                         <div class="col-xs-2"> 
+                         <div class="col-xs-2">
                                 <i class="fa fa-fw fa-file-text fa-4x"></i>
                          </div>
                      </div>
@@ -81,7 +85,10 @@
              </div>
            </a>
       </div>
-
+    @else
+      
+    @endif
+  @endforeach
 @endsection
 
 @section('js')

@@ -17,8 +17,10 @@
     <p><b>Descrição:</b> {{ $produtos->produto }}</p>
     <p><b>Unidade:</b> {{ $produtos->unidade }}</p>
     <p><b>Categoria:</b> {{ $produtos->categoria->descricao }}</p>
-    <p><b>Saldo: </b>{{ $produtos->produtoentrada->sum('qtd') - $produtos->produtosaida->sum('qtd') }}</p>
-
+    <p><b>Saldo: </b>{{ $produtos->produtoentrada->sum('qtd') - $produtos->produtosaida->sum('qtd') }}
+              @if($produtos->unidade == 'Grama')
+                   {{ '  |  ' . ($produtos->produtoentrada->sum('qtd') - $produtos->produtosaida->sum('qtd'))/1000 .'kg' }}</p>
+              @endif
 
     <hr>
 <b> ENTRADAS </b>
@@ -34,11 +36,17 @@
             <tbody>
                 <td>{{ $entproduto->user->name }}</td>
                 <td>{{ $entproduto->created_at }}</td>
-                <td>{{ $entproduto->qtd }}</td>
+                <td>{{ $entproduto->qtd }}
+                  @if($produtos->unidade == 'Grama')
+                      {{ ' | ' . ($entproduto->qtd)/1000 . 'Kg'}}</td>
+                  @endif
             </tbody>
 @endforeach
     </table>
 <b>Total de Entradas:</b> {{ $produtos->produtoentrada->sum('qtd') }}
+  @if($produtos->unidade == 'Grama')
+    {{' | ' . ($produtos->produtoentrada->sum('qtd'))/1000 . 'Kg'}}
+  @endif
     <hr>
 
 <b> SAÍDAS </b>
@@ -55,12 +63,19 @@
             <tbody>
             <td>{{ $saiproduto->setor->setor }}</td>
             <td>{{ $saiproduto->created_at }}</td>
-            <td>{{ $saiproduto->qtd }}</td>
+            <td>{{ $saiproduto->qtd }}
+              @if($produtos->unidade == 'Grama')
+                {{' | ' .  ($saiproduto->qtd)/1000 . 'Kg' }}
+              @endif
+            </td>
             <td>{{ $saiproduto->user->name }}</td>
             </tbody>
         @endforeach
     </table>
     <b>Total de Saídas:</b> {{ $produtos->produtosaida->sum('qtd') }}
+    @if($produtos->unidade == 'Grama')
+        {{' | ' .  ($produtos->produtosaida->sum('qtd'))/1000 . 'Kg' }}
+    @endif
     <br><br>
 
     {{--@shield('produto.cadastrar')--}}

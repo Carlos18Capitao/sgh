@@ -113,11 +113,12 @@
             </section>
 
             <!-- Main content -->
+        <div id="app">
             <section class="content">
-
                 @yield('content')
-
             </section>
+          </div>
+
             <!-- /.content -->
             @if(config('adminlte.layout') == 'top-nav')
             </div>
@@ -132,7 +133,7 @@
 
 @section('adminlte_js')
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
-    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
     @stack('js')
     @yield('js')

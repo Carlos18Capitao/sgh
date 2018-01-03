@@ -6,6 +6,10 @@
         <h3>{{ $title }}</h3>
     </div>
 
+
+    {{-- <pagina tamanho="12">
+        <painel titulo="{{ $title }}"> --}}
+
     @if (isset($errors) && count($errors) > 0)
         <div class="alert alert-danger">
             @foreach ($errors->all() as $error)
@@ -14,9 +18,7 @@
         </div>
     @endif
 
-    {{--@shield('setor.cadastrar')--}}
     <a href="{{ route('setor.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
-    {{--@endshield--}}
     <br><br>
     <table class="table table-striped">
         <thead>
@@ -69,4 +71,7 @@
         @endforeach
     </table>
     {!! $setors->appends(\Request::except('page'))->render() !!}
+
+    {{-- </painel>
+  </pagina> --}}
 @endsection

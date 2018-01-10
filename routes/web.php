@@ -73,6 +73,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
         // Route::group(['prefix'  =>  'financeiro' ,'middleware' => ['role:admin']], function () {
         Route::group(['prefix'  =>  'financeiro' ], function () {
             Route::resource('/fornecedor', 'FornecedorController');
+            Route::resource('/ordembancaria', 'OrdemBancariaController');
             });
 
 //Route::get('/paciente/cadastro', function () {

@@ -11,5 +11,5 @@ class Fornecedor extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['descricao','tipo_pessoa','cpf_cnpj','banco','agencia','conta','passnf'];
+    protected $fillable = ['descricao','tipo_pessoa','cpf_cnpj','banco','agencia','conta','passnf','created_by','updated_by'];
 }

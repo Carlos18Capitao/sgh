@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFornecedorsTable extends Migration
+class CreateOrdemBancariasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,21 @@ class CreateFornecedorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fornecedors', function (Blueprint $table) {
+        Schema::create('ordem_bancarias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('descricao','120');
-            $table->enum('tipo_pessoa',['fisica','juridica']);
-            $table->string('cpf_cnpj','20')->nullable();
-            // $table->string('cnpj','20')->nullable();
-            $table->string('banco','20')->nullable();
-            $table->string('agencia','20')->nullable();
-            $table->string('conta','20')->nullable();
-            $table->string('passnf','20')->nullable();
-            $table->timestamps();
-            $table->SoftDeletes();
+            $table->integer('fornecedor_id')->unsigned();
+            $table->foreign('fornecedor_id')->references('id')->on('fornecedors')->onDelete('cascade');
+            $table->string('processo','20');
+            $table->string('empenho','15')->nullable();
+            $table->decimal('valor');
+            $table->integer('nf')->nullable();
+            $table->date('emissaonf')->nullable();
             $table->integer('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updated_by')->unsigned()->nullable();
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
+            $table->SoftDeletes();
+            $table->timestamps();
         });
     }
 
@@ -39,6 +38,6 @@ class CreateFornecedorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fornecedors');
+        Schema::dropIfExists('ordem_bancarias');
     }
 }

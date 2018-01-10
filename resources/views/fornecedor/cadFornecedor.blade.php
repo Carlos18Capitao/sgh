@@ -16,10 +16,10 @@
 
     @if (isset($fornecedors))
         {!! Form::model($fornecedors, ['route' => ['fornecedor.update', $fornecedors->id], 'class' => 'Form', 'method' => 'PUT']) !!}
-{{--        {!! Form::hidden('updated_by',Auth::user()->name) !!}--}}
+       {!! Form::hidden('updated_by',Auth::user()->id) !!}
     @else
         {!! Form::open(['route' => 'fornecedor.store', 'class' => 'form']) !!}
-{{--        {!! Form::hidden('created_by',Auth::user()->name) !!}--}}
+       {!! Form::hidden('created_by',Auth::user()->id) !!}
     @endif
 
     <div class="form-group">
@@ -58,5 +58,7 @@
     {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
 {{--    {{ Form::button('<i class="glyphicon glyphicon-floppy-disk"> Salvar</i>', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}--}}
     {!! Form::close() !!}
+
+
 
 @endsection

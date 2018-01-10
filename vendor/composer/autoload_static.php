@@ -394,6 +394,7 @@ class ComposerStaticInit0303c122c05233a02b50c432a646ca9a
         'App\\Models\\Categoria' => __DIR__ . '/../..' . '/app/Models/Categoria.php',
         'App\\Models\\EstadoCivil' => __DIR__ . '/../..' . '/app/Models/EstadoCivil.php',
         'App\\Models\\Estoque' => __DIR__ . '/../..' . '/app/Models/Estoque.php',
+        'App\\Models\\Fornecedor' => __DIR__ . '/../..' . '/app/Models/Fornecedor.php',
         'App\\Models\\Prestador' => __DIR__ . '/../..' . '/app/Models/Prestador.php',
         'App\\Models\\Produto' => __DIR__ . '/../..' . '/app/Models/Produto.php',
         'App\\Models\\ProdutoEntrada' => __DIR__ . '/../..' . '/app/Models/ProdutoEntrada.php',

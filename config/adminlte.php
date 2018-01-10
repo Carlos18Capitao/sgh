@@ -206,6 +206,16 @@ return [
             'url'  => 'ala',
             'icon' => 'bed',
         ],
+        [
+            'text'        => 'Financeiro',
+            'icon'        => 'dollar',
+            'submenu' => [
+              [
+                  'text' => 'Fornecedor',
+                  'url'  => 'financeiro/fornecedor',
+              ],
+            ]
+        ],
 //        'ACCOUNT SETTINGS',
 //        [
 //            'text' => 'Profile',

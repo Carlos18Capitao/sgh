@@ -1404,6 +1404,7 @@ Vue.component('pagina', __webpack_require__(41));
 Vue.component('painel', __webpack_require__(44));
 Vue.component('caixa', __webpack_require__(50));
 Vue.component('tabela-lista', __webpack_require__(55));
+
 // Vue.component('cadpaciente', require('./components/cadPaciente.vue'));
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 

@@ -42,7 +42,11 @@ class FornecedorController extends Controller
 
     public function show($id)
     {
-        //
+        $fornecedors = Fornecedor::find($id);
+        $title = "$fornecedors->descricao";
+
+        return view('fornecedor.showFornecedor', compact('title', 'fornecedors'));
+
     }
 
     public function edit($id)

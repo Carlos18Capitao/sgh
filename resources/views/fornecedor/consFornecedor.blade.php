@@ -27,7 +27,7 @@
         </thead>
         @foreach ($fornecedors as $fornecedor)
             <tbody>
-                <td>{{ $fornecedor->descricao }}</td>
+                <td><a href="{{ route('fornecedor.show',$fornecedor->id)}}">{{ $fornecedor->descricao }}</a></td>
                 <td>{{ $fornecedor->cpf_cnpj }}
                   @if(!empty($fornecedor->passnf))
                     <button type="button" class="btn btn-sm btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="{{ $fornecedor->passnf }}">  NF </button>
@@ -72,6 +72,8 @@
 
                     <!-- Modal CADASTRAR PROCESSO-->
                     <div class="modal fade" id="cadastrar{{$fornecedor->id}}" tabindex="-1" role="dialog" aria-labelledby="cadastrar">
+                      {!! Form::open(['route' => 'ordembancaria.store', 'class' => 'form']) !!}
+
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -80,7 +82,6 @@
                                     <h4 class="modal-title" id="myModalLabel">Cadastrar Processo</h4>
                                 </div>
                                 <div class="modal-body">
-                                  {!! Form::open(['route' => 'ordembancaria.store', 'class' => 'form']) !!}
                                   {!! Form::hidden('created_by',Auth::user()->id) !!}
                                   {!! Form::hidden('fornecedor_id',$fornecedor->id) !!}
                               <div class="form-group">
@@ -91,17 +92,14 @@
                                   {!! Form::label('valor', 'Valor:'); !!}
                                   {!! Form::text('valor', null, ['class' => 'form-control', 'placeholder' => 'Valor']) !!}
                               </div>
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                    {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
-                                    
                                     <button type="submit" class = "btn btn-primary"> <span class="glyphicon glyphicon-plus"></span> Salvar </button>
-                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>
+                        {!! Form::close() !!}
                     </div>
                 </td>
             </tbody>

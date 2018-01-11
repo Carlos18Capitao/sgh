@@ -12,4 +12,9 @@ class Fornecedor extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = ['descricao','tipo_pessoa','cpf_cnpj','banco','agencia','conta','passnf','created_by','updated_by'];
+
+    public function OrdemBancaria()
+      {
+          return $this->hasMany('App\Models\OrdemBancaria');
+      }
 }

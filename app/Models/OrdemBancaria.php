@@ -12,4 +12,11 @@ class OrdemBancaria extends Model
   protected $dates = ['deleted_at'];
 
   protected $fillable = ['fornecedor_id','processo','empenho','valor','nf','emissaonf','created_by','updated_by'];
+
+  public function getValorFormattedAttribute()
+  {
+    $valor = $this->attributes['valor'];
+
+    return number_format($valor, 2,',','.');
+  }
 }

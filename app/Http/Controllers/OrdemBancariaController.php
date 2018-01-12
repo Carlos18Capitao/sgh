@@ -44,7 +44,9 @@ class OrdemBancariaController extends Controller
 
   public function show($id)
   {
-      //
+      $ordembancarias = OrdemBancaria::find($id);
+
+      return view('ordembancaria.showOrdemBancaria', compact('ordembancarias'));
   }
 
   public function edit($id)
@@ -62,7 +64,8 @@ class OrdemBancariaController extends Controller
       $update = $ordembancarias->update($dataForm);
 
       if ($update) {
-          return redirect()->route('ordembancaria.index', $id);
+        return redirect()->back()->with(['success'=>'Cadastrado com sucesso!!!']);
+          // return redirect()->route('ordembancaria.index', $id);
       } else {
           return redirect()->route('ordembancaria.edit', $id)->with(['errors' => 'Falha ao editar']);
       }

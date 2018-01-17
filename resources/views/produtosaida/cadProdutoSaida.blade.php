@@ -43,7 +43,7 @@
                       @foreach ($estoque->produto as $produto)
                         @if( $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') > 0)
                             <option value="{{ $produto->id }}">
-                                {{ $produto->produto . ' - ' . $produto->unidade }} - Saldo: {{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}
+                                {{ $produto->produto . ' - ' . $produto->unidade }} @if($produto->codigo != 0)  {{ '(Cód: ' . $produto->codigo . ')' }} @endif - Saldo: {{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}
                             </option>
                         @endif
                       @endforeach

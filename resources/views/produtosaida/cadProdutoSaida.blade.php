@@ -58,7 +58,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('obs', 'Observação:'); !!}
-        {!! Form::textarea('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
+        {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
     </div>
     {{--<div class="form-group">--}}
 {{--        {!! Form::label('categoria', 'Categoria:'); !!}--}}

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddProdutoCodigo extends Migration
+class AddProdutoEntradaLoteValidade extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddProdutoCodigo extends Migration
      */
     public function up()
     {
-        Schema::table('produtos', function ($table) {
-            $table->integer('codigo')->nullable();
+        Schema::table('produto_entradas', function ($table) {
+            $table->date('validade')->nullable();
+            $table->string('lote')->nullable();
         });
     }
 

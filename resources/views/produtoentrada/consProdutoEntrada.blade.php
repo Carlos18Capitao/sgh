@@ -24,8 +24,10 @@
         <tr>
             <th>@sortablelink('produto_id','Produto')</th>
             <th>@sortablelink('qtd','Qtd')</th>
-            <th>@sortablelink('obs','Observação')</th>
+            <th>@sortablelink('lote','Lote')</th>
+            <th>@sortablelink('validade','Validade')</th>
             <th>@sortablelink('created_at','Data de Entrada')</th>
+            <th>@sortablelink('obs','Observação')</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
@@ -33,8 +35,11 @@
             <tbody>
                 <td>{{ $produtoentrada->produto->produto }}</td>
                 <td>{{ $produtoentrada->qtd }}</td>
-                <td>{{ $produtoentrada->obs  }}</td>
+                <td>{{ $produtoentrada->lote }}</td>
+                <td>{{ $produtoentrada->validade }}</td>
                 <td>{{ $produtoentrada->created_at }}</td>
+                <td>{{ $produtoentrada->obs  }}</td>
+
                 <td>
                     {{--@shield('produtoentrada.editar')--}}
                     <a class = "btn btn-sm btn-default" href="{{ route('entrada.edit',$produtoentrada->id)}}">

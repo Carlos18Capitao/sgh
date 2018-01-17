@@ -43,13 +43,27 @@
             </select>
         @endif
     </div>
+    <div class="form-group form-inline">
+
+    {{--@if($produtos->lote == 1)--}}
+        {{--<div class="form-group">--}}
+            {{--{!! Form::label('lote', 'Lote:'); !!}--}}
+            {{--{!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Informe o lote']) !!}--}}
+        {{--</div>--}}
+        {{--<div class="form-group">--}}
+            {{--{!! Form::label('validade', 'Validade:'); !!}--}}
+            {{--{!! Form::date('validade', null, ['class' => 'form-control', 'placeholder' => 'Validade']) !!}--}}
+        {{--</div>--}}
+    {{--@endif--}}
+
     <div class="form-group">
         {!! Form::label('qtd', 'Quantidade:'); !!}
         {!! Form::text('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
     </div>
+    </div>
     <div class="form-group">
         {!! Form::label('obs', 'Observação:'); !!}
-        {!! Form::textarea('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
+        {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
     </div>
     {{--<div class="form-group">--}}
 {{--        {!! Form::label('categoria', 'Categoria:'); !!}--}}

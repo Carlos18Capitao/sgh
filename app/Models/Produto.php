@@ -12,7 +12,7 @@ class Produto extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['produto','unidade','categoria_id','created_by','updated_by'];
+    protected $fillable = ['produto','unidade','categoria_id','created_by','updated_by','lote','validade','codigo'];
 
     public $sortable = ['produto','unidade','categoria_id'];
 
@@ -34,5 +34,25 @@ class Produto extends Model
     public function estoque()
     {
         return $this->belongsToMany('App\Models\Estoque', 'produto_estoques');
+    }
+
+    public function getLoteFormattedAttribute()
+    {
+        $lote = $this->attributes['lote'];
+
+        if($lote == 1) {
+            return 'Sim';
+        } else {
+            return 'Não'; }
+    }
+
+    public function getValidadeFormattedAttribute()
+    {
+        $validade = $this->attributes['validade'];
+
+        if($validade == 1) {
+            return 'Sim';
+        } else {
+            return 'Não'; }
     }
 }

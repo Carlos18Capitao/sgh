@@ -31,6 +31,10 @@
         {!! Form::text('unidade', null, ['class' => 'form-control', 'placeholder' => 'Unidade']) !!}
     </div>
     <div class="form-group">
+        {!! Form::label('codigo', 'Código:'); !!}
+        {!! Form::number('codigo', null, ['class' => 'form-control', 'placeholder' => 'Código SIAPNET']) !!}
+    </div>
+    <div class="form-group">
         {!! Form::label('categoria', 'Categoria:'); !!}
         @if (isset($produtos))
             {!! Form::select('categoria_id', $produtos->categoria->pluck('descricao','id'),null, ['class' => 'js-categoria form-control', 'placeholder' => 'Selecione uma categoria...']) !!}
@@ -38,6 +42,27 @@
             {!! Form::select('categoria_id', $categorias->pluck('descricao','id'),null, ['class' => 'js-categoria form-control', 'placeholder' => 'Selecione uma categoria...']) !!}
         @endif
     </div>
+    {!! Form::label('lote', 'Controla Lote?'); !!}
+    @if (isset($estoques))
+        @if ($estoques->lote == 1)
+            {!! Form::select('lote', ['1'=>'Sim','0'=>'Não'],null, ['class' => 'form-control']) !!}
+        @else
+            {!! Form::select('lote', ['0'=>'Não','1'=>'Sim'],null, ['class' => 'form-control']) !!}
+        @endif
+    @else
+        {!! Form::select('lote', ['1'=>'Sim','0'=>'Não'],null, ['class' => 'form-control']) !!}
+    @endif
+
+    {!! Form::label('validade', 'Controla Validade?'); !!}
+    @if (isset($estoques))
+        @if ($estoques->validade == 1)
+            {!! Form::select('validade', ['1'=>'Sim','0'=>'Não'], null, ['class' => 'form-control']) !!}
+        @else
+            {!! Form::select('validade', ['0'=>'Não','1'=>'Sim'], null, ['class' => 'form-control']) !!}
+        @endif
+    @else
+        {!! Form::select('validade', ['1'=>'Sim','0'=>'Não'],null, ['class' => 'form-control']) !!}
+    @endif
     {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
 {{--    {{ Form::button('<i class="glyphicon glyphicon-floppy-disk"> Salvar</i>', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}--}}
     {!! Form::close() !!}

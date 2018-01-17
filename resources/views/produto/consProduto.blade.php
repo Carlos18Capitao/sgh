@@ -21,17 +21,23 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>@sortablelink('codigo','Código')</th>
             <th>@sortablelink('produto','Produto')</th>
             <th>@sortablelink('categoria_id','Categoria')</th>
             <th>@sortablelink('unidade','Unidade')</th>
+            <th>@sortablelink('lote','Lote')</th>
+            <th>@sortablelink('validade','Validade')</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
         @foreach ($produtos as $produto)
             <tbody>
+                <td>@if($produto->codigo == 0) @else {{ $produto->codigo }} @endif</td>
                 <td><a href="{{ route('produto.show',$produto->id) }}">{{ $produto->produto }}</a></td>
                 <td>{{ $produto->unidade }}</td>
                 <td>{{ $produto->categoria->descricao  }}</td>
+                <td>{{ $produto->lote_formatted  }}</td>
+                <td>{{ $produto->validade_formatted  }}</td>
                 <td>
                     {{--@shield('produto.editar')--}}
                     <a class = "btn btn-sm btn-default" href="{{ route('produto.edit',$produto->id)}}">

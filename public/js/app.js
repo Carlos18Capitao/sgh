@@ -44356,7 +44356,7 @@ var render = function() {
     _c("div", { staticClass: "icon" }, [_c("i", { class: _vm.icone })]),
     _vm._v(" "),
     _c("a", { staticClass: "small-box-footer", attrs: { href: _vm.url } }, [
-      _vm._v("\n        Ver mais "),
+      _vm._v("\r\n        Ver mais "),
       _c("i", { staticClass: "fa fa-arrow-circle-right" })
     ])
   ])

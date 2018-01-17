@@ -367,6 +367,7 @@ class ComposerStaticInit0303c122c05233a02b50c432a646ca9a
         'App\\Http\\Controllers\\EstoqueController' => __DIR__ . '/../..' . '/app/Http/Controllers/EstoqueController.php',
         'App\\Http\\Controllers\\FornecedorController' => __DIR__ . '/../..' . '/app/Http/Controllers/FornecedorController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\OrdemBancariaController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrdemBancariaController.php',
         'App\\Http\\Controllers\\PacienteController' => __DIR__ . '/../..' . '/app/Http/Controllers/PacienteController.php',
         'App\\Http\\Controllers\\PrestadorController' => __DIR__ . '/../..' . '/app/Http/Controllers/PrestadorController.php',
         'App\\Http\\Controllers\\ProdutoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProdutoController.php',

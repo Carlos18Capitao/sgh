@@ -14,7 +14,7 @@ class Produto extends Model
 
     protected $fillable = ['produto','unidade','categoria_id','created_by','updated_by','lote','validade','codigo'];
 
-    public $sortable = ['produto','unidade','categoria_id'];
+    public $sortable = ['produto','unidade','categoria_id','codigo'];
 
     public function categoria()
     {

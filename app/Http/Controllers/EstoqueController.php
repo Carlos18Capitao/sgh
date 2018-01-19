@@ -123,7 +123,7 @@ class EstoqueController extends Controller
 
     public function relposicaoestoque($id)
     {
-        $produtos =  Produto::sortable()->paginate(100);
+        $produtos =  Produto::sortable()->paginate(1000);
         $title = 'Posição de Estoque';
 
         return view('estoque.relPosicaoEstoque', compact('title', 'produtos'));

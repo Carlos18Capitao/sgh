@@ -44,9 +44,9 @@ class ProdutoEntradaController extends Controller
         $insert   = $this->produtoentrada->create($dataForm);
 
         // $estoque = $insert->estoque_id;
-        $estoque = Estoque::find($insert->estoque_id);
+//        $estoque = Estoque::find($insert->estoque_id);
         // $produto_id = $request['produto_id'];
-        $estoque->produto()->attach($insert->produto_id);
+//        $estoque->produto()->attach($insert->produto_id);
 
         if ($insert)
             return redirect()->route('estoque.entrada',[$insert->estoque_id]);

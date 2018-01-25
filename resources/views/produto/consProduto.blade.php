@@ -23,8 +23,8 @@
         <tr>
             <th>@sortablelink('codigo','Código')</th>
             <th>@sortablelink('produto','Produto')</th>
-            <th>@sortablelink('categoria_id','Categoria')</th>
             <th>@sortablelink('unidade','Unidade')</th>
+            <th>@sortablelink('categoria_id','Categoria')</th>
             <th>@sortablelink('lote','Lote')</th>
             <th>@sortablelink('validade','Validade')</th>
             <th width="100px">Ações</th>

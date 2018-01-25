@@ -21,7 +21,7 @@ class ProdutoController extends Controller
 
     public function index()
     {
-        $produtos =  Produto::sortable()->paginate(10);
+        $produtos =  Produto::sortable()->paginate(50);
 //        dd($produtos);
         $title = 'Cadastro de Produto';
 

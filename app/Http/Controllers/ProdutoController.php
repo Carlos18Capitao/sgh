@@ -108,6 +108,8 @@ class ProdutoController extends Controller
               LEFT JOIN produtos ON pe.produto_id = produtos.id
               LEFT JOIN produto_entradas ON produtos.id = produto_entradas.produto_id
               LEFT JOIN categorias ON produtos.categoria_id = categorias.id
+            WHERE
+              estoques.id = $estoque_id
             GROUP BY
               produtos.id
               ,estoques.id

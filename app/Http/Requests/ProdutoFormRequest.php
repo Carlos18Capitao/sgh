@@ -24,7 +24,7 @@ class ProdutoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'produto'       =>'required|min:3|max:255',
+            'produto'       =>'required|min:3|max:255', 
             'unidade'       =>'required|max:100',
             'categoria_id'  =>'required',
             'codigo'        =>'unique:produtos'

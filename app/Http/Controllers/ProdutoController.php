@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\Estoque;
 use App\Http\Requests\ProdutoFormRequest;
+use DB;
 
 class ProdutoController extends Controller
 {
@@ -92,13 +93,85 @@ class ProdutoController extends Controller
 
     public function relposicaoestoque($estoque_id)
     {
-        // $produtos = Produto::with('estoque','produto_id')->sortable()->get();
-        $estoques = Estoque::with('produto')->where('id','=',$estoque_id)->sortable()->get();
-        // dd($estoques);
-        $title    = 'Posição de Estoque';
-        // $estoque_id = Estoque::where('id','=',$estoque_id)->value('id');
-        // dd($estoques);
 
-        return view('produto.relPosicaoEstoque', compact('title', 'produtos','estoques'));
+        $estoques = DB::select("SELECT
+              estoques.id as estoque_id
+              ,categorias.descricao
+              ,categorias.id as categoria_id
+              ,produtos.codigo
+              ,produtos.produto
+              ,produtos.id as produto_id
+              ,produtos.unidade
+              ,sum(produto_entradas.qtd) as saldo
+            FROM estoques
+              LEFT JOIN produto_estoques pe ON estoques.id = pe.estoque_id
+              LEFT JOIN produtos ON pe.produto_id = produtos.id
+              LEFT JOIN produto_entradas ON produtos.id = produto_entradas.produto_id
+              LEFT JOIN categorias ON produtos.categoria_id = categorias.id
+            GROUP BY
+              produtos.id
+              ,estoques.id
+              ,categorias.descricao
+              ,categorias.id
+              ,produtos.codigo
+              ,produtos.produto
+              ,produtos.unidade
+            ORDER BY produtos.produto
+              ");
+
+        // $produtos = Produto::with('estoque','produto_id')->sortable()->get();
+//        $estoques   = Estoque::with('produto')->where('id','=',$estoque_id)->sortable()->get();
+        $title      = 'Posição de Estoque';
+        $categorias = Categoria::all();
+        // $estoque_id = Estoque::where('id','=',$estoque_id)->value('id');
+
+        return view('produto.relPosicaoEstoque', compact('title', 'produtos','estoques','estoque_id','categorias'));
     }
+
+    public function catrelposicaoestoque($estoque_id,$categoria_id)
+    {
+
+       $estoques = DB::select("SELECT
+              estoques.id as estoque_id
+              ,categorias.descricao
+              ,categorias.id as categoria_id
+              ,produtos.codigo
+              ,produtos.produto
+              ,produtos.id as produto_id
+              ,produtos.unidade
+              ,sum(produto_entradas.qtd) as saldo
+            FROM estoques
+              LEFT JOIN produto_estoques pe ON estoques.id = pe.estoque_id
+              LEFT JOIN produtos ON pe.produto_id = produtos.id
+              LEFT JOIN produto_entradas ON produtos.id = produto_entradas.produto_id
+              LEFT JOIN categorias ON produtos.categoria_id = categorias.id
+            WHERE
+              estoques.id = $estoque_id
+              and categorias.id = $categoria_id
+            GROUP BY
+              produtos.id
+              ,estoques.id
+              ,categorias.descricao
+              ,categorias.id
+              ,produtos.codigo
+              ,produtos.produto
+              ,produtos.unidade
+            ORDER BY produtos.produto
+              ");
+
+//        $estoques = DB::table('estoques')
+//            ->join('produto_estoques', 'estoques.id', '=', 'produto_estoques.estoque_id')
+//            ->join('produtos', 'produto_estoques.produto_id', '=', 'produtos.id')
+//            ->join('produto_entradas','produtos.id','=','produto_entradas.produto_id')
+//            ->select('estoques.*', 'produto_estoques.*','produtos.*','produto_entradas.qtd')
+//            ->where('estoques.id','=',$estoque_id)
+//            ->get();
+//        dd($estoques);
+        $title      = 'Posição de Estoque';
+        $categorias = Categoria::all();
+        // $estoque_id = Estoque::where('id','=',$estoque_id)->value('id');
+
+        return view('produto.relPosicaoEstoque', compact('title', 'produtos','estoques','estoque_id','categorias'));
+    }
+
 }

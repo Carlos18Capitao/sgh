@@ -44,7 +44,10 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
     Route::resource('/categoria', 'CategoriaController');
     Route::resource('/produto', 'ProdutoController');
     Route::resource('/estoque', 'EstoqueController');
-    });
+    Route::get('/{estoque_id}/catrelposicaoestoque/{categoria_id}', 'ProdutoController@catrelposicaoestoque')->name('catrelposicaoestoque');
+//    Route::get('/{estoque_id}/catrelposicaoestoque/{{categoria_id}}', 'ProdutoController@catrelposicaoestoque')->name('catrelposicaoestoque');
+
+});
 
     Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|estoque']], function () {
     //Route::group(['prefix'  =>  'estoque'], function () {

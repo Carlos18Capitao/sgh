@@ -14,8 +14,19 @@
         </div>
     @endif
 
-    
+    {{--@foreach($estoques as $estoque)--}}
+        {{--{{ $estoque->produto . ' - ' . $estoque->saldo }} <br>--}}
+    {{--@endforeach--}}
 
+
+    {{--{{ dd($estoques) }}--}}
+    <ul class="nav nav-pills">
+
+        <li role="presentation" class="active"><a href="{{ route('relposicaoestoque',$estoque_id) }}">Todos</a></li>
+        @foreach ($categorias as $categoria)
+            <li role="presentation"><a href="{{ url('estoque/' . $estoque_id . '/catrelposicaoestoque/' . $categoria->id) }}">{{ $categoria->descricao }}</a></li>
+        @endforeach
+    </ul>
     {{--@shield('produto.cadastrar')--}}
     {{--<a href="{{ route('produto.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>--}}
     {{--@endshield--}}
@@ -23,23 +34,24 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>@sortablelink('categoria_id','Categoria')</th>
-            <th>@sortablelink('produto','Produto')</th>
-            <th>@sortablelink('unidade','Unidade')</th>
+            <th>Categoria</th>
+            <th>Código</th>
+            <th>Produto</th>
+            <th>Unidade</th>
             <th>Estoque Atual</th>
             {{--<th width="100px">Ações</th>--}}
         </tr>
         </thead>
         @foreach ($estoques as $estoque)
 
-          @foreach ($estoque->produto as $produto)
             <tbody>
-            <td>{{ $produto->categoria->descricao  }}</td>
-            <td><a href="{{ route('produto.show',$produto->id) }}">{{ $produto->produto }}</a></td>
-            <td>{{ $produto->unidade }}</td>
-            <td>{{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}
-                @if($produto->unidade == 'Grama')
-                    {{ '  |  ' . ($produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd'))/1000 .'kg' }}
+            <td>{{ $estoque->descricao  }}</td>
+            <td>{{ $estoque->codigo  }}</td>
+            <td><a href="{{ route('produto.show',$estoque->produto_id) }}">{{ $estoque->produto }}</a></td>
+            <td>{{ $estoque->unidade }}</td>
+            <td>{{ $estoque->entradas - $estoque->saidas }} - {{ $estoque->entradas }} - {{ $estoque->saidas }}
+                @if($estoque->unidade == 'Grama')
+{{--                    {{ '  |  ' . ($estoque->saldo)/1000 .'kg' }}--}}
                 @endif
             </td>
                 {{--<td>--}}
@@ -52,7 +64,7 @@
                         {{--<span class="glyphicon glyphicon-trash"></span>--}}
                     {{--</button>--}}
 
-                    {{--<!-- Modal EXCLUIR-->--}}
+                    <!-- Modal EXCLUIR-->
                     {{--<div class="modal fade" id="excluir{{$produto->id}}" tabindex="-1" role="dialog" aria-labelledby="excluir">--}}
                         {{--<div class="modal-dialog modal-lg" role="document">--}}
                             {{--<div class="modal-content">--}}
@@ -75,11 +87,10 @@
                             {{--</div>--}}
                         {{--</div>--}}
                     {{--</div>--}}
+                    <!-- Modal EXCLUIR-->
                 {{--</td>--}}
             </tbody>
           @endforeach
-
-        @endforeach
     </table>
     {{-- {!! $produtos->appends(\Request::except('page'))->render() !!} --}}
 @endsection

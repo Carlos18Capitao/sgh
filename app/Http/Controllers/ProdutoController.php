@@ -94,40 +94,42 @@ class ProdutoController extends Controller
     public function relposicaoestoque($estoque_id)
     {
 
-        $estoques = DB::select("SELECT
-              estoques.id as estoque_id
-              ,categorias.descricao
-              ,categorias.id as categoria_id
-              ,produtos.codigo
-              ,produtos.produto
-              ,produtos.id as produto_id
-              ,produtos.unidade
-              ,sum(produto_entradas.qtd) as saldo
-            FROM estoques
-              LEFT JOIN produto_estoques pe ON estoques.id = pe.estoque_id
-              LEFT JOIN produtos ON pe.produto_id = produtos.id
-              LEFT JOIN produto_entradas ON produtos.id = produto_entradas.produto_id
-              LEFT JOIN categorias ON produtos.categoria_id = categorias.id
-            WHERE
-              estoques.id = $estoque_id
-            GROUP BY
-              produtos.id
-              ,estoques.id
-              ,categorias.descricao
-              ,categorias.id
-              ,produtos.codigo
-              ,produtos.produto
-              ,produtos.unidade
-            ORDER BY produtos.produto
-              ");
+//        $estoques = DB::select("SELECT
+//              estoques.id as estoque_id
+//              ,categorias.descricao
+//              ,categorias.id as categoria_id
+//              ,produtos.codigo
+//              ,produtos.produto
+//              ,produtos.id as produto_id
+//              ,produtos.unidade
+//              ,sum(produto_entradas.qtd) as entradas
+//              ,sum(produto_saidas.qtd) as saidas
+//            FROM estoques
+//              LEFT JOIN produto_estoques pe ON estoques.id = pe.estoque_id
+//              LEFT JOIN produtos ON pe.produto_id = produtos.id
+//              LEFT JOIN produto_entradas ON produtos.id = produto_entradas.produto_id
+//              LEFT JOIN categorias ON produtos.categoria_id = categorias.id
+//              LEFT JOIN produto_saidas ON produtos.id = produto_saidas.produto_id
+//            WHERE
+//              estoques.id = $estoque_id
+//            GROUP BY
+//              produtos.id
+//              ,estoques.id
+//              ,categorias.descricao
+//              ,categorias.id
+//              ,produtos.codigo
+//              ,produtos.produto
+//              ,produtos.unidade
+//            ORDER BY produtos.produto
+//              ");
 
         // $produtos = Produto::with('estoque','produto_id')->sortable()->get();
-//        $estoques   = Estoque::with('produto')->where('id','=',$estoque_id)->sortable()->get();
+        $estoques   = Estoque::with('produto')->where('id','=',$estoque_id)->sortable()->get();
         $title      = 'Posição de Estoque';
-        $categorias = Categoria::all();
+//        $categorias = Categoria::all();
         // $estoque_id = Estoque::where('id','=',$estoque_id)->value('id');
 
-        return view('produto.relPosicaoEstoque', compact('title', 'produtos','estoques','estoque_id','categorias'));
+        return view('produto.relPosicaoEstoque', compact('title', 'estoques','estoque_id'));
     }
 
     public function catrelposicaoestoque($estoque_id,$categoria_id)
@@ -141,12 +143,15 @@ class ProdutoController extends Controller
               ,produtos.produto
               ,produtos.id as produto_id
               ,produtos.unidade
-              ,sum(produto_entradas.qtd) as saldo
+              ,sum(produto_entradas.qtd) as entradas
+              ,sum(produto_saidas.qtd) as saidas
+
             FROM estoques
               LEFT JOIN produto_estoques pe ON estoques.id = pe.estoque_id
               LEFT JOIN produtos ON pe.produto_id = produtos.id
               LEFT JOIN produto_entradas ON produtos.id = produto_entradas.produto_id
               LEFT JOIN categorias ON produtos.categoria_id = categorias.id
+              LEFT JOIN produto_saidas ON produtos.id = produto_saidas.produto_id
             WHERE
               estoques.id = $estoque_id
               and categorias.id = $categoria_id

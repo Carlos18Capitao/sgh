@@ -24,7 +24,7 @@ class ProdutoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'produto'       =>'required|min:3|max:255', 
+            'produto'       =>'required|min:3|max:255',
             'unidade'       =>'required|max:100',
             'categoria_id'  =>'required',
             'codigo'        =>'unique:produtos'
@@ -36,7 +36,7 @@ class ProdutoFormRequest extends FormRequest
         return [
             'produto.required'  =>'Informe a descrição do produto!',
             'produto.min'       =>'A descrição do produto deve conter pelo menos três caracteres!',
-            'produto.max'       =>'A descrição do produto deve conter no máximo cento e cinquenta caracteres!',
+            'produto.max'       =>'A descrição do produto deve conter no máximo 255 caracteres!',
             'unidade.required'  =>'Informe a descrição da unidade!',
             'unidade.max'       =>'A produto deve conter no máximo cem caracteres!',
             'categoria_id.required'      =>'Informe a quantidade!',

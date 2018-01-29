@@ -14,7 +14,25 @@
         </div>
     @endif
 
-    
+    @foreach (Auth::user()->estoques as $stoq)
+        @if ($estoque_id == $stoq->pivot->estoque_id)
+
+            {{-- @if($estoque->id == Auth::user()->user_estoques->id) --}}
+
+                <a href="{{route('estoque.entrada',$estoque_id)}}">
+                    <i class="fa fa-fw fa-truck fa-2x"></i>
+                </a>
+
+                <a href="{{route('estoque.saida',$estoque_id)}}">
+                    <i class="fa fa-fw fa-cart-arrow-down fa-2x"></i>
+                </a>
+
+                <a href="{{route('relposicaoestoque',$estoque_id)}}">
+                    <i class="fa fa-fw fa-file-text fa-2x"></i>
+                </a>
+           @else
+        @endif
+    @endforeach
 
     {{--@shield('produto.cadastrar')--}}
     {{--<a href="{{ route('produto.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>--}}

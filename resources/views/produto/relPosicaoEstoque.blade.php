@@ -42,6 +42,7 @@
         <thead>
         <tr>
             <th>@sortablelink('categoria_id','Categoria')</th>
+            <th>@sotablelink('codigo','Código')</th>
             <th>@sortablelink('produto','Produto')</th>
             <th>@sortablelink('unidade','Unidade')</th>
             <th>Estoque Atual</th>
@@ -53,7 +54,9 @@
           @foreach ($estoque->produto as $produto)
             <tbody>
             <td>{{ $produto->categoria->descricao  }}</td>
-            <td><a href="{{ route('produto.show',$produto->id) }}">{{ $produto->produto }}</a></td>
+            <td>{{ $produto->codigo }}</td>
+        {{--    <td><a href="{{ route('produto.show',$produto->id) }}">{{ $produto->produto }}</a></td>--}}
+            <td>{{ $produto->produto }}</td>
             <td>{{ $produto->unidade }}</td>
             <td>{{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}
                 @if($produto->unidade == 'Grama')

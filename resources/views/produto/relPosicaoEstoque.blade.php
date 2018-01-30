@@ -42,7 +42,7 @@
         <thead>
         <tr>
             <th>@sortablelink('categoria_id','Categoria')</th>
-            <th>@sotablelink('codigo','Código')</th>
+            <th>@sortablelink('codigo','Código')</th>
             <th>@sortablelink('produto','Produto')</th>
             <th>@sortablelink('unidade','Unidade')</th>
             <th>Estoque Atual</th>

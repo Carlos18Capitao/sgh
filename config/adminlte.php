@@ -109,8 +109,8 @@ return [
 
     'menu' => [
         'MAIN NAVIGATION',
-        [
- //           'text' => 'Blog',
+//        [
+//           'text' => 'Blog',
 //         'url'  => 'admin/blog',
 //            'can'  => 'manage-blog',
 //        ],

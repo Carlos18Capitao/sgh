@@ -110,16 +110,16 @@ return [
     'menu' => [
         'MAIN NAVIGATION',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'Cadastrar Paciente',
-            'url'         => 'paciente/cadastro',
-            'icon'        => 'user',
-            'label_color' => 'success',
-        ],
+ //           'text' => 'Blog',
+//         'url'  => 'admin/blog',
+//            'can'  => 'manage-blog',
+//        ],
+//        [
+//            'text'        => 'Cadastrar Paciente',
+//            'url'         => 'paciente/cadastro',
+//            'icon'        => 'user',
+//            'label_color' => 'success',
+//        ],
 //        [
 //            'text'        => 'Pages',
 //            'url'         => 'admin/pages',
@@ -128,17 +128,17 @@ return [
 //            'label_color' => 'success',
 //        ],
         'TABELAS',
-        [
+ /*        [
             'text' => 'Estado Civil',
             'url'  => 'estadocivil',
             'icon' => 'table',
-        ],
-        [
+        ], */
+/*         [
             'text' => 'Tipo de Alta',
             'url'  => 'tipoalta',
             'icon' => 'table',
-        ],
-        [
+        ], */
+/*         [
             'text'    => 'Prestador',
             'icon'    => 'user-md',
             'submenu' => [
@@ -152,7 +152,7 @@ return [
 //            'icon' => 'user-md',
                 ],
             ],
-        ],
+        ], */
         [
             'text'    => 'Estoque',
             'icon'    => 'cart-plus',
@@ -201,11 +201,11 @@ return [
 //            'url'  => 'tipoprestador',
 ////            'icon' => 'user-md',
 //        ],
-        [
+/*         [
             'text' => 'Alas',
             'url'  => 'ala',
             'icon' => 'bed',
-        ],
+        ], */
         [
             'text'        => 'Financeiro',
             'icon'        => 'dollar',

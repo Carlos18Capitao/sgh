@@ -124,12 +124,15 @@ class ProdutoController extends Controller
 //              ");
 
         // $produtos = Produto::with('estoque','produto_id')->sortable()->get();
-        $estoques   = Estoque::with('produto')->where('id','=',$estoque_id)->sortable()->get();
+        $estoques   = Estoque::with('produto')
+                                    ->where('id','=',$estoque_id)
+                                    ->sortable()->get();
+        //dd($estoques);
         $title      = 'Posição de Estoque';
 //        $categorias = Categoria::all();
         // $estoque_id = Estoque::where('id','=',$estoque_id)->value('id');
 
-        return view('produto.relPosicaoEstoque', compact('title', 'estoques','estoque_id'));
+        return view('produto.relPosicaoEstoque', compact('title', 'estoques','estoque_id','produtos'));
     }
 
     public function catrelposicaoestoque($estoque_id,$categoria_id)

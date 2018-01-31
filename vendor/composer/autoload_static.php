@@ -353,7 +353,6 @@ class ComposerStaticInit0303c122c05233a02b50c432a646ca9a
     );
 
     public static $classMap = array (
-        'App\\Cid10' => __DIR__ . '/../..' . '/app/Cid10.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AlaController' => __DIR__ . '/../..' . '/app/Http/Controllers/AlaController.php',
@@ -394,6 +393,7 @@ class ComposerStaticInit0303c122c05233a02b50c432a646ca9a
         'App\\Http\\Requests\\TipoPrestadorFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TipoPrestadorFormRequest.php',
         'App\\Models\\Ala' => __DIR__ . '/../..' . '/app/Models/Ala.php',
         'App\\Models\\Categoria' => __DIR__ . '/../..' . '/app/Models/Categoria.php',
+        'App\\Models\\Cid10' => __DIR__ . '/../..' . '/app/Models/Cid10.php',
         'App\\Models\\EstadoCivil' => __DIR__ . '/../..' . '/app/Models/EstadoCivil.php',
         'App\\Models\\Estoque' => __DIR__ . '/../..' . '/app/Models/Estoque.php',
         'App\\Models\\Fornecedor' => __DIR__ . '/../..' . '/app/Models/Fornecedor.php',

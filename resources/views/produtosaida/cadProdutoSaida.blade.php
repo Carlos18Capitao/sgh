@@ -54,7 +54,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('qtd', 'Quantidade:'); !!}
-        {!! Form::text('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
+        {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('obs', 'Observação:'); !!}

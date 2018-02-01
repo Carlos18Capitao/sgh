@@ -108,7 +108,7 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+ //       'MAIN NAVIGATION',
 //        [
 //           'text' => 'Blog',
 //         'url'  => 'admin/blog',
@@ -127,7 +127,7 @@ return [
 //            'label'       => 4,
 //            'label_color' => 'success',
 //        ],
-        'TABELAS',
+        'ALMOXARIFADO',
  /*        [
             'text' => 'Estado Civil',
             'url'  => 'estadocivil',
@@ -216,12 +216,12 @@ return [
               ],
             ]
         ],
-//        'ACCOUNT SETTINGS',
-//        [
-//            'text' => 'Profile',
-//            'url'  => 'admin/settings',
-//            'icon' => 'user',
-//        ],
+        'USUÁRIOS',
+        [
+            'text' => 'Cadastrar',
+            'url'  => 'register',
+            'icon' => 'user',
+        ],
 //        [
 //            'text' => 'Change Password',
 //            'url'  => 'admin/settings',

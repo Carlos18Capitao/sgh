@@ -15,11 +15,11 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes();
+//Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+//Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'EstoqueController@select')->name('select');
@@ -47,6 +47,10 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
     Route::resource('/produto', 'ProdutoController');
     Route::resource('/estoque', 'EstoqueController');
     Route::get('/{estoque_id}/catrelposicaoestoque/{categoria_id}', 'ProdutoController@catrelposicaoestoque')->name('catrelposicaoestoque');
+    Route::get('/auth/register', function () {
+        return view('auth.register')->name('register');
+    });
+
 //    Route::get('/{estoque_id}/catrelposicaoestoque/{{categoria_id}}', 'ProdutoController@catrelposicaoestoque')->name('catrelposicaoestoque');
 
 });
@@ -82,6 +86,8 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
             // Route::get('/ordembancaria/print', 'OrdemBancariaController@print')->name('print');
 
             });
+
+
 
 //Route::get('/paciente/cadastro', function () {
 //    return 'Hello World';

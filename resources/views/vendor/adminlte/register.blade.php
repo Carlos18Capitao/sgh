@@ -1,4 +1,4 @@
-@extends('adminlte::master')
+            @extends('adminlte::master')
 
 @section('adminlte_css')
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">

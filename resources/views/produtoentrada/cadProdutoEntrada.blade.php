@@ -47,25 +47,35 @@
             </select>
         @endif
       </div>
-    {{--<div class="form-group">--}}
+    <div class="form-group">
+@foreach($estoques as $estoque)
+    @if($estoque->lote == '1')
+                <div class="col-md-2">
 
-    {{--@if($produtos->lote == 1)--}}
         {{--<div class="form-group">--}}
-            {{--{!! Form::label('lote', 'Lote:'); !!}--}}
-            {{--{!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Informe o lote']) !!}--}}
-        {{--</div>--}}
+            {!! Form::label('lote', 'Lote:'); !!}
+            {!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Informe o lote']) !!}
+        </div>
+    @endif
+    @if($estoque->validade == '1')
         {{--<div class="form-group">--}}
-            {{--{!! Form::label('validade', 'Validade:'); !!}--}}
-            {{--{!! Form::date('validade', null, ['class' => 'form-control', 'placeholder' => 'Validade']) !!}--}}
-        {{--</div>--}}
-    {{--@endif--}}
+            <div class="col-md-2">
+            {!! Form::label('validade', 'Validade:'); !!}
+            {!! Form::date('validade', null, ['class' => 'form-control', 'placeholder' => 'Validade']) !!}
+        </div>
+    @endif
+        @endforeach
         <div class="col-md-2">
             {!! Form::label('qtd', 'Quantidade:'); !!}
             {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
         </div>
         <div class="col-md-4">
             {!! Form::label('obs', 'Observação:'); !!}
-            {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
+            @if($estoque_id == 4)
+                {!! Form::text('obs', 'Contagem realizada em 01/02/2018' , ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
+            @else
+                {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
+            @endif
         </div>
     {{--<div class="form-group">--}}
 {{--        {!! Form::label('categoria', 'Categoria:'); !!}--}}
@@ -76,10 +86,14 @@
         {{--@endif--}}
     {{--</div>--}}
     </div>
-
-    {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
+    </div>
+        <div class="row">
+            <div class="col-md-4"><br>
+            {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
 {{--    {{ Form::button('<i class="glyphicon glyphicon-floppy-disk"> Salvar</i>', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}--}}
-    {!! Form::close() !!}
+            {!! Form::close() !!}
+            </div>
+        </div>
 @endsection
 
 @section('js')

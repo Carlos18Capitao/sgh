@@ -42,7 +42,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>@sortablelink('produto_id','Produto')</th>
+            <th>@sortablelink('produto.produto','Produto')</th>
             <th>@sortablelink('qtd','Qtd')</th>
             <th>@sortablelink('setor_id','Setor')</th>
             <th>@sortablelink('created_at','Data de Saída')</th>
@@ -52,16 +52,16 @@
         </thead>
         @foreach ($produtosaidas as $produtosaida)
             <tbody>
-                <td>{{ $produtosaida->produto->produto }}</td>
+                <td>{{ $produtosaida->produto->produto . ' (Cód. ' . $produtosaida->produto->codigo . ')' }}</td>
                 <td>{{ $produtosaida->qtd }}</td>
                 <td>{{ $produtosaida->setor->setor }}</td>
                 <td>{{ $produtosaida->created_at }}</td>
                 <td>{{ $produtosaida->obs  }}</td>
                 <td>
                     {{--@shield('produtosaida.editar')--}}
-                    <a class = "btn btn-sm btn-default" href="{{ route('saida.edit',$produtosaida->id)}}">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
+                    {{--<a class = "btn btn-sm btn-default" href="{{ route('saida.edit',$produtosaida->id)}}">--}}
+                        {{--<span class="glyphicon glyphicon-pencil"></span>--}}
+                    {{--</a>--}}
                     {{--@endshield--}}
                     <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$produtosaida->id}}">
                         <span class="glyphicon glyphicon-trash"></span>
@@ -78,7 +78,8 @@
                                 </div>
                                 <div class="modal-body">
                                     <div align="center">
-                                        <b>{{ $produtosaida->produtosaida }}</b>
+                                        <b>{{ $produtosaida->produto->produto }}</b>
+                                        <br><br>Total: {{ $produtosaida->qtd }}
                                     </div>
                                 </div>
                                 <div class="modal-footer">

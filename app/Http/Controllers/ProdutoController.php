@@ -126,7 +126,7 @@ class ProdutoController extends Controller
         // $produtos = Produto::with('estoque','produto_id')->sortable()->get();
         $estoques   = Estoque::with('produto')
                                     ->where('id','=',$estoque_id)
-                                    ->sortable()->get();
+                                    ->sortable(['produto' => 'asc'])->get();
         //dd($estoques);
         $title      = 'Posição de Estoque';
 //        $categorias = Categoria::all();

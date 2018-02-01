@@ -58,7 +58,7 @@
   	           </div>
 
                  <div class="panel-footer">
-                     <span class="pull-left">Saída para Setor</span>
+                     <span class="pull-left">Saída de Produtos</span>
                      <span class="pull-right"><i class="fa fa-fw fa-lg fa-arrow-right"></i></span>
                      <div class="clearfix"></div>
                  </div>

@@ -24,7 +24,7 @@ class ProdutoEntradaController extends Controller
 
     public function index($estoque_id)
     {
-        $produtoentradas =  ProdutoEntrada::sortable()->where('estoque_id','=',$estoque_id)->paginate(20);
+        $produtoentradas =  ProdutoEntrada::sortable(['created_at' => 'desc'])->where('estoque_id','=',$estoque_id)->paginate(20);
         $title           = 'Entrada de Produtos no Estoque';
 
         return view('produtoentrada.consProdutoEntrada', compact('title', 'produtoentradas','estoque_id'));
@@ -34,8 +34,9 @@ class ProdutoEntradaController extends Controller
     {
         $title    = 'Entrada de Produtos no Estoque';
         $produtos = Produto::all()->sortBy('produto');
+        $estoques = Estoque::where('id',$estoque_id)->get();
 
-        return view('produtoentrada.cadProdutoEntrada', compact('title','produtos','estoque_id'));
+        return view('produtoentrada.cadProdutoEntrada', compact('title','produtos','estoque_id','estoques'));
     }
 
     public function store(ProdutoEntradaFormRequest $request)
@@ -86,8 +87,12 @@ class ProdutoEntradaController extends Controller
         $delete          = $produtoentradas->delete();
 
         if ($delete)
-            return redirect()->route('entrada.index');
-        else
-            return redirect()->route('entrada.index')->with(['errors' => 'Falha ao editar']);
+//            return redirect()->route('entrada.index');
+            return redirect()->back();
+
+    else
+//            return redirect()->route('entrada.index')->with(['errors' => 'Falha ao editar']);
+            return redirect()->back();
+
     }
 }

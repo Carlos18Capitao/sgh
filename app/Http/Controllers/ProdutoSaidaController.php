@@ -23,7 +23,7 @@ class ProdutoSaidaController extends Controller
 
     public function index($estoque_id)
     {
-        $produtosaidas  =  ProdutoSaida::sortable()->where('estoque_id','=',$estoque_id)->paginate(20);
+        $produtosaidas  =  ProdutoSaida::sortable(['created_at' => 'desc'])->where('estoque_id','=',$estoque_id)->paginate(20);
         $title          = 'Saida de Produtos por Setor';
 
         return view('produtosaida.consProdutoSaida', compact('title', 'produtosaidas','estoque_id'));
@@ -85,8 +85,10 @@ class ProdutoSaidaController extends Controller
         $delete = $produtosaidas->delete();
 
         if ($delete)
-            return redirect()->route('saida.index');
+//            return redirect()->route('saida.index');
+            return redirect()->back();
         else
-            return redirect()->route('saida.index')->with(['errors' => 'Falha ao editar']);
+//            return redirect()->route('saida.index')->with(['errors' => 'Falha ao editar']);
+            return redirect()->back();
     }
 }

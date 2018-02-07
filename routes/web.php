@@ -63,9 +63,12 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
         Route::get('/entrada/{id}/create', 'ProdutoEntradaController@create')->name('createentrada');
         Route::resource('/entrada', 'ProdutoEntradaController');
         Route::get('/{id}/saida', ['as' => 'estoque.saida','uses' => 'ProdutoSaidaController@index']);
+        Route::get('/{estoque_id}/pedido', ['as' => 'estoque.pedido','uses' => 'PedidoController@index']);
         Route::get('/saida/{id}/create', 'ProdutoSaidaController@create')->name('create');
+        Route::get('/pedido/{estoque_id}/create', 'PedidoController@create')->name('create');
         // Route::get('/{id}/saida', 'ProdutoSaidaController@index')->name('index');
         Route::resource('/saida', 'ProdutoSaidaController');
+        Route::resource('/pedido', 'PedidoController');
         // Route::resource('/estoque', 'EstoqueController');
         Route::post('/{id}/userstore', ['as' => 'estoque.userstore','uses' => 'EstoqueController@userstore']);
         Route::post('/{id}/produtostore', ['as' => 'estoque.produtostore','uses' => 'EstoqueController@produtostore']);

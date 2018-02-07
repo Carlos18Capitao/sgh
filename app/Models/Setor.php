@@ -23,4 +23,9 @@ class Setor extends Model
     {
         return $this->hasMany('App\Models\ProdutoSaida');
     }
+
+    public function pedido()
+    {
+        return $this->hasMany('App\Models\Pedido');
+    }
 }

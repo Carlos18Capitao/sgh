@@ -45,7 +45,9 @@ class ProdutoSaidaController extends Controller
         $insert   = $this->produtosaida->create($dataForm);
 
         if ($insert)
-            return redirect()->route('estoque.saida',[$insert->estoque_id]);
+            return redirect()->back();
+
+        //    return redirect()->route('estoque.saida',[$insert->estoque_id]);
         else {
             return redirect()->back();
         }

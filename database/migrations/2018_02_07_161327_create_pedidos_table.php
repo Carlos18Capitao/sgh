@@ -25,6 +25,7 @@ class CreatePedidosTable extends Migration
             $table->foreign('setor_id')->references('id')->on('setors')->onDelete('cascade');
             $table->integer('estoque_id')->unsigned();
             $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
+            $table->string('requisicao','50')->nullable();
         });
     }
 

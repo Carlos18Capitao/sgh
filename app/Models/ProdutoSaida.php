@@ -20,10 +20,11 @@ class ProdutoSaida extends Model
         'created_by',
         'updated_by',
         'setor_id',
-        'estoque_id'
+        'estoque_id',
+        'pedido_id'
     ];
 
-    public $sortable = ['produto_id','qtd','obs','created_at','setor_id'];
+    public $sortable = ['produto_id','qtd','obs','created_at','setor_id','pedido_id'];
 
     public function produto()
     {

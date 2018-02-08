@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Estoque;
 use App\Models\Pedido;
 use App\Models\Produto;
+use App\Models\ProdutoSaida;
 use App\Models\Setor;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,7 @@ class PedidoController extends Controller
         $insert   = $this->pedido->create($pedidoForm);
 
         if ($insert)
-            return redirect()->route('estoque.pedido',[$insert->estoque_id]);
+            return redirect()->route('pedido.show',[$insert->id]);
         else {
             return redirect()->back();
         }
@@ -51,7 +52,15 @@ class PedidoController extends Controller
 
     public function show($id)
     {
-        //
+        $pedido = Pedido::find($id);
+        $produtosaidas = ProdutoSaida::where('pedido_id','=',$id)->get();
+        $title = 'Adicionar Produtos ao Pedido';
+        $produtos = Produto::all();
+        $estoques = Estoque::with('produto')->where('id','=',$pedido->estoque_id)->get();
+
+
+        return view('pedidoestoque.cadItemPedidoEstoque', compact('title','produtos','pedido','produtosaidas','estoques'));
+
     }
 
     public function edit($id)

@@ -13,7 +13,26 @@
             @endforeach
         </div>
     @endif
+    @foreach (Auth::user()->estoques as $stoq)
+        @if ($estoque_id == $stoq->pivot->estoque_id)
 
+            {{-- @if($estoque->id == Auth::user()->user_estoques->id) --}}
+
+            <a href="{{route('estoque.entrada',$estoque_id)}}">
+                <i class="fa fa-fw fa-truck fa-2x"></i>
+            </a>
+
+            <a href="{{route('estoque.saida',$estoque_id)}}">
+                <i class="fa fa-fw fa-cart-arrow-down fa-2x"></i>
+            </a>
+
+            <a href="{{route('relposicaoestoque',$estoque_id)}}">
+                <i class="fa fa-fw fa-file-text fa-2x"></i>
+            </a>
+        @else
+        @endif
+    @endforeach
+    <br><br>
     <a href="{{ route('create',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
 
     <br><br>
@@ -22,8 +41,9 @@
         <tr>
             <th>@sortablelink('id','Código')</th>
             <th>@sortablelink('datapedido','Data')</th>
-            <th>@sortablelink('setor_id','Setor')</th>
-            <th>@sortablelink('created_by','Usuário')</th>
+            <th>@sortablelink('setor_id','Unidade')</th>
+            <th>@sortablelink('requisicao','SIAPNET/e-SIS')</th>
+            {{--<th>@sortablelink('created_by','Usuário')</th>--}}
             <th width="100px">Ações</th>
         </tr>
         </thead>
@@ -31,8 +51,9 @@
             <tbody>
             <td><a href="{{ route('pedido.show',$pedido->id) }}">{{ $pedido->id }}</a></td>
             <td>{{ $pedido->datapedido }}</td>
-            <td>{{ $pedido->setor_id  }}</td>
-            <td>{{ $pedido->created_by  }}</td>
+            <td>{{ $pedido->setor->setor  }}</td>
+            <td>{{ $pedido->requisicao  }}</td>
+{{--            <td>{{ $pedido->created_by  }}</td>--}}
             <td>
                 <a class = "btn btn-sm btn-default" href="{{ route('pedido.edit',$pedido->id)}}">
                     <span class="glyphicon glyphicon-pencil"></span>

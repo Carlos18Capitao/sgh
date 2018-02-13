@@ -1,11 +1,11 @@
-@extends('adminlte::page')
+{{-- @extends('template.master') --}}
+{{-- @extends('template._menu') --}}
 
 @section('content')
 
     <div class="text-center">
         <h3>{{ $title }}</h3>
     </div>
-
     @if (isset($errors) && count($errors) > 0)
         <div class="alert alert-danger">
             @foreach ($errors->all() as $error)
@@ -13,83 +13,63 @@
             @endforeach
         </div>
     @endif
+    <hr>
+          @shield('fornecedor.editar')
+          <a class = "btn btn-sm btn-default" title="EDITAR" href="{{ route('fornecedor.edit',$fornecedors->id)}}">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </a>
+          @endshield
+
     <br><br>
-    <p><b>Descrição:</b> {{ $fornecedors->descricao }}</p>
-    <p><b>CPF/CNPJ:</b> {{ $fornecedors->cpf_cnpj }}</p>
-    <p><b>Categoria:</b> {{ $fornecedors->tipo_pessoa }}</p>
-    <p><b>Dados bancarios:</b> {{ 'Banco: ' . $fornecedors->banco . '   Ag: ' . $fornecedors->agencia . '  C/C: ' . $fornecedors->conta }}</p>
+    <p><b>ID:</b> {{ $fornecedors->id }}</p>
+    <p><b>Fornecedor:</b> {{ $fornecedors->nome }}</p>
+    <p><b>CNPJ:</b> <a target="_blank" href="http://transparencia.al.gov.br/despesa/despesas-por-favorecido/{{ $fornecedors->cnpj}}/510556">{{ $fornecedors->getOriginal('cnpj') }}</a></p>
+    <p><b>E-mail:</b> {{ $fornecedors->email }} </p>
+    <p><b>Telefone:</b> {{ $fornecedors->telefone }} </p>
+    <p><b>Endereço:</b> {{ $fornecedors->endereco }} </p>
+    <p><b>Responsável:</b> {{ $fornecedors->responsavel }}
+    <p><b>Observações:</b> {{ $fornecedors->area }} </p>
 
     <hr>
-<b> PROCESSOS </b>
+
     <table class="table table-striped">
-    <thead>
-    <tr>
-        <th>@sortablelink('processo','Processo')</th>
-        <th>@sortablelink('valor','Valor')</th>
-        <th>@sortablelink('empenho','Empenho')</th>
-        <th>@sortablelink('nf','Nota Fiscal')</th>
-        <th>@sortablelink('emissaonf','Data Emissão NF')</th>
-        <th width="150px">Ações</th>
-    </tr>
-    </thead>
-@foreach($fornecedors->ordembancaria as $ob)
-            <tbody>
-                <td>{{ $ob->processo }}</td>
-                <td>{{ $ob->valor_formatted }}</td>
-                <td>{{ $ob->empenho }}</td>
-                <td>{{ $ob->nf }}</td>
-                <td>{{ $ob->emissaonf_formatted }}</td>
+        <tr>
+            {{-- <th>ID</th> --}}
+            <th>Objeto</th>
+            <th>Ata</th>
+            <th>Vigência</th>
+            <th>Expira em</th>
+            <th width="150px">Abrir Processo</th>
+        </tr>
+        @foreach ($fornecedors->atas as $ata)
+            <tr>
+                {{-- <td>{{ $unidade->id }}</td> --}}
+
+                <td>{{ $ata->objeto->objeto }}</td>
+                <td><a href="{{ route('ata.show', $ata->id)}}"> {{ $ata->arp }} </a></td>
+                <td>{{ $ata->vigencia->format('d/m/Y') }}</td>
+                <td>{{ $ata->vigencia->diffInDays($hoje)}} dias</td>
+
                 <td>
-                    <button type="button" title="ATUALIZAR DADOS" class="btn btn-sm btn-default" data-toggle="modal" data-target="#editar{{$ob->id}}"><span class="glyphicon glyphicon-plus"></span></button>
-                    <a class="btn btn-sm btn-default" href="{{ route('ordembancaria.show',$ob->id) }}"><span class="glyphicon glyphicon-print"></span></button>
-
-
-                    <!-- Modal CADASTRAR PROCESSO/EMPENHO/NF-->
-                    <div class="modal fade" id="editar{{$ob->id}}" tabindex="-1" role="dialog" aria-labelledby="cadastrar">
-                      {!! Form::model($ob, ['route' => ['ordembancaria.update', $ob->id], 'class' => 'Form', 'method' => 'PUT']) !!}
-
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Cadastrar Processo</h4>
-                                </div>
-                                <div class="modal-body">
-                                  {!! Form::hidden('updated_by',Auth::user()->id) !!}
-                                  {{-- {!! Form::hidden('id',$ob->id) !!} --}}
-                              <div class="form-group">
-                                  {!! Form::label('processo', 'Processo:'); !!}
-                                  {!! Form::text('processo', null, ['class' => 'form-control', 'placeholder' => 'Número do processo']) !!}
-                              </div>
-                              <div class="form-group">
-                                  {!! Form::label('valor', 'Valor:'); !!}
-                                  {!! Form::text('valor', null, ['class' => 'form-control', 'placeholder' => 'Valor']) !!}
-                              </div>
-                              <div class="form-group">
-                                  {!! Form::label('empenho', 'Empenho:'); !!}
-                                  {!! Form::text('empenho', null, ['class' => 'form-control', 'placeholder' => 'Empenho']) !!}
-                              </div>
-                              <div class="form-group">
-                                  {!! Form::label('nf', 'Nota Fiscal:'); !!}
-                                  {!! Form::text('nf', null, ['class' => 'form-control', 'placeholder' => 'Nota Fiscal']) !!}
-                              </div>
-                              <div class="form-group">
-                                  {!! Form::label('emissaonf', 'Emissão NF:'); !!}
-                                  {!! Form::date('emissaonf', null, ['class' => 'form-control', 'placeholder' => 'Emissão NF']) !!}
-                              </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                    <button type="submit" class = "btn btn-primary"> <span class="glyphicon glyphicon-plus"></span> Salvar </button>
-                                </div>
-                            </div>
-                        </div>
-                        {!! Form::close() !!}
-                    </div>
+                    @shield('processo.cadastrar')
+                    <a class = "btn btn-sm btn-default" title="CADASTRAR PROCESSO" href="{{ route('processo.show', $ata->id)}}">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                    </a>
+                    @endshield
+                     <a class = "btn btn-sm btn-default" title="COPIAR DADOS PARA ENVIO DE EMPENHO" href="{{ route('fornecedor.memo', $ata->id)}}">
+                        <span class="glyphicon glyphicon-copy"></span>
+                    </a>
                 </td>
-            </tbody>
-@endforeach
+            </tr>
+            
+        @endforeach
     </table>
+
+<div align ="right">
+    @shield('fornecedor.excluir')
+    {!! Form::open(['route'=> ['fornecedor.destroy',$fornecedors->id], 'method'=>'DELETE']) !!}
+    {!! Form::submit("Excluir fornecedor",['class' => 'btn btn-danger']) !!}
+    {!! Form::close() !!}
+    @endshield
+</div>
 @endsection

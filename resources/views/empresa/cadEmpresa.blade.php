@@ -1,5 +1,4 @@
-{{-- @extends('template.master') --}}
-{{-- @extends('template._menu') --}}
+@extends('adminlte::page')
 
 @section('content')
 
@@ -15,16 +14,16 @@
         </div>
     @endif
 
-    @if (isset($fornecedors))
-        {!! Form::model($fornecedors, ['route' => ['fornecedor.update', $fornecedors->id], 'class' => 'Form', 'method' => 'PUT']) !!}
+    @if (isset($empresas))
+        {!! Form::model($empresas, ['route' => ['empresa.update', $empresas->id], 'class' => 'Form', 'method' => 'PUT']) !!}
         {!! Form::hidden('updated_by',Auth::user()->name) !!}
     @else
-        {!! Form::open(['route' => 'fornecedor.store', 'class' => 'form']) !!}
+        {!! Form::open(['route' => 'empresa.store', 'class' => 'form']) !!}
         {!! Form::hidden('created_by',Auth::user()->name) !!}
     @endif
 
     <div class="form-group">
-        {!! Form::label('fornecedor', 'Fornecedor:'); !!}
+        {!! Form::label('empresa', 'Fornecedor:'); !!}
         {!! Form::text('nome', null, ['class' => 'form-control', 'placeholder' => 'Fornecedor']) !!}
     </div>
     <div class="form-group">

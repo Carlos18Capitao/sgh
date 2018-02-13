@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'title' => 'SGH',
+    'title' => 'Sistema de Gestão de Almoxarifado',
 
-    'title_prefix' => 'SGH - ',
+    'title_prefix' => 'SGA - ',
 
     'title_postfix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>SGH</b>',
+    'logo' => '<b>SGA</b>',
 
-    'logo_mini' => '<b>S</b>GH',
+    'logo_mini' => '<b>S</b>GA',
 
     /*
     |--------------------------------------------------------------------------
@@ -190,6 +190,11 @@ return [
                     // 'url'  => 'estoque/relposicaoestoque',
                         // ],
             ],
+        ],
+                 [
+            'text' => 'Fornecedores',
+            'url'  => 'estoque/empresa',
+            'icon' => 'table',
         ],
 //        [
 //            'text' => 'Prestador',

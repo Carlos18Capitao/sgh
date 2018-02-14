@@ -1,5 +1,4 @@
-{{-- @extends('template.master') --}}
-{{-- @extends('template._menu') --}}
+@extends('adminlte::page')
 
 @section('content')
 
@@ -17,41 +16,49 @@
 
     @if (isset($fornecedors))
         {!! Form::model($fornecedors, ['route' => ['fornecedor.update', $fornecedors->id], 'class' => 'Form', 'method' => 'PUT']) !!}
-        {!! Form::hidden('updated_by',Auth::user()->name) !!}
+       {!! Form::hidden('updated_by',Auth::user()->id) !!}
     @else
         {!! Form::open(['route' => 'fornecedor.store', 'class' => 'form']) !!}
-        {!! Form::hidden('created_by',Auth::user()->name) !!}
+       {!! Form::hidden('created_by',Auth::user()->id) !!}
     @endif
 
     <div class="form-group">
-        {!! Form::label('fornecedor', 'Fornecedor:'); !!}
-        {!! Form::text('nome', null, ['class' => 'form-control', 'placeholder' => 'Fornecedor']) !!}
+        {!! Form::label('descricao', 'Fornecedor:'); !!}
+        {!! Form::text('descricao', null, ['class' => 'form-control', 'placeholder' => 'Nome']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('cnpj', 'CNPJ:'); !!}
-        {!! Form::text('cnpj', null, ['class' => 'form-control', 'placeholder' => 'CNPJ','id'=>'cnpj']) !!}
+        {!! Form::label('tipo_pessoa', 'Tipo:'); !!}
+        {!! Form::select('tipo_pessoa', ['fisica'=>'Física','juridica'=>'Jurídica'],null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('email', 'E-mail:'); !!}
-        {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'E-mail']) !!}
+        {!! Form::label('cpf_cnpj', 'CPF/CNPJ:'); !!}
+        {!! Form::text('cpf_cnpj', null, ['class' => 'form-control', 'placeholder' => 'CPF/CNPJ']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('telefone', 'Telefone:'); !!}
-        {!! Form::text('telefone', null, ['class' => 'form-control', 'placeholder' => 'Telefone']) !!}
+        {!! Form::label('passnf', 'Senha para emissão de NF:'); !!}
+        {!! Form::text('passnf', null, ['class' => 'form-control', 'placeholder' => 'Senha para emissão de NF']) !!}
+    </div>
+    <hr>
+    <p><b>DADOS BANCÁRIOS:</b></p>
+    <div class="form-group form-inline">
+
+    <div class="form-group">
+        {!! Form::label('banco', 'Banco:'); !!}
+        {!! Form::number('banco', null, ['class' => 'form-control', 'placeholder' => 'Código do Banco']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('responsavel', 'Responsável:'); !!}
-        {!! Form::text('responsavel', null, ['class' => 'form-control', 'placeholder' => 'Nome do Responsável']) !!}
+        {!! Form::label('agencia', 'Agência:'); !!}
+        {!! Form::text('agencia', null, ['class' => 'form-control', 'placeholder' => 'Agência']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('endereco', 'Endereço:'); !!}
-        {!! Form::textarea('endereco', null, ['class' => 'form-control', 'placeholder' => 'Endereço']) !!}
+        {!! Form::label('conta', 'Conta Corrente:'); !!}
+        {!! Form::text('conta', null, ['class' => 'form-control', 'placeholder' => 'Número da Conta']) !!}
     </div>
-    <div class="form-group">
-        {!! Form::label('area', 'Área de atuação/Observações:'); !!}
-        {!! Form::textarea('area', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
-    </div>
+  </div>
     {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
+{{--    {{ Form::button('<i class="glyphicon glyphicon-floppy-disk"> Salvar</i>', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}--}}
     {!! Form::close() !!}
+
+
 
 @endsection

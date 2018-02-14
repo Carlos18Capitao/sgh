@@ -1,29 +1,20 @@
 <?php
 
-namespace App\Models\Fornecedor;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Fornecedor extends Model
 {
-    protected $fillable = ['nome',
-                            'cnpj',
-                            'email',
-                            'telefone',
-                            'endereco',
-                            'area',
-                            'responsavel',
-                            'created_by',
-                            'updated_by'];
+    use SoftDeletes;
 
-    public function atas()
-    {
-        return $this->hasMany('App\Models\Ata\Ata');
-    }
+    protected $dates = ['deleted_at'];
 
-    public function getCnpjAttribute($value)
-    {
-        return preg_replace('@[./-]@', '', $value);
-    }
+    protected $fillable = ['descricao','tipo_pessoa','cpf_cnpj','banco','agencia','conta','passnf','created_by','updated_by'];
 
+    public function OrdemBancaria()
+      {
+          return $this->hasMany('App\Models\OrdemBancaria');
+      }
 }

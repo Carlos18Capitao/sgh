@@ -105,7 +105,7 @@
                                     {!! Form::hidden('estoque_id',$pedido->estoque_id) !!}
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::label('produto', 'Produto:'); !!}
+                                    {!! Form::label('produto', 'Produto:'); !!} <br>
 
 
                                         {{--  {!!Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' => 'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!}--}}

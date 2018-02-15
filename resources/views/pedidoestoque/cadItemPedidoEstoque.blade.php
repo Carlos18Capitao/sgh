@@ -109,7 +109,7 @@
 
 
                                         {{--  {!!Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' => 'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!}--}}
-                                        <select style="min-width:500px" class="js-produto form-control" id="js-produto" name="produto_id">
+                                        <select style="min-width:500px" class="js-produto" id="js-produto" name="produto_id">
                                             <option selected="selected" value="">Selecione um produto...</option>
                                             @foreach($estoques as $estoque)
                                                 @foreach ($estoque->produto as $produto)

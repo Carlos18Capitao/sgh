@@ -14,8 +14,8 @@
         </div>
     @endif
 
-    @if (isset($pedidos))
-        {!! Form::model($pedidos, ['route' => ['pedido.update', $pedidos->id], 'class' => 'Form', 'method' => 'PUT']) !!}
+    @if (isset($entradas))
+        {!! Form::model($entradas, ['route' => ['entrada.update', $entradas->id], 'class' => 'Form', 'method' => 'PUT']) !!}
         {!! Form::hidden('updated_by',Auth::user()->id) !!}
     @else
         {!! Form::open(['route' => 'pedido.store', 'class' => 'form']) !!}
@@ -30,9 +30,22 @@
         @endforeach
     </div>
 
+
+    <div class="form-group form-inline">
+        {!! Form::label('empresa_id', 'Fornecedor:'); !!}
+        @if (isset($entradas))
+            {!! Form::select('empresa_id', $entradas->empresa->pluck('nome','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione o fornecedor...']) !!}
+        @else
+            {!! Form::select('empresa_id', $empresas->pluck('nome','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione o fornecedor...']) !!}
+        @endif
+    </div>
+
         <div class="form-group form-inline">
-            {!! Form::label('datapedido', 'Data do Pedido:'); !!}
-            {!! Form::date('datapedido', null, ['class' => 'form-control']) !!}
+            {!! Form::label('tipoentrada', 'Tipo de Entrada:'); !!}
+            {!! Form::select('tipoentrada', ['nf'=>'Nota Fiscal','remessa'=>'Remessa','doacao'=>'Doação','permuta'=>'Permuta'], null, ['class' => 'js-setor form-control', 'placeholder' => 'Tipo de entrada...']) !!}
+
+            {!! Form::label('dataentrada', 'Data da Entrada:'); !!}
+            {!! Form::date('dataentrada', null, ['class' => 'form-control']) !!}
 
             {{--{!! Form::label('setor', 'Unidade:'); !!}--}}
             {{--@if (isset($pedidos))--}}
@@ -41,8 +54,8 @@
                 {{--{!! Form::select('setor_id', $setors->pluck('setor','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione uma unidade...']) !!}--}}
             {{--@endif--}}
 
-            {!! Form::label('requisicao', 'Nº Requisição:'); !!}
-            {!! Form::text('requisicao',null,['class'=>'form-control','placeholder'=>'Informe o número da requisição no SIAPNET/e-SIS']) !!}
+            {!! Form::label('numeroentrada', 'Documento Entrada:'); !!}
+            {!! Form::text('numeroentrada',null,['class'=>'form-control','placeholder'=>'Informe o número do documento']) !!}
 
         </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresa;
 use App\Models\Entrada;
 use App\Models\Estoque;
 use App\Models\Produto;
@@ -11,11 +12,12 @@ class EntradaController extends Controller
 {
     private $entrada;
 
-    public function __construct(Entrada $entrada, Estoque $estoque, Produto $produto)
+    public function __construct(Entrada $entrada, Estoque $estoque, Produto $produto, Empresa $empresa)
     {
         $this->entrada  = $entrada;
         $this->estoque = $estoque;
         $this->produto = $produto;
+        $this->empresa = $empresa;
     }
 
     public function index($estoque_id)
@@ -31,8 +33,9 @@ class EntradaController extends Controller
         $title    = 'Entrada de Produtos';
         $estoques = Estoque::with('produto')->where('id','=',$estoque_id)->get();
         $produtos = Produto::all()->sortBy('produto');
+        $empresas = Empresa::all()->sortBy('nome');
 
-        return view('entradaestoque.cadEntradaEstoque', compact('title','produtos','estoque_id','estoques'));
+        return view('entradaestoque.cadEntradaEstoque', compact('title','produtos','estoque_id','estoques','empresas'));
     }
 
     public function store(Request $request)

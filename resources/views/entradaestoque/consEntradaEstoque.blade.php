@@ -33,37 +33,37 @@
         @endif
     @endforeach
     <br><br>
-    <a href="{{ route('pedidoestoque',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
+    <a href="{{ route('entrarnf',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
 
     <br><br>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>@sortablelink('id','Código')</th>
-            <th>@sortablelink('datapedido','Data')</th>
-            <th>@sortablelink('setor_id','Unidade')</th>
-            <th>@sortablelink('requisicao','SIAPNET/e-SIS')</th>
-            {{--<th>@sortablelink('created_by','Usuário')</th>--}}
+            <th>@sortablelink('dataentrada','Data')</th>
+            <th>@sortablelink('tipoentrada','Tipo de Entrada')</th>
+            <th>@sortablelink('numeroentrada','Número')</th>
+            <th>@sortablelink('empresa_id','Empresa')</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
-        @foreach ($pedidos as $pedido)
+        @foreach ($entradas as $entrada)
             <tbody>
-            <td><a href="{{ route('pedido.show',$pedido->id) }}">{{ $pedido->id }}</a></td>
-            <td>{{ $pedido->datapedido }}</td>
-            <td>{{ $pedido->setor->setor  }}</td>
-            <td>{{ $pedido->requisicao  }}</td>
-{{--            <td>{{ $pedido->created_by  }}</td>--}}
+            <td><a href="{{ route('entrada.show',$entrada->id) }}">{{ $entrada->id }}</a></td>
+            <td>{{ $entrada->dataentrada }}</td>
+            <td>{{ $entrada->tipoentrada  }}</td>
+            <td>{{ $entrada->numeroentrada  }}</td>
+            <td>{{ $entrada->empresa->nome }}</td>
             <td>
-                <a class = "btn btn-sm btn-default" href="{{ route('pedido.edit',$pedido->id)}}">
+                <a class = "btn btn-sm btn-default" href="{{ route('entrada.edit',$entrada->id)}}">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </a>
-                <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$pedido->id}}">
+                <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$entrada->id}}">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
 
                 <!-- Modal EXCLUIR-->
-                <div class="modal fade" id="excluir{{$pedido->id}}" tabindex="-1" role="dialog" aria-labelledby="excluir">
+                <div class="modal fade" id="excluir{{$entrada->id}}" tabindex="-1" role="dialog" aria-labelledby="excluir">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -73,11 +73,11 @@
                             </div>
                             <div class="modal-body">
                                 <div align="center">
-                                    <b>Código do Pedido: {{ $pedido->id }}</b>
+                                    <b>Código do Pedido: {{ $entrada->id }}</b>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                {!! Form::open(['route'=> ['produto.destroy',$pedido->id], 'method'=>'DELETE']) !!}
+                                {!! Form::open(['route'=> ['produto.destroy',$entrada->id], 'method'=>'DELETE']) !!}
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                 <button type="submit" class = "btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Excluir </button>
                                 {!! Form::close() !!}

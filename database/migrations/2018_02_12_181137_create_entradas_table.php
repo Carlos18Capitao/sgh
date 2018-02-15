@@ -22,12 +22,13 @@ class CreateEntradasTable extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
             $table->integer('estoque_id')->unsigned();
             $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
-            $table->integer('empenho_id')->unsigned();
-            $table->foreign('empenho_id')->references('id')->on('empenhos')->onDelete('cascade');
+//            $table->integer('empenho_id')->unsigned();
+//            $table->foreign('empenho_id')->references('id')->on('empenhos')->onDelete('cascade');
             $table->integer('created_by')->unsigned();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updated_by')->unsigned()->nullable();
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
+            $table->float('preco')->nullable();
             $table->timestamps();
         });
     }

@@ -96,7 +96,7 @@
                             <h4 class="modal-title" id="myModalLabel">Adicionar Produtos</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="form-inline">
+                            <div class="form-group">
                                     {!!  Form::hidden('pedido_id', $pedido->id) !!}
                                     {!!  Form::hidden('setor_id', $pedido->setor_id) !!}
 

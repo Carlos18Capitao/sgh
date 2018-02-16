@@ -18,7 +18,7 @@
         {!! Form::model($entradas, ['route' => ['entrada.update', $entradas->id], 'class' => 'Form', 'method' => 'PUT']) !!}
         {!! Form::hidden('updated_by',Auth::user()->id) !!}
     @else
-        {!! Form::open(['route' => 'pedido.store', 'class' => 'form']) !!}
+        {!! Form::open(['route' => 'entrada.store', 'class' => 'form']) !!}
         {!! Form::hidden('created_by',Auth::user()->id) !!}
     @endif
         {!! Form::hidden('estoque_id', $estoque_id) !!}

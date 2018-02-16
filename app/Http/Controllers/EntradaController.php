@@ -6,6 +6,7 @@ use App\Models\Empresa;
 use App\Models\Entrada;
 use App\Models\Estoque;
 use App\Models\Produto;
+use App\Models\ProdutoEntrada;
 use Illuminate\Http\Request;
 
 class EntradaController extends Controller
@@ -40,12 +41,25 @@ class EntradaController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $entradaForm = $request->all();
+        $insert   = $this->entrada->create($entradaForm);
+
+        if ($insert)
+            return redirect()->route('entrada.show',[$insert->id]);
+        else {
+            return redirect()->back();
+        }
     }
 
     public function show($id)
     {
-        //
+        $entrada = Entrada::find($id);
+        $produtoentradas = ProdutoEntrada::where('entrada_id','=',$id)->get();
+        $title = 'Adicionar Produtos';
+        $produtos = Produto::all();
+        $estoques = Estoque::with('produto')->where('id','=',$entrada->estoque_id)->get();
+
+        return view('entradaestoque.cadItemEntradaEstoque', compact('title','produtos','entrada','produtoentradas','estoques'));
     }
 
     public function edit($id)

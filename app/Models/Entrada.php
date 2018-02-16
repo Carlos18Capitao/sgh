@@ -9,7 +9,7 @@ class Entrada extends Model
 {
     use Sortable;
 
-    public $sotable = ['datapedido','setor_id'];
+    public $sotable = ['dataentrada','empresa_id'];
 
     protected $fillable = ['tipoentrada','numeroentrada','dataentrada','empresa_id','estoque_id','created_by','updated_by','preco'];
 

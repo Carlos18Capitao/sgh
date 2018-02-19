@@ -50,7 +50,8 @@ class ProdutoEntradaController extends Controller
 //        $estoque->produto()->attach($insert->produto_id);
 
         if ($insert)
-            return redirect()->route('estoque.entrada',[$insert->estoque_id]);
+            return redirect()->back();
+//        return redirect()->route('estoque.entrada',[$insert->estoque_id]);
         else {
             return redirect()->back();
         }

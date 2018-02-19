@@ -68,6 +68,8 @@
             <th>@sortablelink('codigo','Código')</th>
             <th>@sortablelink('produto.produto','Produto')</th>
             <th>Unidade</th>
+            <th>Lote</th>
+            <th>Validade</th>
             <th>@sortablelink('qtd','Qtd')</th>
             <th>@sortablelink('obs','Observação')</th>
             <th width="100px">Ações</th>
@@ -78,6 +80,8 @@
             <td>{{ $produtoentrada->produto->codigo }}</td>
             <td>{{ $produtoentrada->produto->produto }}</td>
             <td>{{ $produtoentrada->produto->unidade }}</td>
+            <td>{{ $produtoentrada->lote }}</td>
+            <td>{{ $produtoentrada->validade }}</td>
             <td>{{ $produtoentrada->qtd }}</td>
             <td>{{ $produtoentrada->obs  }}</td>
             <td></td>
@@ -87,7 +91,7 @@
             <!-- Modal CADASTRAR-->
             <div class="modal fade" id="myModalCadastrar" tabindex="-1" role="dialog" aria-labelledby="myModalCadastrar">
                 {!! Form::open(['route' => 'entradaestoque.store', 'class' => 'form']) !!}
-                {!! Form::hidden('created_by',Auth::user()->name) !!}
+                {!! Form::hidden('created_by',Auth::user()->id) !!}
 
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -114,8 +118,9 @@
 {{--                                        {!! Form::select('produto_id', $produtoentradas->produto->pluck('produto','id'), null, ['class' => 'js-produto form-control','placeholder' => 'Selecione um produto...']) !!}--}}
                                     {{--@else--}}
                                         {{-- {!! Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' =>'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!} --}}
-                                        <select class="js-produto form-control" name="produto_id">
-                                            <option selected="selected" value="">Selecione um produto...</option>
+                                        {{--<select class="js-produto form-control" name="produto_id">--}}
+                                    <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id">
+                                    <option selected="selected" value="">Selecione um produto...</option>
                                             @foreach($produtos as $produto)
                                                 @foreach($produto->estoque as $estoque)
                                                     @if($estoque->id == $entrada->estoque_id)
@@ -154,11 +159,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         {!! Form::label('obs', 'Observação:'); !!}
-                                        @if($entrada->estoque_id == 4)
-                                            {!! Form::text('obs', 'Contagem realizada em 01/02/2018' , ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
-                                        @else
                                             {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
-                                        @endif
                                     </div>
                         </div>
                         <div class="modal-footer">

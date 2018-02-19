@@ -21,7 +21,8 @@ class ProdutoEntrada extends Model
                         'updated_by',
                         'estoque_id',
                         'lote',
-                        'validade'
+                        'validade',
+                        'entrada_id'
                         ];
 
     public $sortable = ['produto_id','qtd','obs','created_at','lote','validade'];

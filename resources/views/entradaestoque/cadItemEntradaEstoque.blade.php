@@ -134,7 +134,6 @@
                                         </select>
                                     {{--@endif--}}
                                 </div>
-                            <div class="row">
                                 
                                 <div class="form-group">
                                     @foreach($estoques as $estoque)

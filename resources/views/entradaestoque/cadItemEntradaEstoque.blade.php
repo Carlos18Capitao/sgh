@@ -110,8 +110,7 @@
                             {!! Form::hidden('estoque_id',$entrada->estoque_id) !!}
                             {!! Form::hidden('entrada_id',$entrada->id) !!}
 
-                            <div class="row">
-                                <div class="col-md-6">
+                                <div class="form-group">
                                     {!! Form::label('produto', 'Produto:'); !!}
 
 {{--                                    @if (isset($produtoentradas))--}}
@@ -135,6 +134,8 @@
                                         </select>
                                     {{--@endif--}}
                                 </div>
+                            <div class="row">
+                                
                                 <div class="form-group">
                                     @foreach($estoques as $estoque)
                                         @if($estoque->lote == '1')
@@ -157,7 +158,7 @@
                                         {!! Form::label('qtd', 'Quantidade:'); !!}
                                         {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="form-group">
                                         {!! Form::label('obs', 'Observação:'); !!}
                                             {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
                                     </div>

@@ -157,11 +157,14 @@
                                         {!! Form::label('qtd', 'Quantidade:'); !!}
                                         {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
                                     </div>
+                        </div>
+                                    
                                     <div class="form-group">
                                         {!! Form::label('obs', 'Observação:'); !!}
                                             {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
                                     </div>
                         </div>
+                                    
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                             <button type="submit" class="btn btn-primary">Salvar</button>

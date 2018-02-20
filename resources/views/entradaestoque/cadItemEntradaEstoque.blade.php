@@ -84,7 +84,37 @@
             <td>{{ $produtoentrada->validade }}</td>
             <td>{{ $produtoentrada->qtd }}</td>
             <td>{{ $produtoentrada->obs  }}</td>
-            <td></td>
+            <td>
+                    <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$produtoentrada->id}}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+
+                    <!-- Modal EXCLUIR-->
+                     <div class="modal fade" id="excluir{{$produtoentrada->id}}" tabindex="-1" role="dialog" aria-labelledby="excluir">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Deseja excluir?</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div align="center">
+                                        <b>{{ $produtoentrada->produto->produto }}</b>
+                                        <br><br>
+                                        Total: {{ $produtoentrada->qtd }}
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    {!! Form::open(['route'=> ['entradaestoque.destroy',$produtoentrada->id], 'method'=>'DELETE']) !!}
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                    <button type="submit" class = "btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Excluir </button>
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal EXCLUIR-->
+            </td>
         @endforeach
 
 

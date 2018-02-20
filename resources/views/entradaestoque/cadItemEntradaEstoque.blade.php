@@ -135,25 +135,22 @@
                                     {{--@endif--}}
                                 </div>
                                 
-                                <div class="form-group">
+                                <div class="form-group form-inline">
                                     @foreach($estoques as $estoque)
                                         @if($estoque->lote == '1')
-                                            <div class="col-md-2">
-
-                                                {{--<div class="form-group">--}}
+                                            <div class="form-group">
                                                 {!! Form::label('lote', 'Lote:'); !!}
                                                 {!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Informe o lote']) !!}
                                             </div>
                                         @endif
                                         @if($estoque->validade == '1')
-                                            {{--<div class="form-group">--}}
-                                            <div class="col-md-2">
+                                            <div class="form-group">
                                                 {!! Form::label('validade', 'Validade:'); !!}
                                                 {!! Form::date('validade', null, ['class' => 'form-control', 'placeholder' => 'Validade']) !!}
                                             </div>
                                         @endif
                                     @endforeach
-                                    <div class="col-md-2">
+                                    <div class="form-group">
                                         {!! Form::label('qtd', 'Quantidade:'); !!}
                                         {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
                                     </div>

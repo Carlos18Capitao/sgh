@@ -109,7 +109,7 @@
 
 
                                         {{--  {!!Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' => 'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!}--}}
-                                        <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id">
+                                        <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id" tabindex="1">
                                             <option selected="selected" value="">Selecione um produto...</option>
                                             @foreach($estoques as $estoque)
                                                 @foreach ($estoque->produto as $produto)
@@ -125,11 +125,11 @@
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('qtd', 'Quantidade:'); !!}
-                                    {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
+                                    {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'2']) !!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('obs', 'Observação:'); !!}
-                                    {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
+                                    {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações','tabindex'=>'3']) !!}
                                 </div>
                         </div>
                         <div class="modal-footer">

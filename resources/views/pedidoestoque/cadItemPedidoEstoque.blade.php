@@ -128,7 +128,7 @@
                                     {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'2']) !!}
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::label('obs', 'Observação:'); !!}
+                                    {!! Form::label('obs', 'Lote/Obs:'); !!}
                                     {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações','tabindex'=>'3']) !!}
                                 </div>
                         </div>

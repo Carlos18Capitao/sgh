@@ -30,7 +30,7 @@ class EmpresaController extends Controller
         return view('empresa.cadEmpresa', compact('title'));
     }
 
-    public function store(EmpresaFormRequest $request)
+    public function store(Request $request)
     {
         $dataForm = $request->all();
         $insert = $this->empresa->create($dataForm);

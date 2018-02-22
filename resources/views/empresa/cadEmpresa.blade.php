@@ -16,10 +16,10 @@
 
     @if (isset($empresas))
         {!! Form::model($empresas, ['route' => ['empresa.update', $empresas->id], 'class' => 'Form', 'method' => 'PUT']) !!}
-        {!! Form::hidden('updated_by',Auth::user()->name) !!}
+        {!! Form::hidden('updated_by',Auth::user()->id) !!}
     @else
         {!! Form::open(['route' => 'empresa.store', 'class' => 'form']) !!}
-        {!! Form::hidden('created_by',Auth::user()->name) !!}
+        {!! Form::hidden('created_by',Auth::user()->id) !!}
     @endif
 
     <div class="form-group">

@@ -64,12 +64,26 @@ class EntradaController extends Controller
 
     public function edit($id)
     {
-        //
+        $entradas = Entrada::find($id);
+        $title = "Editar Nota de Entrada";
+        $estoque_id = $entradas->estoque_id;
+        $estoques = Estoque::with('produto')->where('id','=',$estoque_id)->get();
+        $produtos = Produto::all()->sortBy('produto');
+        $empresas = Empresa::all()->sortBy('nome');
+ 
+        return view('entradaestoque.cadEntradaEstoque', compact('title', 'entradas','estoque_id','estoques','produtos','empresas'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $dataForm = $request->all();
+        $entradas = Entrada::find($id);
+        $update = $entradas->update($dataForm);
+  
+        if ($update)
+           return redirect()->back();
+        else
+            return redirect()->route('estoque.edit', $id)->with(['errors' => 'Falha ao editar']);
     }
 
     public function destroy($id)

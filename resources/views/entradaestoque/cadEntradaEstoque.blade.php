@@ -34,7 +34,7 @@
     <div class="form-group form-inline">
         {!! Form::label('empresa_id', 'Fornecedor:'); !!}
         @if (isset($entradas))
-            {!! Form::select('empresa_id', $entradas->empresa->pluck('nome','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione o fornecedor...']) !!}
+            {!! Form::select('empresa_id', $entradas->empresa->pluck('nome','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione o fornecedor...', 'disabled']) !!}
         @else
             {!! Form::select('empresa_id', $empresas->pluck('nome','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione o fornecedor...']) !!}
         @endif
@@ -43,9 +43,12 @@
         <div class="form-group form-inline">
             {!! Form::label('tipoentrada', 'Tipo de Entrada:'); !!}
             {!! Form::select('tipoentrada', ['nf'=>'Nota Fiscal','remessa'=>'Remessa','doacao'=>'Doação','permuta'=>'Permuta','emprestimo'=>'Empréstimo','devolucao'=>'Devolução de Empréstimo','inventario'=>'Inventário',], null, ['class' => 'js-setor form-control', 'placeholder' => 'Tipo de entrada...']) !!}
-
             {!! Form::label('dataentrada', 'Data da Entrada:'); !!}
-            {!! Form::date('dataentrada', null, ['class' => 'form-control']) !!}
+        @if (isset($entradas))            
+            <input class="form-control" name="dataentrada" type="text" value="{{$entradas->dataentrada}}" id="dataentrada" disabled>
+        @else
+            {!! Form::date('dataentrada', null, ['class' => 'form-control']) !!}               
+        @endif           
 
             {{--{!! Form::label('setor', 'Unidade:'); !!}--}}
             {{--@if (isset($pedidos))--}}

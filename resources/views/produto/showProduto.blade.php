@@ -30,6 +30,8 @@
         <th>@sortablelink('created_by','Usuário')</th>
         <th>@sortablelink('created_at','Data de Entrada')</th>
         <th>@sortablelink('qtd','Qtd')</th>
+        <th>@sortablelink('lote','Lote')</th>
+        <th>@sortablelink('validade','Validade')</th>
     </tr>
     </thead>
 @foreach($produtos->produtoentrada as $entproduto)
@@ -37,6 +39,8 @@
                 <td>{{ $entproduto->user->name }}</td>
                 <td>{{ $entproduto->created_at }}</td>
                 <td>{{ $entproduto->qtd }}
+                <td>{{ $entproduto->lote }}
+                <td>{{ $entproduto->validade }}
                   @if($produtos->unidade == 'Grama')
                       {{ ' | ' . ($entproduto->qtd)/1000 . 'Kg'}}</td>
                   @endif
@@ -54,8 +58,9 @@
         <thead>
         <tr>
             <th>@sortablelink('setor_id','Setor')</th>
-            <th>@sortablelink('created_at','Data de Entrada')</th>
+            <th>@sortablelink('created_at','Data de Saída')</th>
             <th>@sortablelink('qtd','Qtd')</th>
+            <th>@sortablelink('obs','Observação')</th>
             <th>@sortablelink('created_by','Usuário')</th>
         </tr>
         </thead>
@@ -64,6 +69,7 @@
             <td>{{ $saiproduto->setor->setor }}</td>
             <td>{{ $saiproduto->created_at }}</td>
             <td>{{ $saiproduto->qtd }}
+            <td>{{ $saiproduto->obs }}
               @if($produtos->unidade == 'Grama')
                 {{' | ' .  ($saiproduto->qtd)/1000 . 'Kg' }}
               @endif

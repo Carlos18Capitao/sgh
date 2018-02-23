@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use Carbon\Carbon;
 
 class Pedido extends Model
 {
@@ -21,5 +22,10 @@ class Pedido extends Model
     public function estoque()
     {
         return $this->belongsTo('App\Models\Estoque');
+    }
+
+    public function getDatapedidoAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
     }
 }

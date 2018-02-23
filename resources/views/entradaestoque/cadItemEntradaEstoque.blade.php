@@ -78,7 +78,7 @@
         @foreach ($produtoentradas as $produtoentrada)
             <tbody>
             <td>{{ $produtoentrada->produto->codigo }}</td>
-            <td>{{ $produtoentrada->produto->produto }}</td>
+            <td><a href="{{ route('produto.show',$produtoentrada->produto->id) }}">{{ $produtoentrada->produto->produto }}</a></td>
             <td>{{ $produtoentrada->produto->unidade }}</td>
             <td>{{ $produtoentrada->lote }}</td>
             <td>{{ $produtoentrada->validade }}</td>

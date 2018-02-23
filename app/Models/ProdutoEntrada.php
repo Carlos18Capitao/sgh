@@ -42,6 +42,11 @@ class ProdutoEntrada extends Model
         return $this->belongsTo('App\Models\Estoque');
     }
 
+    public function entrada()
+    {
+        return $this->hasMany('App\Models\Entrada');
+    }
+
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y - h:i');

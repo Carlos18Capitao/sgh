@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use Carbon\Carbon;
 
 class Entrada extends Model
 {
@@ -21,5 +22,15 @@ class Entrada extends Model
     public function empresa()
     {
         return $this->belongsTo('App\Models\Empresa');
+    }
+
+    public function produtoentrada()
+    {
+        return $this->belongsTo('App\Models\ProdutoEntrada');
+    }
+
+    public function getDataEntradaAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
     }
 }

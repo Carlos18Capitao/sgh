@@ -60,7 +60,7 @@
             <th>@sortablelink('setor_id','Setor')</th>
             <th>@sortablelink('created_at','Data de Saída')</th>
             <th>@sortablelink('qtd','Qtd')</th>
-            <th>@sortablelink('obs','Observação')</th>
+            <th>@sortablelink('obs','Lote/Obs')</th>
             <th>@sortablelink('created_by','Usuário')</th>
         </tr>
         </thead>

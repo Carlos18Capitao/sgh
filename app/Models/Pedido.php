@@ -24,6 +24,11 @@ class Pedido extends Model
         return $this->belongsTo('App\Models\Estoque');
     }
 
+    public function produtosaida()
+    {
+        return $this->hasMany('App\Models\ProdutoSaida');
+    }
+
     public function getDatapedidoAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y');

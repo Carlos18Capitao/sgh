@@ -46,6 +46,11 @@ class ProdutoSaida extends Model
         return $this->belongsTo('App\Models\Estoque');
     }
 
+    public function pedido()
+    {
+        return $this->belongsTo('App\Models\Pedido');
+    }
+    
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->format('d/m/Y - h:i');

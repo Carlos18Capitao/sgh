@@ -61,6 +61,7 @@
             <th>@sortablelink('created_at','Data de Saída')</th>
             <th>@sortablelink('qtd','Qtd')</th>
             <th>@sortablelink('obs','Lote/Obs')</th>
+            <th>Requisição</th>                        
             <th>@sortablelink('created_by','Usuário')</th>
         </tr>
         </thead>
@@ -70,7 +71,8 @@
             <td>{{ $saiproduto->created_at }}</td>
             <td>{{ $saiproduto->qtd }}
             <td>{{ $saiproduto->obs }}
-              @if($produtos->unidade == 'Grama')
+            <td>{{ $saiproduto->pedido->requisicao }}
+                @if($produtos->unidade == 'Grama')
                 {{' | ' .  ($saiproduto->qtd)/1000 . 'Kg' }}
               @endif
             </td>

@@ -39,20 +39,18 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>@sortablelink('id','Código')</th>
+            <th>@sortablelink('requisicao','SIAPNET/e-SIS')</th>            
             <th>@sortablelink('datapedido','Data')</th>
             <th>@sortablelink('setor_id','Unidade')</th>
-            <th>@sortablelink('requisicao','SIAPNET/e-SIS')</th>
             {{--<th>@sortablelink('created_by','Usuário')</th>--}}
             <th width="100px">Ações</th>
         </tr>
         </thead>
         @foreach ($pedidos as $pedido)
             <tbody>
-            <td><a href="{{ route('pedido.show',$pedido->id) }}">{{ $pedido->id }}</a></td>
+            <td><a href="{{ route('pedido.show',$pedido->id) }}">{{ $pedido->requisicao or 'Não informado' }}</a></td>            
             <td>{{ $pedido->datapedido }}</td>
             <td>{{ $pedido->setor->setor  }}</td>
-            <td>{{ $pedido->requisicao  }}</td>
 {{--            <td>{{ $pedido->created_by  }}</td>--}}
             <td>
                 <a class = "btn btn-sm btn-default" href="{{ route('pedido.edit',$pedido->id)}}">

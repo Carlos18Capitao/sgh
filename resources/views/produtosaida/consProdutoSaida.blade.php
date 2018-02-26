@@ -58,11 +58,10 @@
                 <td>{{ $produtosaida->created_at }}</td>
                 <td>{{ $produtosaida->obs  }}</td>
                 <td>
-                    {{--@shield('produtosaida.editar')--}}
+                   
                     {{--<a class = "btn btn-sm btn-default" href="{{ route('saida.edit',$produtosaida->id)}}">--}}
                         {{--<span class="glyphicon glyphicon-pencil"></span>--}}
                     {{--</a>--}}
-                    {{--@endshield--}}
                     <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$produtosaida->id}}">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>

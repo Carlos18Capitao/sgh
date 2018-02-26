@@ -8,6 +8,7 @@ use App\Models\Produto;
 use App\Models\ProdutoSaida;
 use App\Models\Setor;
 use Illuminate\Http\Request;
+use App\Http\Requests\PedidoFormRequest;
 
 class PedidoController extends Controller
 {
@@ -38,7 +39,7 @@ class PedidoController extends Controller
         return view('pedidoestoque.cadPedidoEstoque', compact('title','produtos','setors','estoque_id','estoques'));
     }
 
-    public function store(Request $request)
+    public function store(PedidoFormRequest $request)
     {
         $pedidoForm = $request->all();
         $insert   = $this->pedido->create($pedidoForm);

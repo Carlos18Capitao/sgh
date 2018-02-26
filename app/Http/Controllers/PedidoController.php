@@ -23,7 +23,7 @@ class PedidoController extends Controller
     }
     public function index($estoque_id)
     {
-        $pedidos =  Pedido::sortable(['datapedido' => 'desc'])->where('estoque_id','=',$estoque_id)->paginate(20);
+        $pedidos =  Pedido::sortable(['datapedido' => 'desc'])->where('estoque_id','=',$estoque_id)->get();
         $title   = 'Pedidos de Produtos';
 
         return view('pedidoestoque.consPedidoEstoque', compact('title', 'pedidos','estoque_id'));

@@ -194,7 +194,7 @@
                                     
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="submit" class="btn btn-primary">Adicionar</button>
                         </div>
                     </div>
                 </div>

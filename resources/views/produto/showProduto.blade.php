@@ -14,7 +14,7 @@
         </div>
     @endif
     <br><br>
-    <p><b>Descrição:</b> {{ $produtos->produto }}</p>
+    <p><b>Descrição:</b> {{ $produtos->codigo . ' - ' . $produtos->produto }}</p>
     <p><b>Unidade:</b> {{ $produtos->unidade }}</p>
     <p><b>Categoria:</b> {{ $produtos->categoria->descricao }}</p>
     <p><b>Saldo: </b>{{ $produtos->produtoentrada->sum('qtd') - $produtos->produtosaida->sum('qtd') }}

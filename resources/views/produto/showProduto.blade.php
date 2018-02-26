@@ -32,6 +32,7 @@
         <th>@sortablelink('qtd','Qtd')</th>
         <th>@sortablelink('lote','Lote')</th>
         <th>@sortablelink('validade','Validade')</th>
+        <th>Entrada</th>
     </tr>
     </thead>
 @foreach($produtos->produtoentrada as $entproduto)
@@ -41,9 +42,7 @@
                 <td>{{ $entproduto->qtd }}
                 <td>{{ $entproduto->lote }}
                 <td>{{ $entproduto->validade }}
-                  @if($produtos->unidade == 'Grama')
-                      {{ ' | ' . ($entproduto->qtd)/1000 . 'Kg'}}</td>
-                  @endif
+                <td><a href="{{ route('entrada.show',$entproduto->entrada_id) }}">{{ $entproduto->entrada_id }}</a></td>
             </tbody>
 @endforeach
     </table>
@@ -71,11 +70,7 @@
             <td>{{ $saiproduto->created_at }}</td>
             <td>{{ $saiproduto->qtd }}
             <td>{{ $saiproduto->obs }}
-            <td>{{ $saiproduto->pedido->requisicao }}
-                @if($produtos->unidade == 'Grama')
-                {{' | ' .  ($saiproduto->qtd)/1000 . 'Kg' }}
-              @endif
-            </td>
+            <td>{{ $saiproduto->pedido->requisicao }}</td>
             <td>{{ $saiproduto->user->name }}</td>
             </tbody>
         @endforeach

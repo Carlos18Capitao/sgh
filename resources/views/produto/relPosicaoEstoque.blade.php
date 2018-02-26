@@ -59,9 +59,6 @@
           {{--  <td>{{ $produto->produto }}</td>--}}
             <td>{{ $produto->unidade }}</td>
             <td>{{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}
-                @if($produto->unidade == 'Grama')
-                    {{ '  |  ' . ($produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd'))/1000 .'kg' }}
-                @endif
             </td>
                 {{--<td>--}}
                     {{--@shield('produto.editar')--}}

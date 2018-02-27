@@ -88,6 +88,12 @@ class EntradaController extends Controller
 
     public function destroy($id)
     {
-        //
+        $entradas = Entrada::find($id);
+        $delete = $entradas->delete();
+
+        if ($delete)
+            return redirect()->back();
+        else
+            return redirect()->route('entrada.index')->with(['errors' => 'Falha ao editar']);
     }
 }

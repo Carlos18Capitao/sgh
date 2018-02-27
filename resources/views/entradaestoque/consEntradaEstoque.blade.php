@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                {!! Form::open(['route'=> ['produto.destroy',$entrada->id], 'method'=>'DELETE']) !!}
+                                {!! Form::open(['route'=> ['entrada.destroy',$entrada->id], 'method'=>'DELETE']) !!}
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                 <button type="submit" class = "btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Excluir </button>
                                 {!! Form::close() !!}

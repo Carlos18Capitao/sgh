@@ -52,4 +52,25 @@ class ProdutoEntrada extends Model
         return Carbon::parse($value)->format('d/m/Y - h:i');
     }
 
+    public function getValidadeAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
+    }
+
+    public function now()
+    {
+        date_default_timezone_set('America/Sao_Paulo');
+        $date = date('d/m/Y');
+        return $date;
+    }
+
+    public function getValidadeDiasAttribute()
+    {
+        $val = $this->attributes['validade'];
+        $hoje = Carbon::now('America/Sao_Paulo');
+        return Carbon::parse($hoje)->format('d/m/Y');
+       // return $hoje;
+      //  echo $dt->diffInDays($dt->copy()->subMonth(), false); 
+      //  echo Carbon::now('America/Vancouver')->diffInSeconds(Carbon::now('Europe/London')); // 0
+    }
 }

@@ -78,7 +78,7 @@
             <td>{{ $produtosaida->produto->codigo  }}</td>
             <td><a href="{{ route('produto.show',$produtosaida->produto->id) }}">{{ $produtosaida->produto->produto }}</a></td>
             <td>{{ $produtosaida->produto->unidade }}</td>
-            <td>{{ $produtosaida->qtd }}</td>
+            <td>{{ $produtosaida->qtd * -1 }}</td>
             <td>{{ $produtosaida->obs  }}</td>
             <td>
                    

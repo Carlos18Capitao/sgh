@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Estoque;
 use App\Models\Produto;
+use App\Models\ProdutoEstoque;
 use App\User;
 
 class EstoqueController extends Controller
@@ -86,8 +87,9 @@ class EstoqueController extends Controller
         $title    = 'Estoque';
         $users    = User::all()->sortBy('name');
         $produtos  = Produto::all()->sortBy('produto');
+        $produtoestoque = ProdutoEstoque::all();
 
-        return view('estoque.showEstoque', compact('title','estoque','users','produtos'));
+        return view('estoque.showEstoque', compact('title','estoque','users','produtos','produtoestoque'));
     }
 
     public function edit($id)

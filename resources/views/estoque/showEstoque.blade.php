@@ -53,7 +53,12 @@
         <b>Vincular PRODUTO ao estoque:</b>
             {!! Form::open(['route' => ['estoque.produtostore',$estoque->id], 'class' => 'form']) !!}
             {!! Form::hidden('estoque_id',$estoque->id) !!}
-            {!! Form::select('produto_id',$produtos->pluck('produto','id'),null,['class'=>'js-produto form-inline','data-width="400px"','placeholder'=>'Selecione o produto...'])!!}
+            <select class="js-produto form-inline" data-width="400px" name="produto_id"><option selected="selected" value="">Selecione o produto...</option>
+                @foreach($produtos as $produto)
+                        <option value="{{ $produto->id }}">{{ $produto->produto . ' - ' . $produto->unidade . ' - ' . '(' . $produto->codigo . ')' }}</option>
+                @endforeach
+            </select>
+         {{--   {!! Form::select('produto_id',$produtos->pluck('produto','id'),null,['class'=>'js-produto form-inline','data-width="400px"','placeholder'=>'Selecione o produto...'])!!} --}}
             {!! Form::submit('Vincular', ['class' => 'btn btn-primary']) !!}
             {!! Form::close(); !!}
       </div>
@@ -74,7 +79,7 @@
         <p><b>Produtos Vinculados:</b></p>
             @foreach ($estoque->produto as $produto)
               <ul>
-                <li>{{ $produto->produto . ' - ' . $produto->unidade }}</li>
+                <li>{{ $produto->produto . ' - ' . $produto->unidade . '(' . $produto->codigo . ')' }}</li>
               </ul>
             @endforeach
     </div>

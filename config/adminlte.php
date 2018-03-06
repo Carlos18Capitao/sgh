@@ -194,12 +194,12 @@ return [
                  [
             'text' => 'Fornecedores',
             'url'  => 'estoque/empresa',
-            'icon' => 'table',
+            'icon' => 'industry',
         ],
         [
             'text' => 'Processos',
             'url'  => 'estoque/processo',
-            'icon' => 'table',
+            'icon' => 'folder',
         ],
 //        [
 //            'text' => 'Prestador',
@@ -216,16 +216,16 @@ return [
             'url'  => 'ala',
             'icon' => 'bed',
         ], */
-        [
-            'text'        => 'Financeiro',
-            'icon'        => 'dollar',
-            'submenu' => [
-              [
-                  'text' => 'Fornecedor',
-                  'url'  => 'financeiro/fornecedor',
-              ],
-            ]
-        ],
+//        [
+//            'text'        => 'Financeiro',
+//            'icon'        => 'dollar',
+//            'submenu' => [
+//              [
+//                  'text' => 'Fornecedor',
+//                  'url'  => 'financeiro/fornecedor',
+//              ],
+//            ]
+//        ],
         'USUÁRIOS',
         [
             'text' => 'Cadastrar',

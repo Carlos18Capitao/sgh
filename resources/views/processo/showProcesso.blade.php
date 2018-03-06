@@ -114,10 +114,14 @@
                         {!! Form::label('valortotal', 'Valor do Empenho:'); !!}
                         {!! Form::number('valortotal', null, ['class' => 'form-control', 'placeholder' => 'Valor total','tabindex'=>'3']) !!}
                     </div>
-                    <div class="form-group">
-                        {!! Form::label('empresa_id', 'Fornecedor:'); !!} <br>
-                        {!!Form::select('empresa_id', $empresas->pluck('nome','id'), null, ['class' => 'js-fornecedor form-control', 'placeholder' => 'Selecione um fornecedor...','tabindex'=>'4']) !!}
-
+                    <div class="form-group form-inline">
+                        {!! Form::label('empresa_id', 'Fornecedor:'); !!}
+                        <select style="width: 80%" class="js-fornecedor" id="js-fornecedor" name="empresa_id" tabindex="4">
+                                <option selected="selected" value="">Selecione um fornecedor...</option>
+                            @foreach($empresas as $empresa)
+                                <option value="{{ $empresa->id }}"> {{ $empresa->nome . ' - ' . $empresa->cnpj }} </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group form-inline">
                         {!! Form::label('fonte', 'Fonte:'); !!}
@@ -149,7 +153,7 @@
     <script>
         $(document).ready(function() {
             $('#js-fornecedor').select2({
-                dropdownParent: $('#myModalCadastrar')
+                dropdownParent: $('#empenho')
             });
         });
     </script>

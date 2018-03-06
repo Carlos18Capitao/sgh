@@ -9,6 +9,13 @@ use Kyslik\ColumnSortable\Sortable;
 
 class ProdutoSaida extends Model
 {
+    use \Venturecraft\Revisionable\RevisionableTrait;
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
     use SoftDeletes, Sortable;
 
     protected $dates = ['deleted_at','created_at'];

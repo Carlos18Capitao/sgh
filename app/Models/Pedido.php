@@ -8,6 +8,13 @@ use Carbon\Carbon;
 
 class Pedido extends Model
 {
+    use \Venturecraft\Revisionable\RevisionableTrait;
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
     use Sortable;
 
     public $sotable = ['datapedido','setor_id'];

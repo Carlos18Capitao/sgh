@@ -13,7 +13,8 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5.0",
         "nesbot/carbon": "^1.22",
-        "santigarcor/laratrust": "5.0.*"
+        "santigarcor/laratrust": "5.0.*",
+        "venturecraft/revisionable": "1.*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",

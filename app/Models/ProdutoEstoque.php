@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProdutoEstoque extends Model
 {
+    use \Venturecraft\Revisionable\RevisionableTrait;
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
     protected $fillable = ['produto_id','estoque_id'];
 
     public function estoque()

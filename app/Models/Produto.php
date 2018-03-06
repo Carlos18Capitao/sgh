@@ -8,6 +8,13 @@ use Kyslik\ColumnSortable\Sortable;
 
 class Produto extends Model
 {
+    use \Venturecraft\Revisionable\RevisionableTrait;
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
     use SoftDeletes, Sortable;
 
     protected $dates = ['deleted_at'];

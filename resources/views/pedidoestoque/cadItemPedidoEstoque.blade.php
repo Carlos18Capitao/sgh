@@ -120,7 +120,6 @@
             <!-- Modal CADASTRAR-->
             <div class="modal fade" id="myModalCadastrar" tabindex="-1" role="dialog" aria-labelledby="myModalCadastrar">
                 {!! Form::open(['route' => 'saida.store', 'class' => 'form']) !!}
-                {!! Form::hidden('created_by',Auth::user()->name) !!}
 
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -133,7 +132,6 @@
                                     {!!  Form::hidden('pedido_id', $pedido->id) !!}
                                     {!!  Form::hidden('setor_id', $pedido->setor_id) !!}
 
-                                    {!! Form::open(['route' => 'saida.store', 'class' => 'form']) !!}
                                     {!! Form::hidden('created_by',Auth::user()->id) !!}
                                     {!! Form::hidden('estoque_id',$pedido->estoque_id) !!}
                                 </div>

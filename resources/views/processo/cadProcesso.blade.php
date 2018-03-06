@@ -33,7 +33,12 @@
 
     <div class="form-group">
         {!! Form::label('categoria_id', 'Categoria:'); !!}
+    @if (isset($processos))
+        {!! Form::select('categoria_id', $processos->categoria->pluck('descricao','id'), null, ['class' => 'js-categoria form-control','placeholder' => 'Selecione uma categoria...']) !!}
+    @else
         {!! Form::select('categoria_id', $categorias->pluck('descricao','id'), null, ['class' => 'js-categoria form-control','placeholder' => 'Selecione uma categoria...']) !!}
+    @endif
+
     </div>
     {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
     {!! Form::close() !!}

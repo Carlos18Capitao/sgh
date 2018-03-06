@@ -80,6 +80,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
         Route::get('/{id}/menu', ['as' => 'estoque.menu','uses' => 'EstoqueController@menu']);
 
         Route::resource('/processo', 'ProcessoController');
+        Route::resource('/empenho', 'EmpenhoController');
 
 
         //Route::group(['prefix'  =>  'estoque'], function () {

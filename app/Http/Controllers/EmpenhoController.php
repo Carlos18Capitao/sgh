@@ -1,0 +1,142 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Empresa;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Empenho;
+use App\Models\ItemEmpenho;
+use Carbon\Carbon;
+
+class AtasController extends Controller
+{
+    private $ata;
+
+    public function __construct(Empenho $empenho,  ItemEmpenho $itemempenho)
+    {
+        $this->empenho = $empenho;
+        $this->itemempenho = $itemempenho;
+    }
+
+    public function index()
+    {
+        $hoje = Carbon::today();
+        $empenhos = $this->empenho->all()->sortByDesc('vigencia')->where('vigencia','>=',$hoje);
+        $title = 'Empenhos';
+        return view('empenho.consEmpenho', compact('title', 'empenhos','hoje'));
+    }
+
+    public function create()
+    {
+        $title = 'Cadastro de Empenhos';
+        $empresas = Empresa::all()->sortBy('nome');
+
+        return view('empenho.cadEmpenho',compact('title','empresas'));
+    }
+
+    public function store(FormRequest $request)
+    {
+        $dataForm = $request->all();
+        $insert = $this->ata->create($dataForm);
+
+        if ($insert) {
+            return redirect()->route('itemata.editar', $insert->id);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function show($id)
+    {
+        $atas = $this->ata->find($id);
+        $title = "ATA AMGESP";
+        $hoje = Carbon::today();
+        $fimAta = $atas->vigencia->diffInDays($hoje);
+        return view('ata.showAta', compact('atas', 'title','fimAta'));
+    }
+
+    public function edit($id)
+    {
+        $atas = $this->ata->find($id);
+        $title = "Editar ARP: $atas->arp";
+        $objetos = $this->objeto->all()->sortBy("objeto");
+        $fornecedors = $this->fornecedor->all()->sortBy("nome");
+
+        return view('ata.cadAta', compact('title', 'atas','objetos','fornecedors'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $dataForm = $request->all();
+        $atas = $this->ata->find($id);
+        $update = $atas->update($dataForm);
+
+        if ($update)
+            return redirect()->route('itemata.editar', $id);
+//            return redirect()->route('ata.index', $id);
+        else
+            return redirect()->route('ata.edit', $id)->with(['errors' => 'Falha ao editar']);
+    }
+
+    public function destroy($id)
+    {
+        $atas = $this->ata->find($id);
+//        $itematas = $atas->itemata->all();
+//        actions()->detach();
+//        dd($atas);
+//        $delete2 = $itematas->delete();
+        $delete = $atas->delete();
+
+
+        if ($delete)
+            return redirect()->route('ata.index');
+        else
+            return redirect()->route('ata.show', $id)->with(['errors' => 'Falha ao editar']);
+    }
+
+    public function ataObjeto($id)
+    {
+        $hoje = Carbon::today();
+        $atas = $this->ata->all()->sortByDesc('vigencia')->where('objeto_id','=',$id)->where('vigencia','>=',$hoje);
+        $title = 'Lista de Atas Vigentes';
+        $objetos = $this->objeto->all()->sortBy('objeto');
+        return view('ata.consAta', compact('title', 'atas','hoje','objetos'));
+    }
+
+    public function atasVencidas()
+    {
+        $hoje = Carbon::today();
+        $atas = $this->ata->all()->sortByDesc('vigencia')->where('vigencia','<=',$hoje);
+        $title = 'Lista de Atas Vencidas';
+        $objetos = $this->objeto->all()->sortBy('objeto');
+        return view('ata.consAta', compact('title', 'atas','hoje','objetos'));
+    }
+
+    public function ataObjetoVenc($id)
+    {
+        $hoje = Carbon::today();
+        $atas = $this->ata->all()->sortBy('vigencia')->where('objeto_id','=',$id)->where('vigencia','<=',$hoje);
+        $title = 'Lista de Atas Vencidas';
+        $objetos = $this->objeto->all()->sortBy('objeto');
+        return view('ata.consAta', compact('title', 'atas','hoje','objetos'));
+    }
+
+    public function emailAta($id)
+    {
+        $atas = $this->ata->find($id);
+        $title = "ATA AMGESP";
+        $hoje = Carbon::today();
+        $fimAta = $atas->vigencia->diffInDays($hoje);
+
+        return view('ata.emailAta', compact('atas', 'title','fimAta'));
+    }
+
+    public function memo($id)
+    {
+        $atas = $this->ata->find($id);
+        $title = "MODELO PARA COPIAR E COLAR EM MEMO PARA ENVIO DO EMPENHO";
+
+        return view('fornecedor.memoFornecedor', compact('atas', 'title'));
+    }
+}

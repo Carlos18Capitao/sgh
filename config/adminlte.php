@@ -196,6 +196,11 @@ return [
             'url'  => 'estoque/empresa',
             'icon' => 'table',
         ],
+        [
+            'text' => 'Processos',
+            'url'  => 'estoque/processo',
+            'icon' => 'table',
+        ],
 //        [
 //            'text' => 'Prestador',
 //            'url'  => 'prestador',

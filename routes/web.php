@@ -79,6 +79,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
         Route::get('/select', 'EstoqueController@select')->name('select');
         Route::get('/{id}/menu', ['as' => 'estoque.menu','uses' => 'EstoqueController@menu']);
 
+        Route::resource('/processo', 'ProcessoController');
 
 
         //Route::group(['prefix'  =>  'estoque'], function () {

@@ -56,6 +56,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
         Route::resource('/empresa', 'EmpresaController');
 
         Route::get('/{id}/relposicaoestoque', 'ProdutoController@relposicaoestoque')->name('relposicaoestoque');
+        Route::get('/{id}/pdfposicaoestoque', 'ProdutoController@pdfposicaoestoque')->name('pdfposicaoestoque');
 
         Route::get('/{id}/entradaestoque', ['as' => 'estoque.entradaestoque','uses' => 'ProdutoEntradaController@index']);
         Route::get('/entradaestoque/{id}/create', 'ProdutoEntradaController@create')->name('createentrada');

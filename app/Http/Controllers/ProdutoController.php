@@ -195,4 +195,21 @@ class ProdutoController extends Controller
             ->stream();
     }
 
+    public function pdfposicaoestoque($estoque_id)
+    {
+
+        $estoques   = Estoque::with('produto')
+            ->where('id','=',$estoque_id)
+            ->sortable(['produto' => 'asc'])->get();
+
+        $title      = 'Posição de Estoque';
+        $est = Estoque::where('id','=',$estoque_id)->get();
+//        return view('produto.relPosicaoEstoque', compact('title', 'estoques','estoque_id','produtos'));
+
+        return \PDF::loadView('produto.pdfPosicaoEstoque', compact('title', 'estoques','estoque_id','produtos','est'))
+            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+//            ->setPaper('a4', 'landscape')
+//            ->download('etiquetaproduto.pdf');
+            ->stream();
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
+use Carbon\Carbon;
 
 class Produto extends Model
 {
@@ -66,5 +67,12 @@ class Produto extends Model
             return 'Sim';
         } else {
             return 'Não'; }
+    }
+
+    public function now()
+    {
+        date_default_timezone_set('America/Sao_Paulo');
+        $date = date('d/m/Y');
+        return $date;
     }
 }

@@ -55,4 +55,11 @@ class Estoque extends Model
     {
         return $this->hasMany('App\Models\ProdutoSaida');
     }
+
+    public function now()
+    {
+        date_default_timezone_set('America/Sao_Paulo');
+        $date = date('d/m/Y');
+        return $date;
+    }
 }

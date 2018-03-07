@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <a class = "btn btn-sm btn-default" title="IMPRIMIR ETIQUETA" href="{{ route('pdfproduto',$produtos->id)}}">
+    <a target="_blank" class = "btn btn-sm btn-default" title="IMPRIMIR ETIQUETA" href="{{ route('pdfproduto',$produtos->id)}}">
         <span class="glyphicon glyphicon-print"></span>
     </a>
 

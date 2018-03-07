@@ -190,8 +190,9 @@ class ProdutoController extends Controller
 
         return \PDF::loadView('produto.pdfProduto', compact('produtos'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-            ->download('etiquetaproduto.pdf');
-//            ->stream();
+            ->setPaper('a4', 'landscape')
+//            ->download('etiquetaproduto.pdf');
+            ->stream();
     }
 
 }

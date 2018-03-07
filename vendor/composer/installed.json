@@ -4514,5 +4514,55 @@
             "model",
             "revision"
         ]
+    },
+    {
+        "name": "giordanolima/decimal-mutators",
+        "version": "1.1.1",
+        "version_normalized": "1.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/giordanolima/decimal-mutators.git",
+            "reference": "61273ab9f13c737b0db9f8a731c258001ea9d6b2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/giordanolima/decimal-mutators/zipball/61273ab9f13c737b0db9f8a731c258001ea9d6b2",
+            "reference": "61273ab9f13c737b0db9f8a731c258001ea9d6b2",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "5.*",
+            "php": ">=5.4.0"
+        },
+        "time": "2017-06-05T19:19:11+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "GiordanoLima\\DecimalMutators": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Giordano de Andrades Lima",
+                "email": "giordanol@gmail.com"
+            }
+        ],
+        "description": "Add a short way to create accessors and mutators for decimal fields",
+        "keywords": [
+            "accessor",
+            "accessors",
+            "decimal",
+            "decimals",
+            "eloquent",
+            "laravel",
+            "laravel5",
+            "mutator",
+            "mutators"
+        ]
     }
 ]

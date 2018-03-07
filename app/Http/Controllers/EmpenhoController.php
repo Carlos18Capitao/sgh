@@ -6,25 +6,25 @@ use App\Models\Empresa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Empenho;
-use App\Models\ItemEmpenho;
+//use App\Models\ItemEmpenho;
 use Carbon\Carbon;
 
-class AtasController extends Controller
+class EmpenhoController extends Controller
 {
-    private $ata;
+    private $empenho;
 
-    public function __construct(Empenho $empenho,  ItemEmpenho $itemempenho)
+    public function __construct(Empenho $empenho/*,  ItemEmpenho $itemempenho*/)
     {
         $this->empenho = $empenho;
-        $this->itemempenho = $itemempenho;
+//        $this->itemempenho = $itemempenho;
     }
 
     public function index()
     {
         $hoje = Carbon::today();
-        $empenhos = $this->empenho->all()->sortByDesc('vigencia')->where('vigencia','>=',$hoje);
+        $empenhos = Empenho::all()->sortByDesc('dataemissao');
         $title = 'Empenhos';
-        return view('empenho.consEmpenho', compact('title', 'empenhos','hoje'));
+        return view('empenho.consEmpenho', compact('title', 'empenhos'));
     }
 
     public function create()
@@ -35,13 +35,13 @@ class AtasController extends Controller
         return view('empenho.cadEmpenho',compact('title','empresas'));
     }
 
-    public function store(FormRequest $request)
+    public function store(Request $request)
     {
         $dataForm = $request->all();
-        $insert = $this->ata->create($dataForm);
+        $insert = $this->empenho->create($dataForm);
 
         if ($insert) {
-            return redirect()->route('itemata.editar', $insert->id);
+            return redirect()->route('processo.show', $insert->processo_id);
         } else {
             return redirect()->back();
         }
@@ -49,11 +49,11 @@ class AtasController extends Controller
 
     public function show($id)
     {
-        $atas = $this->ata->find($id);
+        $empenhos = Empenho::find($id);
         $title = "ATA AMGESP";
-        $hoje = Carbon::today();
-        $fimAta = $atas->vigencia->diffInDays($hoje);
-        return view('ata.showAta', compact('atas', 'title','fimAta'));
+   //     $hoje = Carbon::today();
+//        $fimAta = $atas->vigencia->diffInDays($hoje);
+        return view('empenho.showEmpenho', compact('empenhos', 'title'));
     }
 
     public function edit($id)

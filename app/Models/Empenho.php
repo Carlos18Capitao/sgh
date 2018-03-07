@@ -1,14 +1,19 @@
 <?php
 
-namespace App\Models\Ata;
+namespace App\Models;
 
+use GiordanoLima\DecimalMutators\DecimalMutators;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Processo\Processo;
-//use Carbon\Carbon;
+//use App\Models\Processo;
+use Carbon\Carbon;
 
-class Ata extends Model
+class Empenho extends Model
 {
     use \Venturecraft\Revisionable\RevisionableTrait;
+
+    use DecimalMutators;
+
+    protected $decimalsFields = ['valortotal'];
 
     public static function boot()
     {
@@ -17,41 +22,29 @@ class Ata extends Model
 
     protected $revisionCreationsEnabled = true;
 
-    protected $fillable = ['plano_id',
-                            'fornecedor_id',
-                            'pls',
-                            'arp',
-                            'vigencia',
-                            'objeto_id',
-                            'qtditens',
-                            'user',
-                            'obs',
-                            'created_by',
-                            'updated_by'];
+    protected $fillable = ['nrempenho','dataemissao','valortotal','modalidade','fonte','plano','processo_id','empresa_id','obs','created_by','updated_by'];
 
-    protected $dates = ['vigencia'];
+    protected $dates = ['dataemissao'];
 
-
-//class Carbon extends \DateTime
-//{
-//$now = Carbon::now();
-//}
-
-
-    public function fornecedor()
+    public function empresa()
     {
-        return $this->belongsTo('App\Models\Fornecedor\Fornecedor');
+        return $this->belongsTo('App\Models\Empresa');
     }
-    public function objeto()
+    public function categoria()
     {
-        return $this->belongsTo('App\Models\Objeto\Objeto');
+        return $this->belongsTo('App\Models\Categoria');
     }
-    public function itemata()
+    public function itemempenho()
     {
-        return $this->hasMany('App\Models\Ata\ItemAta');
+        return $this->hasMany('App\Models\ItemEmpenho');
     }
     public function processo()
     {
-        return $this->hasMany('App\Models\Processo\Processo');
+        return $this->belongsTo('App\Models\Processo');
+    }
+
+    public function getDataEmissaoAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y');
     }
 }

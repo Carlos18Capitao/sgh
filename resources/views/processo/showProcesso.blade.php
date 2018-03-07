@@ -29,38 +29,7 @@
 
     <hr>
 
-    {{--<table class="table table-striped">--}}
-        {{--<tr>--}}
-            {{-- <th>ID</th> --}}
-            {{--<th>Objeto</th>--}}
-            {{--<th>Ata</th>--}}
-            {{--<th>Vigência</th>--}}
-            {{--<th>Expira em</th>--}}
-            {{--<th width="150px">Abrir Processo</th>--}}
-        {{--</tr>--}}
-        {{--@foreach ($fornecedors->atas as $ata)--}}
-            {{--<tr>--}}
-                {{-- <td>{{ $unidade->id }}</td> --}}
 
-                {{--<td>{{ $ata->objeto->objeto }}</td>--}}
-                {{--<td><a href="{{ route('ata.show', $ata->id)}}"> {{ $ata->arp }} </a></td>--}}
-                {{--<td>{{ $ata->vigencia->format('d/m/Y') }}</td>--}}
-                {{--<td>{{ $ata->vigencia->diffInDays($hoje)}} dias</td>--}}
-
-                {{--<td>--}}
-                    {{--@shield('processo.cadastrar')--}}
-                    {{--<a class = "btn btn-sm btn-default" title="CADASTRAR PROCESSO" href="{{ route('processo.show', $ata->id)}}">--}}
-                        {{--<span class="glyphicon glyphicon-folder-open"></span>--}}
-                    {{--</a>--}}
-                    {{--@endshield--}}
-                     {{--<a class = "btn btn-sm btn-default" title="COPIAR DADOS PARA ENVIO DE EMPENHO" href="{{ route('fornecedor.memo', $ata->id)}}">--}}
-                        {{--<span class="glyphicon glyphicon-copy"></span>--}}
-                    {{--</a>--}}
-                {{--</td>--}}
-            {{--</tr>--}}
-            {{----}}
-        {{--@endforeach--}}
-    {{--</table>--}}
 
     <!-- Modal EXCLUIR-->
     <div class="modal fade" id="excluir{{$processos->id}}" tabindex="-1" role="dialog" aria-labelledby="excluir">
@@ -108,11 +77,11 @@
                         {!! Form::label('nrempenho', 'Empenho:'); !!}
                         {!! Form::text('nrempenho', null, ['class' => 'form-control', 'placeholder' => '0000NE00000','tabindex'=>'1']) !!}
 
-                        {!! Form::label('dataempenho', 'Data de Emissão:'); !!}
-                        {!! Form::date('dataempenho', null, ['class' => 'form-control', 'placeholder' => 'Data','tabindex'=>'2']) !!}
+                        {!! Form::label('dataemissao', 'Data de Emissão:'); !!}
+                        {!! Form::date('dataemissao', null, ['class' => 'form-control', 'placeholder' => 'Data','tabindex'=>'2']) !!}
 
                         {!! Form::label('valortotal', 'Valor do Empenho:'); !!}
-                        {!! Form::number('valortotal', null, ['class' => 'form-control', 'placeholder' => 'Valor total','tabindex'=>'3']) !!}
+                        {!! Form::text('valortotal', null, ['class' => 'form-control', 'placeholder' => 'Valor total','tabindex'=>'3']) !!}
                     </div>
                     <div class="form-group form-inline">
                         {!! Form::label('empresa_id', 'Fornecedor:'); !!}
@@ -147,6 +116,50 @@
 
     <hr>
 
+    <table class="table table-striped">
+        </thead>
+            <th>Empenho</th>
+            <th>Data Emissão</th>
+            <th>Modalidade</th>
+            <th>Fornecedor</th>
+            <th>Fonte</th>
+            <th>Plano Orçamentário</th>
+            <th>Valor</th>
+        <thead>
+{{--        {{ dd($processos) }}--}}
+    @foreach($processos->empenho as $empenho)
+        <tbody>
+            <tr>
+                 <td>{{ $empenho->nrempenho }}</td>
+                 <td>{{ $empenho->dataemissao }}</td>
+                 <td>{{ $empenho->modalidade }}</td>
+                 <td>{{ $empenho->empresa->nome }}</td>
+                 <td>{{ $empenho->fonte }}</td>
+                 <td>{{ $empenho->plano }}</td>
+                 <td>{{ 'R$ ' . $empenho->valortotal }}</td>
+            </tr>
+        </tbody>
+    @endforeach
+    </table>
+    {{--<td>{{ $ata->objeto->objeto }}</td>--}}
+    {{--<td><a href="{{ route('ata.show', $ata->id)}}"> {{ $ata->arp }} </a></td>--}}
+    {{--<td>{{ $ata->vigencia->format('d/m/Y') }}</td>--}}
+    {{--<td>{{ $ata->vigencia->diffInDays($hoje)}} dias</td>--}}
+
+    {{--<td>--}}
+    {{--@shield('processo.cadastrar')--}}
+    {{--<a class = "btn btn-sm btn-default" title="CADASTRAR PROCESSO" href="{{ route('processo.show', $ata->id)}}">--}}
+    {{--<span class="glyphicon glyphicon-folder-open"></span>--}}
+    {{--</a>--}}
+    {{--@endshield--}}
+    {{--<a class = "btn btn-sm btn-default" title="COPIAR DADOS PARA ENVIO DE EMPENHO" href="{{ route('fornecedor.memo', $ata->id)}}">--}}
+    {{--<span class="glyphicon glyphicon-copy"></span>--}}
+    {{--</a>--}}
+    {{--</td>--}}
+    {{--</tr>--}}
+    {{----}}
+    {{--@endforeach--}}
+    {{--</table>--}}
 @endsection
 
 @section('js')

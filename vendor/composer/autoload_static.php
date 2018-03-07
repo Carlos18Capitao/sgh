@@ -350,6 +350,13 @@ class ComposerStaticInit0303c122c05233a02b50c432a646ca9a
                 0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
             ),
         ),
+        'G' => 
+        array (
+            'GiordanoLima\\DecimalMutators' => 
+            array (
+                0 => __DIR__ . '/..' . '/giordanolima/decimal-mutators/src',
+            ),
+        ),
         'D' => 
         array (
             'Doctrine\\Common\\Lexer\\' => 
@@ -364,13 +371,13 @@ class ComposerStaticInit0303c122c05233a02b50c432a646ca9a
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AlaController' => __DIR__ . '/../..' . '/app/Http/Controllers/AlaController.php',
         'App\\Http\\Controllers\\Ata\\ItemAtasController' => __DIR__ . '/../..' . '/app/Http/Controllers/ItemEmpenhoController.php',
-        'App\\Http\\Controllers\\AtasController' => __DIR__ . '/../..' . '/app/Http/Controllers/EmpenhoController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\CategoriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoriaController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\EmpenhoController' => __DIR__ . '/../..' . '/app/Http/Controllers/EmpenhoController.php',
         'App\\Http\\Controllers\\EmpresaController' => __DIR__ . '/../..' . '/app/Http/Controllers/EmpresaController.php',
         'App\\Http\\Controllers\\EntradaController' => __DIR__ . '/../..' . '/app/Http/Controllers/EntradaController.php',
         'App\\Http\\Controllers\\EstadoCivilController' => __DIR__ . '/../..' . '/app/Http/Controllers/EstadoCivilController.php',
@@ -406,10 +413,10 @@ class ComposerStaticInit0303c122c05233a02b50c432a646ca9a
         'App\\Http\\Requests\\TipoAltaFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TipoAltaFormRequest.php',
         'App\\Http\\Requests\\TipoPrestadorFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TipoPrestadorFormRequest.php',
         'App\\Models\\Ala' => __DIR__ . '/../..' . '/app/Models/Ala.php',
-        'App\\Models\\Ata\\Ata' => __DIR__ . '/../..' . '/app/Models/Empenho.php',
         'App\\Models\\Ata\\ItemAta' => __DIR__ . '/../..' . '/app/Models/ItemEmpenho.php',
         'App\\Models\\Categoria' => __DIR__ . '/../..' . '/app/Models/Categoria.php',
         'App\\Models\\Cid10' => __DIR__ . '/../..' . '/app/Models/Cid10.php',
+        'App\\Models\\Empenho' => __DIR__ . '/../..' . '/app/Models/Empenho.php',
         'App\\Models\\Empresa' => __DIR__ . '/../..' . '/app/Models/Empresa.php',
         'App\\Models\\Entrada' => __DIR__ . '/../..' . '/app/Models/Entrada.php',
         'App\\Models\\EstadoCivil' => __DIR__ . '/../..' . '/app/Models/EstadoCivil.php',
@@ -1087,6 +1094,7 @@ class ComposerStaticInit0303c122c05233a02b50c432a646ca9a
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
+        'GiordanoLima\\DecimalMutators\\DecimalMutators' => __DIR__ . '/..' . '/giordanolima/decimal-mutators/src/GiordanoLima/DecimalMutators/DecimalMutators.php',
         'Hamcrest\\Arrays\\IsArray' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArray.php',
         'Hamcrest\\Arrays\\IsArrayContaining' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContaining.php',
         'Hamcrest\\Arrays\\IsArrayContainingInAnyOrder' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Arrays/IsArrayContainingInAnyOrder.php',

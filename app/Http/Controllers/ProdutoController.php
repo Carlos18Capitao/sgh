@@ -184,4 +184,14 @@ class ProdutoController extends Controller
         return view('produto.relPosicaoEstoque', compact('title', 'produtos','estoques','estoque_id','categorias'));
     }
 
+    public function pdfproduto($id)
+    {
+        $produtos = Produto::find($id);
+
+        return \PDF::loadView('produto.pdfProduto', compact('produtos'))
+            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+            ->download('etiquetaproduto.pdf');
+//            ->stream();
+    }
+
 }

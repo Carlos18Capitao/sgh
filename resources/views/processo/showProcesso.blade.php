@@ -24,7 +24,8 @@
     </button>
     <br><br>
     {{--<p><b>ID:</b> {{ $processos->id }}</p>--}}
-    <p><b>Processo:</b> {{ $processos->numero . ' (' . $processos->categoria->descricao . ')'}}</p>
+    <p><h4><b>Processo: {{ $processos->numero }}</b></h4></p>
+    <p><b>Categoria:</b> {{ $processos->categoria->descricao }}</p>
     <p><b>Observações:</b> {{ $processos->obs }} </p>
 
     <hr>

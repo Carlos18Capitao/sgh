@@ -209,7 +209,7 @@ class ProdutoController extends Controller
         return \PDF::loadView('produto.pdfPosicaoEstoque', compact('title', 'estoques','estoque_id','produtos','est'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
 //            ->setPaper('a4', 'landscape')
-//            ->download('etiquetaproduto.pdf');
-            ->stream();
+            ->download('posicaoestoque.pdf');
+//            ->stream();
     }
 }

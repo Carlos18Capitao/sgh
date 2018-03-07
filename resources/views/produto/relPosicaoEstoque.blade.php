@@ -30,7 +30,7 @@
                 <a href="{{route('relposicaoestoque',$estoque_id)}}">
                     <i class="fa fa-fw fa-file-text fa-2x"></i>
                 </a>
-            <a target="_blank" class = "btn btn-sm btn-default" title="IMPRIMIR" href="{{ route('pdfposicaoestoque',$estoque_id)}}">
+            <a title="IMPRIMIR" href="{{ route('pdfposicaoestoque',$estoque_id)}}">
                 <i class="fa fa-fw fa-print fa-2x"></i>
             </a>
            @else

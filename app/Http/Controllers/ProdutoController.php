@@ -197,7 +197,8 @@ class ProdutoController extends Controller
 
     public function pdfposicaoestoque($estoque_id)
     {
-
+        set_time_limit(0);
+        
         $estoques   = Estoque::with('produto')
             ->where('id','=',$estoque_id)
             ->sortable(['produto' => 'asc'])->get();

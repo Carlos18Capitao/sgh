@@ -198,13 +198,13 @@ class ProdutoController extends Controller
     public function pdfposicaoestoque($estoque_id)
     {
         set_time_limit(0);
-        
+
         $estoques   = Estoque::with('produto')
-            ->where('id','=',$estoque_id)
-            ->sortable(['produto' => 'asc'])->get();
+            ->where('id','=',$estoque_id)->get();
+//            ->sortable(['produto' => 'asc'])->get();
 
         $title      = 'Posição de Estoque';
-        $est = Estoque::where('id','=',$estoque_id)->get();
+        $est        = Estoque::where('id','=',$estoque_id)->get();
 //        return view('produto.relPosicaoEstoque', compact('title', 'estoques','estoque_id','produtos'));
 
         return \PDF::loadView('produto.pdfPosicaoEstoque', compact('title', 'estoques','estoque_id','produtos','est'))

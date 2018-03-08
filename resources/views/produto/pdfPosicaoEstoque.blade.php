@@ -28,13 +28,15 @@
         </tr>
         @foreach ($estoques as $estoque)
 
-          @foreach ($estoque->produto as $produto)
+          @foreach ($estoque->produto->sortBy('produto') as $produto)
+              {{--@if(($produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') )> 0)--}}
               <tr>
                 <td>{{ $produto->codigo }}</td>
                 <td>{{ $produto->produto }}</td>
                 <td>{{ $produto->unidade }}</td>
-                <td>{{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}</td>
+                <td align="left">{{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}</td>
               </tr>
+                {{--@endif--}}
           @endforeach
 
         @endforeach

@@ -9,12 +9,12 @@
         <h4>Recibo Nº {{ $pedido->requisicao }}</h4>
     </div>
 
-    <br><br>
+    <br>
 
 
-        <p> Tipo: {{ $pedido->estoque->descricao }} </p>
-        <p> Para: {{ $pedido->setor->setor }} </p>
-        <p> Data: {{ $pedido->datapedido }} </p>
+        Tipo: {{ $pedido->estoque->descricao }} <br>
+        Para: {{ $pedido->setor->setor }} <br>
+        Data: {{ $pedido->datapedido }} <br>
 
 
     <table class="table table-bordered">

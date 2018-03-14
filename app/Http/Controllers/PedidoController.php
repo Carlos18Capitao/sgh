@@ -78,4 +78,17 @@ class PedidoController extends Controller
     {
         //
     }
+
+    public function recibopedidoestoque($id)
+    {
+        $pedido = Pedido::find($id);
+        $produtosaidas = ProdutoSaida::where('pedido_id','=',$id)->get();
+        $estoques = Estoque::with('produto')->where('id','=',$pedido->estoque_id)->get();
+
+        return \PDF::loadView('pedidoestoque.reciboPedidoEstoque', compact('pedido','produtosaidas','estoques'))
+            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+            ->setPaper('a4', 'landscape')
+//            ->download('etiquetaproduto.pdf');
+            ->stream();
+    }
 }

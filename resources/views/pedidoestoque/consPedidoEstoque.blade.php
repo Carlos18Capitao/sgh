@@ -43,7 +43,7 @@
             <th>@sortablelink('datapedido','Data')</th>
             <th>@sortablelink('setor_id','Unidade')</th>
             {{--<th>@sortablelink('created_by','Usuário')</th>--}}
-            <th width="100px">Ações</th>
+            <th width="150px">Ações</th>
         </tr>
         </thead>
         @foreach ($pedidos as $pedido)
@@ -53,10 +53,13 @@
             <td>{{ $pedido->setor->setor  }}</td>
 {{--            <td>{{ $pedido->created_by  }}</td>--}}
             <td>
+                <a target="_blank" class = "btn btn-sm btn-default" title="IMPRIMIR RECIBO" href="{{ route('recibopedidoestoque',$pedido->id)}}">
+                    <span class="glyphicon glyphicon-print"></span>
+                </a>
                 <a class = "btn btn-sm btn-default" href="{{ route('pedido.edit',$pedido->id)}}">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </a>
-                <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$pedido->id}}">
+                <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{ $pedido->id }}">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
 

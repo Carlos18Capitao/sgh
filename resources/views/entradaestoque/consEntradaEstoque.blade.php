@@ -39,10 +39,10 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>@sortablelink('id','Código')</th>
+           {{-- <th>@sortablelink('id','Código')</th>--}}
+           <th>@sortablelink('numeroentrada','Número')</th>           
             <th>@sortablelink('dataentrada','Data')</th>
             <th>@sortablelink('tipoentrada','Tipo de Entrada')</th>
-            <th>@sortablelink('numeroentrada','Número')</th>
             <th>@sortablelink('empresa_id','Empresa')</th>
             <th width="100px">Ações</th>
         </tr>

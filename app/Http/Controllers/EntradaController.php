@@ -23,7 +23,7 @@ class EntradaController extends Controller
 
     public function index($estoque_id)
     {
-        $entradas =  Entrada::sortable(['dataentrada' => 'desc'])->where('estoque_id','=',$estoque_id)->paginate(20);
+        $entradas =  Entrada::sortable(['dataentrada' => 'desc'])->where('estoque_id','=',$estoque_id)->paginate(2000);
         $title   = 'Entrada de Produtos';
 
         return view('entradaestoque.consEntradaEstoque', compact('title', 'entradas','estoque_id'));

@@ -60,7 +60,7 @@
             <tr>
                 <td align="center"><font size="2">{{ $produtosaida->produto->codigo  }}</font></td>
                 <td><font size="2">{{ $produtosaida->produto->produto }}</font></td>
-                <td><font size="2">{{ $produtosaida->produto->unidade }}</font></td>
+                <td><font size="1">{{ $produtosaida->produto->unidade }}</font></td>
                 <td align="center"><font size="2">{{ $produtosaida->obs  }}</font></td>
                 <td align="center"><font size="2">{{ $produtosaida->qtd }}</font></td>
             </tr>

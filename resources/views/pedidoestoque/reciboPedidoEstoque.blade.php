@@ -1,29 +1,29 @@
 @extends('layouts.pdf')
-<style type="text/css">
-    table {
-        border-color:black;
-        border-style: solid;
-        border-bottom-width: 1px;
-        border-top-width: 1;
-        border-right-width: 1;
-        border-left-width: 1;
-        padding: 1px;
-        border-collapse: collapse;
-        width: 700px;
+{{--<style type="text/css">--}}
+    {{--table {--}}
+        {{--border-color:black;--}}
+        {{--border-style: solid;--}}
+        {{--border-bottom-width: 1px;--}}
+        {{--border-top-width: 1;--}}
+        {{--border-right-width: 1;--}}
+        {{--border-left-width: 1;--}}
+        {{--padding: 1px;--}}
+        {{--border-collapse: collapse;--}}
+        {{--width: 700px;--}}
 
-    }
-    table td, table th {
-        border-color:black;
-        border-style: solid;
-        border-bottom-width: 1px;
-        border-top-width: 1;
-        border-right-width: 1;
-        border-left-width: 1;
-        padding: 1px;
-        border-collapse: collapse;
-    }
+    {{--}--}}
+    {{--table td, table th {--}}
+        {{--border-color:black;--}}
+        {{--border-style: solid;--}}
+        {{--border-bottom-width: 1px;--}}
+        {{--border-top-width: 1;--}}
+        {{--border-right-width: 1;--}}
+        {{--border-left-width: 1;--}}
+        {{--padding: 1px;--}}
+        {{--border-collapse: collapse;--}}
+    {{--}--}}
 
-</style>
+{{--</style>--}}
 
 @section('content')
 
@@ -45,7 +45,7 @@
         Data: {{ $pedido->datapedido }} <br>
     </font>
 
-    <table>
+    <table class="table-sm table-bordered">
         <thead>
         <tr>
             <th align="center"><font size="2"> Código </font></th>

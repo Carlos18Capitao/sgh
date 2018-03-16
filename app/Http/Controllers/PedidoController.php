@@ -87,7 +87,7 @@ class PedidoController extends Controller
 
         return \PDF::loadView('pedidoestoque.reciboPedidoEstoque', compact('pedido','produtosaidas','estoques'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
-            ->setPaper('a4', 'landscape')
+//            ->setPaper('a4', 'landscape')
 //            ->download('etiquetaproduto.pdf');
             ->stream();
     }

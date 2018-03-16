@@ -1,44 +1,74 @@
 @extends('layouts.pdf')
+<style type="text/css">
+    table {
+        border-color:black;
+        border-style: solid;
+        border-bottom-width: 1px;
+        border-top-width: 1;
+        border-right-width: 1;
+        border-left-width: 1;
+        padding: 1px;
+        border-collapse: collapse;
+        width: 700px;
+
+    }
+    table td, table th {
+        border-color:black;
+        border-style: solid;
+        border-bottom-width: 1px;
+        border-top-width: 1;
+        border-right-width: 1;
+        border-left-width: 1;
+        padding: 1px;
+        border-collapse: collapse;
+    }
+
+</style>
 
 @section('content')
 
     <div class="text-center">
-        Universidade Estadual de Ciências da Saúde <br>
-        Almoxarifado Central <br><br><br>
+        <font size="1">
+            Universidade Estadual de Ciências da Saúde <br>
+            Almoxarifado Central
+        </font>
 
-        <h4>Recibo Nº {{ $pedido->requisicao }}</h4>
+        <hr>
+
+        <font size="4">Recibo Nº {{ $pedido->requisicao }}</font>
     </div>
 
     <br>
-
-
+    <font size="2">
         Tipo: {{ $pedido->estoque->descricao }} <br>
         Para: {{ $pedido->setor->setor }} <br>
         Data: {{ $pedido->datapedido }} <br>
+    </font>
 
-
-    <table class="table table-bordered">
+    <table>
         <thead>
         <tr>
-            <th>Código</th>
-            <th>Produto</th>
-            <th>Unidade</th>
-            <th>Lote</th>
-            <th>Qtd</th>
+            <th align="center"><font size="2"> Código </font></th>
+            <th align="center"><font size="2"> Produto </font></th>
+            <th align="center"><font size="2"> Unidade </font></th>
+            <th align="center"><font size="2"> Lote </font></th>
+            <th align="center"><font size="2"> Qtd </font></th>
         </tr>
         </thead>
         @foreach ($produtosaidas as $produtosaida)
          <tbody>
             <tr>
-                <td>{{ $produtosaida->produto->codigo  }}</td>
-                <td>{{ $produtosaida->produto->produto }}</td>
-                <td>{{ $produtosaida->produto->unidade }}</td>
-                <td>{{ $produtosaida->obs  }}</td>
-                <td>{{ $produtosaida->qtd }}</td>
+                <td align="center"><font size="2">{{ $produtosaida->produto->codigo  }}</font></td>
+                <td><font size="2">{{ $produtosaida->produto->produto }}</font></td>
+                <td><font size="2">{{ $produtosaida->produto->unidade }}</font></td>
+                <td align="center"><font size="2">{{ $produtosaida->obs  }}</font></td>
+                <td align="center"><font size="2">{{ $produtosaida->qtd }}</font></td>
             </tr>
          </tbody>
         @endforeach
     </table>
     <br><br>
-    Recebido por: ________________________________________________
+    <font size="2">
+        Recebido por: ________________________________________________
+    </font>
 @endsection

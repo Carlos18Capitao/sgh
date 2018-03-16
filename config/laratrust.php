@@ -195,7 +195,8 @@ return [
          * Parameter passed to the middleware_handling method
          */
         //'params' => '403',
-        'params' => '/home',
+        'params' => '/',
+//        'params' => '/home',
 
     ],
 

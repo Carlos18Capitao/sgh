@@ -35,40 +35,40 @@
 
         <hr>
 
-        <font size="4">Recibo Nº {{ $pedido->requisicao }}</font>
+        <font size="2">Recibo Nº {{ $pedido->requisicao }}</font>
     </div>
 
     <br>
-    <font size="2">
+    <font size="1">
         Tipo: {{ $pedido->estoque->descricao }} <br>
         Para: {{ $pedido->setor->setor }} <br>
         Data: {{ $pedido->datapedido }} <br>
     </font>
 
-    <table class="table-sm table-bordered">
+    <table width="100%" class="table-sm table-bordered">
         <thead>
         <tr>
-            <th align="center"><font size="2"> Código </font></th>
-            <th align="center"><font size="2"> Produto </font></th>
-            <th align="center"><font size="2"> Unidade </font></th>
-            <th align="center"><font size="2"> Lote </font></th>
-            <th align="center"><font size="2"> Qtd </font></th>
+            <th align="center"><font size="1"> Código </font></th>
+            <th align="center"><font size="1"> Produto </font></th>
+            <th align="center"><font size="1"> Unidade </font></th>
+            <th align="center"><font size="1"> Lote </font></th>
+            <th align="center"><font size="1"> Qtd </font></th>
         </tr>
         </thead>
         @foreach ($produtosaidas as $produtosaida)
          <tbody>
             <tr>
-                <td align="center"><font size="2">{{ $produtosaida->produto->codigo  }}</font></td>
-                <td><font size="2">{{ $produtosaida->produto->produto }}</font></td>
+                <td align="center"><font size="1">{{ $produtosaida->produto->codigo  }}</font></td>
+                <td><font size="1">{{ $produtosaida->produto->produto }}</font></td>
                 <td><font size="1">{{ $produtosaida->produto->unidade }}</font></td>
-                <td align="center"><font size="2">{{ $produtosaida->obs  }}</font></td>
-                <td align="center"><font size="2">{{ $produtosaida->qtd }}</font></td>
+                <td align="center"><font size="1">{{ $produtosaida->obs  }}</font></td>
+                <td align="center"><font size="1">{{ $produtosaida->qtd }}</font></td>
             </tr>
          </tbody>
         @endforeach
     </table>
     <br><br>
-    <font size="2">
+    <font size="1">
         Recebido por: ________________________________________________
     </font>
 @endsection

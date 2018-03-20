@@ -26,7 +26,7 @@ class Entrada extends Model
 
     public function produtoentrada()
     {
-        return $this->belongsTo('App\Models\ProdutoEntrada');
+        return $this->hasMany('App\Models\ProdutoEntrada');
     }
 
     public function getDataEntradaAttribute($value)

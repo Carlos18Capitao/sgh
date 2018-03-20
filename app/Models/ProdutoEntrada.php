@@ -51,7 +51,7 @@ class ProdutoEntrada extends Model
 
     public function entrada()
     {
-        return $this->hasMany('App\Models\Entrada');
+        return $this->belongsTo('App\Models\Entrada');
     }
 
     public function getCreatedAtAttribute($value)

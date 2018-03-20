@@ -41,13 +41,15 @@
     </tr>
     </thead>
 @foreach($produtos->produtoentrada as $entproduto)
+    {{--{{ dd($entproduto) }}--}}
             <tbody>
                 <td>{{ $entproduto->user->name }}</td>
                 <td>{{ $entproduto->created_at }}</td>
                 <td>{{ $entproduto->qtd }}
                 <td>{{ $entproduto->lote }}
                 <td>{{ $entproduto->validade }}
-                <td><a href="{{ route('entrada.show',$entproduto->entrada_id) }}">{{ $entproduto->entrada_id }}</a></td>
+                <td>
+                    <a href="{{ route('entrada.show',$entproduto->entrada_id) }}">{{ $entproduto->entrada->numeroentrada or ''}}</a></td>
             </tbody>
 @endforeach
     </table>
@@ -75,7 +77,7 @@
             <td>{{ $saiproduto->created_at }}</td>
             <td>{{ $saiproduto->qtd }}
             <td>{{ $saiproduto->obs }}
-            <td>{{ $saiproduto->pedido->requisicao }}</td>
+            <td><a href="{{ route('pedido.show',$saiproduto->pedido_id) }}"> {{ $saiproduto->pedido->requisicao }} </a></td>
             <td>{{ $saiproduto->user->name }}</td>
             </tbody>
         @endforeach

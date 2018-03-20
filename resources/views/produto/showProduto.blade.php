@@ -32,24 +32,26 @@
     <table class="table table-striped">
     <thead>
     <tr>
-        <th>@sortablelink('created_by','Usuário')</th>
+        <th>Fornecedor</th>
+        <th>Entrada</th>
         <th>@sortablelink('created_at','Data de Entrada')</th>
         <th>@sortablelink('qtd','Qtd')</th>
         <th>@sortablelink('lote','Lote')</th>
         <th>@sortablelink('validade','Validade')</th>
-        <th>Entrada</th>
+        <th>@sortablelink('created_by','Usuário')</th>
     </tr>
     </thead>
 @foreach($produtos->produtoentrada as $entproduto)
     {{--{{ dd($entproduto) }}--}}
             <tbody>
-                <td>{{ $entproduto->user->name }}</td>
+                <td>{{ $entproduto->entrada->empresa->nome }}</td>
+                <td><a href="{{ route('entrada.show',$entproduto->entrada_id) }}">{{ $entproduto->entrada->numeroentrada or ''}}</a></td>
                 <td>{{ $entproduto->created_at }}</td>
                 <td>{{ $entproduto->qtd }}
                 <td>{{ $entproduto->lote }}
                 <td>{{ $entproduto->validade }}
-                <td>
-                    <a href="{{ route('entrada.show',$entproduto->entrada_id) }}">{{ $entproduto->entrada->numeroentrada or ''}}</a></td>
+                <td>{{ $entproduto->user->name }}</td>
+
             </tbody>
 @endforeach
     </table>
@@ -64,20 +66,20 @@
         <thead>
         <tr>
             <th>@sortablelink('setor_id','Setor')</th>
+            <th>Requisição</th>
             <th>@sortablelink('created_at','Data de Saída')</th>
             <th>@sortablelink('qtd','Qtd')</th>
             <th>@sortablelink('obs','Lote/Obs')</th>
-            <th>Requisição</th>                        
             <th>@sortablelink('created_by','Usuário')</th>
         </tr>
         </thead>
         @foreach($produtos->produtosaida as $saiproduto)
             <tbody>
             <td>{{ $saiproduto->setor->setor }}</td>
+            <td><a href="{{ route('pedido.show',$saiproduto->pedido_id) }}"> {{ $saiproduto->pedido->requisicao }} </a></td>
             <td>{{ $saiproduto->created_at }}</td>
             <td>{{ $saiproduto->qtd }}
             <td>{{ $saiproduto->obs }}
-            <td><a href="{{ route('pedido.show',$saiproduto->pedido_id) }}"> {{ $saiproduto->pedido->requisicao }} </a></td>
             <td>{{ $saiproduto->user->name }}</td>
             </tbody>
         @endforeach

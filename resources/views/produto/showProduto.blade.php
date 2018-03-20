@@ -44,7 +44,7 @@
 @foreach($produtos->produtoentrada as $entproduto)
     {{--{{ dd($entproduto) }}--}}
             <tbody>
-                <td>{{ $entproduto->entrada->empresa->nome }}</td>
+                <td>{{ $entproduto->entrada->empresa->nome or 'UNCISAL' }}</td>
                 <td><a href="{{ route('entrada.show',$entproduto->entrada_id) }}">{{ $entproduto->entrada->numeroentrada or ''}}</a></td>
                 <td>{{ $entproduto->created_at }}</td>
                 <td>{{ $entproduto->qtd }}

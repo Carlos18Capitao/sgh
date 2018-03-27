@@ -39,7 +39,7 @@
     </div>
 
     <br>
-    <font size="1">
+    <font size="2">
         Tipo: {{ $pedido->estoque->descricao }} <br>
         Para: {{ $pedido->setor->setor }} <br>
         Data: {{ $pedido->datapedido }} <br>

@@ -31,7 +31,20 @@
     <div class="container">
         <div class="content">
 {{--            <h1>{{ $produtos->codigo . ' - ' . $produtos->produto }}</h1>--}}
-            <font size="10"><b>{{ $produtos->codigo . ' - ' . $produtos->produto }}</b></font>
+                <font size="10">
+                    <b>
+                        @if($produtos->categoria_id == 7)
+                            @php
+                                $shorttitle = explode('.',$produtos->produto);
+                            print $produtos->codigo . ' - ' . $shorttitle[0];
+
+                            @endphp
+
+                        @else
+                            {{ $produtos->codigo . ' - ' . $produtos->produto }}
+                        @endif
+                    </b>
+                </font>
             <br><br><br><br>
             <p><font size="7"><b> - {{ $produtos->unidade }} - </b></font></p>
         </div>

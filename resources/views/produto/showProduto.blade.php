@@ -75,12 +75,14 @@
         </thead>
         @foreach($produtos->produtosaida as $saiproduto)
             <tbody>
-            <td>{{ $saiproduto->setor->setor }}</td>
-            <td><a href="{{ route('pedido.show',$saiproduto->pedido_id) }}"> {{ $saiproduto->pedido->requisicao }} </a></td>
-            <td>{{ $saiproduto->pedido->datapedido or $saiproduto->created_at }}</td>
-            <td>{{ $saiproduto->qtd }}
-            <td>{{ $saiproduto->obs }}
-            <td>{{ $saiproduto->user->name }}</td>
+                @if($saiproduto->qtd > 0)
+                    <td>{{ $saiproduto->setor->setor }}</td>
+                    <td><a href="{{ route('pedido.show',$saiproduto->pedido_id) }}"> {{ $saiproduto->pedido->requisicao }} </a></td>
+                    <td>{{ $saiproduto->pedido->datapedido or $saiproduto->created_at }}</td>
+                    <td>{{ $saiproduto->qtd }}
+                    <td>{{ $saiproduto->obs }}
+                    <td>{{ $saiproduto->user->name }}</td>
+                @endif
             </tbody>
         @endforeach
     </table>

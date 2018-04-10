@@ -42,7 +42,7 @@
             <th>@sortablelink('requisicao','SIAPNET/e-SIS')</th>            
             <th>@sortablelink('datapedido','Data')</th>
             <th>@sortablelink('setor_id','Destino')</th>
-            <th>@sortablelink('tipopedido','Destino')</th>
+            <th>@sortablelink('tipopedido','Tipo')</th>
             {{--<th>@sortablelink('created_by','Usuário')</th>--}}
             <th width="150px">Ações</th>
         </tr>

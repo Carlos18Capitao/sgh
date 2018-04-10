@@ -29,7 +29,7 @@
             {!! Form::text('estoque',$estoque->descricao,['class'=>'form-control','disabled']) !!}
         @endforeach
         {!! Form::label('tipopedido', 'Tipo de Saída:'); !!}
-        {!! Form::select('tipopedido', ['unidade'=>'Unidades','emprestimo'=>'Empréstimo','doacao'=>'Doação','permuta'=>'Permuta','devolucao'=>'Devolução de Empréstimo','inventario'=>'Inventário',], null, ['class' => 'form-control']) !!}
+        {!! Form::select('tipopedido', ['unidade'=>'Unidades','emprestimo'=>'Empréstimo','doacao'=>'Doação','permuta'=>'Permuta','devolucao'=>'Devolução de Empréstimo','inventario'=>'Inventário','descarte'=>'Descarte'], null, ['class' => 'form-control']) !!}
         {!! Form::label('externo', 'Destino Externo:'); !!}
         {!! Form::text('externo',null,['class'=>'form-control','size' => '50x1','placeholder'=>'Em caso de saída externa informar a LOCALIDADE (doação, empréstimo, permuta...)']) !!}
 
@@ -37,7 +37,13 @@
 
         <div class="form-group form-inline">
             {!! Form::label('datapedido', 'Data do Pedido:'); !!}
-            {!! Form::date('datapedido', null, ['class' => 'form-control']) !!}
+            {{--{!! Form::date('datapedido', null, ['class' => 'form-control']) !!}--}}
+
+            @if (isset($pedidos))
+                <input class="form-control" name="datapedido" type="text" value="{{$pedidos->datapedido}}" id="datapedido" disabled>
+            @else
+                {!! Form::date('datapedido', null, ['class' => 'form-control']) !!}
+            @endif
 
 
             {!! Form::label('setor', 'Unidade:'); !!}

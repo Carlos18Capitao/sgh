@@ -41,7 +41,7 @@
         <tr>
             <th>@sortablelink('requisicao','SIAPNET/e-SIS')</th>            
             <th>@sortablelink('datapedido','Data')</th>
-            <th>@sortablelink('setor_id','Unidade')</th>
+            <th>@sortablelink('setor_id','Destino')</th>
             {{--<th>@sortablelink('created_by','Usuário')</th>--}}
             <th width="150px">Ações</th>
         </tr>
@@ -50,7 +50,14 @@
             <tbody>
             <td><a href="{{ route('pedido.show',$pedido->id) }}">{{ $pedido->requisicao or 'Não informado' }}</a></td>            
             <td>{{ $pedido->datapedido }}</td>
-            <td>{{ $pedido->setor->setor  }}</td>
+            <td>
+                @if($pedido->tipopedido == 'unidade')
+                    {{ $pedido->setor->setor  }}
+                @else
+                    {{ $pedido->externo }}
+                @endif
+
+            </td>
 {{--            <td>{{ $pedido->created_by  }}</td>--}}
             <td>
                 <a target="_blank" class = "btn btn-sm btn-default" title="IMPRIMIR RECIBO" href="{{ route('recibopedidoestoque',$pedido->id)}}">

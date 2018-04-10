@@ -66,17 +66,37 @@ class PedidoController extends Controller
 
     public function edit($id)
     {
-        //
+        $pedidos = Pedido::find($id);
+        $title = "Editar Saída";
+        $estoque_id = $pedidos->estoque_id;
+        $estoques = Estoque::with('produto')->where('id','=',$estoque_id)->get();
+        $produtos = Produto::all()->sortBy('produto');
+        $setors = Setor::all()->sortBy('setor');
+
+        return view('pedidoestoque.cadPedidoEstoque', compact('title', 'pedidos','estoque_id','estoques','produtos','setors'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $dataForm = $request->all();
+        $pedidos = Pedido::find($id);
+        $update = $pedidos->update($dataForm);
+
+        if ($update)
+            return redirect()->route('pedido.show', $id);
+        else
+            return redirect()->route('pedido.edit', $id)->with(['errors' => 'Falha ao editar']);
     }
 
     public function destroy($id)
     {
-        //
+        $pedidos = Pedido::find($id);
+        $delete = $pedidos->delete();
+
+        if ($delete)
+            return redirect()->back();
+        else
+            return redirect()->route('pedido.index')->with(['errors' => 'Falha ao editar']);
     }
 
     public function recibopedidoestoque($id)

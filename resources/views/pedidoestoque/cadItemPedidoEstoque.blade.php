@@ -48,9 +48,12 @@
         {!! Form::text('datapedido', $pedido->datapedido, ['class' => 'form-control','disabled']) !!}
 
 
-        {!! Form::label('setor', 'Unidade:'); !!}
+        {!! Form::label('setor', 'Destino:'); !!}
+    @if($pedido->tipopedido == 'unidade')
         {!! Form::text('setor_id', $pedido->setor->setor, ['class' => 'form-control','disabled']) !!}
-
+    @else
+        {!! Form::text('setor_id', $pedido->externo, ['class' => 'form-control','disabled']) !!}
+    @endif
         {!! Form::label('requisicao', 'Nº Requisição:'); !!}
         {!! Form::text('requisicao',$pedido->requisicao,['class'=>'form-control','disabled']) !!}
 

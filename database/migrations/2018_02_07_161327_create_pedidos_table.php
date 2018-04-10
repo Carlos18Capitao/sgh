@@ -26,6 +26,9 @@ class CreatePedidosTable extends Migration
             $table->integer('estoque_id')->unsigned();
             $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
             $table->string('requisicao','50')->nullable();
+            $table->string('tipopedido','50')->nullable();
+            $table->string('externo','200')->nullable();
+            $table->text('obs')->nullable();
         });
     }
 

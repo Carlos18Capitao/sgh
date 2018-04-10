@@ -19,7 +19,7 @@ class Pedido extends Model
 
     public $sotable = ['datapedido','setor_id'];
 
-    protected $fillable = ['datapedido','created_by','updated_by','setor_id','estoque_id','requisicao'];
+    protected $fillable = ['datapedido','created_by','updated_by','setor_id','estoque_id','requisicao','tipopedido','externo','obs'];
 
     public function setor()
     {

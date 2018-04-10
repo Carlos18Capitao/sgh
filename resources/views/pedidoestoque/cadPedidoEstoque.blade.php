@@ -28,6 +28,11 @@
         @foreach($estoques as $estoque)
             {!! Form::text('estoque',$estoque->descricao,['class'=>'form-control','disabled']) !!}
         @endforeach
+        {!! Form::label('tipopedido', 'Tipo de Saída:'); !!}
+        {!! Form::select('tipopedido', ['unidade'=>'Unidades','emprestimo'=>'Empréstimo','doacao'=>'Doação','permuta'=>'Permuta','devolucao'=>'Devolução de Empréstimo','inventario'=>'Inventário',], null, ['class' => 'form-control']) !!}
+        {!! Form::label('externo', 'Destino Externo:'); !!}
+        {!! Form::text('externo',null,['class'=>'form-control','size' => '50x1','placeholder'=>'Em caso de saída externa informar a LOCALIDADE (doação, empréstimo, permuta...)']) !!}
+
     </div>
 
         <div class="form-group form-inline">
@@ -46,8 +51,11 @@
             {!! Form::text('requisicao',null,['class'=>'form-control','placeholder'=>'Informe o número da requisição no SIAPNET/e-SIS']) !!}
 
         </div>
-
-
+        <div>
+            {!! Form::label('obs', 'Observações:'); !!}
+            {!! Form::textarea('obs',null,['class'=>'form-control','placeholder'=>'Observações','size' => '30x3']) !!}
+        </div>
+    <br>
     {!! Form::submit('Adicionar Produtos >>', ['class' => 'btn btn-primary']) !!}
 {{--    {{ Form::button('<i class="glyphicon glyphicon-floppy-disk"> Incluir Produtos</i>', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}--}}
     {!! Form::close() !!}

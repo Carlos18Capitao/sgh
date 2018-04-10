@@ -34,14 +34,24 @@
         </font>
 
         <hr>
-
-        <font size="2">Recibo Nº {{ $pedido->requisicao }}</font>
+    @if($pedido->tipopedido == 'unidade')
+        <font size="2">Requisição Nº {{ $pedido->requisicao }}</font>
+    @else
+        <font size="2">Recibo  {{ strtoupper($pedido->tipopedido) }}</font>
+    @endif
     </div>
 
     <br>
     <font size="2">
         Tipo: {{ $pedido->estoque->descricao }} <br>
-        Para: {{ $pedido->setor->setor }} <br>
+        Para:
+        @if($pedido->tipopedido == 'unidade')
+            {{ $pedido->setor->setor }}
+        @else
+            {{ $pedido->externo }}
+        @endif
+
+        <br>
         Data: {{ $pedido->datapedido }} <br>
     </font>
 

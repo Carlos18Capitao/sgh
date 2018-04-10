@@ -37,7 +37,7 @@
     @if($pedido->tipopedido == 'unidade')
         <font size="2">Requisição Nº {{ $pedido->requisicao }}</font>
     @else
-        <font size="2">Recibo  {{ strtoupper($pedido->tipopedido) }}</font>
+        <font size="2"> {{ strtoupper($pedido->tipopedido) }}</font>
     @endif
     </div>
 

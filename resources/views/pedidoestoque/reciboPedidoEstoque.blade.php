@@ -54,6 +54,9 @@
         <br>
         Data: {{ $pedido->datapedido }} <br>
     </font>
+    <font size="2">
+        Observações: {!! nl2br($pedido->obs) !!}
+    </font>
 
     <table width="100%" class="table-sm table-bordered">
         <thead>

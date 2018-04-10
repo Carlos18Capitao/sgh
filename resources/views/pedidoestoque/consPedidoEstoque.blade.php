@@ -42,6 +42,7 @@
             <th>@sortablelink('requisicao','SIAPNET/e-SIS')</th>            
             <th>@sortablelink('datapedido','Data')</th>
             <th>@sortablelink('setor_id','Destino')</th>
+            <th>@sortablelink('tipopedido','Destino')</th>
             {{--<th>@sortablelink('created_by','Usuário')</th>--}}
             <th width="150px">Ações</th>
         </tr>
@@ -56,8 +57,8 @@
                 @else
                     {{ $pedido->externo }}
                 @endif
-
             </td>
+            <td>{{ $pedido->tipopedido }}</td>
 {{--            <td>{{ $pedido->created_by  }}</td>--}}
             <td>
                 <a target="_blank" class = "btn btn-sm btn-default" title="IMPRIMIR RECIBO" href="{{ route('recibopedidoestoque',$pedido->id)}}">

@@ -52,7 +52,7 @@
             {{-- <td>{{ $entrada->id }}</td> --}}
             <td><a href="{{ route('entrada.show',$entrada->id) }}">{{ $entrada->numeroentrada  }}</a></td>            
             <td>{{ $entrada->dataentrada }}</td>
-            <td>{{ $entrada->tipoentrada  }}</td>
+            <td>{{ mb_strtoupper($entrada->tipoentrada)  }}</td>
             <td>{{ $entrada->empresa->nome }}</td>
             <td>
                 <a class = "btn btn-sm btn-default" href="{{ route('entrada.edit',$entrada->id)}}">

@@ -58,7 +58,7 @@
                     {{ $pedido->externo }}
                 @endif
             </td>
-            <td>{{ $pedido->tipopedido }}</td>
+            <td>{{ mb_strtoupper($pedido->tipopedido) }}</td>
 {{--            <td>{{ $pedido->created_by  }}</td>--}}
             <td>
                 <a target="_blank" class = "btn btn-sm btn-default" title="IMPRIMIR RECIBO" href="{{ route('recibopedidoestoque',$pedido->id)}}">

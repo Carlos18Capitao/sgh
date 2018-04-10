@@ -46,7 +46,7 @@
             <tbody>
                 <td>{{ $entproduto->entrada->empresa->nome or 'UNCISAL' }}</td>
                 <td><a href="{{ route('entrada.show',$entproduto->entrada_id) }}">{{ $entproduto->entrada->numeroentrada or ''}}</a></td>
-                <td>{{ $entproduto->entrada->dataentrada }}</td>
+                <td>{{ $entproduto->entrada->dataentrada or $entproduto->created_at}}</td>
                 <td>{{ $entproduto->qtd }}
                 <td>{{ $entproduto->lote }}
                 <td>{{ $entproduto->validade }}
@@ -77,7 +77,7 @@
             <tbody>
             <td>{{ $saiproduto->setor->setor }}</td>
             <td><a href="{{ route('pedido.show',$saiproduto->pedido_id) }}"> {{ $saiproduto->pedido->requisicao }} </a></td>
-            <td>{{ $saiproduto->pedido->datapedido }}</td>
+            <td>{{ $saiproduto->pedido->datapedido or $saiproduto->created_at }}</td>
             <td>{{ $saiproduto->qtd }}
             <td>{{ $saiproduto->obs }}
             <td>{{ $saiproduto->user->name }}</td>

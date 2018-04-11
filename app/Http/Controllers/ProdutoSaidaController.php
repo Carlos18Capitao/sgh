@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\ProdutoSaida;
 use App\Models\Estoque;
 use App\Http\Requests\ProdutoSaidaFormRequest;
+use Illuminate\Support\Facades\DB;
 
 class ProdutoSaidaController extends Controller
 {
@@ -93,4 +94,5 @@ class ProdutoSaidaController extends Controller
 //            return redirect()->route('saida.index')->with(['errors' => 'Falha ao editar']);
             return redirect()->back();
     }
+
 }

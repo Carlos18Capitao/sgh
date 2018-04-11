@@ -111,4 +111,33 @@ class PedidoController extends Controller
 //            ->download('etiquetaproduto.pdf');
             ->stream();
     }
+
+    public function negados($estoque_id)
+    {
+        $negados = DB::select("
+            select
+               produtos.codigo
+              ,concat(produtos.produto , ' - ', produtos.unidade) as produto
+            from
+              pedidos
+              left join estoques on pedidos.estoque_id = estoques.id
+              left join produto_saidas as saida on pedidos.id = saida.pedido_id
+              left join setors as s on pedidos.setor_id = s.id
+              left join produtos on saida.produto_id = produtos.id
+            where saida.qtd = 0
+                and pedidos.setor_id = $setor_id #informar o setor ou comentar para listar todos
+                and estoques.id = $estoque_id #informar o estoque
+                and pedidos.datapedido between $dataInicio and $dataFim #informar período a ser pesquisado
+            group by
+                produtos.codigo
+                ,produtos.produto
+                ,produtos.unidade
+            order by produtos.produto
+              ");
+
+        $title      = 'Itens Negados';
+
+        dd($negados);
+        return view('produtosaida.relNegados', compact('title', 'negados','estoque_id'));
+    }
 }

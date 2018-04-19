@@ -66,7 +66,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
         Route::get('/{id}/saida', ['as' => 'estoque.saida','uses' => 'PedidoController@index']);
         Route::get('/{estoque_id}/pedido', ['as' => 'estoque.pedido','uses' => 'PedidoController@index']);
         Route::get('/pedido/{estoque_id}/create', 'PedidoController@create')->name('pedidoestoque');
-       // Route::get('/{estoque_id}/negados', 'PedidoController@create')->name('negados');
+        Route::get('/{estoque_id}/negados', 'PedidoController@negados')->name('negados');
         Route::get('/{id}/recibopedidoestoque', 'PedidoController@recibopedidoestoque')->name('recibopedidoestoque');
 
 

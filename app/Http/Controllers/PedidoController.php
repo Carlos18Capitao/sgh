@@ -9,6 +9,7 @@ use App\Models\ProdutoSaida;
 use App\Models\Setor;
 use Illuminate\Http\Request;
 use App\Http\Requests\PedidoFormRequest;
+use Illuminate\Support\Facades\DB;
 
 class PedidoController extends Controller
 {
@@ -114,30 +115,34 @@ class PedidoController extends Controller
 
     public function negados($estoque_id)
     {
+        $setor_id = 7;
+        $dataInicio = '2018-01-01';
+        $dataFim = '2018-04-11';
+
+
         $negados = DB::select("
             select
                produtos.codigo
               ,concat(produtos.produto , ' - ', produtos.unidade) as produto
             from
               pedidos
-              left join estoques on pedidos.estoque_id = estoques.id
               left join produto_saidas as saida on pedidos.id = saida.pedido_id
               left join setors as s on pedidos.setor_id = s.id
               left join produtos on saida.produto_id = produtos.id
             where saida.qtd = 0
-                and pedidos.setor_id = $setor_id #informar o setor ou comentar para listar todos
-                and estoques.id = $estoque_id #informar o estoque
-                and pedidos.datapedido between $dataInicio and $dataFim #informar período a ser pesquisado
+                and pedidos.setor_id =$setor_id
+                and pedidos.estoque_id = $estoque_id
+                and pedidos.datapedido between '$dataInicio' and '$dataFim'
             group by
                 produtos.codigo
                 ,produtos.produto
                 ,produtos.unidade
             order by produtos.produto
               ");
+              //dd($negados);
 
-        $title      = 'Itens Negados';
+        $title = 'Itens Negados';
 
-        dd($negados);
-        return view('produtosaida.relNegados', compact('title', 'negados','estoque_id'));
+        return view('pedidoestoque.relNegados', compact('title', 'negados','estoque_id'));
     }
 }

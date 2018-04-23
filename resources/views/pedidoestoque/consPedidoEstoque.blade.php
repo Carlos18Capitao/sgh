@@ -82,11 +82,11 @@
                             </div>
                             <div class="modal-body">
                                 <div align="center">
-                                    <b>Código do Pedido: {{ $pedido->id }}</b>
+                                    <b>Código do Pedido: {{ $pedido->requisicao }}</b>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                {!! Form::open(['route'=> ['produto.destroy',$pedido->id], 'method'=>'DELETE']) !!}
+                                {!! Form::open(['route'=> ['pedido.destroy',$pedido->id], 'method'=>'DELETE']) !!}
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                                 <button type="submit" class = "btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Excluir </button>
                                 {!! Form::close() !!}

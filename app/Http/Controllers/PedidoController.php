@@ -10,6 +10,7 @@ use App\Models\Setor;
 use Illuminate\Http\Request;
 use App\Http\Requests\PedidoFormRequest;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class PedidoController extends Controller
 {
@@ -113,12 +114,13 @@ class PedidoController extends Controller
             ->stream();
     }
 
-    public function negados($estoque_id)
+    public function negados($estoque_id, Request $request)
     {
-        $setor_id = 7;
-        $dataInicio = '2018-01-01';
-        $dataFim = '2018-04-11';
+        $setor_id = $request->setor_id;
+        $dataInicio = $request->dataInicio;
+        $dataFim = $request->dataFim;
 
+        if(isset($setor_id)){
 
         $negados = DB::select("
             select
@@ -139,10 +141,16 @@ class PedidoController extends Controller
                 ,produtos.unidade
             order by produtos.produto
               ");
-              //dd($negados);
+        //dd($negados);
 
         $title = 'Itens Negados';
+        $setors = Setor::all()->sortBy('setor');
 
-        return view('pedidoestoque.relNegados', compact('title', 'negados','estoque_id'));
+        return view('pedidoestoque.relNegados', compact('title', 'negados','estoque_id','setors','setor_id','dataInicio','dataFim'));
+        }
+        $title = 'Itens Negados';
+        $setors = Setor::all()->sortBy('setor');
+
+        return view('pedidoestoque.relNegados', compact('title', 'negados','estoque_id','setors','setor_id'));
     }
 }

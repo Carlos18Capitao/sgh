@@ -74,7 +74,7 @@
                 @endif
             <td>
                 @if($demanda->semanal > 0)
-                    {{ round(($demanda->entrada - $demanda->saida)/$demanda->mensal) }}</td>
+                    {{ round(($demanda->entrada - $demanda->saida)/$demanda->mensal,1) }}</td>
                 @else
                     {{ $demanda->prev_meses }}
                 @endif

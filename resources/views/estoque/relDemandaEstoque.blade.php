@@ -65,9 +65,20 @@
             <td>{{ $demanda->semanal }}</td>
             <td>{{ $demanda->entrada }}</td>
             <td>{{ $demanda->saida }}</td>
-            <td>{{ $demanda->saldo }}</td>
-            <td>{{ $demanda->prev_semanas }}</td>
-            <td>{{ $demanda->prev_meses }}</td>
+            <td>{{ $demanda->entrada - $demanda->saida }}</td>
+            <td>
+                @if($demanda->semanal > 0)
+                    {{ round(($demanda->entrada - $demanda->saida)/$demanda->semanal) }}</td>
+                @else
+                    {{ $demanda->prev_semanas }}
+                @endif
+            <td>
+                @if($demanda->semanal > 0)
+                    {{ round(($demanda->entrada - $demanda->saida)/$demanda->mensal) }}</td>
+                @else
+                    {{ $demanda->prev_meses }}
+                @endif
+                </td>
 
             </tbody>
         @endforeach

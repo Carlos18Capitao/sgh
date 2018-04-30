@@ -156,6 +156,7 @@ class EstoqueController extends Controller
               left join produtos on produto_estoques.produto_id = produtos.id
             where
               produto_estoques.estoque_id = $id
+            order by produtos.produto
               ");
         $title = 'Demanda x Posição de Estoque';
         $estoque_id = $id;

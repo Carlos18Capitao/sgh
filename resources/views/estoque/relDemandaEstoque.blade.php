@@ -68,13 +68,20 @@
             <td>{{ $demanda->entrada - $demanda->saida }}</td>
             <td>
                 @if($demanda->semanal > 0)
-                    {{ round(($demanda->entrada - $demanda->saida)/$demanda->semanal) }}</td>
+                    {{ round(($demanda->entrada - $demanda->saida)/$demanda->semanal) }}
                 @else
                     {{ $demanda->prev_semanas }}
                 @endif
+            </td>
             <td>
-                @if($demanda->semanal > 0)
-                    {{ round(($demanda->entrada - $demanda->saida)/$demanda->mensal,1) }}</td>
+                @if($demanda->mensal > 0)
+                    @if(round(($demanda->entrada - $demanda->saida)/$demanda->mensal) > 12)
+                        <span class="label label-warning">{{ round(($demanda->entrada - $demanda->saida)/$demanda->mensal) }}</span>
+                    @elseif(round(($demanda->entrada - $demanda->saida)/$demanda->mensal) <= 3)
+                        <span class="label label-danger">{{ round(($demanda->entrada - $demanda->saida)/$demanda->mensal) }}</span>
+                    @else
+                        <span class="label label-success">{{ round(($demanda->entrada - $demanda->saida)/$demanda->mensal) }}</span>
+                    @endif
                 @else
                     {{ $demanda->prev_meses }}
                 @endif

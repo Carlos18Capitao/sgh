@@ -42,7 +42,10 @@
 
     {!! Form::label('setor', 'Unidade:'); !!}
     {!! Form::select('setor_id', $setors->pluck('setor','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione uma unidade...']) !!}
-        <br><br>
+
+    </div>
+        <div class="form-group form-inline">
+
     {!! Form::label('dataInicio', 'Data inícial:'); !!}
     {!! Form::date('dataInicio', null, ['class' => 'form-control']) !!}
 

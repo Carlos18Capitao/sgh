@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Venturecraft\\Revisionable' => array($vendorDir . '/venturecraft/revisionable/src'),
     'Svg\\' => array($vendorDir . '/phenx/php-svg-lib/src'),
+    'SimpleSoftwareIO\\QrCode\\' => array($vendorDir . '/simplesoftwareio/simple-qrcode/src'),
     'Sabberworm\\CSS' => array($vendorDir . '/sabberworm/php-css-parser/lib'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
     'Parsedown' => array($vendorDir . '/erusev/parsedown'),
@@ -16,4 +17,5 @@ return array(
     'JakubOnderka\\PhpConsoleColor' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
     'GiordanoLima\\DecimalMutators' => array($vendorDir . '/giordanolima/decimal-mutators/src'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
+    'BaconQrCode' => array($vendorDir . '/bacon/bacon-qr-code/src'),
 );

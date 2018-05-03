@@ -72,6 +72,8 @@
                 </font>
             <br><br><br><br>
             <p><font size="7"><b> - {{ $produtos->unidade }} - </b></font></p>
+            {{--{!! QrCode::size(100)->generate('Me transforme em um QrCode!'); !!}--}}
+            <img src="data:image/png;base64, {{ base64_encode(QrCode::format('png')->size(130)->generate("http://sgh.jcadm.com/estoque/produto/$produtos->id")) }} ">
         </div>
     </div>
 

@@ -17,7 +17,7 @@
     <a target="_blank" class = "btn btn-sm btn-default" title="IMPRIMIR ETIQUETA" href="{{ route('pdfproduto',$produtos->id)}}">
         <span class="glyphicon glyphicon-print"></span>
     </a>
-
+{{--    {!! QrCode::size(100)->generate(Request::url(),'../public/qrcodes/qrcode.svg'); !!}--}}
     <br><br>
     <p><b>Descrição:</b> {{ $produtos->codigo . ' - ' . $produtos->produto }}</p>
     <p><b>Unidade:</b> {{ $produtos->unidade }}</p>

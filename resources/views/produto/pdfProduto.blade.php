@@ -31,8 +31,7 @@
     <div class="container">
         <div class="content">
 {{--            <h1>{{ $produtos->codigo . ' - ' . $produtos->produto }}</h1>--}}
-                <font size="10">
-                    <b>
+                
                         @if($produtos->categoria_id == 7)
                             {{--@php--}}
                            {{--//     $shorttitle = explode('.',$produtos->produto);--}}
@@ -40,8 +39,9 @@
 
                            {{--print mb_substr($produtos->produto,0,50);--}}
                             {{--@endphp--}}
+                            <font size="8"><b> 
                            @php
-                            $limite = 80;
+                            $limite = 120;
                             $quebrar = true;
 
                             //corta as tags do texto para evitar corte errado
@@ -62,16 +62,19 @@
                             endif;
                             $newproduto = explode('DESCRIÇÃO',$newtext);
 
-                            print $produtos->codigo . ' - ' . $newproduto[0];
+                            print  $produtos->codigo . ' - ' . $newproduto[0] ;
 
                             @endphp
+                            </b></font>
                         @else
-                            {{ $produtos->codigo . ' - ' . $produtos->produto }}
+                            <font size="9">
+                                <b>
+                                    {{ $produtos->codigo . ' - ' . $produtos->produto }}
+                                </b>
+                            </font>
                         @endif
-                    </b>
-                </font>
             <br><br><br><br>
-            <p><font size="7"><b> - {{ $produtos->unidade }} - </b></font></p>
+            <p><font size="6"><b> - {{ $produtos->unidade }} - </b></font></p>
             {{--{!! QrCode::size(100)->generate('Me transforme em um QrCode!'); !!}--}}
             <img src="data:image/png;base64, {{ base64_encode(QrCode::format('png')->size(130)->generate("http://sgh.jcadm.com/estoque/produto/$produtos->id")) }} ">
         </div>

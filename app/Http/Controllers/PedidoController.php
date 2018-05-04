@@ -126,6 +126,7 @@ class PedidoController extends Controller
             select
                produtos.codigo
               ,concat(produtos.produto , ' - ', produtos.unidade) as produto
+              ,pedidos.datapedido
             from
               pedidos
               left join produto_saidas as saida on pedidos.id = saida.pedido_id
@@ -139,7 +140,8 @@ class PedidoController extends Controller
                 produtos.codigo
                 ,produtos.produto
                 ,produtos.unidade
-            order by produtos.produto
+                ,pedidos.datapedido
+            order by produtos.produto,pedidos.datapedido
               ");
         //dd($negados);
 

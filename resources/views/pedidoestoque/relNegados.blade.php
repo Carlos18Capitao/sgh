@@ -63,6 +63,7 @@
         <tr>
             <th>Código</th>
             <th>Produto</th>
+            <th>Data</th>
         </tr>
         </thead>
 
@@ -71,6 +72,7 @@
             <tbody>
             <td>{{ $negado->codigo }}</td>
             <td>{{ $negado->produto }}</td>
+            <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $negado->datapedido)->format('d/m/Y') }}</td>
 
             </tbody>
         @endforeach

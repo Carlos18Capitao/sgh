@@ -166,32 +166,27 @@
                                 </div>
                                 
                                 <div class="form-group form-inline">
-                                    @foreach($estoques as $estoque)
-                                        @if($estoque->lote == '1')
-                                            <div class="form-group">
-                                                {!! Form::label('lote', 'Lote:'); !!}
-                                                {!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Informe o lote']) !!}
+                                        <div class="input_fields_wrap">
+
+                                        <div class="form-group">
+                                                {!! Form::label('qtd', 'Quantidade:'); !!}
+                                                {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
+                                                @foreach($estoques as $estoque)
+                                                    @if($estoque->lote == '1')
+                                                        <button class="add_field_button">Adicionar Lotes</button><br><br>
+                                                    @endif
+                                                @endforeach
                                             </div>
-                                        @endif
-                                        @if($estoque->validade == '1')
-                                            <div class="form-group">
-                                                {!! Form::label('validade', 'Validade:'); !!}
-                                                {!! Form::date('validade', null, ['class' => 'form-control', 'placeholder' => 'Validade']) !!}
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    <div class="form-group">
-                                        {!! Form::label('qtd', 'Quantidade:'); !!}
-                                        {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
-                                    </div>
+
+                        </div>
                         </div>
                                     
                                     <div class="form-group">
                                         {!! Form::label('obs', 'Observação:'); !!}
                                             {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
                                     </div>
-                        </div>
-                                    
+                    </div>
+                                   
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                             <button type="submit" class="btn btn-primary">Adicionar</button>
@@ -209,5 +204,25 @@
                     dropdownParent: $('#myModalCadastrar')
                 });
            });
+ 
+        $(document).ready(function() {
+    var max_fields      = 11; //maximum input boxes allowed
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_button"); //Add button ID
+    
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append('<div>{!! Form::label('lote', 'Lote:'); !!}{!! Form::text('lote[]', null, ['class' => 'form-control', 'placeholder' => 'Informe o lote']) !!}{!! Form::label('validade', 'Validade:'); !!}{!! Form::date('validade[]', null, ['class' => 'form-control', 'placeholder' => 'Validade']) !!}{!! Form::label('qtd', 'Quantidade:'); !!}{!! Form::number('qtd[]', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}<a href="#" class="remove_field">Excluir</a></div>'); //add input box
+
+        }
+    });
+    
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});
         </script>
 @endsection

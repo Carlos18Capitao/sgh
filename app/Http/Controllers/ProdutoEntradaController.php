@@ -41,13 +41,22 @@ class ProdutoEntradaController extends Controller
 
     public function store(ProdutoEntradaFormRequest $request)
     {
-        $dataForm = $request->all();
-        $insert   = $this->produtoentrada->create($dataForm);
 
-        // $estoque = $insert->estoque_id;
-//        $estoque = Estoque::find($insert->estoque_id);
-        // $produto_id = $request['produto_id'];
-//        $estoque->produto()->attach($insert->produto_id);
+        $dataForm = $request->all();
+        dd($dataForm);
+
+        foreach ($dataForm as $datas) {
+//            if (isset($dataForm['qtd']) && !is_null($dataForm['qtd'][$i])) {
+//                $arrayForm = array(
+//                    'ano' => $dataForm['ano'][$i],
+//                    'item_id' => $dataForm['item_id'][$i],
+//                    'unidade_id' => $dataForm['unidade_id'][$i],
+//                    'qtd' => $dataForm['qtd'][$i]
+//                );
+//            }
+        }
+
+        $insert   = $this->produtoentrada->create($dataForm);
 
         if ($insert)
             return redirect()->back();

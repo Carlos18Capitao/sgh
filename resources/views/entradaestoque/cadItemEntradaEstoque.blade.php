@@ -148,12 +148,12 @@
                                     {{--@else--}}
                                         {{-- {!! Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' =>'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!} --}}
                                         {{--<select class="js-produto form-control" name="produto_id">--}}
-                                    <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id">
+                                    <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id[]">
                                     <option selected="selected" value="">Selecione um produto...</option>
                                             @foreach($produtos as $produto)
                                                 @foreach($produto->estoque as $estoque)
                                                     @if($estoque->id == $entrada->estoque_id)
-                                                        {{-- @if( $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') > 0) --}}
+                                                        {{-- nnnnn @if( $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') > 0) --}}
                                                         <option value="{{ $produto->id }}">
                                                             {{ $produto->produto . ' - ' . $produto->unidade  }} @if($produto->codigo != 0)  {{ '(Cód: ' . $produto->codigo . ')' }} @endif
                                                         </option>
@@ -170,14 +170,15 @@
 
                                         <div class="form-group">
                                                 {!! Form::label('qtd', 'Quantidade:'); !!}
-                                                {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
+                                                {!! Form::number('qtd[]', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
                                                 @foreach($estoques as $estoque)
                                                     @if($estoque->lote == '1')
                                                         <button class="add_field_button">Adicionar Lotes</button><br><br>
                                                     @endif
                                                 @endforeach
                                             </div>
-
+                                            <br><br>
+                                            Lote: <input type="text" name="lote[]" > Validade: <input type="date" name="validade[]" > Qtd: <input type="number" name="qtd[]" >
                         </div>
                         </div>
                                     
@@ -209,17 +210,15 @@
     var max_fields      = 11; //maximum input boxes allowed
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
     var add_button      = $(".add_field_button"); //Add button ID
-    
+
     var x = 1; //initlal text box count
     $(add_button).click(function(e){ //on add input button click
         e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('<div>{!! Form::label('lote', 'Lote:'); !!}{!! Form::text('lote[]', null, ['class' => 'form-control', 'placeholder' => 'Informe o lote']) !!}{!! Form::label('validade', 'Validade:'); !!}{!! Form::date('validade[]', null, ['class' => 'form-control', 'placeholder' => 'Validade']) !!}{!! Form::label('qtd', 'Quantidade:'); !!}{!! Form::number('qtd[]', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}<a href="#" class="remove_field">Excluir</a></div>'); //add input box
-
+            $(wrapper).append('Lote: <input type="text" name="lote[]" > Validade: <input type="date" name="validade[]" > Qtd: <input type="number" name="qtd[]" ><a href="#" class="remove_field">Excluir</a>'); //add input box
         }
     });
-    
     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })

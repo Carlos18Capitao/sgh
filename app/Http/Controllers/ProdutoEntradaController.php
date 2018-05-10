@@ -43,9 +43,9 @@ class ProdutoEntradaController extends Controller
     {
 
         $dataForm = $request->all();
-        dd($dataForm);
+//        dd($dataForm);
 
-        foreach ($dataForm as $datas) {
+//        foreach ($dataForm as $datas) {
 //            if (isset($dataForm['qtd']) && !is_null($dataForm['qtd'][$i])) {
 //                $arrayForm = array(
 //                    'ano' => $dataForm['ano'][$i],
@@ -54,7 +54,7 @@ class ProdutoEntradaController extends Controller
 //                    'qtd' => $dataForm['qtd'][$i]
 //                );
 //            }
-        }
+//        }
 
         $insert   = $this->produtoentrada->create($dataForm);
 

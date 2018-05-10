@@ -148,7 +148,7 @@
                                     {{--@else--}}
                                         {{-- {!! Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' =>'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!} --}}
                                         {{--<select class="js-produto form-control" name="produto_id">--}}
-                                    <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id[]">
+                                    <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id">
                                     <option selected="selected" value="">Selecione um produto...</option>
                                             @foreach($produtos as $produto)
                                                 @foreach($produto->estoque as $estoque)
@@ -166,20 +166,34 @@
                                 </div>
                                 
                                 <div class="form-group form-inline">
-                                        <div class="input_fields_wrap">
 
                                         <div class="form-group">
-                                                {!! Form::label('qtd', 'Quantidade:'); !!}
-                                                {!! Form::number('qtd[]', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
+{{--                                                {!! Form::label('qtd', 'Quantidade Total:'); !!}--}}
+{{--                                                {!! Form::number('qtde', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}--}}
+                                            <br><br>
                                                 @foreach($estoques as $estoque)
                                                     @if($estoque->lote == '1')
-                                                        <button class="add_field_button">Adicionar Lotes</button><br><br>
+                                                        {{--<button class="add_field_button">Adicionar Lotes</button><br><br>--}}
+                                                    <div class="input_fields_wrap">
+                                                        <b>Lote:</b> <input type="text" name="lote" class="form-control">
+                                                        <b>Validade:</b> <input type="date" name="validade" class="form-control">
+                                                        <b>Qtd:</b> <input type="number" name="qtd" class="form-control"><br>
+                                                    </div>
+                                                    {{--<div class="input_fields_wrap">--}}
+                                                        {{--<b>Lote:</b> <input type="text" name="lote[]" class="form-control">--}}
+                                                        {{--<b>Validade:</b> <input type="date" name="validade[]" class="form-control">--}}
+                                                        {{--<b>Qtd:</b> <input type="number" name="qtde[]" class="form-control"> <a href="#" class="remove_field">Excluir</a><br>--}}
+                                                    {{--</div>--}}
+                                                    {{--<div class="input_fields_wrap">--}}
+                                                        {{--<b>Lote:</b> <input type="text" name="lote[]" class="form-control">--}}
+                                                        {{--<b>Validade:</b> <input type="date" name="validade[]" class="form-control">--}}
+                                                        {{--<b>Qtd:</b> <input type="number" name="qtde[]" class="form-control"> <a href="#" class="remove_field">Excluir</a><br>--}}
+                                                    {{--</div>--}}
                                                     @endif
                                                 @endforeach
                                             </div>
                                             <br><br>
-                                            Lote: <input type="text" name="lote[]" > Validade: <input type="date" name="validade[]" > Qtd: <input type="number" name="qtd[]" >
-                        </div>
+
                         </div>
                                     
                                     <div class="form-group">
@@ -216,7 +230,7 @@
         e.preventDefault();
         if(x < max_fields){ //max input box allowed
             x++; //text box increment
-            $(wrapper).append('Lote: <input type="text" name="lote[]" > Validade: <input type="date" name="validade[]" > Qtd: <input type="number" name="qtd[]" ><a href="#" class="remove_field">Excluir</a>'); //add input box
+            $(wrapper).append('<div>Lote: <input type="text" name="lote[]" > Validade: <input type="date" name="validade[]" > Qtd: <input type="number" name="qtd[]" ></div><a href="#" class="remove_field">Excluir</a>'); //add input box
         }
     });
     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text

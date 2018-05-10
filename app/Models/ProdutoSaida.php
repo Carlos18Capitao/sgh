@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 class ProdutoSaida extends Model
@@ -16,7 +16,8 @@ class ProdutoSaida extends Model
         parent::boot();
     }
 
-    use SoftDeletes, Sortable;
+    use Sortable;
+//    use SoftDeletes, Sortable;
 
     protected $dates = ['deleted_at','created_at'];
 
@@ -28,10 +29,12 @@ class ProdutoSaida extends Model
         'updated_by',
         'setor_id',
         'estoque_id',
-        'pedido_id'
+        'pedido_id',
+        'lote',
+        'validade'
     ];
 
-    public $sortable = ['produto_id','qtd','obs','created_at','setor_id','pedido_id'];
+    public $sortable = ['produto_id','qtd','obs','created_at','setor_id','pedido_id','lote','validade'];
 
     public function produto()
     {

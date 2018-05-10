@@ -157,13 +157,19 @@
                                         </select>
 
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group form-inline">
                                     {!! Form::label('qtd', 'Quantidade:'); !!}
                                     {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'2']) !!}
-                                </div>
+
+                                {!! Form::label('lote', 'Lote:'); !!}
+                                {!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Lote','tabindex'=>'3']) !!}
+
+                                {!! Form::label('validade', 'Validade:'); !!}
+                                {!! Form::date('validade', null, ['class' => 'form-control','tabindex'=>'4']) !!}
+                            </div>
                                 <div class="form-group">
-                                    {!! Form::label('obs', 'Lote/Obs:'); !!}
-                                    {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações','tabindex'=>'3']) !!}
+                                    {!! Form::label('obs', 'Obs:'); !!}
+                                    {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações','tabindex'=>'5']) !!}
                                 </div>
                         </div>
                         <div class="modal-footer">

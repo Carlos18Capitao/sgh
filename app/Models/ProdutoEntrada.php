@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 class ProdutoEntrada extends Model
@@ -16,7 +16,8 @@ class ProdutoEntrada extends Model
         parent::boot();
     }
 
-    use SoftDeletes, Sortable;
+//    use SoftDeletes, Sortable;
+    use Sortable;
 
     protected $dates = ['deleted_at'];
 

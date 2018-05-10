@@ -160,14 +160,14 @@
 
                                 </div>
                                 <div class="form-group form-inline">
-                                    {!! Form::label('qtd', 'Quantidade:'); !!}
-                                    {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'2']) !!}
-
                                 {!! Form::label('lote', 'Lote:'); !!}
                                 {!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Lote','tabindex'=>'3']) !!}
 
                                 {!! Form::label('validade', 'Validade:'); !!}
                                 {!! Form::date('validade', null, ['class' => 'form-control','tabindex'=>'4']) !!}
+
+                                {!! Form::label('qtd', 'Quantidade:'); !!}
+                                {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'2']) !!}
                             </div>
                                 <div class="form-group">
                                     {!! Form::label('obs', 'Obs:'); !!}

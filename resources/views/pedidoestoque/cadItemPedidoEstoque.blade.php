@@ -72,7 +72,8 @@
             <th>@sortablelink('produto.produto','Produto')</th>
             <th>Unidade</th>
             <th>@sortablelink('qtd','Qtd')</th>
-            <th>@sortablelink('obs','Observação')</th>
+            <th>@sortablelink('obs','Lote')</th>
+            <th>@sortablelink('validade','Validade')</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
@@ -82,7 +83,8 @@
             <td><a href="{{ route('produto.show',$produtosaida->produto->id) }}">{{ $produtosaida->produto->produto }}</a></td>
             <td>{{ $produtosaida->produto->unidade }}</td>
             <td>{{ $produtosaida->qtd * -1 }}</td>
-            <td>{{ $produtosaida->obs  }}</td>
+            <td>{{ $produtosaida->obs or $produtosaida->lote }}</td>
+            <td>{{ $produtosaida->validade }}</td>
             <td>
                    
                     {{--<a class = "btn btn-sm btn-default" href="{{ route('saida.edit',$produtosaida->id)}}">--}}

@@ -70,6 +70,7 @@
             <th>@sortablelink('created_at','Data de Saída')</th>
             <th>@sortablelink('qtd','Qtd')</th>
             <th>@sortablelink('obs','Lote/Obs')</th>
+            <th>@sortablelink('validade','Validade')</th>
             <th>@sortablelink('created_by','Usuário')</th>
         </tr>
         </thead>
@@ -80,7 +81,8 @@
                     <td><a href="{{ route('pedido.show',$saiproduto->pedido_id) }}"> {{ $saiproduto->pedido->requisicao }} </a></td>
                     <td>{{ $saiproduto->pedido->datapedido or $saiproduto->created_at }}</td>
                     <td>{{ $saiproduto->qtd }}
-                    <td>{{ $saiproduto->obs }}
+                    <td>{{ $saiproduto->obs or $saiproduto->lote }}
+                    <td>{{ $saiproduto->validade }}
                     <td>{{ $saiproduto->user->name }}</td>
                 @endif
             </tbody>

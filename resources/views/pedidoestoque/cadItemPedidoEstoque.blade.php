@@ -167,11 +167,11 @@
                                 {!! Form::date('validade', null, ['class' => 'form-control','tabindex'=>'4']) !!}
 
                                 {!! Form::label('qtd', 'Quantidade:'); !!}
-                                {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'2']) !!}
+                                {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'5']) !!}
                             </div>
                                 <div class="form-group">
                                     {!! Form::label('obs', 'Obs:'); !!}
-                                    {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações','tabindex'=>'5']) !!}
+                                    {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações','tabindex'=>'6']) !!}
                                 </div>
                         </div>
                         <div class="modal-footer">

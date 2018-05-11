@@ -163,4 +163,37 @@ class EstoqueController extends Controller
         $estoque_id = $id;
         return view('estoque.relDemandaEstoque', compact('title', 'demandas','estoque_id'));
     }
+
+    public function relLoteValidade($id, Request $request)
+    {
+        $dataInicio = $request->dataInicio;
+        $dataFim = $request->dataFim;
+
+       // if(isset($dataInicio)){
+
+        $lotes = DB::select("
+        select
+        p.codigo
+        ,p.produto
+        ,p.unidade
+        ,l.lote
+        ,l.validade
+        ,l.qtd
+      from
+        lotes as l
+        left join produtos p on l.produto_id = p.id
+        left join produto_estoques e on p.id = e.produto_id
+      where
+        l.qtd <> 0
+        and e.estoque_id = $id
+        and l.validade between '$dataInicio' and '$dataFim'
+      order by p.produto;");
+        $title = 'Relatório de Produtos com Lote e Validade';
+        $estoque_id = $id;
+        return view('estoque.relLoteValidade', compact('title', 'lotes','estoque_id'));
+
+       // }
+    }
+
+
 }

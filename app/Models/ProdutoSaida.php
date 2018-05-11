@@ -66,8 +66,9 @@ class ProdutoSaida extends Model
         return Carbon::parse($value)->format('d/m/Y - h:i');
     }
 
-    public function getValidadeAttribute($validade)
+    public function getValidadeSaidaAttribute()
     {
+        $validade = $this->attributes['validade'];
         return Carbon::parse($validade)->format('d/m/Y');
     }
 

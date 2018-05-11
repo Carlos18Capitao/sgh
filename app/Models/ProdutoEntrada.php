@@ -74,7 +74,7 @@ class ProdutoEntrada extends Model
 
     public function getValidadeDiasAttribute()
     {
-        $val = $this->attributes['validade'];
+       // $val = $this->attributes['validade'];
         $hoje = Carbon::now('America/Sao_Paulo');
         return Carbon::parse($hoje)->format('d/m/Y');
        // return $hoje;

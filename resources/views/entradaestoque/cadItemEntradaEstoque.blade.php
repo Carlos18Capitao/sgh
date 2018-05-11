@@ -170,7 +170,6 @@
                                         <div class="form-group">
 {{--                                                {!! Form::label('qtd', 'Quantidade Total:'); !!}--}}
 {{--                                                {!! Form::number('qtde', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}--}}
-                                            <br><br>
                                                 @foreach($estoques as $estoque)
                                                     @if($estoque->lote == '1')
                                                         {{--<button class="add_field_button">Adicionar Lotes</button><br><br>--}}

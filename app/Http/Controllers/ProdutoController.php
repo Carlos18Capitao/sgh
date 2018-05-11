@@ -213,4 +213,15 @@ class ProdutoController extends Controller
             ->download('posicaoestoque.pdf');
 //            ->stream();
     }
+
+    public function relposicaoestoquesemzero($estoque_id)
+    {
+        $estoques   = Estoque::with('produto')
+                                    ->where('id','=',$estoque_id)
+                                    ->sortable(['produto' => 'asc'])->get();
+        $title      = 'Posição de Estoque - Itens com Saldo';
+
+        return view('produto.relPosicaoEstoqueSemZero', compact('title', 'estoques','estoque_id','produtos'));
+    }
+
 }

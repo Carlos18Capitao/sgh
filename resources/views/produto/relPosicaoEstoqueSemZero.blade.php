@@ -39,7 +39,8 @@
            @else
         @endif
     @endforeach
-    <div align="right"><b><a href="{{ route('relposicaoestoquesemzero',$estoque_id) }}">Exibir apenas itens com saldo</a></b></div>
+    <div align = "right"><b><a href="{{ route('relposicaoestoque',$estoque_id) }}">Exibir todos os itens</a></b></div>
+
     {{--@shield('produto.cadastrar')--}}
     {{--<a href="{{ route('produto.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>--}}
     {{--@endshield--}}
@@ -58,6 +59,7 @@
         @foreach ($estoques as $estoque)
 
           @foreach ($estoque->produto as $produto)
+            @if(($produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd')) > 0)
             <tbody>
             <td>{{ $produto->categoria->descricao  }}</td>
             <td>{{ $produto->codigo }}</td>
@@ -101,6 +103,7 @@
                     {{--</div>--}}
                 {{--</td>--}}
             </tbody>
+            @endif
           @endforeach
 
         @endforeach

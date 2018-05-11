@@ -58,6 +58,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
         Route::get('/{id}/relposicaoestoque', 'ProdutoController@relposicaoestoque')->name('relposicaoestoque');
         Route::get('/{id}/relposicaoestoquesemzero', 'ProdutoController@relposicaoestoquesemzero')->name('relposicaoestoquesemzero');
         Route::get('/{id}/pdfposicaoestoque', 'ProdutoController@pdfposicaoestoque')->name('pdfposicaoestoque');
+        Route::get('/{id}/pdfposicaoestoquesemzero', 'ProdutoController@pdfposicaoestoquesemzero')->name('pdfposicaoestoquesemzero');
         Route::get('/{id}/reldemandaestoque', 'EstoqueController@reldemandaestoque')->name('reldemandaestoque');
 
         Route::get('/{id}/entradaestoque', ['as' => 'estoque.entradaestoque','uses' => 'ProdutoEntradaController@index']);

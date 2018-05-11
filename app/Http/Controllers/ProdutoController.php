@@ -224,4 +224,23 @@ class ProdutoController extends Controller
         return view('produto.relPosicaoEstoqueSemZero', compact('title', 'estoques','estoque_id','produtos'));
     }
 
+    public function pdfposicaoestoquesemzero($estoque_id)
+    {
+        set_time_limit(0);
+
+        $estoques   = Estoque::with('produto')
+            ->where('id','=',$estoque_id)->get();
+//            ->sortable(['produto' => 'asc'])->get();
+
+        $title      = 'Posição de Estoque - Itens com Saldo';
+        $est        = Estoque::where('id','=',$estoque_id)->get();
+//        return view('produto.relPosicaoEstoque', compact('title', 'estoques','estoque_id','produtos'));
+
+        return \PDF::loadView('produto.pdfPosicaoEstoqueSemZero', compact('title', 'estoques','estoque_id','produtos','est'))
+            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+//            ->setPaper('a4', 'landscape')
+            ->download('posicaoestoquecomsaldo.pdf');
+//            ->stream();
+    }
+
 }

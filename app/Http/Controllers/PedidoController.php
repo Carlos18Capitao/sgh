@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estoque;
+use App\Models\Lotes;
 use App\Models\Pedido;
 use App\Models\Produto;
 use App\Models\ProdutoSaida;
@@ -161,9 +162,30 @@ class PedidoController extends Controller
     public function selectAjax(Request $request)
     {
         if($request->ajax()){
-//            $lotes = DB::table('lotes')->where('produto_id',$request->produto_id)->where('qtd','>',0)->all();
-            $lotes = DB::table('lotes')->where('produto_id',$request->produto_id)->where('qtd','<>',0)->pluck("qtd","lote")->all();
+            $lotes = Lotes::select(
+                DB::raw("concat(lote, ' Val: ', date_format(validade, '%d/%m/%Y'), ' Saldo: ', qtd) as lotes, lote"))
+                ->where('produto_id',$request->produto_id)
+                ->where('qtd','<>',0)
+                ->pluck('lotes','lote')
+                ->all();
+
+//            $lotes = DB::table('lotes')->where('produto_id',$request->produto_id)->where('qtd','<>',0)->pluck("qtd","lote")->all();
             $data = view('pedidoestoque.ajax-select',compact('lotes'))->render();
+            return response()->json(['options'=>$data]);
+        }
+    }
+
+    public function selectValidade(Request $request)
+    {
+        if($request->ajax()){
+            $validades = Lotes::select(
+                DB::raw("date_format(validade, '%d/%m/%Y') as val, validade"))
+                ->where('lote',$request->lote)
+                ->pluck('val','validade')
+                ->all();
+
+//            $lotes = DB::table('lotes')->where('produto_id',$request->produto_id)->where('qtd','<>',0)->pluck("qtd","lote")->all();
+            $data = view('pedidoestoque.select-validade',compact('validades'))->render();
             return response()->json(['options'=>$data]);
         }
     }

@@ -96,4 +96,5 @@ class EntradaController extends Controller
         else
             return redirect()->route('entrada.index')->with(['errors' => 'Falha ao editar']);
     }
+
 }

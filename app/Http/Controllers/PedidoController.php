@@ -9,8 +9,10 @@ use App\Models\ProdutoSaida;
 use App\Models\Setor;
 use Illuminate\Http\Request;
 use App\Http\Requests\PedidoFormRequest;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use DB;
+
 
 class PedidoController extends Controller
 {
@@ -58,9 +60,9 @@ class PedidoController extends Controller
         $pedido = Pedido::find($id);
         $produtosaidas = ProdutoSaida::where('pedido_id','=',$id)->get();
         $title = 'Adicionar Produtos ao Pedido';
-        $produtos = Produto::all();
+//        $produtos = Produto::all();
         $estoques = Estoque::with('produto')->where('id','=',$pedido->estoque_id)->get();
-
+        $produtos = DB::table('produtos')->pluck("produto","id")->all();
 
         return view('pedidoestoque.cadItemPedidoEstoque', compact('title','produtos','pedido','produtosaidas','estoques'));
 
@@ -154,5 +156,15 @@ class PedidoController extends Controller
         $setors = Setor::all()->sortBy('setor');
 
         return view('pedidoestoque.relNegados', compact('title', 'negados','estoque_id','setors','setor_id'));
+    }
+
+    public function selectAjax(Request $request)
+    {
+        if($request->ajax()){
+//            $lotes = DB::table('lotes')->where('produto_id',$request->produto_id)->where('qtd','>',0)->all();
+            $lotes = DB::table('lotes')->where('produto_id',$request->produto_id)->where('qtd','<>',0)->pluck("qtd","lote")->all();
+            $data = view('pedidoestoque.ajax-select',compact('lotes'))->render();
+            return response()->json(['options'=>$data]);
+        }
     }
 }

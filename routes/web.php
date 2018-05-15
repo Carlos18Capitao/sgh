@@ -59,6 +59,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
         Route::get('/{id}/relposicaoestoquesemzero', 'ProdutoController@relposicaoestoquesemzero')->name('relposicaoestoquesemzero');
         Route::get('/{id}/pdfposicaoestoque', 'ProdutoController@pdfposicaoestoque')->name('pdfposicaoestoque');
         Route::get('/{id}/pdfposicaoestoquesemzero', 'ProdutoController@pdfposicaoestoquesemzero')->name('pdfposicaoestoquesemzero');
+
         Route::get('/{id}/reldemandaestoque', 'EstoqueController@reldemandaestoque')->name('reldemandaestoque');
         Route::any('/{id}/relLoteValidade', 'EstoqueController@relLoteValidade')->name('relLoteValidade');
 
@@ -71,6 +72,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
         Route::get('/{estoque_id}/pedido', ['as' => 'estoque.pedido','uses' => 'PedidoController@index']);
         Route::get('/pedido/{estoque_id}/create', 'PedidoController@create')->name('pedidoestoque');
         Route::any('/{estoque_id}/negados', 'PedidoController@negados')->name('negados');
+        Route::post('/pedido/select-ajax', ['as'=>'select-ajax','uses'=>'PedidoController@selectAjax']);
 
         Route::get('/{id}/recibopedidoestoque', 'PedidoController@recibopedidoestoque')->name('recibopedidoestoque');
 
@@ -81,6 +83,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
         Route::resource('/entrada', 'EntradaController');
         Route::get('/{estoque_id}/entrada', ['as' => 'estoque.entrada','uses' => 'EntradaController@index']);
         Route::get('/entrada/{estoque_id}/create', 'EntradaController@create')->name('entrarnf');
+
 //        Route::get('/{id}/entrar', ['as' => 'estoque.entrar','uses' => 'PedidoController@index']);
 
         Route::post('/{id}/userstore', ['as' => 'estoque.userstore','uses' => 'EstoqueController@userstore']);

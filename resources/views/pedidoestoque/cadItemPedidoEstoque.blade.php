@@ -159,9 +159,12 @@
                                         </select>
 
                                 </div>
+
                                 <div class="form-group form-inline">
                                 {!! Form::label('lote', 'Lote:'); !!}
-                                {!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Lote','tabindex'=>'3']) !!}
+                                    {!! Form::select('lote',[''=>'Selecione o Lote'],null,['class'=>'form-control']) !!}
+
+{{--                                {!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Lote','tabindex'=>'3']) !!}--}}
 
                                 {!! Form::label('validade', 'Validade:'); !!}
                                 {!! Form::date('validade', null, ['class' => 'form-control','tabindex'=>'4']) !!}
@@ -182,6 +185,60 @@
                 </div>
             </div>
     {!! Form::close() !!}
+
+
+
+            {{--TESTE--}}
+
+            {{--<div class="form-group">--}}
+                {{--{!!  Form::hidden('pedido_id', $pedido->id) !!}--}}
+                {{--{!!  Form::hidden('setor_id', $pedido->setor_id) !!}--}}
+
+                {{--{!! Form::hidden('created_by',Auth::user()->id) !!}--}}
+                {{--{!! Form::hidden('estoque_id',$pedido->estoque_id) !!}--}}
+            {{--</div>--}}
+            {{--<div class="form-group">--}}
+                {{--{!! Form::label('produto', 'Produto:'); !!} <br>--}}
+
+
+                {{--<select style="width: 100%" class="js-produto" id="js-produto" name="produto_id" tabindex="1">--}}
+                    {{--<option selected="selected" value="">Selecione um produto...</option>--}}
+                    {{--@foreach($estoques as $estoque)--}}
+                        {{--@foreach ($estoque->produto as $produto)--}}
+                            {{--@if( $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') >= 0)--}}
+                                {{--<option value="{{ $produto->id }}">--}}
+                                    {{--{{ $produto->produto . ' - ' . $produto->unidade }} @if($produto->codigo != 0)  {{ '(Cód: ' . $produto->codigo . ')' }} @endif - Saldo: {{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}--}}
+                                {{--</option>--}}
+                            {{--@endif--}}
+                        {{--@endforeach--}}
+                    {{--@endforeach--}}
+                {{--</select>--}}
+
+            {{--</div>--}}
+            {{--<div class="form-group">--}}
+                {{--<label>Select Country:</label>--}}
+                {{--{!! Form::select('produto_id',[''=>'--- Select Produto ---']+$produtos,null,['class'=>'form-control']) !!}--}}
+            {{--</div>--}}
+            {{--<div class="form-group">--}}
+                {{--<label>Select Lote:</label>--}}
+                {{--{!! Form::select('lote_id',[''=>'--- Select Lote ---'],null,['class'=>'form-control']) !!}--}}
+            {{--</div>--}}
+            {{--<div class="form-group form-inline">--}}
+                {{--{!! Form::label('lote', 'Lote:'); !!}--}}
+                {{--{!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Lote','tabindex'=>'3']) !!}--}}
+
+                {{--{!! Form::label('validade', 'Validade:'); !!}--}}
+                {{--{!! Form::date('validade', null, ['class' => 'form-control','tabindex'=>'4']) !!}--}}
+
+                {{--{!! Form::label('qtd', 'Quantidade:'); !!}--}}
+                {{--{!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'5']) !!}--}}
+            {{--</div>--}}
+            {{--<div class="form-group">--}}
+                {{--{!! Form::label('obs', 'Obs:'); !!}--}}
+                {{--{!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações','tabindex'=>'6']) !!}--}}
+            {{--</div>--}}
+
+            {{--TESTE--}}
 @endsection
 
 @section('js')
@@ -191,5 +248,20 @@
                     dropdownParent: $('#myModalCadastrar')
                 });
            });
+        </script>
+        <script type="text/javascript">
+            $("select[name='produto_id']").change(function(){
+                var produto_id = $(this).val();
+                var token = $("input[name='_token']").val();
+                $.ajax({
+                    url: "<?php echo route('select-ajax') ?>",
+                    method: 'POST',
+                    data: {produto_id:produto_id, _token:token},
+                    success: function(data) {
+                        $("select[name='lote'").html('');
+                        $("select[name='lote'").html(data.options);
+                    }
+                });
+            });
         </script>
 @endsection

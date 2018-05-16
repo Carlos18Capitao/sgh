@@ -159,9 +159,11 @@
                                         </select>
 
                                 </div>
-
                                 <div class="form-group form-inline">
-                                {!! Form::label('lote', 'Lote:'); !!}
+                                    {{--    @foreach ($estoques as $estoque)
+                                    @if($estoque->lote == 1)
+                                    --}}
+                                    {!! Form::label('lote', 'Lote:'); !!}
                                     {!! Form::select('lote',[''=>'Selecione o Lote'],null,['class'=>'form-control']) !!}
 
                                     {!! Form::label('validade', 'Validade:'); !!}
@@ -169,8 +171,10 @@
 {{--                                {!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Lote','tabindex'=>'3']) !!}--}}
 
 {{--                                {!! Form::label('validade', 'Validade:'); !!}--}}
-{{--                                {!! Form::date('validade', null, ['class' => 'form-control','tabindex'=>'4']) !!}--}}
-
+{{--                                {!! Form::date('validade', null, ['class' => 'form-control','tabindex'=>'4']) !!}
+                                @endif
+                                @endforeach 
+                                --}}
                                 {!! Form::label('qtd', 'Quantidade:'); !!}
                                 {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'5']) !!}
                             </div>

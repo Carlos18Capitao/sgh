@@ -130,53 +130,44 @@
                             <h4 class="modal-title" id="myModalLabel">Adicionar Produtos</h4>
                         </div>
                         <div class="modal-body">
-                            {{--@if (isset($produtoentradas))--}}
-                                {{--{!! Form::model($produtoentradas, ['route' => ['entrada.update', $produtoentradas->id], 'class' => 'Form', 'method' => 'PUT']) !!}--}}
-                                {{--{!! Form::hidden('updated_by',Auth::user()->id) !!}--}}
-                            {{--@else--}}
-                                {{--{!! Form::open(['route' => 'entrada.store', 'class' => 'form']) !!}--}}
-                                {{--{!! Form::hidden('created_by',Auth::user()->id) !!}--}}
-                            {{--@endif--}}
+
                             {!! Form::hidden('estoque_id',$entrada->estoque_id) !!}
                             {!! Form::hidden('entrada_id',$entrada->id) !!}
 
                                 <div class="form-group">
                                     {!! Form::label('produto', 'Produto:'); !!}
 
-{{--                                    @if (isset($produtoentradas))--}}
-{{--                                        {!! Form::select('produto_id', $produtoentradas->produto->pluck('produto','id'), null, ['class' => 'js-produto form-control','placeholder' => 'Selecione um produto...']) !!}--}}
-                                    {{--@else--}}
-                                        {{-- {!! Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' =>'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!} --}}
-                                        {{--<select class="js-produto form-control" name="produto_id">--}}
                                     <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id">
                                     <option selected="selected" value="">Selecione um produto...</option>
                                             @foreach($produtos as $produto)
                                                 @foreach($produto->estoque as $estoque)
                                                     @if($estoque->id == $entrada->estoque_id)
-                                                        {{-- nnnnn @if( $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') > 0) --}}
                                                         <option value="{{ $produto->id }}">
                                                             {{ $produto->produto . ' - ' . $produto->unidade  }} @if($produto->codigo != 0)  {{ '(Cód: ' . $produto->codigo . ')' }} @endif
                                                         </option>
-                                                        {{-- @endif --}}
                                                     @endif
                                                 @endforeach
                                             @endforeach
                                         </select>
-                                    {{--@endif--}}
                                 </div>
                                 
                                 <div class="form-group form-inline">
 
                                         <div class="form-group">
-{{--                                                {!! Form::label('qtd', 'Quantidade Total:'); !!}--}}
-{{--                                                {!! Form::number('qtde', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}--}}
-                                                @foreach($estoques as $estoque)
-                                                    @if($estoque->lote == '1')
-                                                        {{--<button class="add_field_button">Adicionar Lotes</button><br><br>--}}
-                                                    <div class="input_fields_wrap">
+
+                                                
+                                                    {{--
+                                                        @foreach($estoques as $estoque)
+                                                @if($estoque->lote == '0')
+                                                {!! Form::label('qtd', 'Quantidade Total:'); !!}
+                                                {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade']) !!}
+                                                @else
+                                                    <button class="add_field_button">Adicionar Lotes</button><br><br>
+                                                    <div class="input_fields_wrap"> --}}
                                                         <b>Lote:</b> <input type="text" name="lote" class="form-control">
                                                         <b>Validade:</b> <input type="date" name="validade" class="form-control">
                                                         <b>Qtd:</b> <input type="number" name="qtd" class="form-control"><br>
+                                                        {{--
                                                     </div>
                                                     {{--<div class="input_fields_wrap">--}}
                                                         {{--<b>Lote:</b> <input type="text" name="lote[]" class="form-control">--}}
@@ -187,12 +178,15 @@
                                                         {{--<b>Lote:</b> <input type="text" name="lote[]" class="form-control">--}}
                                                         {{--<b>Validade:</b> <input type="date" name="validade[]" class="form-control">--}}
                                                         {{--<b>Qtd:</b> <input type="number" name="qtde[]" class="form-control"> <a href="#" class="remove_field">Excluir</a><br>--}}
-                                                    {{--</div>--}}
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                            <br><br>
 
+                                                    {{--</div>
+                                                          @endif
+                                            @endforeach
+                                                        
+                                                        --}}
+                                              
+                                        </div>
+                                            <br><br>
                         </div>
                                     
                                     <div class="form-group">
@@ -218,8 +212,8 @@
                     dropdownParent: $('#myModalCadastrar')
                 });
            });
- 
-        $(document).ready(function() {
+
+/*        $(document).ready(function() {
     var max_fields      = 11; //maximum input boxes allowed
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper
     var add_button      = $(".add_field_button"); //Add button ID
@@ -236,5 +230,6 @@
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
 });
+*/
         </script>
 @endsection

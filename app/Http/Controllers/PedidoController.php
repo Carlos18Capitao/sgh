@@ -163,9 +163,9 @@ class PedidoController extends Controller
     {
         if($request->ajax()){
             $lotes = Lotes::select(
-                DB::raw("concat(lote, ' Val: ', date_format(validade, '%d/%m/%Y'), ' Saldo: ', qtd) as lotes, lote"))
-                ->where('produto_id',$request->produto_id)
-                ->where('qtd','<>',0)
+                DB::raw("concat(lote, ' (Saldo: ', qtd, ')') as lotes, lote"))
+                ->where([['produto_id',$request->produto_id],['qtd','>',0],['lote', '<>','null']])
+//                ->where('qtd','>',0)
                 ->pluck('lotes','lote')
                 ->all();
 

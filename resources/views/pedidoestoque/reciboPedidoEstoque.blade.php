@@ -65,6 +65,7 @@
             <th align="center"><font size="1"> Produto </font></th>
             <th align="center"><font size="1"> Unidade </font></th>
             <th align="center"><font size="1"> Lote </font></th>
+            <th align="center"><font size="1"> Validade </font></th>
             <th align="center"><font size="1"> Qtd </font></th>
         </tr>
         </thead>
@@ -74,7 +75,8 @@
                 <td align="center"><font size="1">{{ $produtosaida->produto->codigo  }}</font></td>
                 <td><font size="1">{{ $produtosaida->produto->produto }}</font></td>
                 <td><font size="1">{{ $produtosaida->produto->unidade }}</font></td>
-                <td align="center"><font size="1">{{ $produtosaida->obs  }}</font></td>
+                <td align="center"><font size="1">{{ $produtosaida->lote  }}</font></td>
+                <td align="center"><font size="1">{{ $produtosaida->validade  }}</font></td>
                 <td align="center"><font size="1">{{ $produtosaida->qtd }}</font></td>
             </tr>
          </tbody>

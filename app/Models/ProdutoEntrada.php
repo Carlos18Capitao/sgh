@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
+use GiordanoLima\DecimalMutators\DecimalMutators;
 
 class ProdutoEntrada extends Model
 {
@@ -17,6 +18,7 @@ class ProdutoEntrada extends Model
     }
 
 //    use SoftDeletes, Sortable;
+    use DecimalMutators;
     use Sortable;
 
     protected $dates = ['deleted_at'];
@@ -30,10 +32,18 @@ class ProdutoEntrada extends Model
                         'estoque_id',
                         'lote',
                         'validade',
-                        'entrada_id'
+                        'entrada_id',
+                        'preco'
                         ];
 
     public $sortable = ['produto_id','qtd','obs','created_at','lote','validade'];
+
+    protected $decimalsFields = [
+        'preco'
+    ];
+    protected $decimalsOptions = [
+        "decimals" => 4,
+    ];
 
     public function produto()
     {
@@ -81,4 +91,5 @@ class ProdutoEntrada extends Model
       //  echo $dt->diffInDays($dt->copy()->subMonth(), false); 
       //  echo Carbon::now('America/Vancouver')->diffInSeconds(Carbon::now('Europe/London')); // 0
     }
+
 }

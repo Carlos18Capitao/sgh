@@ -36,41 +36,91 @@
     <br><br>
 
     <div class="form-group form-inline">
-        {!! Form::label('id', 'ID:'); !!}
-        {!! Form::text('id',$entrada->id,['class'=>'form-control','disabled']) !!}
+      {{--  {!! Form::label('id', 'ID:'); !!}
+        {!! Form::text('id',$entrada->id,['class'=>'form-control','disabled']) !!}--}}
 
         {!! Form::label('estoque', 'Estoque:'); !!}
         {!! Form::text('estoque',$entrada->estoque->descricao,['class'=>'form-control','disabled']) !!}
-    </div>
 
-    <div class="form-group form-inline">
         {!! Form::label('dataentrada', 'Data da Entrada:'); !!}
         {!! Form::text('dataentrada', $entrada->dataentrada, ['class' => 'form-control','disabled']) !!}
-
 
         {!! Form::label('empresa', 'Fornecedor:'); !!}
         {!! Form::text('empresa_id', $entrada->empresa->nome, ['class' => 'form-control','disabled']) !!}
 
         {!! Form::label('numeroentrada', 'Nº Documento:'); !!}
         {!! Form::text('numeroentrada',$entrada->numeroentrada,['class'=>'form-control','disabled']) !!}
-
     </div>
 
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCadastrar">
+    {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCadastrar">
         <span class="glyphicon glyphicon-plus"></span> Adicionar Produtos
     </button>
+    --}}
     <a class = "btn btn-success" title="CONCLUIR" href="{{ route('estoque.entrada',$entrada->estoque_id)}}"><span class="glyphicon glyphicon-ok"> </span> CONCLUIR</a> <br><br>
 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Adicionar Produtos</h3>
+        </div>
+        <div class="panel-body">
+          
+                {!! Form::open(['route' => 'entradaestoque.store', 'class' => 'form']) !!}
+                {!! Form::hidden('created_by',Auth::user()->id) !!}
+                {!! Form::hidden('estoque_id',$entrada->estoque_id) !!}
+                {!! Form::hidden('entrada_id',$entrada->id) !!}
+
+                                <div class="form-group">
+                                    {!! Form::label('produto', 'Produto:'); !!}
+
+                                    <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id">
+                                    <option selected="selected" value="">Selecione um produto...</option>
+                                            @foreach($produtos as $produto)
+                                                @foreach($produto->estoque as $estoque)
+                                                    @if($estoque->id == $entrada->estoque_id)
+                                                        <option value="{{ $produto->id }}">
+                                                            {{ $produto->produto . ' - ' . $produto->unidade  }} @if($produto->codigo != 0)  {{ '(Cód: ' . $produto->codigo . ')' }} @endif
+                                                        </option>
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
+                                        </select>
+                                </div>
+                                
+                                <div class="form-group form-inline">
+                                        <div class="form-group">
+
+                                            <b>Lote:</b> <input type="text" name="lote" class="form-control">
+                                            <b>Validade:</b> <input type="date" name="validade" class="form-control">
+                                            <b>Qtd:</b> <input type="number" name="qtd" class="form-control">
+                                            <b>Valor Unitário:</b> <input type="text" name="preco" class="form-control">
+                                            {!! Form::label('obs', 'Observação:'); !!}
+                                            {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
+                                            <button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"> </span> Adicionar</button>
+                                        </div>
+                                </div>
+                                    
+    {!! Form::close() !!}
+
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Itens da Nota</h3>
+            </div>
+            <div class="panel-body">
     <table class="table table-striped">
         <thead>
         <tr>
             <th>@sortablelink('codigo','Código')</th>
             <th>@sortablelink('produto.produto','Produto')</th>
-            <th>Unidade</th>
+           {{-- <th>Unidade</th> --}}
             <th>Lote</th>
             <th>Validade</th>
             <th>@sortablelink('qtd','Qtd')</th>
+            <th>Preço</th>
+            <th>Valor Total</th>
             <th>@sortablelink('obs','Observação')</th>
             <th width="100px">Ações</th>
         </tr>
@@ -78,11 +128,13 @@
         @foreach ($produtoentradas as $produtoentrada)
             <tbody>
             <td>{{ $produtoentrada->produto->codigo }}</td>
-            <td><a href="{{ route('produto.show',$produtoentrada->produto->id) }}">{{ $produtoentrada->produto->produto }}</a></td>
-            <td>{{ $produtoentrada->produto->unidade }}</td>
+            <td><a href="{{ route('produto.show',$produtoentrada->produto->id) }}">{{ $produtoentrada->produto->produto . ' - ' . $produtoentrada->produto->unidade}}</a></td>
+          {{--  <td>{{ $produtoentrada->produto->unidade }}</td> --}}
             <td>{{ $produtoentrada->lote }}</td>
             <td>{{ $produtoentrada->validade }} {{-- $produtoentrada->validade_dias --}}</td>
             <td>{{ $produtoentrada->qtd }}</td>
+            <td>{{ 'R$ ' . $produtoentrada->preco }}</td>
+            <td>{{ 'R$ ' . number_format($produtoentrada->getOriginal('preco') * $produtoentrada->qtd, 2,',','.') }}</td>            
             <td>{{ $produtoentrada->obs  }}</td>
             <td>
                     <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$produtoentrada->id}}">
@@ -115,10 +167,13 @@
                     </div>
                     <!-- Modal EXCLUIR-->
             </td>
+        </div>
+    </div>
         @endforeach
 
 
             <!-- Modal CADASTRAR-->
+            {{--TESTE
             <div class="modal fade" id="myModalCadastrar" tabindex="-1" role="dialog" aria-labelledby="myModalCadastrar">
                 {!! Form::open(['route' => 'entradaestoque.store', 'class' => 'form']) !!}
                 {!! Form::hidden('created_by',Auth::user()->id) !!}
@@ -154,7 +209,7 @@
                                 <div class="form-group form-inline">
 
                                         <div class="form-group">
-
+--}}
                                                 
                                                     {{--
                                                         @foreach($estoques as $estoque)
@@ -164,9 +219,12 @@
                                                 @else
                                                     <button class="add_field_button">Adicionar Lotes</button><br><br>
                                                     <div class="input_fields_wrap"> --}}
+{{--TESTE
                                                         <b>Lote:</b> <input type="text" name="lote" class="form-control">
                                                         <b>Validade:</b> <input type="date" name="validade" class="form-control">
-                                                        <b>Qtd:</b> <input type="number" name="qtd" class="form-control"><br>
+                                                        <b>Qtd:</b> <input type="number" name="qtd" class="form-control">
+                                                        <b>Preço:</b> <input type="text" name="preco" class="form-control"><br>
+--}}
                                                         {{--
                                                     </div>
                                                     {{--<div class="input_fields_wrap">--}}
@@ -184,6 +242,8 @@
                                             @endforeach
                                                         
                                                         --}}
+
+                                                        {{--TESTE
                                               
                                         </div>
                                             <br><br>
@@ -202,17 +262,20 @@
                     </div>
                 </div>
             </div>
-    {!! Form::close() !!}
+    {!! Form::close() !!} --}}
 @endsection
 
 @section('js')
         <script>
-           $(document).ready(function() {
+       /*    $(document).ready(function() {
                 $('#js-produto').select2({
                     dropdownParent: $('#myModalCadastrar')
                 });
            });
-
+           */
+           $(document).ready(function() {
+            $('.js-produto').select2();
+        });
 /*        $(document).ready(function() {
     var max_fields      = 11; //maximum input boxes allowed
     var wrapper         = $(".input_fields_wrap"); //Fields wrapper

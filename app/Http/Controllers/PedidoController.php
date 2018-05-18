@@ -60,7 +60,7 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::find($id);
         $produtosaidas = ProdutoSaida::where('pedido_id','=',$id)->get();
-        $title = 'Adicionar Produtos ao Pedido';
+        $title = 'Saída de Produtos';
 //        $produtos = Produto::all();
         $estoques = Estoque::with('produto')->where('id','=',$pedido->estoque_id)->get();
         $produtos = DB::table('produtos')->pluck("produto","id")->all();

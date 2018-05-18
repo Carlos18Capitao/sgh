@@ -33,20 +33,18 @@
         {{--@else--}}
         {{--@endif--}}
     {{--@endforeach--}}
-    <br><br>
+    <br>
 
     <div class="form-group form-inline">
+            {{--
         {!! Form::label('id', 'ID:'); !!}
         {!! Form::text('id',$pedido->id,['class'=>'form-control','disabled']) !!}
-
+            --}}
         {!! Form::label('estoque', 'Estoque:'); !!}
         {!! Form::text('estoque',$pedido->estoque->descricao,['class'=>'form-control','disabled']) !!}
-    </div>
 
-    <div class="form-group form-inline">
         {!! Form::label('datapedido', 'Data do Pedido:'); !!}
         {!! Form::text('datapedido', $pedido->datapedido, ['class' => 'form-control','disabled']) !!}
-
 
         {!! Form::label('setor', 'Destino:'); !!}
     @if($pedido->tipopedido == 'unidade')
@@ -57,14 +55,67 @@
         {!! Form::label('requisicao', 'Nº Requisição:'); !!}
         {!! Form::text('requisicao',$pedido->requisicao,['class'=>'form-control','disabled']) !!}
 
+    <a class = "btn btn-success" title="CONCLUIR" href="{{ route('estoque.pedido',$pedido->estoque_id)}}"><span class="glyphicon glyphicon-ok"> </span> CONCLUIR</a> <br><br>
+                
     </div>
 
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCadastrar">
+    {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCadastrar">
         <span class="glyphicon glyphicon-plus"></span> Adicionar Produtos
-    </button>
-    <a class = "btn btn-success" title="CONCLUIR" href="{{ route('estoque.pedido',$pedido->estoque_id)}}"><span class="glyphicon glyphicon-ok"> </span> CONCLUIR</a> <br><br>
+    </button> --}}
 
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Adicionar Produtos ao Pedido</h3>
+        </div>
+        <div class="panel-body">
+
+            {!! Form::open(['route' => 'saida.store', 'class' => 'form']) !!}
+                                {!!  Form::hidden('pedido_id', $pedido->id) !!}
+                                {!!  Form::hidden('setor_id', $pedido->setor_id) !!}
+
+                                {!! Form::hidden('created_by',Auth::user()->id) !!}
+                                {!! Form::hidden('estoque_id',$pedido->estoque_id) !!}
+                            <div class="form-group">
+                                {!! Form::label('produto', 'Produto:'); !!}
+                                    <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id" tabindex="1">
+                                        <option selected="selected" value="">Selecione um produto...</option>
+                                        @foreach($estoques as $estoque)
+                                            @foreach ($estoque->produto as $produto)
+                                                @if( $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') >= 0)
+                                                    <option value="{{ $produto->id }}">
+                                                        {{ $produto->produto . ' - ' . $produto->unidade }} @if($produto->codigo != 0)  {{ '(Cód: ' . $produto->codigo . ')' }} @endif - Saldo: {{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                    </select>
+                            </div>
+                            <div class="form-group form-inline">
+                                {!! Form::label('lote', 'Lote:'); !!}
+                                {!! Form::select('lote',[''=>'Selecione o Lote'],null,['class'=>'form-control']) !!}
+
+                                {!! Form::label('validade', 'Validade:'); !!}
+                                {!! Form::select('validade',[''=>'Selecione Validade'],null,['class'=>'form-control']) !!}
+        
+                                {!! Form::label('qtd', 'Quantidade:'); !!}
+                                {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'5']) !!}
+
+                                {!! Form::label('obs', 'Obs:'); !!}
+                                {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações','tabindex'=>'6']) !!}
+        
+                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"> </span> Adicionar</button>
+                            </div>
+        {!! Form::close() !!}
+
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Itens do Pedido</h3>
+            </div>
+            <div class="panel-body">
     <table class="table table-striped">
         <thead>
         <tr>
@@ -119,11 +170,14 @@
                         </div>
                     </div>
                 </td>
+            </tbody>
+            </div>
+    </div>
         @endforeach
 
-
+ 
             <!-- Modal CADASTRAR-->
-            <div class="modal fade" id="myModalCadastrar" tabindex="-1" role="dialog" aria-labelledby="myModalCadastrar">
+       {{--TESTE     <div class="modal fade" id="myModalCadastrar" tabindex="-1" role="dialog" aria-labelledby="myModalCadastrar">
                 {!! Form::open(['route' => 'saida.store', 'class' => 'form']) !!}
 
                 <div class="modal-dialog modal-lg" role="document">
@@ -143,9 +197,9 @@
                                 <div class="form-group">
                                     {!! Form::label('produto', 'Produto:'); !!} <br>
 
-
+--}}
                                         {{--  {!!Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' => 'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!}--}}
-                                        <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id" tabindex="1">
+      {{--                                  <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id" tabindex="1">
                                             <option selected="selected" value="">Selecione um produto...</option>
                                             @foreach($estoques as $estoque)
                                                 @foreach ($estoque->produto as $produto)
@@ -160,14 +214,16 @@
 
                                 </div>
                                 <div class="form-group form-inline">
+                                    --}}
                                     {{--    @foreach ($estoques as $estoque)
                                     @if($estoque->lote == 1)
                                     --}}
-                                    {!! Form::label('lote', 'Lote:'); !!}
+ {{--TESTE                                   {!! Form::label('lote', 'Lote:'); !!}
                                     {!! Form::select('lote',[''=>'Selecione o Lote'],null,['class'=>'form-control']) !!}
 
                                     {!! Form::label('validade', 'Validade:'); !!}
                                     {!! Form::select('validade',[''=>'Selecione Validade'],null,['class'=>'form-control']) !!}
+                                    --}}
 {{--                                {!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Lote','tabindex'=>'3']) !!}--}}
 
 {{--                                {!! Form::label('validade', 'Validade:'); !!}--}}
@@ -175,7 +231,7 @@
                                 @endif
                                 @endforeach 
                                 --}}
-                                {!! Form::label('qtd', 'Quantidade:'); !!}
+ {{--TESTE                               {!! Form::label('qtd', 'Quantidade:'); !!}
                                 {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'5']) !!}
                             </div>
                                 <div class="form-group">
@@ -191,16 +247,19 @@
                 </div>
             </div>
     {!! Form::close() !!}
-
+--}}
 @endsection
 
 @section('js')
         <script>
-           $(document).ready(function() {
+            $(document).ready(function() {
+                $('.js-produto').select2();
+            });
+          /* $(document).ready(function() {
                 $('#js-produto').select2({
                     dropdownParent: $('#myModalCadastrar')
                 });
-           });
+           }); */
         </script>
         <script type="text/javascript">
             $("select[name='produto_id']").change(function(){

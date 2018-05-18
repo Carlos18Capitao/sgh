@@ -59,7 +59,7 @@ class PedidoController extends Controller
     public function show($id)
     {
         $pedido = Pedido::find($id);
-        $produtosaidas = ProdutoSaida::where('pedido_id','=',$id)->get();
+        $produtosaidas = ProdutoSaida::where('pedido_id','=',$id)->orderBy('id','desc')->get();
         $title = 'Saída de Produtos';
 //        $produtos = Produto::all();
         $estoques = Estoque::with('produto')->where('id','=',$pedido->estoque_id)->get();

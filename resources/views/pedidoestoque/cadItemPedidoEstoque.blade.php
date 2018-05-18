@@ -101,10 +101,10 @@
                                 {!! Form::label('qtd', 'Quantidade:'); !!}
                                 {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'5']) !!}
 
+                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"> </span> Adicionar</button>
+                                
                                 {!! Form::label('obs', 'Obs:'); !!}
                                 {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações','tabindex'=>'6']) !!}
-        
-                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"> </span> Adicionar</button>
                             </div>
         {!! Form::close() !!}
 

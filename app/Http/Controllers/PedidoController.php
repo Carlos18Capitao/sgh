@@ -64,8 +64,9 @@ class PedidoController extends Controller
 //        $produtos = Produto::all();
         $estoques = Estoque::with('produto')->where('id','=',$pedido->estoque_id)->get();
         $produtos = DB::table('produtos')->pluck("produto","id")->all();
+        $list = count($produtosaidas);
 
-        return view('pedidoestoque.cadItemPedidoEstoque', compact('title','produtos','pedido','produtosaidas','estoques'));
+        return view('pedidoestoque.cadItemPedidoEstoque', compact('title','produtos','pedido','produtosaidas','estoques','list'));
 
     }
 

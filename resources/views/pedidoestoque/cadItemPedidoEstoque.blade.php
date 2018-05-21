@@ -110,7 +110,6 @@
 
         </div>
     </div>
-
     <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Itens do Pedido</h3>
@@ -119,6 +118,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>#</th>
             <th>@sortablelink('codigo','Código')</th>
             <th>@sortablelink('produto.produto','Produto')</th>
             <th>Unidade</th>
@@ -130,13 +130,14 @@
         </thead>
         @foreach ($produtosaidas as $produtosaida)
             <tbody>
-            <td>{{ $produtosaida->produto->codigo  }}</td>
-            <td><a href="{{ route('produto.show',$produtosaida->produto->id) }}">{{ $produtosaida->produto->produto }}</a></td>
-            <td>{{ $produtosaida->produto->unidade }}</td>
-            <td>{{ $produtosaida->qtd * -1 }}</td>
-            <td>{{ $produtosaida->obs or $produtosaida->lote }}</td>
-            <td>{{ $produtosaida->validade }}</td>
-            <td>
+            <td> {{ $list-- }}</td>
+                <td>{{ $produtosaida->produto->codigo  }}</td>
+                <td><a href="{{ route('produto.show',$produtosaida->produto->id) }}">{{ $produtosaida->produto->produto }}</a></td>
+                <td>{{ $produtosaida->produto->unidade }}</td>
+                <td>{{ $produtosaida->qtd * -1 }}</td>
+                <td>{{ $produtosaida->obs or $produtosaida->lote }}</td>
+                <td>{{ $produtosaida->validade }}</td>
+                <td>
                    
                     {{--<a class = "btn btn-sm btn-default" href="{{ route('saida.edit',$produtosaida->id)}}">--}}
                         {{--<span class="glyphicon glyphicon-pencil"></span>--}}

@@ -17,7 +17,7 @@ class Pedido extends Model
 
     use Sortable;
 
-    public $sotable = ['datapedido','setor_id'];
+    public $sortable = ['datapedido','setor_id'];
 
     protected $fillable = ['datapedido','created_by','updated_by','setor_id','estoque_id','requisicao','tipopedido','externo','obs'];
 

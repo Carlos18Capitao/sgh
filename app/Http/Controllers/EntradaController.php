@@ -8,6 +8,7 @@ use App\Models\Estoque;
 use App\Models\Produto;
 use App\Models\ProdutoEntrada;
 use Illuminate\Http\Request;
+use DB;
 
 class EntradaController extends Controller
 {
@@ -58,8 +59,18 @@ class EntradaController extends Controller
         $title = 'Adicionar Produtos';
         $produtos = Produto::all();
         $estoques = Estoque::with('produto')->where('id','=',$entrada->estoque_id)->get();
+        $total = DB::select("select sum(item.total) as total_nf from
+                (select
+                p.id
+                ,p.produto_id
+                ,p.qtd
+                ,p.preco
+                ,p.qtd * p.preco as total
+                from
+                produto_entradas p
+                where p.entrada_id = $id) as item");
 
-        return view('entradaestoque.cadItemEntradaEstoque', compact('title','produtos','entrada','produtoentradas','estoques'));
+        return view('entradaestoque.cadItemEntradaEstoque', compact('title','produtos','entrada','produtoentradas','estoques','total'));
     }
 
     public function edit($id)

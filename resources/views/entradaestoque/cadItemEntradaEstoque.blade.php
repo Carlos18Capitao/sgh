@@ -50,6 +50,11 @@
 
         {!! Form::label('numeroentrada', 'Nº Documento:'); !!}
         {!! Form::text('numeroentrada',$entrada->numeroentrada,['class'=>'form-control','disabled']) !!}
+
+        {!! Form::label('total', 'Valor Total:'); !!}
+        @foreach($total as $tot)
+        {!! Form::text('total','R$ ' . number_format($tot->total_nf, 2,',','.'),['class'=>'form-control','disabled']) !!}
+        @endforeach
     </div>
 
 
@@ -130,12 +135,13 @@
             <td>{{ $produtoentrada->produto->codigo }}</td>
             <td><a href="{{ route('produto.show',$produtoentrada->produto->id) }}">{{ $produtoentrada->produto->produto . ' - ' . $produtoentrada->produto->unidade}}</a></td>
           {{--  <td>{{ $produtoentrada->produto->unidade }}</td> --}}
+
             <td>{{ $produtoentrada->lote }}</td>
             <td>{{ $produtoentrada->validade }} {{-- $produtoentrada->validade_dias --}}</td>
             <td>{{ $produtoentrada->qtd }}</td>
             <td>{{ 'R$ ' . $produtoentrada->preco }}</td>
             <td>{{ 'R$ ' . number_format($produtoentrada->getOriginal('preco') * $produtoentrada->qtd, 2,',','.') }}</td>            
-            <td>{{ $produtoentrada->obs  }}</td>
+            <td>{{ $produtoentrada->obs  }} </td>
             <td>
                     <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$produtoentrada->id}}">
                         <span class="glyphicon glyphicon-trash"></span>
@@ -170,7 +176,6 @@
         </div>
     </div>
         @endforeach
-
 
             <!-- Modal CADASTRAR-->
             {{--TESTE

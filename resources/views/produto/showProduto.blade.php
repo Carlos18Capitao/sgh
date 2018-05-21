@@ -36,6 +36,7 @@
         <th>Entrada</th>
         <th>@sortablelink('created_at','Data de Entrada')</th>
         <th>@sortablelink('qtd','Qtd')</th>
+        <th>@sortablelink('preco','Preço de Compra')</th>
         <th>@sortablelink('lote','Lote')</th>
         <th>@sortablelink('validade','Validade')</th>
         <th>@sortablelink('created_by','Usuário')</th>
@@ -48,6 +49,7 @@
                 <td><a href="{{ route('entrada.show',$entproduto->entrada_id) }}">{{ $entproduto->entrada->numeroentrada or ''}}</a></td>
                 <td>{{ $entproduto->entrada->dataentrada or $entproduto->created_at}}</td>
                 <td>{{ $entproduto->qtd }}
+                <td>{{ 'R$ ' . $entproduto->preco }}
                 <td>{{ $entproduto->lote }}
                 <td>{{ $entproduto->validade }}
                 <td>{{ $entproduto->user->name }}</td>

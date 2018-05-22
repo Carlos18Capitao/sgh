@@ -102,7 +102,14 @@
 
                         {!! Form::label('modalidade', 'Modalidade:'); !!}
                         {!!Form::select('modalidade', ['Ordinario'=>'Ordinario','Global'=>'Global'], null, ['class' => 'form-control', 'placeholder' => 'Selecione a modalidade...','tabindex'=>'7']) !!}
-
+                    </div>
+                    <div class="form-group form-inline">    
+                        {!! Form::label('setor', 'Unidade:'); !!}
+                        @if (isset($empenho))
+                            {!! Form::select('setor_id', $empenho->setor->pluck('setor','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione uma unidade...']) !!}
+                        @else
+                            {!! Form::select('setor_id', $setors->pluck('setor','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione uma unidade...']) !!}
+                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -125,6 +132,7 @@
             <th>Fornecedor</th>
             <th>Fonte</th>
             <th>Plano Orçamentário</th>
+            <th>Unidade</th>
             <th>Valor</th>
         <thead>
 {{--        {{ dd($processos) }}--}}
@@ -137,6 +145,7 @@
                  <td>{{ $empenho->empresa->nome }}</td>
                  <td>{{ $empenho->fonte }}</td>
                  <td>{{ $empenho->plano }}</td>
+                 <td>{{ $empenho->setor->setor }}</td>
                  <td>{{ 'R$ ' . $empenho->valortotal }}</td>
             </tr>
         </tbody>

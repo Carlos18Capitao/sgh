@@ -36,4 +36,9 @@ class Setor extends Model
     {
         return $this->hasMany('App\Models\Pedido');
     }
+
+    public function empenho()
+    {
+        return $this->hasMany('App\Models\Empenho');
+    }
 }

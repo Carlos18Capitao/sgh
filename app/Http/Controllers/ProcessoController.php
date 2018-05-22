@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Processo;
 use App\Models\Empresa;
 use App\Models\Categoria;
+use App\Models\Setor;
 
 class ProcessoController extends Controller
 {
@@ -51,9 +52,10 @@ class ProcessoController extends Controller
         $processos = Processo::find($id);
         $empresas = Empresa::all()->sortBy('nome');
         $title = "Informações do Processo"; //: $empresas->nome";
+        $setors = Setor::all()->sortBy('setor');
 //        $hoje = Carbon::now();
 
-        return view('processo.showProcesso', compact('processos', 'title','empresas'));
+        return view('processo.showProcesso', compact('processos', 'title','empresas','setors'));
     }
 
     public function edit($id)

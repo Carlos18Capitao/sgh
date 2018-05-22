@@ -22,7 +22,7 @@ class Empenho extends Model
 
     protected $revisionCreationsEnabled = true;
 
-    protected $fillable = ['nrempenho','dataemissao','valortotal','modalidade','fonte','plano','processo_id','empresa_id','obs','created_by','updated_by'];
+    protected $fillable = ['nrempenho','dataemissao','valortotal','modalidade','fonte','plano','processo_id','empresa_id','obs','created_by','updated_by','setor_id'];
 
     protected $dates = ['dataemissao'];
 
@@ -41,6 +41,11 @@ class Empenho extends Model
     public function processo()
     {
         return $this->belongsTo('App\Models\Processo');
+    }
+
+    public function setor()
+    {
+        return $this->belongsTo('App\Models\Setor');
     }
 
     public function getDataEmissaoAttribute($value)

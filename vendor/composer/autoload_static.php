@@ -448,6 +448,7 @@ class ComposerStaticInit0303c122c05233a02b50c432a646ca9a
         'App\\Http\\Requests\\SetorFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/SetorFormRequest.php',
         'App\\Http\\Requests\\TipoAltaFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TipoAltaFormRequest.php',
         'App\\Http\\Requests\\TipoPrestadorFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TipoPrestadorFormRequest.php',
+        'App\\ItemEmpenho' => __DIR__ . '/../..' . '/app/ItemEmpenho.php',
         'App\\Models\\Ala' => __DIR__ . '/../..' . '/app/Models/Ala.php',
         'App\\Models\\Categoria' => __DIR__ . '/../..' . '/app/Models/Categoria.php',
         'App\\Models\\Cid10' => __DIR__ . '/../..' . '/app/Models/Cid10.php',

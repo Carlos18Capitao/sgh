@@ -139,7 +139,7 @@
     @foreach($processos->empenho as $empenho)
         <tbody>
             <tr>
-                 <td>{{ $empenho->nrempenho }}</td>
+            <td><a href="{{ route('empenho.show',$empenho->id) }}">{{ $empenho->nrempenho }}</a></td>
                  <td>{{ $empenho->dataemissao }}</td>
                  <td>{{ $empenho->modalidade }}</td>
                  <td>{{ $empenho->empresa->nome }}</td>

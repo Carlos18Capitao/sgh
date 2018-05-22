@@ -51,6 +51,7 @@ return array(
     'App\\Http\\Requests\\SetorFormRequest' => $baseDir . '/app/Http/Requests/SetorFormRequest.php',
     'App\\Http\\Requests\\TipoAltaFormRequest' => $baseDir . '/app/Http/Requests/TipoAltaFormRequest.php',
     'App\\Http\\Requests\\TipoPrestadorFormRequest' => $baseDir . '/app/Http/Requests/TipoPrestadorFormRequest.php',
+    'App\\ItemEmpenho' => $baseDir . '/app/ItemEmpenho.php',
     'App\\Models\\Ala' => $baseDir . '/app/Models/Ala.php',
     'App\\Models\\Categoria' => $baseDir . '/app/Models/Categoria.php',
     'App\\Models\\Cid10' => $baseDir . '/app/Models/Cid10.php',

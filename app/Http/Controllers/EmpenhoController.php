@@ -6,8 +6,9 @@ use App\Models\Empresa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Empenho;
-//use App\Models\ItemEmpenho;
+use App\Models\ItemEmpenho;
 use Carbon\Carbon;
+use App\Models\Produto;
 
 class EmpenhoController extends Controller
 {
@@ -50,10 +51,12 @@ class EmpenhoController extends Controller
     public function show($id)
     {
         $empenhos = Empenho::find($id);
-        $title = "ATA AMGESP";
+        $title = "Empenhos";
+        $produtos = Produto::all()->sortBy('produto');
+        $itemempenhos = ItemEmpenho::where('empenho_id',$id)->get();
    //     $hoje = Carbon::today();
 //        $fimAta = $atas->vigencia->diffInDays($hoje);
-        return view('empenho.showEmpenho', compact('empenhos', 'title'));
+        return view('empenho.showEmpenho', compact('empenhos', 'title','produtos','itemempenhos'));
     }
 
     public function edit($id)

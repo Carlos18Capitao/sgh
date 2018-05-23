@@ -79,7 +79,13 @@
         @foreach($produtos->produtosaida as $saiproduto)
             <tbody>
                 @if($saiproduto->qtd > 0)
-                    <td>{{ $saiproduto->setor->setor }}</td>
+                    <td>
+                        @if($saiproduto->pedido->tipopedido == 'unidade')
+                            {{ $saiproduto->setor->setor }}
+                        @else
+                            {{ $saiproduto->pedido->externo }}
+                        @endif
+                    </td>
                     <td><a href="{{ route('pedido.show',$saiproduto->pedido_id) }}"> {{ $saiproduto->pedido->requisicao }} </a></td>
                     <td>{{ $saiproduto->pedido->datapedido or $saiproduto->created_at }}</td>
                     <td>{{ $saiproduto->qtd }}

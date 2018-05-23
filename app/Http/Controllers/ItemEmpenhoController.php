@@ -55,6 +55,13 @@ class ItemEmpenhoController extends Controller
 
     public function destroy($id)
     {
-        //
+        $itemempenhos = ItemEmpenho::find($id);
+
+        $delete = $itemempenhos->delete();
+       
+        if ($delete)
+            return redirect()->back()->with(['success'=>'Item cadastrado com sucesso!!!']);
+        else
+            return redirect()->back()->with(['errors' => 'Falha ao excluir']);
     }
 }

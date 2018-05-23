@@ -44,7 +44,10 @@ class CategoriaController extends Controller
 
     public function show($id)
     {
-        //
+        $categorias = Categoria::find($id);
+        $title = $categorias->descricao;
+
+        return view('categoria.showCategoria', compact('categorias', 'title'));
     }
 
     public function edit($id)

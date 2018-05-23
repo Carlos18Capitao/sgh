@@ -13,25 +13,38 @@
         </div>
     @endif
     <hr>
-      {{--    <a class = "btn btn-sm btn-default" title="EDITAR" href="{{ route('processo.edit',$processos->id)}}">
-            <span class="glyphicon glyphicon-pencil"></span>
-          </a>
-    <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$processos->id}}">
-        <span class="glyphicon glyphicon-trash"></span>
-    </button>--}}
-    <button type="button" title="CADASTRAR EMPENHO" class="btn btn-sm btn-default" data-toggle="modal" data-target="#empenho">
-        <span class="glyphicon glyphicon-file"></span>
-    </button>
-    <br><br>
-    <p>Empenho: {{ $empenhos->nrempenho }}</p>
-    <p>Data Emissão: {{ $empenhos->dataemissao }}</p>
-    <p>Modalidade: {{ $empenhos->modalidade }}</p>
-    <p>Fornecedor: {{ $empenhos->empresa->nome }}</p>
-    <p>Fonte: {{ $empenhos->fonte }}</p>
-    <p>Plano Orçamentário: {{ $empenhos->plano }}</p>
-    <p>Unidade: {{ $empenhos->setor->setor }}</p>
-    <p>Valor: {{ 'R$ ' . $empenhos->valortotal }}</p>
 
+    <div class="form-group form-inline">
+        {!! Form::label('nrempenho', 'Empenho:'); !!}
+        {!! Form::text('nrempenho', $empenhos->nrempenho, ['class' => 'form-control', 'disabled'=>'disabled']) !!}
+
+        {!! Form::label('dataemissao', 'Data de Emissão:'); !!}
+        {!! Form::text('dataemissao', $empenhos->dataemissao, ['class' => 'form-control', 'disabled'=>'disabled']) !!}
+
+        {!! Form::label('modalidade', 'Modalidade:'); !!}
+        {!! Form::text('modalidade', $empenhos->modalidade, ['class' => 'form-control', 'disabled'=>'disabled']) !!}
+
+        {!! Form::label('valortotal', 'Valor do Empenho:'); !!}
+        {!! Form::text('valortotal', 'R$ ' . $empenhos->valortotal, ['class' => 'form-control', 'disabled'=>'disabled']) !!}
+    </div>
+    <div class="form-group form-inline">
+        {!! Form::label('empresa_id', 'Fornecedor:'); !!}
+        {!! Form::text('empresa_id',$empenhos->empresa->nome, ['class' => 'form-control', 'disabled'=>'disabled','size'=>'80']) !!}
+        {!! Form::label('cnpj', 'CNPJ:'); !!}        
+        {!! Form::text('cnpj', $empenhos->empresa->cnpj, ['class' => 'form-control', 'disabled'=>'disabled']) !!}
+    </div>
+    <div class="form-group form-inline">
+        {!! Form::label('setor_id', 'Unidade Destino:'); !!}
+        {!! Form::text('setor_id', $empenhos->setor->setor, ['class' => 'form-control', 'disabled'=>'disabled','size'=>'20']) !!}     
+
+        {!! Form::label('fonte', 'Fonte:'); !!}
+        {!! Form::number('fonte', $empenhos->fonte, ['class' => 'form-control', 'disabled'=>'disabled','size'=>'20']) !!}
+
+        {!! Form::label('plano', 'Plano Orçamentário:'); !!}
+        {!! Form::number('plano', $empenhos->plano, ['class' => 'form-control', 'disabled'=>'disabled','size'=>'20']) !!}
+
+ 
+    </div>  
     <hr>
   
     <div class="panel panel-default">
@@ -64,7 +77,7 @@
                                 
                                 <div class="form-group form-inline">
                                         <div class="form-group">
-                                            <b>Qtd:</b> <input type="number" name="qtd" class="form-control">
+                                            <b>Quantidade:</b> <input type="number" name="qtd" class="form-control">
                                             <b>Valor Unitário:</b> <input type="text" name="preco" class="form-control">
                                             {!! Form::label('status', 'Situação Entrega:'); !!}
                                             {!! Form::text('status', null, ['class' => 'form-control', 'placeholder' => 'Observações']) !!}
@@ -79,7 +92,7 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Itens da Nota</h3>
+          <h3 class="panel-title">Itens da Nota de Empenho: {{ $empenhos->nrempenho }}</h3>
         </div>
         <div class="panel-body">
 <table class="table table-striped">
@@ -88,14 +101,14 @@
         <th>Código</th>
         <th>Produto</th>
        {{-- <th>Unidade</th> --}}
-        <th>Qtd</th>
-        <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Valor Unitário</th>
         <th>Valor Total</th>
         <th>Observação</th>
         <th width="100px">Ações</th>
     </tr>
     </thead>
-    @foreach ($itemempenhos as $itemempenho)
+    @foreach ($empenhos->itemempenho as $itemempenho)
         <tbody>
         <td>{{ $itemempenho->produto->codigo }}</td>
         <td><a href="{{ route('produto.show',$itemempenho->produto->id) }}">{{ $itemempenho->produto->produto . ' - ' . $itemempenho->produto->unidade}}</a></td>

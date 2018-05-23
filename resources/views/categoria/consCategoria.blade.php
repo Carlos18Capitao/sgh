@@ -27,7 +27,7 @@
         </thead>
         @foreach ($categorias as $categoria)
             <tbody>
-                <td>{{ $categoria->descricao }}</td>
+            <td><a href="{{ route('categoria.show',$categoria->id) }}"> {{ $categoria->descricao }}</a></td>
                 <td>
                     {{--@shield('categoria.editar')--}}
                     <a class = "btn btn-sm btn-default" href="{{ route('categoria.edit',$categoria->id)}}">

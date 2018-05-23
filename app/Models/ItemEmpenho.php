@@ -32,4 +32,9 @@ class ItemEmpenho extends Model
     {
         return $this->belongsTo('App\Models\Empenho');
     }
+
+    public function produto()
+    {
+        return $this->belongsTo('App\Models\Produto');
+    }
 }

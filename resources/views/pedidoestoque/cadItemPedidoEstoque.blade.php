@@ -99,7 +99,11 @@
                                 {!! Form::select('validade',[''=>'Selecione Validade'],null,['class'=>'form-control']) !!}
         
                                 {!! Form::label('qtd', 'Quantidade:'); !!}
-                                {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'5']) !!}
+{{--                                {!! Form::select('qtd',[''=>'Selecione Qtd'],null,['class'=>'form-control']) !!}--}}
+
+                                {{--                                {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'5']) !!}--}}
+                                {{--<input class="form-control" placeholder="qtd" tabindex="6" name="qtd" type="number" id="qtd">--}}
+
 
                                 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"> </span> Adicionar</button>
                                 
@@ -176,79 +180,6 @@
     </div>
         @endforeach
 
- 
-            <!-- Modal CADASTRAR-->
-       {{--TESTE     <div class="modal fade" id="myModalCadastrar" tabindex="-1" role="dialog" aria-labelledby="myModalCadastrar">
-                {!! Form::open(['route' => 'saida.store', 'class' => 'form']) !!}
-
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Adicionar Produtos</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                    {!!  Form::hidden('pedido_id', $pedido->id) !!}
-                                    {!!  Form::hidden('setor_id', $pedido->setor_id) !!}
-
-                                    {!! Form::hidden('created_by',Auth::user()->id) !!}
-                                    {!! Form::hidden('estoque_id',$pedido->estoque_id) !!}
-                                </div>
-                                <div class="form-group">
-                                    {!! Form::label('produto', 'Produto:'); !!} <br>
-
---}}
-                                        {{--  {!!Form::select('produto_id', $produtos->pluck('produto','id'), null, ['class' => 'js-produto form-control', 'placeholder' => 'Selecione um produto...']) !!}--}}
-      {{--                                  <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id" tabindex="1">
-                                            <option selected="selected" value="">Selecione um produto...</option>
-                                            @foreach($estoques as $estoque)
-                                                @foreach ($estoque->produto as $produto)
-                                                    @if( $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') >= 0)
-                                                        <option value="{{ $produto->id }}">
-                                                            {{ $produto->produto . ' - ' . $produto->unidade }} @if($produto->codigo != 0)  {{ '(Cód: ' . $produto->codigo . ')' }} @endif - Saldo: {{ $produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd') }}
-                                                        </option>
-                                                    @endif
-                                                @endforeach
-                                            @endforeach
-                                        </select>
-
-                                </div>
-                                <div class="form-group form-inline">
-                                    --}}
-                                    {{--    @foreach ($estoques as $estoque)
-                                    @if($estoque->lote == 1)
-                                    --}}
- {{--TESTE                                   {!! Form::label('lote', 'Lote:'); !!}
-                                    {!! Form::select('lote',[''=>'Selecione o Lote'],null,['class'=>'form-control']) !!}
-
-                                    {!! Form::label('validade', 'Validade:'); !!}
-                                    {!! Form::select('validade',[''=>'Selecione Validade'],null,['class'=>'form-control']) !!}
-                                    --}}
-{{--                                {!! Form::text('lote', null, ['class' => 'form-control', 'placeholder' => 'Lote','tabindex'=>'3']) !!}--}}
-
-{{--                                {!! Form::label('validade', 'Validade:'); !!}--}}
-{{--                                {!! Form::date('validade', null, ['class' => 'form-control','tabindex'=>'4']) !!}
-                                @endif
-                                @endforeach 
-                                --}}
- {{--TESTE                               {!! Form::label('qtd', 'Quantidade:'); !!}
-                                {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'5']) !!}
-                            </div>
-                                <div class="form-group">
-                                    {!! Form::label('obs', 'Obs:'); !!}
-                                    {!! Form::text('obs', null, ['class' => 'form-control', 'placeholder' => 'Observações','tabindex'=>'6']) !!}
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                            <button type="submit" class="btn btn-primary">Adicionar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    {!! Form::close() !!}
---}}
 @endsection
 
 @section('js')
@@ -288,6 +219,21 @@
                     success: function(data) {
                         $("select[name='validade'").html('');
                         $("select[name='validade'").html(data.options);
+                    }
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $("select[name='lote']").change(function(){
+                var lote = $(this).val();
+                var token = $("input[name='_token']").val();
+                $.ajax({
+                    url: "<?php echo route('select-qtd') ?>",
+                    method: 'POST',
+                    data: {lote:lote, _token:token},
+                    success: function(data) {
+                        $("label[label='qtd'").html('');
+                        $("label[label='qtd'").html(data.options);
                     }
                 });
             });

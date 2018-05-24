@@ -190,4 +190,19 @@ class PedidoController extends Controller
             return response()->json(['options'=>$data]);
         }
     }
+
+    public function selectQtd(Request $request)
+    {
+        if($request->ajax()){
+            $qtds = Lotes::select(
+                DB::raw("qtd, lote"))
+                ->where('lote',$request->lote)
+                ->pluck('qtd','lote')
+                ->all();
+
+//            $lotes = DB::table('lotes')->where('produto_id',$request->produto_id)->where('qtd','<>',0)->pluck("qtd","lote")->all();
+            $data = view('pedidoestoque.select-qtd',compact('qtds'))->render();
+            return response()->json(['options'=>$data]);
+        }
+    }
 }

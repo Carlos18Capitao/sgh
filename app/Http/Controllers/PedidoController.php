@@ -197,10 +197,11 @@ class PedidoController extends Controller
             $qtds = Lotes::select(
                 DB::raw("qtd, lote"))
                 ->where('lote',$request->lote)
+                ->where('qtd','>',0)
                 ->pluck('qtd','lote')
                 ->all();
 
-//            $lotes = DB::table('lotes')->where('produto_id',$request->produto_id)->where('qtd','<>',0)->pluck("qtd","lote")->all();
+          //  $qtds = DB::table('lotes')->where('lote',$request->lote)->where('qtd','>',0)->pluck("qtd","lote")->all();
             $data = view('pedidoestoque.select-qtd',compact('qtds'))->render();
             return response()->json(['options'=>$data]);
         }

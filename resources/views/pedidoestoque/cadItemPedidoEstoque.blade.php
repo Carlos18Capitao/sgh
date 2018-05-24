@@ -93,7 +93,10 @@
                             </div>
                             <div class="form-group form-inline">
                                 {!! Form::label('lote', 'Lote:'); !!}
-                                {!! Form::select('lote',[''=>'Selecione o Lote'],null,['class'=>'form-control']) !!}
+                            {{--    {!! Form::select('lote',[''=>'Selecione o Lote'],null,['class'=>'form-control']) !!}--}}
+                                <select id="lote" name="lote" class="form-control" onChange='(this.value)'>
+                                    <option disabled selected>Selecione o Lote</option>
+                                </select>
 
                                 {!! Form::label('validade', 'Validade:'); !!}
                                 {!! Form::select('validade',[''=>'Selecione Validade'],null,['class'=>'form-control']) !!}
@@ -102,7 +105,7 @@
 {{--                                {!! Form::select('qtd',[''=>'Selecione Qtd'],null,['class'=>'form-control']) !!}--}}
 
                                 {{--                                {!! Form::number('qtd', null, ['class' => 'form-control', 'placeholder' => 'Informe a quantidade','tabindex'=>'5']) !!}--}}
-                                {{--<input class="form-control" placeholder="qtd" tabindex="6" name="qtd" type="number" id="qtd">--}}
+                                <input class="form-control" max="" placeholder="Quantidade" tabindex="6" name="qtd" type="number" id="qtd">
 
 
                                 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"> </span> Adicionar</button>
@@ -232,10 +235,15 @@
                     method: 'POST',
                     data: {lote:lote, _token:token},
                     success: function(data) {
-                        $("label[label='qtd'").html('');
-                        $("label[label='qtd'").html(data.options);
+                        $("#qtd").attr(""); 
+                        $("#qtd").attr("max",data.options.replace(/\r?\n?/g, '').trim());
                     }
                 });
             });
         </script>
+<script type="text/javascript">
+// function alteraQtd(valor) { 
+  //      $('#qtd').attr('placeholder', 'testeee');
+//}
+</script>
 @endsection

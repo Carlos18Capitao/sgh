@@ -9,6 +9,7 @@ use App\Models\Empenho;
 use App\Models\ItemEmpenho;
 use Carbon\Carbon;
 use App\Models\Produto;
+use DB;
 
 class EmpenhoController extends Controller
 {
@@ -54,9 +55,18 @@ class EmpenhoController extends Controller
         $title = "Empenhos";
         $produtos = Produto::all()->sortBy('produto');
         $itemempenhos = ItemEmpenho::where('empenho_id',$id)->get();
-   //     $hoje = Carbon::today();
-//        $fimAta = $atas->vigencia->diffInDays($hoje);
-        return view('empenho.showEmpenho', compact('empenhos', 'title','produtos','itemempenhos'));
+
+        $total = DB::select("select sum(item.total) as total_nf from
+        (select
+          i.id
+          ,i.produto_id
+          ,i.qtd
+          ,i.preco
+          ,i.qtd * i.preco as total
+        from
+          item_empenhos i
+        where i.empenho_id = $id) as item");
+        return view('empenho.showEmpenho', compact('empenhos', 'title','produtos','itemempenhos','total'));
     }
 
     public function edit($id)

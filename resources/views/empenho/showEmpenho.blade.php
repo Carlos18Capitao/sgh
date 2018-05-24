@@ -156,6 +156,16 @@
         </tbody>
                 
 @endforeach
+<tr>
+
+<td class="active text-right" colspan="4" class="active"><b>TOTAL</b></td>
+        <td class="active"><b>
+            @foreach($total as $tot)
+                {{ 'R$ ' . number_format($tot->total_nf, 2,',','.') }}
+            @endforeach
+            <td></td>
+            <td></td>
+</tr>
 </table>
         </div></div>
 

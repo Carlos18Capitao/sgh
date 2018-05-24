@@ -32,7 +32,7 @@
         <div class="content">
 {{--            <h1>{{ $produtos->codigo . ' - ' . $produtos->produto }}</h1>--}}
                 
-                        @if($produtos->categoria_id == 7)
+                        @if($produtos->categoria_id != 6)
                             {{--@php--}}
                            {{--//     $shorttitle = explode('.',$produtos->produto);--}}
                            {{--// print $produtos->codigo . ' - ' . $shorttitle[0];--}}

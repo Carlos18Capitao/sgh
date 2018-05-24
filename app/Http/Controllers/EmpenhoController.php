@@ -42,7 +42,7 @@ class EmpenhoController extends Controller
         $insert = $this->empenho->create($dataForm);
 
         if ($insert) {
-            return redirect()->route('processo.show', $insert->processo_id);
+            return redirect()->route('empenho.show', $insert->id);
         } else {
             return redirect()->back();
         }

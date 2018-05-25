@@ -10,6 +10,7 @@ use App\Models\ItemEmpenho;
 use Carbon\Carbon;
 use App\Models\Produto;
 use DB;
+use App\Http\Requests\EmpenhoFormRequest;
 
 class EmpenhoController extends Controller
 {
@@ -37,7 +38,7 @@ class EmpenhoController extends Controller
         return view('empenho.cadEmpenho',compact('title','empresas'));
     }
 
-    public function store(Request $request)
+    public function store(EmpenhoFormRequest $request)
     {
         $dataForm = $request->all();
         $insert = $this->empenho->create($dataForm);

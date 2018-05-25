@@ -8,6 +8,7 @@ use App\Models\Processo;
 use App\Models\Empresa;
 use App\Models\Categoria;
 use App\Models\Setor;
+use App\Http\Requests\ProcessoFormRequest;
 
 class ProcessoController extends Controller
 {
@@ -34,7 +35,7 @@ class ProcessoController extends Controller
         return view('processo.cadProcesso', compact('title','categorias'));
     }
 
-    public function store(Request $request)
+    public function store(ProcessoFormRequest $request)
     {
         $processoForm = $request->all();
         $insert   = $this->processo->create($processoForm);

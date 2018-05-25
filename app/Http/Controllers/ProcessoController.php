@@ -21,7 +21,7 @@ class ProcessoController extends Controller
     }
     public function index()
     {
-        $processos = Processo::all()->sortBy("numero");
+        $processos = Processo::all()->sortByDesc('numero');
         $title = 'Cadastro de Processos';
 
         return view('processo.consProcesso', compact('title', 'processos'));

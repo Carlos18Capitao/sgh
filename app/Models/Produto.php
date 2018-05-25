@@ -54,6 +54,11 @@ class Produto extends Model
         return $this->hasMany('App\Models\ItemEmpenho');
     }
 
+    public function lotes()
+    {
+        return $this->hasMany('App\Models\Lotes');
+    }
+
     public function getLoteFormattedAttribute()
     {
         $lote = $this->attributes['lote'];

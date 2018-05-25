@@ -28,6 +28,28 @@
               @endif
 
     <hr>
+
+    <b> SALDO POR LOTE </b>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Lote</th>
+                <th>Validade</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+@foreach($produtos->lotes as $lote)
+        @if($lote->qtd != 0)
+            <tbody>
+                <td>{{ $lote->lote }}</td>
+                <td>{{ $lote->validade_format }}</a></td>
+                <td>{{ $lote->qtd }}</td>
+        @endif
+            </tbody>
+@endforeach
+    </table>
+
+    <hr>
 <b> ENTRADAS </b>
     <table class="table table-striped">
     <thead>
@@ -48,10 +70,10 @@
                 <td>{{ $entproduto->entrada->empresa->nome or 'UNCISAL' }}</td>
                 <td><a href="{{ route('entrada.show',$entproduto->entrada_id) }}">{{ $entproduto->entrada->numeroentrada or ''}}</a></td>
                 <td>{{ $entproduto->entrada->dataentrada or $entproduto->created_at}}</td>
-                <td>{{ $entproduto->qtd }}
-                <td>{{ 'R$ ' . $entproduto->preco }}
-                <td>{{ $entproduto->lote }}
-                <td>{{ $entproduto->validade }}
+                <td>{{ $entproduto->qtd }}</td>
+                <td>{{ 'R$ ' . $entproduto->preco }}</td>
+                <td>{{ $entproduto->lote }}</td>
+                <td>{{ $entproduto->validade }}</td>
                 <td>{{ $entproduto->user->name }}</td>
 
             </tbody>
@@ -88,9 +110,9 @@
                     </td>
                     <td><a href="{{ route('pedido.show',$saiproduto->pedido_id) }}"> {{ $saiproduto->pedido->requisicao }} </a></td>
                     <td>{{ $saiproduto->pedido->datapedido or $saiproduto->created_at }}</td>
-                    <td>{{ $saiproduto->qtd }}
-                    <td>{{ $saiproduto->obs or $saiproduto->lote }}
-                    <td>{{ $saiproduto->validade }}
+                    <td>{{ $saiproduto->qtd }}</td>
+                    <td>{{ $saiproduto->obs or $saiproduto->lote }}</td>
+                    <td>{{ $saiproduto->validade }}</td>
                     <td>{{ $saiproduto->user->name }}</td>
                 @endif
             </tbody>

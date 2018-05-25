@@ -108,4 +108,14 @@ class EntradaController extends Controller
             return redirect()->route('entrada.index')->with(['errors' => 'Falha ao editar']);
     }
 
+    public function createempenho($estoque_id, $id)
+    {
+        $empenhos  = Empenho::find($id);
+        $title    = 'Entrada de Produtos';
+        $estoques = Estoque::with('produto')->where('id','=',$estoque_id)->get();
+        $produtos = Produto::all()->sortBy('produto');
+
+        return view('entradaestoque.cadEntradaEstoqueEmpenho', compact('title','produtos','estoque_id','estoques','empenhos'));
+    }
+
 }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -27,6 +30,8 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
+    //protected $redirectTo = '/home';
+
     /**
      * Create a new controller instance.
      *
@@ -36,4 +41,17 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+   /* public function login(Request $request):void  
+    {
+        $dataForm = $request->email;
+        $login = User::where('email',$request->email)->get();
+        $hoje = Carbon::now('America/Sao_Paulo');
+  
+        User::where('email', $request->email)
+          ->update(['last_access' => $hoje]); 
+
+      //  return redirect()->route('/select');
+          
+    }*/
 }

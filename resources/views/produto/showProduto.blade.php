@@ -38,7 +38,7 @@
                 <th>Quantidade</th>
             </tr>
         </thead>
-@foreach($produtos->lotes as $lote)
+@foreach($produtos->lotes->sortBy('validade') as $lote)
         @if($lote->qtd != 0)
             <tbody>
                 <td>{{ $lote->lote }}</td>

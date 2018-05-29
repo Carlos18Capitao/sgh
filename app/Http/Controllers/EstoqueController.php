@@ -8,6 +8,8 @@ use App\Models\Produto;
 use App\Models\ProdutoEstoque;
 use App\User;
 use DB;
+use Carbon\Carbon;
+use Auth;
 
 class EstoqueController extends Controller
 {
@@ -29,6 +31,10 @@ class EstoqueController extends Controller
 
     public function select()
     {
+      $hoje = Carbon::now('America/Sao_Paulo');
+      $user = Auth::user()->id;
+      $users = User::where('id', $user)->update(['last_access' => $hoje]); 
+
       $estoques =  Estoque::sortable()->get();
       $title = 'Estoques';
 

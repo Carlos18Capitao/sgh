@@ -30,8 +30,6 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
-    //protected $redirectTo = '/home';
-
     /**
      * Create a new controller instance.
      *
@@ -42,16 +40,4 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-   /* public function login(Request $request):void  
-    {
-        $dataForm = $request->email;
-        $login = User::where('email',$request->email)->get();
-        $hoje = Carbon::now('America/Sao_Paulo');
-  
-        User::where('email', $request->email)
-          ->update(['last_access' => $hoje]); 
-
-      //  return redirect()->route('/select');
-          
-    }*/
 }

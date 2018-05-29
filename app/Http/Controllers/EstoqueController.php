@@ -36,7 +36,7 @@ class EstoqueController extends Controller
       $users = User::where('id', $user)->update(['last_access' => $hoje]); 
 
       $estoques =  Estoque::sortable()->get();
-      $title = 'Estoques';
+      $title = 'Estoques';  
 
       return view('estoque.selectEstoque', compact('title', 'estoques'));
     }

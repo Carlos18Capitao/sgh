@@ -62,8 +62,10 @@
         <span class="glyphicon glyphicon-plus"></span> Adicionar Produtos
     </button>
     --}}
-    <a class = "btn btn-success" title="CONCLUIR" href="{{ route('estoque.entrada',$entrada->estoque_id)}}"><span class="glyphicon glyphicon-ok"> </span> CONCLUIR</a> <br><br>
-
+    @permission('cadastrar')    
+        <a class = "btn btn-success" title="CONCLUIR" href="{{ route('estoque.entrada',$entrada->estoque_id)}}"><span class="glyphicon glyphicon-ok"> </span> CONCLUIR</a> <br><br>
+    @endpermission
+    @permission('cadastrar')
     <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Adicionar Produtos</h3>
@@ -109,7 +111,7 @@
 
         </div>
       </div>
-
+    @endpermission  
       <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Itens da Nota</h3>
@@ -143,6 +145,7 @@
             <td>{{ 'R$ ' . number_format($produtoentrada->getOriginal('preco') * $produtoentrada->qtd, 2,',','.') }}</td>            
             <td>{{ $produtoentrada->obs  }} </td>
             <td>
+    @permission('excluir')            
                     <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$produtoentrada->id}}">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
@@ -172,6 +175,7 @@
                         </div>
                     </div>
                     <!-- Modal EXCLUIR-->
+    @endpermission                
             </td>
         </div>
     </div>

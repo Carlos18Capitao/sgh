@@ -52,7 +52,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function
 
 });
 
-    Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|estoque']], function () {
+    Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|estoque|consulta|superadministrator']], function () {
         Route::resource('/empresa', 'EmpresaController');
 
         Route::get('/{id}/relposicaoestoque', 'ProdutoController@relposicaoestoque')->name('relposicaoestoque');

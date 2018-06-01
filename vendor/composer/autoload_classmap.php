@@ -1752,6 +1752,7 @@ return array(
     'Kyslik\\ColumnSortable\\Exceptions\\ColumnSortableException' => $vendorDir . '/kyslik/column-sortable/src/ColumnSortable/Exceptions/ColumnSortableException.php',
     'Kyslik\\ColumnSortable\\Sortable' => $vendorDir . '/kyslik/column-sortable/src/ColumnSortable/Sortable.php',
     'Kyslik\\ColumnSortable\\SortableLink' => $vendorDir . '/kyslik/column-sortable/src/ColumnSortable/SortableLink.php',
+    'LaratrustSeeder' => $baseDir . '/database/seeds/LaratrustSeeder.php',
     'Laratrust\\Commands\\AddLaratrustUserTraitUseCommand' => $vendorDir . '/santigarcor/laratrust/src/Commands/AddLaratrustUserTraitUseCommand.php',
     'Laratrust\\Commands\\MakePermissionCommand' => $vendorDir . '/santigarcor/laratrust/src/Commands/MakePermissionCommand.php',
     'Laratrust\\Commands\\MakeRoleCommand' => $vendorDir . '/santigarcor/laratrust/src/Commands/MakeRoleCommand.php',

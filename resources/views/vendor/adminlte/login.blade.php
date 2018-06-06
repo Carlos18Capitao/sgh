@@ -11,7 +11,7 @@
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
+            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!} - Sistema de Gestão de Almoxarifado</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -43,7 +43,7 @@
                     <div class="col-xs-8">
                         <div class="checkbox icheck">
                             <label>
-                                <input type="checkbox" name="remember"> {{ trans('adminlte::adminlte.remember_me') }}
+                                {{--<input type="checkbox" name="remember"> {{ trans('adminlte::adminlte.remember_me') }}--}}
                             </label>
                         </div>
                     </div>
@@ -55,17 +55,17 @@
                     <!-- /.col -->
                 </div>
             </form>
-            <div class="auth-links">
-                <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}"
-                   class="text-center"
-                >{{ trans('adminlte::adminlte.i_forgot_my_password') }}</a>
-                <br>
+            {{--<div class="auth-links">--}}
+                {{--<a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}"--}}
+                   {{--class="text-center"--}}
+                {{-->{{ trans('adminlte::adminlte.i_forgot_my_password') }}</a>--}}
+                {{--<br>--}}
                 {{--@if (config('adminlte.register_url', 'register'))--}}
                     {{--<a href="{{ url(config('adminlte.register_url', 'register')) }}"--}}
                        {{--class="text-center"--}}
                     {{-->{{ trans('adminlte::adminlte.register_a_new_membership') }}</a>--}}
                 {{--@endif--}}
-            </div>
+            {{--</div>--}}
         </div>
         <!-- /.login-box-body -->
     </div><!-- /.login-box -->

@@ -8,13 +8,16 @@
 
     <a href="{{ route('empresa.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     <br><br>
-    <table class="table table-striped">
+    <table id="empresas" class="table table-striped">
+        <thead>
         <tr>
             {{-- <th>ID</th> --}}
             <th>Fornecedor</th>
             <th>CNPJ</th>
             <th width="100px">Ações</th>
         </tr>
+        </thead>
+        <tbody>        
         @foreach ($empresas as $empresa)
             <tr>
                 {{-- <td>{{ $unidade->id }}</td> --}}
@@ -29,8 +32,15 @@
                     </a>
                 </td>
             </tr>
-
         @endforeach
+    </tbody>        
     </table>
 
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#empresas').DataTable();
+        } );
+  </script>
 @endsection

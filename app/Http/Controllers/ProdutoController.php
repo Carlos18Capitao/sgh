@@ -22,7 +22,7 @@ class ProdutoController extends Controller
 
     public function index()
     {
-        $produtos =  Produto::sortable()->paginate(50);
+        $produtos =  Produto::all();
 //        dd($produtos);
         $title = 'Cadastro de Produto';
 

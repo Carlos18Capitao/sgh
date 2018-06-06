@@ -41,7 +41,7 @@ Route::resource('/ala', 'AlaController');
 
 Route::resource('/tipoalta', 'TipoAltaController');
 
-Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function () {
+Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadministrator']], function () {
     Route::resource('/setor', 'SetorController');
     Route::resource('/categoria', 'CategoriaController');
     Route::resource('/produto', 'ProdutoController');

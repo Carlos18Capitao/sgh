@@ -13,13 +13,15 @@
         </div>
     @endif
     <hr>
+    <a href="{{ route('produto.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
+    <br><br>
     <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Produtos</h3>
+              <h3 class="panel-title"><b>Produtos</b></h3>
             </div>
             <div class="panel-body">
 
-                    <table class="table table-striped">
+                    <table id="produtos" class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Código</th>
@@ -30,19 +32,18 @@
                                 <th width="100px">Ações</th>
                             </tr>
                             </thead>
+    <tbody>                            
     @foreach($categorias->produto as $produto)
-    <tbody>
+     <tr>
             <td>@if($produto->codigo == 0) @else {{ $produto->codigo }} @endif</td>
             <td><a href="{{ route('produto.show',$produto->id) }}">{{ $produto->produto }}</a></td>
             <td>{{ $produto->unidade }}</td>
             <td>{{ $produto->lote_formatted  }}</td>
             <td>{{ $produto->validade_formatted  }}</td>
             <td>
-                  {{--@shield('produto.editar')--}}
                   <a class = "btn btn-sm btn-default" href="{{ route('produto.edit',$produto->id)}}">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
-                    {{--@endshield--}}
                     <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$produto->id}}">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
@@ -70,12 +71,19 @@
                             </div>
                         </div>
                     </td>
-                </tbody>
-
+                </tr>
     @endforeach
+</tbody>
+    
 </table>
 
     </div>
 </div>
 @endsection
-    
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('#produtos').DataTable();
+    } );
+</script>
+@endsection

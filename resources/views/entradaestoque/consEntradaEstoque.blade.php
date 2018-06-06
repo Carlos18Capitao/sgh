@@ -41,19 +41,20 @@
         <a href="{{ route('entrarnf',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     @endpermission
     <br><br>
-    <table class="table table-striped">
+    <table id="entradas" class="table table-striped">
         <thead>
         <tr>
            {{-- <th>@sortablelink('id','Código')</th>--}}
-           <th>@sortablelink('numeroentrada','Número')</th>           
-            <th>@sortablelink('dataentrada','Data')</th>
-            <th>@sortablelink('tipoentrada','Tipo de Entrada')</th>
-            <th>@sortablelink('empresa_id','Empresa')</th>
+           <th>Número</th>           
+            <th>Data</th>
+            <th>Tipo de Entrada</th>
+            <th>Empresa</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
+        <tbody>        
         @foreach ($entradas as $entrada)
-            <tbody>
+        <tr>
             {{-- <td>{{ $entrada->id }}</td> --}}
             <td><a href="{{ route('entrada.show',$entrada->id) }}">{{ $entrada->numeroentrada  }}</a></td>            
             <td>{{ $entrada->dataentrada }}</td>
@@ -93,10 +94,10 @@
                     </div>
                 </div>
             </td>
-            </tbody>
     @endpermission            
-
+        </tr>
         @endforeach
+    </tbody>        
     </table>
 @endsection
 
@@ -107,4 +108,16 @@
             ;
         });
     </script>
+    <script>
+         $(function () {
+            $('#entradas').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            });
+        });
+  </script>
 @endsection

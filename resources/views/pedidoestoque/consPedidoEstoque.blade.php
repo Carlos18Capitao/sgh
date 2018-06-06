@@ -39,19 +39,20 @@
     <a href="{{ route('pedidoestoque',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
 
     <br><br>
-    <table class="table table-striped">
+    <table id="pedidos" class="table table-striped">
         <thead>
         <tr>
-            <th>@sortablelink('requisicao','SIAPNET/e-SIS')</th>            
-            <th>@sortablelink('datapedido','Data')</th>
-            <th>@sortablelink('setor_id','Destino')</th>
-            <th>@sortablelink('tipopedido','Tipo')</th>
+            <th>SIAPNET/e-SIS</th>            
+            <th>Data</th>
+            <th>Destino</th>
+            <th>Tipo</th>
             {{--<th>@sortablelink('created_by','Usuário')</th>--}}
             <th width="150px">Ações</th>
         </tr>
         </thead>
+        <tbody>
         @foreach ($pedidos as $pedido)
-            <tbody>
+            <tr>
             <td><a href="{{ route('pedido.show',$pedido->id) }}">{{ $pedido->requisicao or 'Não informado' }}</a></td>            
             <td>{{ $pedido->datapedido }}</td>
             <td>
@@ -98,10 +99,10 @@
                     </div>
                 </div>
             </td>
-            </tbody>
-
+        </tr>
         @endforeach
-    </table>
+    </tbody>
+</table>
 @endsection
 
 @section('js')
@@ -110,5 +111,10 @@
             $('.js-setor').select2()
             ;
         });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#pedidos').DataTable();
+        } );
     </script>
 @endsection

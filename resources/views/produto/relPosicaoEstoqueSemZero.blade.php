@@ -45,22 +45,23 @@
     {{--<a href="{{ route('produto.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>--}}
     {{--@endshield--}}
     <br>
-    <table class="table table-striped table-hover">
+    <table id="estoques" class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>@sortablelink('categoria_id','Categoria')</th>
-            <th>@sortablelink('codigo','Código')</th>
-            <th>@sortablelink('produto','Produto')</th>
-            <th>@sortablelink('unidade','Unidade')</th>
+            <th>Categoria</th>
+            <th>Código</th>
+            <th>Produto</th>
+            <th>Unidade</th>
             <th>Estoque Atual</th>
             {{--<th width="100px">Ações</th>--}}
         </tr>
         </thead>
+        <tbody>
         @foreach ($estoques as $estoque)
 
           @foreach ($estoque->produto as $produto)
             @if(($produto->produtoentrada->sum('qtd') - $produto->produtosaida->sum('qtd')) > 0)
-            <tbody>
+            <tr>
             <td>{{ $produto->categoria->descricao  }}</td>
             <td>{{ $produto->codigo }}</td>
             <td><a href="{{ route('produto.show',$produto->id) }}">{{ $produto->produto }}</a></td>
@@ -102,11 +103,19 @@
                         {{--</div>--}}
                     {{--</div>--}}
                 {{--</td>--}}
-            </tbody>
+                                </tr>
             @endif
           @endforeach
 
         @endforeach
+        </tbody>        
     </table>
     {{-- {!! $produtos->appends(\Request::except('page'))->render() !!} --}}
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#estoques').DataTable();
+        } );
+    </script>
 @endsection

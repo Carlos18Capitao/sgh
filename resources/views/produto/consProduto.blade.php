@@ -18,24 +18,25 @@
     <a href="{{ route('produto.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     {{--@endshield--}}
     <br><br>
-    <table class="table table-striped">
+    <table id="produtos" class="table table-striped">
         <thead>
         <tr>
-            <th>@sortablelink('codigo','Código')</th>
-            <th>@sortablelink('produto','Produto')</th>
-            <th>@sortablelink('unidade','Unidade')</th>
-            <th>@sortablelink('categoria.descricao','Categoria')</th>
-            <th>@sortablelink('lote','Lote')</th>
-            <th>@sortablelink('validade','Validade')</th>
+            <th>Código</th>
+            <th>Produto</th>
+            <th>Unidade</th>
+            <th>Categoria</th>
+            <th>Lote</th>
+            <th>Validade</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
+        <tbody>        
         @foreach ($produtos as $produto)
-            <tbody>
+        <tr>
                 <td>@if($produto->codigo == 0) @else {{ $produto->codigo }} @endif</td>
                 <td><a href="{{ route('produto.show',$produto->id) }}">{{ $produto->produto }}</a></td>
                 <td>{{ $produto->unidade }}</td>
-                {{--<td>{{ $produto->categoria->descricao  }}</td>--}}
+                <td>{{ $produto->categoria->descricao  }}</td>
                 <td>{{ $produto->lote_formatted  }}</td>
                 <td>{{ $produto->validade_formatted  }}</td>
                 <td>
@@ -72,9 +73,16 @@
                         </div>
                     </div>
                 </td>
-            </tbody>
-
+            </tr>
         @endforeach
+        </tbody>        
     </table>
-    {!! $produtos->appends(\Request::except('page'))->render() !!}
+    {{--{!! $produtos->appends(\Request::except('page'))->render() !!}--}}
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#produtos').DataTable();
+        } );
+  </script>
 @endsection

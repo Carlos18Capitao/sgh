@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'SGA'),
+    'name' => env('APP_NAME', 'SGA - Sistema de Gestão de Almoxarifado'),
 
     /*
     |--------------------------------------------------------------------------

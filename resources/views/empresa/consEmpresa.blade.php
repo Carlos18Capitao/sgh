@@ -40,7 +40,11 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#empresas').DataTable();
+            $('#empresas').DataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+                }
+            } );
         } );
   </script>
 @endsection

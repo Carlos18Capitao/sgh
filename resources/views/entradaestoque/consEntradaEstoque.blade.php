@@ -37,7 +37,7 @@
     @endforeach
     <br><br>
 
-    @permission('create-users')
+    @permission('create-estoques')
         <a href="{{ route('entrarnf',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     @endpermission
     <br><br>
@@ -61,12 +61,12 @@
             <td>{{ mb_strtoupper($entrada->tipoentrada)  }}</td>
             <td>{{ $entrada->empresa->nome }}</td>
             <td>
-    @permission('update-users')
+    @permission('update-estoques')
                 <a class = "btn btn-sm btn-default" href="{{ route('entrada.edit',$entrada->id)}}">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </a>
     @endpermission
-    @permission('delete-users')                
+    @permission('delete-estoques')                
                 <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$entrada->id}}">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>

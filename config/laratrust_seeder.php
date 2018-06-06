@@ -14,6 +14,9 @@ return [
         'user' => [
             'profile' => 'r,u'
         ],
+        'admin' => [
+            'estoques' => 'c,r,u,d'
+        ],
     ],
     'permission_structure' => [
         'cru_user' => [

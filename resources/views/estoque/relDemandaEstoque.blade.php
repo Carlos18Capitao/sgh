@@ -41,7 +41,7 @@
     @endforeach
 
     <br><br>
-    <table id="estoques" class="table table-striped table-hover">
+    <table data-order='[[ 9, "desc" ]]' data-page-length='100' id="estoques" class="table table-striped table-hover">
         <thead>
         <tr>
             <th>Código</th>

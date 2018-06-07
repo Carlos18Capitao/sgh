@@ -41,7 +41,7 @@
     @endforeach
 
     <br><br>
-    <table class="table table-striped table-hover">
+    <table id="estoques" class="table table-striped table-hover">
         <thead>
         <tr>
             <th>Código</th>
@@ -56,8 +56,9 @@
             <th>Previsão Meses</th>
         </tr>
         </thead>
+        <tbody>
         @foreach ($demandas as $demanda)
-            <tbody>
+        <tr>
             <td>{{ $demanda->codigo }}</td>
             <td>{{ $demanda->produto }}</td>
             <td>{{ $demanda->anual }}</td>
@@ -86,8 +87,19 @@
                     {{ $demanda->prev_meses }}
                 @endif
                 </td>
-
-            </tbody>
+            </tr>
         @endforeach
+    </tbody>        
     </table>
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#estoques').DataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+                }
+            } );
+        } );
+  </script>
 @endsection

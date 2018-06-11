@@ -51,7 +51,7 @@
 
     <hr>
 <b> ENTRADAS </b>
-    <table class="table table-striped">
+    <table id="entradas" class="table table-striped">
     <thead>
     <tr>
         <th>Fornecedor</th>
@@ -64,9 +64,10 @@
         <th>@sortablelink('created_by','Usuário')</th>
     </tr>
     </thead>
-@foreach($produtos->produtoentrada as $entproduto)
+        <tbody>
+    @foreach($produtos->produtoentrada as $entproduto)
     {{--{{ dd($entproduto) }}--}}
-            <tbody>
+            <tr>
                 <td>{{ $entproduto->entrada->empresa->nome or 'UNCISAL' }}</td>
                 <td><a href="{{ route('entrada.show',$entproduto->entrada_id) }}">{{ $entproduto->entrada->numeroentrada or ''}}</a></td>
                 <td>{{ $entproduto->entrada->dataentrada or $entproduto->created_at}}</td>
@@ -76,8 +77,9 @@
                 <td>{{ $entproduto->validade }}</td>
                 <td>{{ $entproduto->user->name }}</td>
 
-            </tbody>
+            </tr>
 @endforeach
+        </tbody>
     </table>
 <b>Total de Entradas:</b> {{ $produtos->produtoentrada->sum('qtd') }}
   @if($produtos->unidade == 'Grama')
@@ -86,7 +88,7 @@
     <hr>
 
 <b> SAÍDAS </b>
-    <table class="table table-striped">
+    <table id="saidas" class="table table-striped">
         <thead>
         <tr>
             <th>@sortablelink('setor_id','Setor')</th>
@@ -98,8 +100,9 @@
             <th>@sortablelink('created_by','Usuário')</th>
         </tr>
         </thead>
-        @foreach($produtos->produtosaida as $saiproduto)
-            <tbody>
+        <tbody>
+    @foreach($produtos->produtosaida as $saiproduto)
+            <tr>
                 @if($saiproduto->qtd > 0)
                     <td>
                         @if($saiproduto->pedido->tipopedido == 'unidade')
@@ -115,8 +118,9 @@
                     <td>{{ $saiproduto->validade }}</td>
                     <td>{{ $saiproduto->user->name }}</td>
                 @endif
-            </tbody>
+            </tr>
         @endforeach
+        </tbody>
     </table>
     <b>Total de Saídas:</b> {{ $produtos->produtosaida->sum('qtd') }}
     @if($produtos->unidade == 'Grama')
@@ -181,4 +185,24 @@
         {{--@endforeach--}}
     {{--</table>--}}
     {{--{!! $produtos->appends(\Request::except('page'))->render() !!}--}}
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#entradas').DataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+                }
+            } );
+        } );
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#saidas').DataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+                }
+            } );
+        } );
+    </script>
 @endsection

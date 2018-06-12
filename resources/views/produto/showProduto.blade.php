@@ -56,12 +56,12 @@
     <tr>
         <th>Fornecedor</th>
         <th>Entrada</th>
-        <th>@sortablelink('created_at','Data de Entrada')</th>
-        <th>@sortablelink('qtd','Qtd')</th>
-        <th>@sortablelink('preco','Preço de Compra')</th>
-        <th>@sortablelink('lote','Lote')</th>
-        <th>@sortablelink('validade','Validade')</th>
-        <th>@sortablelink('created_by','Usuário')</th>
+        <th>Data de Entrada</th>
+        <th>Qtd</th>
+        <th>Preço de Compra</th>
+        <th>Lote</th>
+        <th>Validade</th>
+        <th>Usuário</th>
     </tr>
     </thead>
         <tbody>
@@ -91,19 +91,18 @@
     <table id="saidas" class="table table-striped">
         <thead>
         <tr>
-            <th>@sortablelink('setor_id','Setor')</th>
+            <th>Setor</th>
             <th>Requisição</th>
-            <th>@sortablelink('created_at','Data de Saída')</th>
-            <th>@sortablelink('qtd','Qtd')</th>
-            <th>@sortablelink('obs','Lote/Obs')</th>
-            <th>@sortablelink('validade','Validade')</th>
-            <th>@sortablelink('created_by','Usuário')</th>
+            <th>Data de Saída</th>
+            <th>Qtd</th>
+            <th>Lote</th>
+            <th>Validade</th>
+            <th>Usuário</th>
         </tr>
         </thead>
         <tbody>
     @foreach($produtos->produtosaida as $saiproduto)
             <tr>
-                @if($saiproduto->qtd > 0)
                     <td>
                         @if($saiproduto->pedido->tipopedido == 'unidade')
                             {{ $saiproduto->setor->setor }}
@@ -117,7 +116,6 @@
                     <td>{{ $saiproduto->obs or $saiproduto->lote }}</td>
                     <td>{{ $saiproduto->validade }}</td>
                     <td>{{ $saiproduto->user->name }}</td>
-                @endif
             </tr>
         @endforeach
         </tbody>

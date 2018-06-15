@@ -36,8 +36,9 @@
         @endif
     @endforeach
     <br><br>
-    <a href="{{ route('pedidoestoque',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
-
+    @permission('create-estoques')    
+        <a href="{{ route('pedidoestoque',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
+    @endpermission
     <br><br>
     <table data-order='[[ 1, "desc" ]]' id="pedidos" class="table table-striped">
         <thead>
@@ -68,9 +69,12 @@
                 <a target="_blank" class = "btn btn-sm btn-default" title="IMPRIMIR RECIBO" href="{{ route('recibopedidoestoque',$pedido->id)}}">
                     <span class="glyphicon glyphicon-print"></span>
                 </a>
+        @permission('update-estoques')                               
                 <a class = "btn btn-sm btn-default" href="{{ route('pedido.edit',$pedido->id)}}">
                     <span class="glyphicon glyphicon-pencil"></span>
                 </a>
+        @endpermission                
+        @permission('delete-estoques')       
                 <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{ $pedido->id }}">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
@@ -98,6 +102,7 @@
                         </div>
                     </div>
                 </div>
+        @endpermission                
             </td>
         </tr>
         @endforeach

@@ -55,15 +55,16 @@
         {!! Form::label('requisicao', 'Nº Requisição:'); !!}
         {!! Form::text('requisicao',$pedido->requisicao,['class'=>'form-control','disabled']) !!}
 
-    <a class = "btn btn-success" title="CONCLUIR" href="{{ route('estoque.pedido',$pedido->estoque_id)}}"><span class="glyphicon glyphicon-ok"> </span> CONCLUIR</a> <br><br>
-                
+    @permission('create-estoques','update-estoques')            
+        <a class = "btn btn-success" title="CONCLUIR" href="{{ route('estoque.pedido',$pedido->estoque_id)}}"><span class="glyphicon glyphicon-ok"> </span> CONCLUIR</a> <br><br>
+    @endpermission            
     </div>
 
 
     {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCadastrar">
         <span class="glyphicon glyphicon-plus"></span> Adicionar Produtos
     </button> --}}
-
+    @permission('create-estoques')
     <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Adicionar Produtos ao Pedido</h3>
@@ -117,6 +118,7 @@
 
         </div>
     </div>
+    @endpermission
     <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Itens do Pedido</h3>
@@ -149,6 +151,7 @@
                     {{--<a class = "btn btn-sm btn-default" href="{{ route('saida.edit',$produtosaida->id)}}">--}}
                         {{--<span class="glyphicon glyphicon-pencil"></span>--}}
                     {{--</a>--}}
+        @permission('delete-estoques')             
                     <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$produtosaida->id}}">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
@@ -177,6 +180,7 @@
                             </div>
                         </div>
                     </div>
+            @endpermission        
                 </td>
             </tbody>
             </div>

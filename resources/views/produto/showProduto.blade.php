@@ -51,7 +51,7 @@
 
     <hr>
 <b> ENTRADAS </b>
-    <table id="entradas" class="table table-striped">
+    <table data-order='[[ 2, "desc" ]]' id="entradas" class="table table-striped">
     <thead>
     <tr>
         <th>Fornecedor</th>
@@ -88,7 +88,7 @@
     <hr>
 
 <b> SAÍDAS </b>
-    <table id="saidas" class="table table-striped">
+    <table data-order='[[ 2, "desc" ]]' id="saidas" class="table table-striped">
         <thead>
         <tr>
             <th>Setor</th>
@@ -190,7 +190,10 @@
             $('#entradas').DataTable( {
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-                }
+                },
+                columnDefs: [
+                    { type: 'date-eu', targets: 2 }
+                ]
             } );
         } );
     </script>
@@ -199,7 +202,10 @@
             $('#saidas').DataTable( {
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-                }
+                },
+                columnDefs: [
+                    { type: 'date-eu', targets: 2 }
+                ]
             } );
         } );
     </script>

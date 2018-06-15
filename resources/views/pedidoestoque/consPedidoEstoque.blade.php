@@ -39,7 +39,7 @@
     <a href="{{ route('pedidoestoque',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
 
     <br><br>
-    <table id="pedidos" class="table table-striped">
+    <table data-order='[[ 1, "desc" ]]' id="pedidos" class="table table-striped">
         <thead>
         <tr>
             <th>SIAPNET/e-SIS</th>            
@@ -117,7 +117,10 @@
             $('#pedidos').DataTable( {
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-                }
+                },
+                columnDefs: [
+                    { type: 'date-eu', targets: 1 }
+                ]
             } );
         } );
     </script>

@@ -61,6 +61,7 @@
     <!-- DataTables -->
   {{--  <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>--}}
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.17/sorting/date-eu.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 @endif
 

@@ -41,7 +41,7 @@
         <a href="{{ route('entrarnf',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     @endpermission
     <br><br>
-    <table id="entradas" class="table table-striped">
+    <table  data-order='[[ 1, "desc" ]]' id="entradas" class="table table-striped">
         <thead>
         <tr>
            {{-- <th>@sortablelink('id','Código')</th>--}}
@@ -113,7 +113,10 @@
             $('#entradas').DataTable( {
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
-                }
+                },
+                columnDefs: [
+                    { type: 'date-eu', targets: 1 }
+                ]
             } );
         } );
   </script>

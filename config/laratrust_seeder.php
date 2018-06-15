@@ -2,27 +2,27 @@
 
 return [
     'role_structure' => [
-        'superadministrator' => [
-            'users' => 'c,r,u,d',
-            'acl' => 'c,r,u,d',
-            'profile' => 'r,u'
-        ],
-        'administrator' => [
-            'users' => 'c,r,u,d',
-            'profile' => 'r,u'
-        ],
-        'user' => [
-            'profile' => 'r,u'
-        ],
         'admin' => [
-            'estoques' => 'c,r,u,d'
+            'admin' => 'c,r,u,d',
+            'estoques' => 'c,r,u,d',
+//            'profile' => 'r,u'
+        ],
+//        'administrator' => [
+//            'users' => 'c,r,u,d',
+//            'profile' => 'r,u'
+//        ],
+//        'user' => [
+//            'profile' => 'r,u'
+//        ],
+        'estoque' => [
+            'estoques' => 'r,u'
         ],
     ],
-    'permission_structure' => [
-        'cru_user' => [
-            'profile' => 'c,r,u'
-        ],
-    ],
+//    'permission_structure' => [
+//        'cru_user' => [
+//            'profile' => 'c,r,u'
+//        ],
+//    ],
     'permissions_map' => [
         'c' => 'create',
         'r' => 'read',

@@ -44,7 +44,6 @@ Route::resource('/tipoalta', 'TipoAltaController');
 Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadministrator']], function () {
     Route::resource('/setor', 'SetorController');
     Route::resource('/categoria', 'CategoriaController');
-    Route::resource('/produto', 'ProdutoController');
     Route::resource('/estoque', 'EstoqueController');
     Route::get('/{estoque_id}/catrelposicaoestoque/{categoria_id}', 'ProdutoController@catrelposicaoestoque')->name('catrelposicaoestoque');
 
@@ -98,6 +97,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadminis
         Route::resource('/itemempenho', 'ItemEmpenhoController');
         Route::get('/produto/print/{id}', 'ProdutoController@pdfproduto')->name('pdfproduto');
 
+        Route::get('/produto', 'ProdutoController@show');
 
         //Route::group(['prefix'  =>  'estoque'], function () {
         // Route::resource('/setor', 'SetorController');

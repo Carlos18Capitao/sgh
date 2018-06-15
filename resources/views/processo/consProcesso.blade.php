@@ -8,7 +8,8 @@
 
     <a href="{{ route('processo.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     <br><br>
-    <table class="table table-striped">
+    <table id="processos" class="table table-striped">
+        <thead>
         <tr>
             {{-- <th>ID</th> --}}
             <th>Número</th>
@@ -16,6 +17,8 @@
             <th>Obs</th>
             <th width="100px">Ações</th>
         </tr>
+        </thead>
+        <tbody
         @foreach ($processos as $processo)
             <tr>
                 <td><a href="{{ route('processo.show', $processo->id)}}">{{ $processo->numero }}</a></td>
@@ -32,6 +35,18 @@
             </tr>
 
         @endforeach
+        </tbody>
     </table>
 
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#processos').DataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+                }
+            } );
+        } );
+    </script>
 @endsection

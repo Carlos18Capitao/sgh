@@ -15,7 +15,7 @@ return [
 //            'profile' => 'r,u'
 //        ],
         'estoque' => [
-            'estoques' => 'r,u'
+            'estoques' => 'c,r'
         ],
     ],
 //    'permission_structure' => [

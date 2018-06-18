@@ -25,6 +25,8 @@ class CreateRequisitionsTable extends Migration
             $table->integer('setor_id')->unsigned();
             $table->foreign('setor_id')->references('id')->on('setors')->onDelete('cascade');
             $table->string('tipo','30');
+            $table->string('status','30');
+            $table->string('obs','255')->nullable();
         });
     }
 

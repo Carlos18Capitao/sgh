@@ -99,6 +99,10 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadminis
 
         Route::resource('/produto', 'ProdutoController');
 
+        Route::get('/{id}/requisicao', ['as' => 'requisicao','uses' => 'RequisitionController@index']);
+        Route::resource('/requisicao', 'RequisitionController');
+
+
         //Route::group(['prefix'  =>  'estoque'], function () {
         // Route::resource('/setor', 'SetorController');
         // Route::resource('/categoria', 'CategoriaController');

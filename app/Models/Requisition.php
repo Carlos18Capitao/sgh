@@ -19,7 +19,9 @@ class Requisition extends Model
         'updated_by',
         'estoque_id',
         'setor_id',
-        'tipo'
+        'tipo',
+        'obs',
+        'status'
     ];
 
 }

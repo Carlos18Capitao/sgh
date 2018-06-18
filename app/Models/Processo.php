@@ -13,6 +13,8 @@ class Processo extends Model
         parent::boot();
     }
 
+    protected $revisionCreationsEnabled = true;
+
     protected $fillable = ['numero','obs','created_by','updated_by','categoria_id'];
 
     public function categoria()

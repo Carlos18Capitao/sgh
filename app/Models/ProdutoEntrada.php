@@ -17,6 +17,8 @@ class ProdutoEntrada extends Model
         parent::boot();
     }
 
+    protected $revisionCreationsEnabled = true;
+
 //    use SoftDeletes, Sortable;
     use DecimalMutators;
     use Sortable;

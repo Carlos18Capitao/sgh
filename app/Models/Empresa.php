@@ -13,6 +13,8 @@ class Empresa extends Model
         parent::boot();
     }
 
+    protected $revisionCreationsEnabled = true;
+
     protected $fillable = ['nome','cnpj','email','telefone','endereco','area','responsavel','created_by','updated_by'];
 
     public function entrada()

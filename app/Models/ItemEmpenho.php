@@ -8,7 +8,15 @@ use GiordanoLima\DecimalMutators\DecimalMutators;
 
 class ItemEmpenho extends Model
 {
-    
+    use \Venturecraft\Revisionable\RevisionableTrait;
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
+    protected $revisionCreationsEnabled = true;
+
     use DecimalMutators;
 
     protected $fillable = [

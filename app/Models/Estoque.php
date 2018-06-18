@@ -8,6 +8,15 @@ use Kyslik\ColumnSortable\Sortable;
 
 class Estoque extends Model
 {
+    use \Venturecraft\Revisionable\RevisionableTrait;
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
+    protected $revisionCreationsEnabled = true;
+
     use SoftDeletes, Sortable;
 
     protected $dates = ['deleted_at'];

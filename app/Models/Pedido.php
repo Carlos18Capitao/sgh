@@ -15,6 +15,8 @@ class Pedido extends Model
         parent::boot();
     }
 
+    protected $revisionCreationsEnabled = true;
+
     use Sortable;
 
     public $sortable = ['datapedido','setor_id'];

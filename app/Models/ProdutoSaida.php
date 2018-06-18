@@ -16,6 +16,8 @@ class ProdutoSaida extends Model
         parent::boot();
     }
 
+    protected $revisionCreationsEnabled = true;
+
     use Sortable;
 //    use SoftDeletes, Sortable;
 

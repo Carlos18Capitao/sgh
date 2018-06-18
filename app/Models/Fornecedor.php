@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Fornecedor extends Model
 {
+    use \Venturecraft\Revisionable\RevisionableTrait;
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
+    protected $revisionCreationsEnabled = true;
+
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];

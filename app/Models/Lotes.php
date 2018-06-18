@@ -14,6 +14,8 @@ class Lotes extends Model
         parent::boot();
     }
 
+    protected $revisionCreationsEnabled = true;
+
     public function produto()
     {
         return $this->belongsTo('App\Models\Produto');

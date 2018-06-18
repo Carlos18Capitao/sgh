@@ -13,6 +13,8 @@ class ProdutoEstoque extends Model
         parent::boot();
     }
 
+    protected $revisionCreationsEnabled = true;
+
     protected $fillable = ['produto_id','estoque_id'];
 
     public function estoque()

@@ -16,6 +16,8 @@ class Produto extends Model
         parent::boot();
     }
 
+    protected $revisionCreationsEnabled = true;
+
     use SoftDeletes, Sortable;
 
     protected $dates = ['deleted_at'];

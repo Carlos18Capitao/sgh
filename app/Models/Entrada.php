@@ -8,9 +8,18 @@ use Carbon\Carbon;
 
 class Entrada extends Model
 {
+    use \Venturecraft\Revisionable\RevisionableTrait;
+
+    public static function boot()
+    {
+        parent::boot();
+    }
+
     use Sortable;
 
     public $sotable = ['dataentrada','empresa_id'];
+
+    protected $revisionCreationsEnabled = true;
 
     protected $fillable = ['tipoentrada','numeroentrada','dataentrada','empresa_id','estoque_id','created_by','updated_by','preco'];
 

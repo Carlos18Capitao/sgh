@@ -20,6 +20,8 @@ class Setor extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $revisionCreationsEnabled = true;
+
     protected $fillable = [
         'setor',
         'ramal'

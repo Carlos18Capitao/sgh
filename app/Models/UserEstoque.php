@@ -13,5 +13,7 @@ class UserEstoque extends Model
         parent::boot();
     }
 
+    protected $revisionCreationsEnabled = true;
+
     protected $fillable = ['user_id','estoque_id'];
 }

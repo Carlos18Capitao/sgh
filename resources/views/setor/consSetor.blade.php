@@ -20,17 +20,18 @@
 
     <a href="{{ route('setor.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     <br><br>
-    <table class="table table-striped">
+    <table id="setor" class="table table-striped">
         <thead>
         <tr>
-            <th>@sortablelink('setor','Setor')</th>
-            <th>@sortablelink('ramal','Ramal')</th>
+            <th>Setor</th>
+            <th>Ramal</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
+        <tbody>
         @foreach ($setors as $setor)
-            <tbody>
-                <td>{{ $setor->setor }}</td>
+            <tr>
+            <td><a href="{{ route('setor.show',$setor->id) }}">{{ $setor->setor }}</a></td>
                 <td>{{ $setor->ramal }}</td>
                 <td>
                     {{--@shield('setor.editar')--}}
@@ -66,12 +67,24 @@
                         </div>
                     </div>
                 </td>
-            </tbody>
+            </tr>
 
         @endforeach
+        </tbody>
     </table>
-    {!! $setors->appends(\Request::except('page'))->render() !!}
+    {{--{!! $setors->appends(\Request::except('page'))->render() !!}--}}
 
     {{-- </painel>
   </pagina> --}}
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#setor').DataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+                }
+            } );
+        } );
+    </script>
 @endsection

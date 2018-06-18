@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Setor;
 use App\Http\Requests\SetorFormRequest;
+use App\User;
+use Auth;
 
 class SetorController extends Controller
 {
@@ -17,7 +19,7 @@ class SetorController extends Controller
 
     public function index()
     {
-        $setors =  Setor::sortable()->paginate(10);
+        $setors =  Setor::orderBy('setor')->get();
         $title = 'Cadastro de Setor';
 
         return view('setor.consSetor', compact('title', 'setors'));
@@ -42,9 +44,23 @@ class SetorController extends Controller
         }
     }
 
+    public function usersetor($setor_id, Request $request)
+    {
+        $setors = Setor::find($setor_id);
+        $user_id = $request['user_id'];
+
+        $setors->user()->attach($user_id);
+
+        return redirect()->back()->with(['success'=>'Usuário vinculado com sucesso!!!']);
+    }
+
     public function show($id)
     {
-        //
+        $setors  = Setor::find($id);
+        $title    = 'Unidades UNCISAL';
+        $users    = User::all()->sortBy('name');
+
+        return view('setor.showSetor', compact('title','users', 'setors'));
     }
 
     public function edit($id)

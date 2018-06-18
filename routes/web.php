@@ -102,6 +102,9 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadminis
         Route::get('/{id}/requisicao', ['as' => 'requisicao','uses' => 'RequisitionController@index']);
         Route::resource('/requisicao', 'RequisitionController');
 
+        Route::post('/{id}/usersetor', ['as' => 'setor.usersetor','uses' => 'SetorController@usersetor']);
+
+
 
         //Route::group(['prefix'  =>  'estoque'], function () {
         // Route::resource('/setor', 'SetorController');

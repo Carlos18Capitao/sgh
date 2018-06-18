@@ -79,6 +79,7 @@ return array(
     'App\\Models\\TipoAlta' => $baseDir . '/app/Models/TipoAlta.php',
     'App\\Models\\TipoPrestador' => $baseDir . '/app/Models/TipoPrestador.php',
     'App\\Models\\UserEstoque' => $baseDir . '/app/Models/UserEstoque.php',
+    'App\\Models\\UserSetors' => $baseDir . '/app/Models/UserSetors.php',
     'App\\Permission' => $baseDir . '/app/Permission.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

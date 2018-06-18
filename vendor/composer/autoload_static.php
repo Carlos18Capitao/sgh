@@ -476,6 +476,7 @@ class ComposerStaticInit0303c122c05233a02b50c432a646ca9a
         'App\\Models\\TipoAlta' => __DIR__ . '/../..' . '/app/Models/TipoAlta.php',
         'App\\Models\\TipoPrestador' => __DIR__ . '/../..' . '/app/Models/TipoPrestador.php',
         'App\\Models\\UserEstoque' => __DIR__ . '/../..' . '/app/Models/UserEstoque.php',
+        'App\\Models\\UserSetors' => __DIR__ . '/../..' . '/app/Models/UserSetors.php',
         'App\\Permission' => __DIR__ . '/../..' . '/app/Permission.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

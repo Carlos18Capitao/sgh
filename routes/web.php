@@ -41,6 +41,8 @@ Route::resource('/ala', 'AlaController');
 
 Route::resource('/tipoalta', 'TipoAltaController');
 
+Route::get('jsonprodutos',['as'=>'jsonprodutos','uses'=> 'EmpenhoController@jsonprodutos']);
+
 Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadministrator']], function () {
     Route::resource('/setor', 'SetorController');
     Route::resource('/categoria', 'CategoriaController');

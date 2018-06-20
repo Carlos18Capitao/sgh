@@ -60,19 +60,20 @@
 
                                 <div class="form-group">
                                     {!! Form::label('produto', 'Produto:'); !!}
-
-                                    <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id">
-                                    <option selected="selected" value="">Selecione um produto...</option>
-                                            @foreach($produtos as $produto)
-                                                @foreach($produto->estoque as $estoque)
+                                 {{--   <select style="width: 100%" class="js-produto"></select>--}}
+                                    <select class="js-produto form-control" style="width:100%" name="produto_id"></select>
+                                    {{--<select style="width: 100%" class="js-produto" id="js-produto" name="produto_id">--}}
+                                    {{--<option selected="selected" value="">Selecione um produto...</option>--}}
+                                            {{--@foreach($produtos as $produto)--}}
+                                                {{--@foreach($produto->estoque as $estoque)--}}
                                                  {{--   @if($estoque->id == $entrada->estoque_id) --}}
-                                                        <option value="{{ $produto->id }}">
-                                                            {{ $produto->produto . ' - ' . $produto->unidade  }} @if($produto->codigo != 0)  {{ '(Cód: ' . $produto->codigo . ')' }} @endif
-                                                        </option>
+                                                        {{--<option value="{{ $produto->id }}">--}}
+                                                            {{--{{ $produto->produto . ' - ' . $produto->unidade  }} @if($produto->codigo != 0)  {{ '(Cód: ' . $produto->codigo . ')' }} @endif--}}
+                                                        {{--</option>--}}
                                                 {{--    @endif --}}
-                                                @endforeach
-                                            @endforeach
-                                        </select>
+                                                {{--@endforeach--}}
+                                            {{--@endforeach--}}
+                                        {{--</select>--}}
                                 </div>
                                 
                                 <div class="form-group form-inline">
@@ -172,9 +173,46 @@
 @endsection
 
 @section('js')
-    <script>
-           $(document).ready(function() {
-            $('.js-produto').select2();
+    {{--<script>--}}
+           {{--$(document).ready(function() {--}}
+            {{--$('.js-produto').select2();--}}
+        {{--});--}}
+    {{--</script>--}}
+
+    {{--<script>--}}
+        {{--$('.js-produto').select2({--}}
+            {{--ajax: {--}}
+                {{--url: '/jsonprodutos',--}}
+                {{--dataType: 'json'--}}
+                {{--// Additional AJAX parameters go here; see the end of this chapter for the full code of this example--}}
+            {{--}--}}
+        {{--});--}}
+    {{--</script>--}}
+
+    <script type="text/javascript">
+
+
+        $('.js-produto').select2({
+            placeholder: 'Selecione o produto',
+            language: 'pt-BR',
+            ajax: {
+                url: "<?php echo route('jsonprodutos') ?>",
+                dataType: 'json',
+                //delay: 250,
+                processResults: function (data) {
+                    return {
+                        results:  $.map(data, function (data) {
+                            return {
+                                text: data.produto,
+                                id: data.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
         });
+
+
     </script>
 @endsection

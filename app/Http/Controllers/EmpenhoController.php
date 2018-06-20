@@ -70,6 +70,23 @@ class EmpenhoController extends Controller
         return view('empenho.showEmpenho', compact('empenhos', 'title','produtos','itemempenhos','total'));
     }
 
+    public function jsonprodutos(Request $request)
+    {
+    	$data = [];
+        if($request->has('q')){
+            $search = $request->q;
+            $data = DB::table("produtos")
+            		->selectRaw("id, concat_ws('', codigo, ' - ', produto, ' - ', unidade) as produto")
+                    //->select("id","produto")
+                    ->wherenull('deleted_at')
+                    ->where('produto','LIKE',"%$search%")
+                    ->orWhere('codigo','LIKE',"%$search%")
+            		->get();
+        }
+
+        return response()->json($data);
+    }
+
     public function edit($id)
     {
         $atas = $this->ata->find($id);

@@ -42,7 +42,7 @@
 
         <div class="form-group form-inline">
             {!! Form::label('tipoentrada', 'Tipo de Entrada:'); !!}
-            {!! Form::select('tipoentrada', ['nf'=>'Nota Fiscal','remessa'=>'Remessa','doacao'=>'Doação','permuta'=>'Permuta','emprestimo'=>'Empréstimo','devolucao'=>'Devolução de Empréstimo','inventario'=>'Inventário',], null, ['class' => 'js-setor form-control', 'placeholder' => 'Tipo de entrada...']) !!}
+            {!! Form::select('tipoentrada', ['nf'=>'Nota Fiscal','remessa'=>'Remessa','doacao'=>'Doação','permuta'=>'Permuta','emprestimo'=>'Empréstimo','devolucao'=>'Devolução de Empréstimo','inventario'=>'Inventário','devunidade'=>'Devolução Unidade'], null, ['class' => 'js-setor form-control', 'placeholder' => 'Tipo de entrada...']) !!}
             {!! Form::label('dataentrada', 'Data da Entrada:'); !!}
         @if (isset($entradas))            
             <input class="form-control" name="dataentrada" type="text" value="{{$entradas->dataentrada}}" id="dataentrada" disabled>

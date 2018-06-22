@@ -28,7 +28,7 @@
               @endif
 
     <hr>
-
+@if($produtos->lote == 1)
     <b> SALDO POR LOTE </b>
     <table class="table table-striped">
         <thead>
@@ -48,7 +48,7 @@
             </tbody>
 @endforeach
     </table>
-
+@endif
     <hr>
 <b> ENTRADAS </b>
     <table data-order='[[ 2, "desc" ]]' id="entradas" class="table table-striped">
@@ -76,7 +76,6 @@
                 <td>{{ $entproduto->lote }}</td>
                 <td>{{ $entproduto->validade }}</td>
                 <td>{{ $entproduto->user->name }}</td>
-
             </tr>
 @endforeach
         </tbody>

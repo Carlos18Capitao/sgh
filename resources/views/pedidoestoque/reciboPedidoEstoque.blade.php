@@ -73,7 +73,44 @@
          <tbody>
             <tr>
                 <td align="center"><font size="1">{{ $produtosaida->produto->codigo  }}</font></td>
-                <td><font size="1">{{ $produtosaida->produto->produto }}</font></td>
+                <td><font size="1">
+                    
+                
+                        @if($produtosaida->produto->categoria_id != 6)
+                       @php
+                        $limite = 120;
+                        $quebrar = true;
+
+                        //corta as tags do texto para evitar corte errado
+                        $contador = strlen(strip_tags($produtosaida->produto->produto));
+                        if($contador <= $limite):
+                        //se o número do texto for menor ou igual o limite então retorna ele mesmo
+                        $newtext = $produtosaida->produto->produto;
+                        else:
+                        if($quebrar == true): //se for maior e $quebrar for true
+                        //corta o texto no limite indicado e retira o ultimo espaço branco
+                        $newtext = trim(mb_substr($produtosaida->produto->produto, 0, $limite))."...";
+                        else:
+                        //localiza ultimo espaço antes de $limite
+                        $ultimo_espaço = strrpos(mb_substr($produtosaida->produto->produto, 0, $limite)," ");
+                        //corta o $texto até a posição lozalizada
+                        $newtext = trim(mb_substr($produtosaida->produto->produto, 0, $ultimo_espaço))."...";
+                        endif;
+                        endif;
+                        $newproduto = explode('DESCRIÇÃO',$newtext);
+
+                        print  $newproduto[0] ;
+
+                        @endphp
+                    @else
+                                {{ $produtosaida->produto->produto }}
+                    @endif
+
+
+
+                    {{-- $produtosaida->produto->produto --}}
+                
+                </font></td>
                 <td><font size="1">{{ $produtosaida->produto->unidade }}</font></td>
                 <td align="center"><font size="1">{{ $produtosaida->lote  }}</font></td>
                 <td align="center"><font size="1">{{ $produtosaida->validade  }}</font></td>
@@ -83,7 +120,11 @@
         @endforeach
     </table>
     <br><br>
-    <font size="1">
-        Recebido por: ________________________________________________
-    </font>
+    <table width="100%" class="table-sm table-bordered">
+            <tr>
+                <td><font size="1">Separado por:</font><br><br></td>
+                <td><font size="1">Conferido por:</font><br><br></td>
+                <td><font size="1">Recebido por:</font><br><br></td>
+            </tr>
+    </table>
 @endsection

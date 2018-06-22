@@ -124,21 +124,22 @@
               <h3 class="panel-title">Itens do Pedido</h3>
             </div>
             <div class="panel-body">
-    <table class="table table-striped">
+    <table data-order='[[ 0, "desc" ]]' data-page-length='50' id="produtos" class="table table-striped">
         <thead>
         <tr>
             <th>#</th>
-            <th>@sortablelink('codigo','Código')</th>
-            <th>@sortablelink('produto.produto','Produto')</th>
+            <th>Código</th>
+            <th>Produto</th>
             <th>Unidade</th>
-            <th>@sortablelink('qtd','Qtd')</th>
-            <th>@sortablelink('obs','Lote')</th>
-            <th>@sortablelink('validade','Validade')</th>
+            <th>Qtd)</th>
+            <th>Lote)</th>
+            <th>Validade</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
+        <tbody>
         @foreach ($produtosaidas as $produtosaida)
-            <tbody>
+            <tr>
             <td> {{ $list-- }}</td>
                 <td>{{ $produtosaida->produto->codigo  }}</td>
                 <td><a href="{{ route('produto.show',$produtosaida->produto->id) }}">{{ $produtosaida->produto->produto }}</a></td>
@@ -182,11 +183,12 @@
                     </div>
             @endpermission        
                 </td>
-            </tbody>
+            </tr>
             </div>
     </div>
         @endforeach
-
+        </tbody>
+        </table>
 @endsection
 
 @section('js')
@@ -250,4 +252,16 @@
   //      $('#qtd').attr('placeholder', 'testeee');
 //}
 </script>
+    <script>
+            $(document).ready(function() {
+                $('#produtos').DataTable( {
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+                    },
+                    columnDefs: [
+                        { type: 'date-eu', targets: 7 }
+                    ]
+                } );
+            } );
+        </script>
 @endsection

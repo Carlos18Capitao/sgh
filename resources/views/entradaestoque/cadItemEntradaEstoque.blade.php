@@ -117,23 +117,24 @@
               <h3 class="panel-title">Itens da Nota</h3>
             </div>
             <div class="panel-body">
-    <table class="table table-striped">
+    <table data-order='[[ 0, "desc" ]]' data-page-length='50' id="produtos" class="table table-striped">
         <thead>
         <tr>
-            <th>@sortablelink('codigo','Código')</th>
-            <th>@sortablelink('produto.produto','Produto')</th>
+            <th>Código</th>
+            <th>Produto</th>
            {{-- <th>Unidade</th> --}}
             <th>Lote</th>
             <th>Validade</th>
-            <th>@sortablelink('qtd','Qtd')</th>
+            <th>Qtd</th>
             <th>Preço</th>
             <th>Valor Total</th>
-            <th>@sortablelink('obs','Observação')</th>
+            <th>Observação</th>
             <th width="100px">Ações</th>
         </tr>
         </thead>
+        <tbody>
         @foreach ($produtoentradas as $produtoentrada)
-            <tbody>
+            <tr>
             <td>{{ $produtoentrada->produto->codigo }}</td>
             <td><a href="{{ route('produto.show',$produtoentrada->produto->id) }}">{{ $produtoentrada->produto->produto . ' - ' . $produtoentrada->produto->unidade}}</a></td>
           {{--  <td>{{ $produtoentrada->produto->unidade }}</td> --}}
@@ -179,8 +180,10 @@
             </td>
         </div>
     </div>
+</tr>
         @endforeach
-
+</tbody>
+</table>
             <!-- Modal CADASTRAR-->
             {{--TESTE
             <div class="modal fade" id="myModalCadastrar" tabindex="-1" role="dialog" aria-labelledby="myModalCadastrar">
@@ -283,7 +286,7 @@
            });
            */
            $(document).ready(function() {
-            $('.js-produto').select2();
+            $('.js-produto').select2(); 
         });
 /*        $(document).ready(function() {
     var max_fields      = 11; //maximum input boxes allowed
@@ -304,4 +307,16 @@
 });
 */
         </script>
+            <script>
+                    $(document).ready(function() {
+                        $('#produtos').DataTable( {
+                            "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+                            },
+                            columnDefs: [
+                                { type: 'date-eu', targets: 3 }
+                            ]
+                        } );
+                    } );
+                </script>
 @endsection

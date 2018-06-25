@@ -124,15 +124,21 @@ class ProdutoController extends Controller
 //              ");
 
         // $produtos = Produto::with('estoque','produto_id')->sortable()->get();
-        $estoques   = Estoque::with('produto')
-                                    ->where('id','=',$estoque_id)
-                                    ->sortable(['produto' => 'asc'])->get();
+        $estoques   = Estoque::with('produto')->where('id','=',$estoque_id)->get();
         //dd($estoques);
         $title      = 'Posição de Estoque';
 //        $categorias = Categoria::all();
         // $estoque_id = Estoque::where('id','=',$estoque_id)->value('id');
 
         return view('produto.relPosicaoEstoque', compact('title', 'estoques','estoque_id','produtos'));
+    }
+
+    public function relposicaoestoquelotes($estoque_id)
+    {
+        $estoques   = Estoque::with('produto')->where('id','=',$estoque_id)->get();
+        $title      = 'Posição de Estoque com Lote e Validade';
+
+        return view('produto.relPosicaoEstoqueLotes', compact('title', 'estoques','estoque_id','produtos'));
     }
 
     public function catrelposicaoestoque($estoque_id,$categoria_id)
@@ -217,8 +223,7 @@ class ProdutoController extends Controller
     public function relposicaoestoquesemzero($estoque_id)
     {
         $estoques   = Estoque::with('produto')
-                                    ->where('id','=',$estoque_id)
-                                    ->sortable(['produto' => 'asc'])->get();
+                                    ->where('id','=',$estoque_id)->get();
         $title      = 'Posição de Estoque - Itens com Saldo';
 
         return view('produto.relPosicaoEstoqueSemZero', compact('title', 'estoques','estoque_id','produtos'));

@@ -138,7 +138,7 @@
             </div>
 
             <div class="panel-footer">
-                <span class="pull-left">Relatório Demanda x Posição Estoque</span>
+                <span class="pull-left">Relatório Demanda x Estoque</span>
                 <span class="pull-right"><i class="fa fa-fw fa-lg fa-arrow-right"></i></span>
                 <div class="clearfix"></div>
             </div>
@@ -166,6 +166,27 @@
     </a>
 
 </div>
+
+<div class="col-sm-2">
+        <a href="{{route('relposicaoestoquelotes',$estoque->id)}}">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <i class="fa fa-fw fa-cubes fa-4x"></i>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="panel-footer">
+                    <span class="pull-left">Estoque com Lote e Validade</span>
+                    <span class="pull-right"><i class="fa fa-fw fa-lg fa-arrow-right"></i></span>
+                    <div class="clearfix"></div> 
+                </div>
+            </div>
+        </a>
+    
+    </div>
 
 <div class="col-sm-2">
     <a href="{{route('requisicao',$estoque->id)}}">

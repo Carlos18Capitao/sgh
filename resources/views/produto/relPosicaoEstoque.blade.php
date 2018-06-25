@@ -43,7 +43,12 @@
     {{--@shield('produto.cadastrar')--}}
     {{--<a href="{{ route('produto.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>--}}
     {{--@endshield--}}
-    <br>
+    <br><br>
+    <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><b>{{ $title }}</b></h3>
+            </div>
+            <div class="panel-body">
     <table id="estoques" class="table table-striped table-hover">
         <thead>
         <tr>
@@ -108,6 +113,8 @@
         </tbody>
     </table>
     {{-- {!! $produtos->appends(\Request::except('page'))->render() !!} --}}
+            </div>
+    </div>
 @endsection
 @section('js')
     <script>

@@ -67,7 +67,7 @@
     {{--<p><b>Período:</b> {{ \Carbon\Carbon::createFromFormat('Y-m-d', $dataInicio)->format('d/m/Y') . ' a ' . \Carbon\Carbon::createFromFormat('Y-m-d', $dataFim)->format('d/m/Y') }}</p>--}}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><b>{{ $title }} no período de {{ \Carbon\Carbon::createFromFormat('Y-m-d', $dataInicio)->format('d/m/Y') . ' a ' . \Carbon\Carbon::createFromFormat('Y-m-d', $dataFim)->format('d/m/Y') }}</b></h3>
+            <h3 class="panel-title"><b>{{ $title }}  @if(isset($dataInicio)) no período de{{ \Carbon\Carbon::createFromFormat('Y-m-d', $dataInicio)->format('d/m/Y') . ' a ' . \Carbon\Carbon::createFromFormat('Y-m-d', $dataFim)->format('d/m/Y') }} @endif</b></h3>
         </div>
         <div class="panel-body">
     <table id="negados" class="table table-striped">

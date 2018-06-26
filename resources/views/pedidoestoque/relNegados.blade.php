@@ -58,7 +58,7 @@
     <hr>
 
     {{--<p><b>Período:</b> {{ \Carbon\Carbon::createFromFormat('Y-m-d', $dataInicio)->format('d/m/Y') . ' a ' . \Carbon\Carbon::createFromFormat('Y-m-d', $dataFim)->format('d/m/Y') }}</p>--}}
-    <table class="table table-striped">
+    <table id="negados" class="table table-striped">
         <thead>
         <tr>
             <th>Código</th>
@@ -68,14 +68,16 @@
         </thead>
 
     @if(isset($setor_id))
+        <tbody>
         @foreach($negados as $negado)
-            <tbody>
+            <tr>
             <td>{{ $negado->codigo }}</td>
             <td>{{ $negado->produto }}</td>
             <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $negado->datapedido)->format('d/m/Y') }}</td>
 
-            </tbody>
+            </tr>
         @endforeach
+        </tbody>
     @endif
     </table>
 @endsection
@@ -85,5 +87,18 @@
             $('.js-setor').select2()
             ;
         });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#negados').DataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            } );
+        } );
     </script>
 @endsection

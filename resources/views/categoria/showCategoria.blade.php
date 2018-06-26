@@ -83,7 +83,12 @@
 @section('js')
 <script>
     $(document).ready(function() {
-        $('#produtos').DataTable();
+        $('#produtos').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+        });
     } );
 </script>
 @endsection

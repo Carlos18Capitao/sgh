@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <div class="text-center">
-        <h3>{{ $title }}</h3>
-    </div>
+    {{--<div class="text-center">--}}
+        {{--<h3>{{ $title }}</h3>--}}
+    {{--</div>--}}
 
     @if (isset($errors) && count($errors) > 0)
         <div class="alert alert-danger">
@@ -37,6 +37,12 @@
     @endforeach
 @endif
     <br><br>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><b>{{ $title }}</b></h3>
+        </div>
+        <div class="panel-body">
     {!! Form::open([route('negados',$estoque_id), 'class' => 'Form', 'method' => 'POST']) !!}
     <div class="form-group form-inline">
 
@@ -55,9 +61,15 @@
         {!! Form::submit('Pesquisar', ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}
     </div>
-    <hr>
+        </div>
+    </div>
 
     {{--<p><b>Período:</b> {{ \Carbon\Carbon::createFromFormat('Y-m-d', $dataInicio)->format('d/m/Y') . ' a ' . \Carbon\Carbon::createFromFormat('Y-m-d', $dataFim)->format('d/m/Y') }}</p>--}}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><b>{{ $title }} no período de {{ \Carbon\Carbon::createFromFormat('Y-m-d', $dataInicio)->format('d/m/Y') . ' a ' . \Carbon\Carbon::createFromFormat('Y-m-d', $dataFim)->format('d/m/Y') }}</b></h3>
+        </div>
+        <div class="panel-body">
     <table id="negados" class="table table-striped">
         <thead>
         <tr>
@@ -80,6 +92,8 @@
         </tbody>
     @endif
     </table>
+        </div>
+    </div>
 @endsection
 @section('js')
     <script>

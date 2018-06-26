@@ -36,7 +36,7 @@
         @endif
     @endforeach
 @endif
-    <br><br>
+    <br>
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -111,7 +111,7 @@
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+                ],
             } );
         } );
     </script>

@@ -74,6 +74,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadminis
         Route::get('/{estoque_id}/pedido', ['as' => 'estoque.pedido','uses' => 'PedidoController@index']);
         Route::get('/pedido/{estoque_id}/create', 'PedidoController@create')->name('pedidoestoque');
         Route::any('/{estoque_id}/negados', 'PedidoController@negados')->name('negados');
+        Route::any('/{estoque_id}/atendidos', 'PedidoController@atendidos')->name('atendidos');
         Route::post('/pedido/select-ajax', ['as'=>'select-ajax','uses'=>'PedidoController@selectAjax']);
         Route::post('/pedido/select-validade', ['as'=>'select-validade','uses'=>'PedidoController@selectValidade']);
         Route::post('/pedido/select-qtd', ['as'=>'select-qtd','uses'=>'PedidoController@selectQtd']);

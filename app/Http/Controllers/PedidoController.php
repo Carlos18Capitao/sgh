@@ -206,4 +206,47 @@ class PedidoController extends Controller
             return response()->json(['options'=>$data]);
         }
     }
+
+    public function atendidos($estoque_id, Request $request)
+    {
+        $setor_id = $request->setor_id;
+        $dataInicio = $request->dataInicio;
+        $dataFim = $request->dataFim;
+
+        if(isset($setor_id)){
+
+            $atendidos = DB::select("
+            select
+               produtos.codigo
+              ,concat(produtos.produto , ' - ', produtos.unidade) as produto
+              ,sum(saida.qtd) as qtd
+              ,pedidos.datapedido
+            from
+              pedidos
+              left join produto_saidas as saida on pedidos.id = saida.pedido_id
+              left join setors as s on pedidos.setor_id = s.id
+              left join produtos on saida.produto_id = produtos.id
+            where saida.qtd > 0
+                and pedidos.setor_id =$setor_id
+                and pedidos.estoque_id = $estoque_id
+                and pedidos.datapedido between '$dataInicio' and '$dataFim'
+            group by
+                produtos.codigo
+                ,produtos.produto
+                ,produtos.unidade
+                ,pedidos.datapedido
+            order by produtos.produto,pedidos.datapedido
+              ");
+            //dd($negados);
+
+            $title = 'Itens Atendidos';
+            $setors = Setor::all()->sortBy('setor');
+
+            return view('pedidoestoque.relAtendidos', compact('title', 'atendidos','estoque_id','setors','setor_id','dataInicio','dataFim'));
+        }
+        $title = 'Itens Atendidos';
+        $setors = Setor::all()->sortBy('setor');
+
+        return view('pedidoestoque.relAtendidos', compact('title', 'atendidos','estoque_id','setors','setor_id'));
+    }
 }

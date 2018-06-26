@@ -43,7 +43,7 @@
             <h3 class="panel-title"><b>{{ $title }}</b></h3>
         </div>
         <div class="panel-body">
-    {!! Form::open([route('negados',$estoque_id), 'class' => 'Form', 'method' => 'POST']) !!}
+    {!! Form::open([route('atendidos',$estoque_id), 'class' => 'Form', 'method' => 'POST']) !!}
     <div class="form-group form-inline">
 
     {!! Form::label('setor', 'Unidade:'); !!}
@@ -70,22 +70,24 @@
             <h3 class="panel-title"><b>{{ $title }}  @if(isset($dataInicio)) no período de {{ \Carbon\Carbon::createFromFormat('Y-m-d', $dataInicio)->format('d/m/Y') . ' a ' . \Carbon\Carbon::createFromFormat('Y-m-d', $dataFim)->format('d/m/Y') }} @endif</b></h3>
         </div>
         <div class="panel-body">
-    <table id="negados" data-page-length='50' class="table table-striped">
+    <table id="atendidos" data-page-length='50' class="table table-striped">
         <thead>
         <tr>
             <th>Código</th>
             <th>Produto</th>
+            <th>Qtd</th>
             <th>Data</th>
         </tr>
         </thead>
 
     @if(isset($setor_id))
         <tbody>
-        @foreach($negados as $negado)
+        @foreach($atendidos as $atendido)
             <tr>
-            <td>{{ $negado->codigo }}</td>
-            <td>{{ $negado->produto }}</td>
-            <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $negado->datapedido)->format('d/m/Y') }}</td>
+            <td>{{ $atendido->codigo }}</td>
+            <td>{{ $atendido->produto }}</td>
+            <td>{{ $atendido->qtd }}</td>
+            <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $atendido->datapedido)->format('d/m/Y') }}</td>
 
             </tr>
         @endforeach
@@ -104,16 +106,16 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#negados').DataTable( {
+            $('#atendidos').DataTable( {
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
                 },
-                columnDefs: [
-                    { type: 'date-eu', targets: 2 }
-                ],
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                columnDefs: [
+                    { type: 'date-eu', targets: 3 }
                 ]
             } );
         } );

@@ -2,12 +2,13 @@
 
 @section('content')
 
-    <div class="text-center">
-        <h3>{{ $title }}</h3>
-    </div>
-
     <a href="{{ route('processo.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     <br><br>
+    <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><b>{{ $title }}</b></h3>
+            </div>
+            <div class="panel-body">
     <table id="processos" class="table table-striped">
         <thead>
         <tr>
@@ -37,7 +38,8 @@
         @endforeach
         </tbody>
     </table>
-
+</div>
+</div>
 @endsection
 @section('js')
     <script>

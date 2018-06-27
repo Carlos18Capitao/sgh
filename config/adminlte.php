@@ -201,6 +201,11 @@ return [
             'url'  => 'estoque/processo',
             'icon' => 'folder',
         ],
+        [
+            'text' => 'Empenhos',
+            'url'  => 'estoque/empenho',
+            'icon' => 'folder',
+        ],
 //        [
 //            'text' => 'Prestador',
 //            'url'  => 'prestador',

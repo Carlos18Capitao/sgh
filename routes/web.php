@@ -88,6 +88,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadminis
         Route::resource('/entrada', 'EntradaController');
         Route::get('/{estoque_id}/entrada', ['as' => 'estoque.entrada','uses' => 'EntradaController@index']);
         Route::get('/entrada/{estoque_id}/create', 'EntradaController@create')->name('entrarnf');
+        Route::get('/entrada/{estoque_id}/entradaempenho', 'EntradaController@entradaempenho')->name('entradaempenho');
 
 //        Route::get('/{id}/entrar', ['as' => 'estoque.entrar','uses' => 'PedidoController@index']);
 

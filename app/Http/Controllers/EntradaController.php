@@ -108,7 +108,7 @@ class EntradaController extends Controller
             return redirect()->route('entrada.index')->with(['errors' => 'Falha ao editar']);
     }
 
-    public function createempenho($estoque_id, $id)
+    public function entradaempenho($estoque_id, $id)
     {
         $empenhos  = Empenho::find($id);
         $title    = 'Entrada de Produtos';

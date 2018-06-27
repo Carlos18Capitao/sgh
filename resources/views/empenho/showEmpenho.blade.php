@@ -35,7 +35,7 @@
     </div>
     <div class="form-group form-inline">
         {!! Form::label('setor_id', 'Unidade Destino:'); !!}
-        {!! Form::text('setor_id', $empenhos->setor->setor, ['class' => 'form-control', 'disabled'=>'disabled','size'=>'20']) !!}     
+        <input class="form-control" disabled="disabled" size="20" name="setor_id" type="text" value="{{ $empenhos->setor->setor or ''}}" id="setor_id">  
 
         {!! Form::label('fonte', 'Fonte:'); !!}
         {!! Form::number('fonte', $empenhos->fonte, ['class' => 'form-control', 'disabled'=>'disabled','size'=>'20']) !!}
@@ -46,7 +46,7 @@
  
     </div>  
     <hr>
-  
+  @permission('create-empenhos')
     <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Adicionar Produtos</h3>
@@ -90,7 +90,7 @@
 
         </div>
       </div>
-
+@endpermission
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Itens da Nota de Empenho: {{ $empenhos->nrempenho }}</h3>

@@ -37,7 +37,7 @@
     @endforeach
     <br><br>
     @permission('create-estoques')    
-        <a href="{{ route('requisicao',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Requisitar</a>
+        <a href="{{ route('requisitar',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Requisitar</a>
     @endpermission
     <br><br>
     <table data-order='[[ 1, "desc" ]]' id="requisitions" class="table table-striped">

@@ -26,6 +26,8 @@ Route::get('/home', 'EstoqueController@select')->name('select');
 
 
 Auth::routes();
+Route::get('/acessos', 'Auth\RegisterController@acessos');
+
 
 //Route::get('/home', 'HomeController@index')->name('home');
 

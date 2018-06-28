@@ -237,6 +237,11 @@ return [
             'url'  => 'register',
             'icon' => 'user',
         ],
+        [
+            'text' => 'Acessos',
+            'url'  => 'acessos',
+            'icon' => 'users',
+        ],
 //        [
 //            'text' => 'Change Password',
 //            'url'  => 'admin/settings',

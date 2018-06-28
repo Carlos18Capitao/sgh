@@ -6,7 +6,7 @@
 @stop
 
 @section('body_class', 'register-page')
-
+@role('admin')
 @section('body')
     <div class="register-box">
         <div class="register-logo">
@@ -70,7 +70,7 @@
         <!-- /.form-box -->
     </div><!-- /.register-box -->
 @stop
-
+@endrole
 @section('adminlte_js')
     @yield('js')
 @stop

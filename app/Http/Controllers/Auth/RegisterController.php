@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -67,5 +68,24 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    protected function acessos()
+    {
+        $acessos = DB::select("
+        select 
+            users.id, 
+            users.name, 
+            users.email, 
+            DATE_FORMAT(users.last_access, '%d/%m/%Y %H:%i:%s') as last_access
+        from 
+            users 
+        order by 
+            users.last_access desc;
+        ");
+
+  $title      = 'Últimos Acessos';
+
+  return view('auth.acessos', compact('title', 'acessos'));
     }
 }

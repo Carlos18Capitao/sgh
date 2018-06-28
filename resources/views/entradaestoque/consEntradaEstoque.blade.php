@@ -2,10 +2,6 @@
 
 @section('content')
 
-    <div class="text-center">
-        <h3>{{ $title }}</h3>
-    </div>
-
     @if (isset($errors) && count($errors) > 0)
         <div class="alert alert-danger">
             @foreach ($errors->all() as $error)
@@ -38,9 +34,15 @@
     <br><br>
 
     @permission('create-estoques')
-        <a href="{{ route('entrarnf',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
+        <a href="{{ route('entrarnf',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Entrada Avulsa</a>
+        <a href="{{ route('entradaempenho',$estoque_id)}}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Entrada Empenho</a>
     @endpermission
     <br><br>
+    <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><b>{{ $title }}</b></h3>
+            </div>
+            <div class="panel-body">
     <table  data-order='[[ 1, "desc" ]]' id="entradas" class="table table-striped">
         <thead>
         <tr>
@@ -99,6 +101,8 @@
         @endforeach
     </tbody>        
     </table>
+            </div>
+    </div>
 @endsection
 
 @section('js')

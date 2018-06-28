@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empresa;
+use App\Models\Empenho;
 use App\Models\Entrada;
 use App\Models\Estoque;
 use App\Models\Produto;
@@ -108,14 +109,30 @@ class EntradaController extends Controller
             return redirect()->route('entrada.index')->with(['errors' => 'Falha ao editar']);
     }
 
-    public function entradaempenho($estoque_id, $id)
+    public function entradaempenho($estoque_id)
     {
-        $empenhos  = Empenho::find($id);
+        $empenhos  = Empenho::all();
         $title    = 'Entrada de Produtos';
         $estoques = Estoque::with('produto')->where('id','=',$estoque_id)->get();
         $produtos = Produto::all()->sortBy('produto');
+        $empresas = Empresa::all()->sortBy('nome');
 
-        return view('entradaestoque.cadEntradaEstoqueEmpenho', compact('title','produtos','estoque_id','estoques','empenhos'));
+        return view('entradaestoque.cadEntradaEstoqueEmpenho', compact('title','produtos','estoque_id','estoques','empenhos','empresas'));
+    }
+
+    public function ajaxEmpenho(Request $request)
+    {
+        if($request->ajax()){
+            $empenhos = Empenho::select(
+                DB::raw("nrempenho, id"))
+                ->where('empresa_id',$request->empresa_id)
+                ->pluck('nrempenho','id')
+                ->all();
+
+            //$empenhos = DB::table('empenhos')->where('empresa_id',$request->empresa_id)->pluck("nrempenho","id")->all();
+            $data = view('entradaestoque.ajax-empenho',compact('empenhos'))->render();
+            return response()->json(['options'=>$data]);
+        }
     }
 
 }

@@ -21,8 +21,6 @@
         {!! Form::open(['route' => 'entrada.store', 'class' => 'form']) !!}
         {!! Form::hidden('created_by',Auth::user()->id) !!}
     @endif
-        {!! Form::hidden('estoque_id', $estoque_id) !!}
-        {!! Form::hidden('empenho_id', $empenho_id) !!}
 
     <div class="form-group form-inline">
         {!! Form::label('estoque', 'Estoque:'); !!}
@@ -37,9 +35,20 @@
         @if (isset($entradas))
             {!! Form::select('empresa_id', $entradas->empresa->pluck('nome','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione o fornecedor...', 'disabled']) !!}
         @else
-            {!! Form::select('empresa_id', $empresas->pluck('nome','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione o fornecedor...']) !!}
+            <select class="js-empresa form-control" id="empresa_id" name="empresa_id" tabindex="-1">
+                <option selected="selected" value="">Selecione o fornecedor...</option>
+                @foreach($empresas as $empresa)
+                    <option value="{{ $empresa->id }}">{{ $empresa->nome . ' - ' . $empresa->cnpj }}</option>
+                @endforeach
+            </select>
         @endif
     </div>
+    <select id="empenho_id" name="empenho_id" class="form-control">
+            <option disabled selected>Selecione o Empenho</option>
+        </select>
+
+        {!! Form::label('empenho_id', 'Validade:'); !!}
+        {!! Form::select('empenho_id',[''=>'Selecione empenho'],null,['class'=>'form-control']) !!}
 
         <div class="form-group form-inline">
             {!! Form::label('tipoentrada', 'Tipo de Entrada:'); !!}
@@ -73,7 +82,23 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('.js-setor').select2();
+            $('.js-empresa').select2();
         });
     </script>
+
+<script type="text/javascript">
+    $("select[name='empresa_id']").change(function(){
+        var empresa_id = $(this).val();
+        var token = $("input[name='_token']").val();
+        $.ajax({
+            url: "<?php echo route('ajaxEmpenho') ?>",
+            method: 'POST',
+            data: {empresa_id:empresa_id, _token:token},
+            success: function(data) {
+                $("select[name='nrempenho_id'").html('');
+                $("select[name='nrempenho_id'").html(data.options);
+            }
+        });
+    });
+</script>
 @endsection

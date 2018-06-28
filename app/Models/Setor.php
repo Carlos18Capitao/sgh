@@ -44,6 +44,11 @@ class Setor extends Model
         return $this->hasMany('App\Models\Empenho');
     }
 
+    public function demanda()
+    {
+        return $this->hasMany('App\Models\Demanda');
+    }
+
     public function user()
     {
         return $this->belongsToMany('App\User', 'user_setors');

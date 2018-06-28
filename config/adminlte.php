@@ -204,7 +204,7 @@ return [
         [
             'text' => 'Empenhos',
             'url'  => 'estoque/empenho',
-            'icon' => 'folder',
+            'icon' => 'file-text',
         ],
 //        [
 //            'text' => 'Prestador',

@@ -82,7 +82,7 @@ class EntradaController extends Controller
         $estoques = Estoque::with('produto')->where('id','=',$estoque_id)->get();
         $produtos = Produto::all()->sortBy('produto');
         $empresas = Empresa::all()->sortBy('nome');
- 
+
         return view('entradaestoque.cadEntradaEstoque', compact('title', 'entradas','estoque_id','estoques','produtos','empresas'));
     }
 
@@ -91,9 +91,9 @@ class EntradaController extends Controller
         $dataForm = $request->all();
         $entradas = Entrada::find($id);
         $update = $entradas->update($dataForm);
-  
+
         if ($update)
-           return redirect()->back();
+            return redirect()->back();
         else
             return redirect()->route('estoque.edit', $id)->with(['errors' => 'Falha ao editar']);
     }
@@ -112,7 +112,7 @@ class EntradaController extends Controller
     public function entradaempenho($estoque_id)
     {
         $empenhos  = Empenho::all();
-        $title    = 'Entrada de Produtos';
+        $title    = 'Entrada de Produtos com Empenho';
         $estoques = Estoque::with('produto')->where('id','=',$estoque_id)->get();
         $produtos = Produto::all()->sortBy('produto');
         $empresas = Empresa::all()->sortBy('nome');

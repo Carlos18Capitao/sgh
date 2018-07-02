@@ -30,6 +30,8 @@ Route::get('/acessos', 'Auth\RegisterController@acessos');
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/scraping', 'ScrapingController@example');
+Route::get('/reqsis', 'ScrapingController@reqsis');
 
 Route::get('/paciente/cadastro', 'PacienteController@index');
 

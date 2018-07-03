@@ -23,10 +23,11 @@
                 {!! Form::model($entradas, ['route' => ['entrada.update', $entradas->id], 'class' => 'Form', 'method' => 'PUT']) !!}
                 {!! Form::hidden('updated_by',Auth::user()->id) !!}
             @else
-                {!! Form::open(['route' => 'entrada.store', 'class' => 'form']) !!}
+                {!! Form::open(['route' => 'entrada.storeempenho', 'class' => 'form']) !!}
                 {!! Form::hidden('created_by',Auth::user()->id) !!}
             @endif
             {!! Form::hidden('estoque_id', $estoque_id) !!}
+            {!! Form::hidden('empenho_id', 1) !!}
 
             <div class="form-group form-inline">
                 {!! Form::label('estoque', 'Estoque:'); !!}

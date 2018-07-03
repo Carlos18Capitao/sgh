@@ -19,11 +19,13 @@
                 {!! Form::model($entradas, ['route' => ['entrada.update', $entradas->id], 'class' => 'Form', 'method' => 'PUT']) !!}
                 {!! Form::hidden('updated_by',Auth::user()->id) !!}
             @else
-                {!! Form::open(['route' => 'entrada.store', 'class' => 'form']) !!}
+                {!! Form::open(['route' => 'entrada.storeentradaempenho', 'class' => 'form']) !!}
                 {!! Form::hidden('created_by',Auth::user()->id) !!}
             @endif
+                {!! Form::hidden('estoque_id', $estoque_id) !!}
 
-            <div class="form-group form-inline">
+
+                <div class="form-group form-inline">
                 {!! Form::label('estoque', 'Estoque:'); !!}
                 @foreach($estoques as $estoque)
                     {!! Form::text('estoque',$estoque->descricao,['class'=>'form-control','disabled']) !!}

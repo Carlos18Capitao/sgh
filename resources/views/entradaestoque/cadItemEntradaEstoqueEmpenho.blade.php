@@ -77,18 +77,20 @@
             {!! Form::hidden('estoque_id',$entrada->estoque_id) !!}
             {!! Form::hidden('entrada_id',$entrada->id) !!}
 
+            {{--@foreach($empenhos as $itempenho)--}}
+                {{--@foreach($itempenho->itemempenho as $it)--}}
+                {{--{{ dd($it->produto) }}--}}
+                {{--@endforeach--}}
+                {{--@endforeach--}}
             <div class="form-group">
                 {!! Form::label('produto', 'Produto:'); !!}
-
                 <select style="width: 100%" class="js-produto" id="js-produto" name="produto_id">
                     <option selected="selected" value="">Selecione um produto...</option>
-                    @foreach($produtos as $produto)
-                        @foreach($produto->estoque as $estoque)
-                            @if($estoque->id == $entrada->estoque_id)
-                                <option value="{{ $produto->id }}">
-                                    {{ $produto->produto . ' - ' . $produto->unidade  }} @if($produto->codigo != 0)  {{ '(Cód: ' . $produto->codigo . ')' }} @endif
+                    @foreach($empenhos as $empenho)
+                        @foreach($empenho->itemempenho as $itempenho)
+                                <option value="{{ $itempenho->produto->id}}">
+                                    @if($itempenho->produto->codigo != 0)  {{ $itempenho->produto->codigo . ' - ' }} @endif {{ $itempenho->produto->produto . ' - ' . $itempenho->produto->unidade . ' (Total Empenhado: ' . $itempenho->qtd . ' )' . ' R$' . $itempenho->preco}}
                                 </option>
-                            @endif
                         @endforeach
                     @endforeach
                 </select>

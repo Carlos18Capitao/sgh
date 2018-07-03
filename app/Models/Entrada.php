@@ -21,7 +21,7 @@ class Entrada extends Model
 
     protected $revisionCreationsEnabled = true;
 
-    protected $fillable = ['tipoentrada','numeroentrada','dataentrada','empresa_id','estoque_id','created_by','updated_by','preco'];
+    protected $fillable = ['tipoentrada','numeroentrada','dataentrada','empresa_id','estoque_id','created_by','updated_by','empenho_id'];
 
     public function estoque()
     {

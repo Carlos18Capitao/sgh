@@ -28,7 +28,6 @@ class CreateEntradasTable extends Migration
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updated_by')->unsigned()->nullable();
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
-            $table->float('preco')->nullable();
             $table->timestamps();
         });
     }

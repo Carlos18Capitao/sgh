@@ -38,7 +38,13 @@
     <div class="form-group form-inline">
         {{--  {!! Form::label('id', 'ID:'); !!}
           {!! Form::text('id',$entrada->id,['class'=>'form-control','disabled']) !!}--}}
+        {!! Form::label('processo', 'Processo:'); !!}
+        {!! Form::text('processo',$entrada->empenho->processo->numero,['class'=>'form-control','disabled']) !!}
 
+        {!! Form::label('empenho', 'Empenho:'); !!}
+        {!! Form::text('empenho',$entrada->empenho->nrempenho,['class'=>'form-control','disabled']) !!}
+    </div>
+    <div class="form-group form-inline">
         {!! Form::label('estoque', 'Estoque:'); !!}
         {!! Form::text('estoque',$entrada->estoque->descricao,['class'=>'form-control','disabled']) !!}
 

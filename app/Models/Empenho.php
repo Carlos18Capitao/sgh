@@ -52,4 +52,9 @@ class Empenho extends Model
     {
         return Carbon::parse($value)->format('d/m/Y');
     }
+
+    public function entrada()
+    {
+        return $this->hasMany('App\Models\Entrada');
+    }
 }

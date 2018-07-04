@@ -58,7 +58,7 @@
         @foreach ($entradas as $entrada)
         <tr>
             {{-- <td>{{ $entrada->id }}</td> --}}
-            <td><a href="{{ route('entrada.show',$entrada->id) }}">{{ $entrada->numeroentrada  }}</a></td>            
+            <td><a href="@if($entrada->empenho_id == 1){{ route('entrada.show',$entrada->id) }} @else {{ route('entrada.showentradaempenho',$entrada->id) }} @endif">{{ $entrada->numeroentrada  }}</a></td>            
             <td>{{ $entrada->dataentrada }}</td>
             <td>{{ mb_strtoupper($entrada->tipoentrada)  }}</td>
             <td>{{ $entrada->empresa->nome }}</td>

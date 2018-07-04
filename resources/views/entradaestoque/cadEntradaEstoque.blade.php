@@ -2,10 +2,6 @@
 
 @section('content')
 
-    <div class="text-center">
-        <h3>{{ $title }}</h3>
-    </div>
-
     @if (isset($errors) && count($errors) > 0)
         <div class="alert alert-danger">
             @foreach ($errors->all() as $error)
@@ -23,7 +19,7 @@
                 {!! Form::model($entradas, ['route' => ['entrada.update', $entradas->id], 'class' => 'Form', 'method' => 'PUT']) !!}
                 {!! Form::hidden('updated_by',Auth::user()->id) !!}
             @else
-                {!! Form::open(['route' => 'entrada.storeempenho', 'class' => 'form']) !!}
+                {!! Form::open(['route' => 'entrada.store', 'class' => 'form']) !!}
                 {!! Form::hidden('created_by',Auth::user()->id) !!}
             @endif
             {!! Form::hidden('estoque_id', $estoque_id) !!}

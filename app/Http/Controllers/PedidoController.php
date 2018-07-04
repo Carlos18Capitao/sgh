@@ -29,14 +29,14 @@ class PedidoController extends Controller
     public function index($estoque_id)
     {
         $pedidos =  Pedido::sortable(['datapedido' => 'desc'])->where('estoque_id','=',$estoque_id)->get();
-        $title   = 'Pedidos de Produtos';
+        $title   = 'Saída de Produtos';
 
         return view('pedidoestoque.consPedidoEstoque', compact('title', 'pedidos','estoque_id'));
     }
 
     public function create($estoque_id)
     {
-        $title    = 'Pedido de Produtos';
+        $title    = 'Saída de Produtos';
         $estoques = Estoque::with('produto')->where('id','=',$estoque_id)->get();
         $produtos = Produto::all()->sortBy('produto');
         $setors   = Setor::all()->sortBy('setor');

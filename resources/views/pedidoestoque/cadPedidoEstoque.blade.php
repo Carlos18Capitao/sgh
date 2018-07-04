@@ -2,10 +2,6 @@
 
 @section('content')
 
-    <div class="text-center">
-        <h3>{{ $title }}</h3>
-    </div>
-
     @if (isset($errors) && count($errors) > 0)
         <div class="alert alert-danger">
             @foreach ($errors->all() as $error)
@@ -14,6 +10,13 @@
         </div>
     @endif
 
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><b>{{ $title }}</b></h3>
+        </div>
+        <div class="panel-body">
+<table data-order='[[ 0, "desc" ]]' data-page-length='50' id="produtos" class="table table-striped">
     @if (isset($pedidos))
         {!! Form::model($pedidos, ['route' => ['pedido.update', $pedidos->id], 'class' => 'Form', 'method' => 'PUT']) !!}
         {!! Form::hidden('updated_by',Auth::user()->id) !!}
@@ -65,7 +68,8 @@
     {!! Form::submit('Adicionar Produtos >>', ['class' => 'btn btn-primary']) !!}
 {{--    {{ Form::button('<i class="glyphicon glyphicon-floppy-disk"> Incluir Produtos</i>', ['type' => 'submit', 'class' => 'btn btn-primary'] )  }}--}}
     {!! Form::close() !!}
-
+    </div>
+    </div>
 @endsection
 
 @section('js')

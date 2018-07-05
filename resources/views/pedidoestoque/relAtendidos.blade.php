@@ -47,7 +47,13 @@
     <div class="form-group form-inline">
 
     {!! Form::label('setor', 'Unidade:'); !!}
-    {!! Form::select('setor_id', $setors->pluck('setor','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione uma unidade...']) !!}
+    {{--{!! Form::select('setor_id', $setors->pluck('setor','id'), null, ['class' => 'js-setor form-control', 'placeholder' => 'Selecione uma unidade...']) !!}--}}
+    <select name="setor_id" id="setor_id" class="js-setor form-control">
+            <option value="@foreach($setors as $setor) {{ $setor->id . ',' }} @endforeach 0">TODAS AS UNIDADES</option>
+        @foreach($setors as $setor)
+            <option value="{{ $setor->id }}">{{ $setor->setor }}</option>
+        @endforeach
+    </select>
 
     </div>
         <div class="form-group form-inline">

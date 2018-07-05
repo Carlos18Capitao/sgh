@@ -227,7 +227,7 @@ class PedidoController extends Controller
               left join setors as s on pedidos.setor_id = s.id
               left join produtos on saida.produto_id = produtos.id
             where saida.qtd > 0
-                and pedidos.setor_id =$setor_id
+                and pedidos.setor_id in ($setor_id)
                 and pedidos.estoque_id = $estoque_id
                 and pedidos.datapedido between '$dataInicio' and '$dataFim'
             group by

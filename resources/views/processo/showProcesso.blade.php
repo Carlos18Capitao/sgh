@@ -16,9 +16,11 @@
           <a class = "btn btn-sm btn-default" title="EDITAR" href="{{ route('processo.edit',$processos->id)}}">
             <span class="glyphicon glyphicon-pencil"></span>
           </a>
+    @role('admin')
     <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$processos->id}}">
         <span class="glyphicon glyphicon-trash"></span>
     </button>
+    @endrole
     <button type="button" title="CADASTRAR EMPENHO" class="btn btn-sm btn-default" data-toggle="modal" data-target="#empenho">
         <span class="glyphicon glyphicon-file"></span>
     </button>

@@ -41,6 +41,7 @@
                 <th>Lote</th>
                 <th>Validade</th>
                 <th>Quantidade</th>
+                <th>Imprimir</th>
             </tr>
         </thead>
 @foreach($produtos->lotes->sortBy('validade') as $lote)
@@ -49,6 +50,11 @@
                 <td>{{ $lote->lote }}</td>
                 <td>{{ $lote->validade_format }}</a></td>
                 <td>{{ $lote->qtd }}</td>
+                <td>
+                    <a target="_blank" class = "btn btn-sm btn-default" title="IMPRIMIR COM LOTE" href="{{ route('pdfprodutolote',$lote->id)}}">
+                        <span class="glyphicon glyphicon-print"></span>
+                    </a>
+                </td>
         @endif
             </tbody>
 @endforeach

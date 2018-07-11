@@ -108,6 +108,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadminis
         Route::resource('/empenho', 'EmpenhoController');
         Route::resource('/itemempenho', 'ItemEmpenhoController');
         Route::get('/produto/print/{id}', 'ProdutoController@pdfproduto')->name('pdfproduto');
+        Route::get('/produto/pdfprodutolote/{id}', 'ProdutoController@pdfprodutolote')->name('pdfprodutolote');
 
         Route::resource('/produto', 'ProdutoController');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\Lotes;
 use App\Models\Estoque;
 use App\Http\Requests\ProdutoFormRequest;
 use DB;
@@ -195,6 +196,18 @@ class ProdutoController extends Controller
         $produtos = Produto::find($id);
 
         return \PDF::loadView('produto.pdfProduto', compact('produtos'))
+            // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
+            ->setPaper('a4', 'landscape')
+//            ->download('etiquetaproduto.pdf');
+            ->stream();
+    }
+
+    public function pdfprodutolote($id)
+    {
+        //$produtos = Produto::find($id);
+        $lotes = Lotes::find($id);
+
+        return \PDF::loadView('produto.pdfProdutoLote', compact('lotes'))
             // Se quiser que fique no formato a4 retrato: ->setPaper('a4', 'landscape')
             ->setPaper('a4', 'landscape')
 //            ->download('etiquetaproduto.pdf');

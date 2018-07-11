@@ -21,4 +21,9 @@ class Empresa extends Model
     {
         return $this->hasMany('App\Models\Entrada');
     }
+
+    public function empenho()
+    {
+        return $this->hasMany('App\Models\Empenho');
+    }
 }

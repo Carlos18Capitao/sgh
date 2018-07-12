@@ -476,6 +476,7 @@ class ComposerStaticInit0303c122c05233a02b50c432a646ca9a
         'App\\Http\\Controllers\\ProdutoEntradaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProdutoEntradaController.php',
         'App\\Http\\Controllers\\ProdutoSaidaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProdutoSaidaController.php',
         'App\\Http\\Controllers\\RequisitionController' => __DIR__ . '/../..' . '/app/Http/Controllers/RequisitionController.php',
+        'App\\Http\\Controllers\\ScrapingController' => __DIR__ . '/../..' . '/app/Http/Controllers/ScrapingController.php',
         'App\\Http\\Controllers\\SetorController' => __DIR__ . '/../..' . '/app/Http/Controllers/SetorController.php',
         'App\\Http\\Controllers\\TipoAltaController' => __DIR__ . '/../..' . '/app/Http/Controllers/TipoAltaController.php',
         'App\\Http\\Controllers\\TipoPrestadorController' => __DIR__ . '/../..' . '/app/Http/Controllers/TipoPrestadorController.php',

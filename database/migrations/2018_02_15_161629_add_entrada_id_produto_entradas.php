@@ -15,7 +15,7 @@ class AddEntradaIdProdutoEntradas extends Migration
     {
         Schema::table('produto_entradas', function ($table) {
             $table->integer('entrada_id')->unsigned()->nullable();
-            $table->foreign('entrada_id')->references('id')->on('entradas')->onDelete('cascade');
+            $table->foreign('entrada_id')->references('id')->on('entradas');
         });
     }
 

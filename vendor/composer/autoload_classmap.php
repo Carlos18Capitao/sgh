@@ -32,6 +32,7 @@ return array(
     'App\\Http\\Controllers\\ProdutoEntradaController' => $baseDir . '/app/Http/Controllers/ProdutoEntradaController.php',
     'App\\Http\\Controllers\\ProdutoSaidaController' => $baseDir . '/app/Http/Controllers/ProdutoSaidaController.php',
     'App\\Http\\Controllers\\RequisitionController' => $baseDir . '/app/Http/Controllers/RequisitionController.php',
+    'App\\Http\\Controllers\\ScrapingController' => $baseDir . '/app/Http/Controllers/ScrapingController.php',
     'App\\Http\\Controllers\\SetorController' => $baseDir . '/app/Http/Controllers/SetorController.php',
     'App\\Http\\Controllers\\TipoAltaController' => $baseDir . '/app/Http/Controllers/TipoAltaController.php',
     'App\\Http\\Controllers\\TipoPrestadorController' => $baseDir . '/app/Http/Controllers/TipoPrestadorController.php',

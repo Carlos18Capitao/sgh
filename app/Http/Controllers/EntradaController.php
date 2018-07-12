@@ -9,6 +9,7 @@ use App\Models\Estoque;
 use App\Models\Produto;
 use App\Models\ProdutoEntrada;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use DB;
 
 class EntradaController extends Controller
@@ -100,13 +101,19 @@ class EntradaController extends Controller
 
     public function destroy($id)
     {
-        $entradas = Entrada::find($id);
-        $delete = $entradas->delete();
+        try{
+            $entradas = Entrada::find($id);
+            $delete = $entradas->delete();
 
-        if ($delete)
             return redirect()->back();
-        else
-            return redirect()->route('entrada.index')->with(['errors' => 'Falha ao editar']);
+
+        } catch (QueryException $e){
+//            dd($e->getMessage());
+            return redirect()->back()->withErrors(['Não é possível excluir!', 'Existem registros vinculados a essa entrada.']);
+//            return redirect()->back()->withErrors('msg', 'Erro ao realizar a operação');
+//            return redirect()->route('entrada.index')->with(['errors' => 'Falha ao excluir']);
+        }
+
     }
 
     public function entradaempenho($estoque_id)

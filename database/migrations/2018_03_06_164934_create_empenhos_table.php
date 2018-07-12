@@ -23,13 +23,13 @@ class CreateEmpenhosTable extends Migration
             $table->string('fonte','50');
             $table->string('plano','50');
             $table->integer('processo_id')->unsigned();
-            $table->foreign('processo_id')->references('id')->on('processos')->onDelete('cascade');
+            $table->foreign('processo_id')->references('id')->on('processos');
             $table->integer('empresa_id')->unsigned();
-            $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
+            $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->integer('created_by')->unsigned();
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users');
             $table->integer('updated_by')->unsigned()->nullable();
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users');
 
 
         });

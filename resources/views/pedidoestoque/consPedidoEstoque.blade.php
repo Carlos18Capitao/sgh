@@ -2,13 +2,6 @@
 
 @section('content')
 
-    @if (isset($errors) && count($errors) > 0)
-        <div class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
     @foreach (Auth::user()->estoques as $stoq)
         @if ($estoque_id == $stoq->pivot->estoque_id)
 
@@ -31,7 +24,24 @@
         @else
         @endif
     @endforeach
+    @if (Session::has('errors'))
+        <br><br>
+        <div class="alert alert-danger">
+            <ul>
+                <li>{!! Session::get('errors') !!}</li>
+            </ul>
+        </div>
+    @endif
+    @if (Session::has('success'))
+        <br><br>
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! Session::get('success') !!}</li>
+            </ul>
+        </div>
+    @endif
     <br><br>
+
     @permission('create-estoques')    
         <a href="{{ route('pedidoestoque',$estoque_id)}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     @endpermission

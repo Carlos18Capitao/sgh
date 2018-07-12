@@ -19,13 +19,9 @@ class CreateLotesTable extends Migration
             $table->string('lote','30')->nullable();
             $table->date('validade')->nullable();
             $table->biginteger('qtd');
-            $table->integer('produto_entrada_id')->unsigned()->nullable();
-            $table->integer('produto_saida_id')->unsigned()->nullable();
             $table->integer('produto_id')->unsigned();
 
-            $table->foreign('produto_entrada_id')->references('id')->on('produto_entradas')->onDelete('cascade');
-            $table->foreign('produto_saida_id')->references('id')->on('produto_saidas')->onDelete('cascade');
-            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+            $table->foreign('produto_id')->references('id')->on('produtos');
         });
     }
 

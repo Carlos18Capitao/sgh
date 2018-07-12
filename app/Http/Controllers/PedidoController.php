@@ -13,6 +13,7 @@ use App\Http\Requests\PedidoFormRequest;
 //use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\QueryException;
 
 
 class PedidoController extends Controller
@@ -99,10 +100,11 @@ class PedidoController extends Controller
         $pedidos = Pedido::find($id);
         $delete = $pedidos->delete();
 
-        if ($delete)
-            return redirect()->back();
-        else
-            return redirect()->route('pedido.index')->with(['errors' => 'Falha ao editar']);
+        try{
+            return redirect()->back()->with(['success'=>'Excluído com sucesso!!!!']);
+        }catch (QueryException $e){
+            return redirect()->back()->with(['errors'=>'Não foi possível excluir! Existem registros vinculados ao pedido!']);
+        }
     }
 
     public function recibopedidoestoque($id)

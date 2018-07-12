@@ -15,7 +15,7 @@ class AddPedidoIdSaidaPedidos extends Migration
     {
         Schema::table('produto_saidas', function ($table) {
             $table->integer('pedido_id')->unsigned()->nullable();
-            $table->foreign('pedido_id')->references('id')->on('pedidos')->onDelete('cascade');
+            $table->foreign('pedido_id')->references('id')->on('pedidos');
         });
     }
 

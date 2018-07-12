@@ -5,11 +5,20 @@
     <div class="text-center">
         <h3>{{ $title }}</h3>
     </div>
-    @if (isset($errors) && count($errors) > 0)
+    @if (Session::has('errors'))
+        <br><br>
         <div class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
+            <ul>
+                <li>{!! Session::get('errors') !!}</li>
+            </ul>
+        </div>
+    @endif
+    @if (Session::has('success'))
+        <br><br>
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! Session::get('success') !!}</li>
+            </ul>
         </div>
     @endif
     <hr>

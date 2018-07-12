@@ -105,11 +105,12 @@ class EntradaController extends Controller
             $entradas = Entrada::find($id);
             $delete = $entradas->delete();
 
-            return redirect()->back();
+            return redirect()->back()->with(['success'=>'Excluído com sucesso!!!!']);
+
+//            return redirect()->back();
 
         } catch (QueryException $e){
-//            dd($e->getMessage());
-            return redirect()->back()->withErrors(['Não é possível excluir!', 'Existem registros vinculados a essa entrada.']);
+            return redirect()->back()->with(['errors'=>'Não foi possível excluir! Existem registros vinculados a essa entrada!']);
 //            return redirect()->back()->withErrors('msg', 'Erro ao realizar a operação');
 //            return redirect()->route('entrada.index')->with(['errors' => 'Falha ao excluir']);
         }

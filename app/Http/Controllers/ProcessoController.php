@@ -9,6 +9,7 @@ use App\Models\Empresa;
 use App\Models\Categoria;
 use App\Models\Setor;
 use App\Http\Requests\ProcessoFormRequest;
+use Illuminate\Database\QueryException;
 
 class ProcessoController extends Controller
 {
@@ -83,12 +84,15 @@ class ProcessoController extends Controller
 
      public function destroy($id)
     {
-        $processos = Processo::find($id);
-        $delete = $processos->delete();
+        try{
+            $processos = Processo::find($id);
+            $delete = $processos->delete();
+            return redirect()->route('processo.index')->with(['success' => 'Excluido com sucesso!!!']);
 
-        if ($delete)
-            return redirect()->route('processo.index')->with(['errors' => 'Falha ao editar']);
-        else
-            return redirect()->route('processo.index')->with(['errors' => 'Falha ao editar']);
+//            return redirect()->back()->with(['success'=>'Excluído com sucesso!!!!']);
+
+        } catch (QueryException $e){
+            return redirect()->back()->with(['errors'=>'Não foi possível excluir! Existem registros vinculados ao processo!']);
+        }
     }
 }

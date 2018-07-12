@@ -2,6 +2,23 @@
 
 @section('content')
 
+    @if (Session::has('errors'))
+        <br><br>
+        <div class="alert alert-danger">
+            <ul>
+                <li>{!! Session::get('errors') !!}</li>
+            </ul>
+        </div>
+    @endif
+    @if (Session::has('success'))
+        <br><br>
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! Session::get('success') !!}</li>
+            </ul>
+        </div>
+    @endif
+
     <a href="{{ route('processo.create')}}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
     <br><br>
     <div class="panel panel-default">

@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Models\Produto;
 use DB;
 use App\Http\Requests\EmpenhoFormRequest;
+use Illuminate\Database\QueryException;
 
 class EmpenhoController extends Controller
 {

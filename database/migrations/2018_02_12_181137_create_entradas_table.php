@@ -19,15 +19,15 @@ class CreateEntradasTable extends Migration
             $table->string('numeroentrada','100');
             $table->date('dataentrada');
             $table->integer('empresa_id')->unsigned();
-            $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
+            $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->integer('estoque_id')->unsigned();
-            $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
+            $table->foreign('estoque_id')->references('id')->on('estoques');
 //            $table->integer('empenho_id')->unsigned();
 //            $table->foreign('empenho_id')->references('id')->on('empenhos')->onDelete('cascade');
             $table->integer('created_by')->unsigned();
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users');
             $table->integer('updated_by')->unsigned()->nullable();
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
         });
     }

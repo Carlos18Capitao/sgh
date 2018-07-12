@@ -16,16 +16,16 @@ class CreateProdutoSaidasTable extends Migration
         Schema::create('produto_saidas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('produto_id')->unsigned();
-            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+            $table->foreign('produto_id')->references('id')->on('produtos');
             $table->boolean('qtd');
             $table->text('obs')->nullable();
             $table->integer('setor_id')->unsigned();
-            $table->foreign('setor_id')->references('id')->on('setors')->onDelete('cascade');
+            $table->foreign('setor_id')->references('id')->on('setors');
             $table->softDeletes();
             $table->integer('created_by')->unsigned();
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users');
             $table->integer('updated_by')->unsigned()->nullable();
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->string('lote','30')->nullable();
             $table->date('validade')->nullable();
             $table->timestamps();

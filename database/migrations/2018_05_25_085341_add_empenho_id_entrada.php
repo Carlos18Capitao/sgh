@@ -15,7 +15,7 @@ class AddEmpenhoIdEntrada extends Migration
     {
         Schema::table('entradas', function ($table) {
             $table->integer('empenho_id')->unsigned()->nullable();
-            $table->foreign('empenho_id')->references('id')->on('empenhos')->onDelete('cascade');
+            $table->foreign('empenho_id')->references('id')->on('empenhos');
         });            
     }
 

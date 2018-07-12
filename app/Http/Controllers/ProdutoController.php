@@ -9,6 +9,7 @@ use App\Models\Lotes;
 use App\Models\Estoque;
 use App\Http\Requests\ProdutoFormRequest;
 use DB;
+use Illuminate\Database\QueryException;
 
 class ProdutoController extends Controller
 {
@@ -80,16 +81,14 @@ class ProdutoController extends Controller
 
     public function destroy($id)
     {
-        $produtos = Produto::find($id);
+        try{
+            $produtos = Produto::find($id);
+            $delete = $produtos->delete();
+            return redirect()->back()->with(['success'=>'Excluído com sucesso!!!!']);
 
-//         $produto->delete();
-//        $produtos = $this->produto->find($id);
-        $delete = $produtos->delete();
-
-        if ($delete)
-            return redirect()->route('produto.index');
-        else
-            return redirect()->route('produto.index')->with(['errors' => 'Falha ao editar']);
+        } catch (QueryException $e){
+            return redirect()->back()->with(['errors'=>'Não foi possível excluir! Existem registros vinculados ao produto!']);
+        }
     }
 
     public function relposicaoestoque($estoque_id)

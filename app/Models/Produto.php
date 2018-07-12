@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Kyslik\ColumnSortable\Sortable;
 use Carbon\Carbon;
 
 class Produto extends Model
@@ -17,8 +15,6 @@ class Produto extends Model
     }
 
     protected $revisionCreationsEnabled = true;
-
-    use SoftDeletes, Sortable;
 
     protected $dates = ['deleted_at'];
 

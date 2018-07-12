@@ -16,9 +16,9 @@ class CreateProdutoEstoquesTable extends Migration
         Schema::create('produto_estoques', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('produto_id')->unsigned();
-          $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
+          $table->foreign('produto_id')->references('id')->on('produtos');
           $table->integer('estoque_id')->unsigned();
-          $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
+          $table->foreign('estoque_id')->references('id')->on('estoques');
         });
     }
 

@@ -15,9 +15,9 @@ class AddUsersProdutos extends Migration
     {
         Schema::table('produtos', function ($table) {
             $table->integer('created_by')->unsigned()->nullable();
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users');
             $table->integer('updated_by')->unsigned()->nullable();
-            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 

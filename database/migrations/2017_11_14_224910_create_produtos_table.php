@@ -18,7 +18,7 @@ class CreateProdutosTable extends Migration
             $table->text('produto');
             $table->string('unidade','150');
             $table->integer('categoria_id')->unsigned();
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+            $table->foreign('categoria_id')->references('id')->on('categorias');
             $table->softDeletes();
             $table->timestamps();
         });

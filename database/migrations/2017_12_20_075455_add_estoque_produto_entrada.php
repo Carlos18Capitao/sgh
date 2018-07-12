@@ -15,7 +15,7 @@ class AddEstoqueProdutoEntrada extends Migration
     {
       Schema::table('produto_entradas', function ($table) {
           $table->integer('estoque_id')->unsigned()->default(1); //DEFAULT PARA ATUALIZAR OS JÁ CADASTRADOS
-          $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
+          $table->foreign('estoque_id')->references('id')->on('estoques');
         });
     }
     /**

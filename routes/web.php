@@ -68,6 +68,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadminis
 
         Route::get('/{id}/reldemandaestoque', 'EstoqueController@reldemandaestoque')->name('reldemandaestoque');
         Route::any('/{id}/relLoteValidade', 'EstoqueController@relLoteValidade')->name('relLoteValidade');
+        Route::any('/{id}/reldemandasetor', 'EstoqueController@reldemandasetor')->name('reldemandasetor');
 
         Route::get('/{id}/entradaestoque', ['as' => 'estoque.entradaestoque','uses' => 'ProdutoEntradaController@index']);
         Route::get('/entradaestoque/{id}/create', 'ProdutoEntradaController@create')->name('createentrada');

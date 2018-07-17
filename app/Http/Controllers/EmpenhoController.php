@@ -26,7 +26,7 @@ class EmpenhoController extends Controller
     public function index()
     {
         $hoje = Carbon::today();
-        $empenhos = Empenho::all()->sortByDesc('dataemissao');
+        $empenhos = Empenho::where('id','>','1')->get();
         $title = 'Empenhos';
         return view('empenho.consEmpenho', compact('title', 'empenhos'));
     }

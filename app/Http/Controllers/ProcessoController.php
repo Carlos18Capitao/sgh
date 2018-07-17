@@ -42,8 +42,8 @@ class ProcessoController extends Controller
         $insert   = $this->processo->create($processoForm);
 
         if ($insert)
-//            return redirect()->route('processo.show',[$insert->id]);
-            return redirect()->route('processo.index');
+            return redirect()->route('processo.show',[$insert->id]);
+          //  return redirect()->route('processo.index');
         else {
             return redirect()->back();
         }

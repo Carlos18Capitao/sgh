@@ -47,7 +47,7 @@ Route::resource('/tipoalta', 'TipoAltaController');
 
 Route::get('jsonprodutos',['as'=>'jsonprodutos','uses'=> 'EmpenhoController@jsonprodutos']);
 
-Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadministrator']], function () {
+Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin']], function () {
     Route::resource('/setor', 'SetorController');
     Route::resource('/categoria', 'CategoriaController');
     Route::resource('/estoque', 'EstoqueController');
@@ -57,7 +57,7 @@ Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|superadminis
 
 });
 
-    Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|estoque|consulta|superadministrator']], function () {
+    Route::group(['prefix'  =>  'estoque' ,'middleware' => ['role:admin|estoque|consulta']], function () {
         Route::resource('/empresa', 'EmpresaController');
 
         Route::get('/{id}/relposicaoestoque', 'ProdutoController@relposicaoestoque')->name('relposicaoestoque');

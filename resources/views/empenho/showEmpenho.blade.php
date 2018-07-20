@@ -111,7 +111,7 @@
     </thead>
     @foreach ($empenhos->itemempenho as $itemempenho)
         <tbody>
-        <td>{{ $itemempenho->produto->codigo }}</td>
+        <td>{{ $itemempenho->produto->codigo or ''}}</td>
         <td><a href="{{ route('produto.show',$itemempenho->produto->id) }}">{{ $itemempenho->produto->produto . ' - ' . $itemempenho->produto->unidade}}</a></td>
       {{--  <td>{{ $itemempenho->produto->unidade }}</td> --}}
 

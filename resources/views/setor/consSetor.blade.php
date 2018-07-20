@@ -24,6 +24,7 @@
         <thead>
         <tr>
             <th>Setor</th>
+            <th>Sigla</th>
             <th>Ramal</th>
             <th width="100px">Ações</th>
         </tr>
@@ -32,6 +33,7 @@
         @foreach ($setors as $setor)
             <tr>
             <td><a href="{{ route('setor.show',$setor->id) }}">{{ $setor->setor }}</a></td>
+                <td>{{ $setor->sigla }}</td>
                 <td>{{ $setor->ramal }}</td>
                 <td>
                     {{--@shield('setor.editar')--}}

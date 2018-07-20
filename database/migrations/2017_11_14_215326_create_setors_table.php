@@ -16,6 +16,7 @@ class CreateSetorsTable extends Migration
         Schema::create('setors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('setor','80');
+            $table->string('sigla','20');
             $table->string('ramal','30');
             $table->softDeletes();
             $table->timestamps();

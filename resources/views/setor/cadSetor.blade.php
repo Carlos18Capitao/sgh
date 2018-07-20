@@ -27,6 +27,10 @@
         {!! Form::text('setor', null, ['class' => 'form-control', 'placeholder' => 'Setor']) !!}
     </div>
     <div class="form-group">
+        {!! Form::label('sigla', 'Sigla:'); !!}
+        {!! Form::text('sigla', null, ['class' => 'form-control', 'placeholder' => 'Sigla']) !!}
+    </div>
+    <div class="form-group">
         {!! Form::label('ramal', 'Ramal:'); !!}
         {!! Form::text('ramal', null, ['class' => 'form-control', 'placeholder' => 'Ramal']) !!}
     </div>

@@ -24,7 +24,8 @@ class Setor extends Model
 
     protected $fillable = [
         'setor',
-        'ramal'
+        'ramal',
+        'sigla'
     ];
 
     public $sortable = ['setor','ramal'];

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Produto extends Model
 {
@@ -15,6 +16,8 @@ class Produto extends Model
     }
 
     protected $revisionCreationsEnabled = true;
+
+    use SoftDeletes;
 
     protected $dates = ['deleted_at'];
 

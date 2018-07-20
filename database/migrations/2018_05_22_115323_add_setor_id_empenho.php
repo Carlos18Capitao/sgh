@@ -15,7 +15,7 @@ class AddSetorIdEmpenho extends Migration
     {
         Schema::table('empenhos', function ($table) {
             $table->integer('setor_id')->unsigned()->nullable();
-            $table->foreign('setor_id')->references('id')->on('setors')->onDelete('cascade');
+            $table->foreign('setor_id')->references('id')->on('setors');
         });
     }
 

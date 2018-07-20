@@ -22,7 +22,7 @@ class ProcessoController extends Controller
     }
     public function index()
     {
-        $processos = Processo::all()->sortByDesc('numero');
+        $processos = Processo::where('id','>','1')->get();
         $title = 'Cadastro de Processos';
 
         return view('processo.consProcesso', compact('title', 'processos'));
@@ -42,8 +42,8 @@ class ProcessoController extends Controller
         $insert   = $this->processo->create($processoForm);
 
         if ($insert)
-//            return redirect()->route('processo.show',[$insert->id]);
-            return redirect()->route('processo.index');
+            return redirect()->route('processo.show',[$insert->id]);
+          //  return redirect()->route('processo.index');
         else {
             return redirect()->back();
         }

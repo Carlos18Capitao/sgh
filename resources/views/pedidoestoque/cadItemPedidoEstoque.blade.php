@@ -131,8 +131,8 @@
             <th>Código</th>
             <th>Produto</th>
             <th>Unidade</th>
-            <th>Qtd)</th>
-            <th>Lote)</th>
+            <th>Qtd</th>
+            <th>Lote</th>
             <th>Validade</th>
             <th width="100px">Ações</th>
         </tr>

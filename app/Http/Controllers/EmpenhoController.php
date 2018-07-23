@@ -79,9 +79,10 @@ class EmpenhoController extends Controller
             $data = DB::table("produtos")
             		->selectRaw("id, concat_ws('', codigo, ' - ', produto, ' - ', unidade) as produto")
                     //->select("id","produto")
-                    ->wherenull('deleted_at')
-                    ->where('produto','LIKE',"%$search%")
-                    ->orWhere('codigo','LIKE',"%$search%")
+                    ->whereraw("(codigo LIKE '%$search%' or produto LIKE '%$search%') and (deleted_at is null)")
+                  //  ->where('produto','LIKE',"%$search%")
+                  //  ->orWhere('codigo','LIKE',"%$search%")
+                    //->whereNull('deleted_at')
             		->get();
         }
 

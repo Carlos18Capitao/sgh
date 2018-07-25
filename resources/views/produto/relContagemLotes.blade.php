@@ -14,7 +14,7 @@
             <th width="30">Código</th>
             <th width="350">Produto</th>
             <th width="60">Unidade</th>
-            <th width="100">Qtd - Lote - Validade</th>
+            <th width="100">Lote - Validade - Quantidade</th>
             {{--<th width="80">Estoque Total</th>--}}
             {{--<th width="100px">Ações</th>--}}
         </tr>
@@ -33,10 +33,9 @@
                     @foreach($produto->lotes as $lote)
                      @if($lote->qtd > 0)
                 <tr>
-
-                        <td width="80">{{-- $lote->qtd --}} </td>
                         <td width="80"> {{ $lote->lote }} </td>
                         <td width="80"> {{ $lote->ValidadeFormat }} </td>
+                        <td width="80">{{-- $lote->qtd --}} </td>
                 </tr>
 
                      @endif   

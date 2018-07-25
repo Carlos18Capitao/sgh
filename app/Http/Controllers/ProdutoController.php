@@ -141,6 +141,14 @@ class ProdutoController extends Controller
         return view('produto.relPosicaoEstoqueLotes', compact('title', 'estoques','estoque_id','produtos'));
     }
 
+    public function relcontagemlotes($estoque_id)
+    {
+        $estoques   = Estoque::with('produto')->where('id','=',$estoque_id)->get();
+        $title      = 'Lista para Contagem com Lote e Validade';
+
+        return view('produto.relContagemLotes', compact('title', 'estoques','estoque_id','produtos'));
+    }
+
     public function catrelposicaoestoque($estoque_id,$categoria_id)
     {
 

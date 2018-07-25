@@ -14,7 +14,7 @@
             <th width="30">Código</th>
             <th width="350">Produto</th>
             <th width="60">Unidade</th>
-            <th width="100">Lote - Validade - Quantidade</th>
+            <th width="100">Lote - Validade - Qtd</th>
             {{--<th width="80">Estoque Total</th>--}}
             {{--<th width="100px">Ações</th>--}}
         </tr>

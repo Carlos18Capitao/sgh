@@ -25,6 +25,7 @@
         <th>Valor</th>
         <th>Processo</th>
         <th>Categoria</th>
+        <th>Ações</th>
     </thead>
 {{--        {{ dd($processos) }}--}}
 <tbody>
@@ -40,6 +41,11 @@
              <td>{{ 'R$ ' . $empenho->valortotal }}</td>
              <td>{{ $empenho->processo->numero }}</td>
              <td>{{ $empenho->processo->categoria->descricao }}</td>
+             <td>
+                <a class = "btn btn-sm btn-default" href="{{ route('relempenho',$empenho->id)}}">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                </a>
+            </td>
         </tr>
 @endforeach
 </tbody>

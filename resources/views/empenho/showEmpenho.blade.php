@@ -120,6 +120,7 @@
         <td>{{ 'R$ ' . number_format($itemempenho->getOriginal('preco') * $itemempenho->qtd, 2,',','.') }}</td>            
         <td>{{ $itemempenho->status  }} </td>
         <td>
+
   @permission('delete-empenhos')
                 <button type="button" title="EXCLUIR" class="btn btn-sm btn-default" data-toggle="modal" data-target="#excluir{{$itemempenho->id}}">
                     <span class="glyphicon glyphicon-trash"></span>
@@ -153,9 +154,9 @@
                                             </div>
                                         </div>
                                     <!-- Modal EXCLUIR-->
+@endpermission
                                         
         </td>
-@endpermission
 
         </tbody>
                 

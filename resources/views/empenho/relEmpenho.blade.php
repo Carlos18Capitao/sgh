@@ -68,22 +68,22 @@
     </thead>
     @foreach ($itempenhos as $itempenho)
         <tbody>
-            <tr @if($itempenho->saldo_empenho > 0)  class="danger" @endif>
+            <tr @if(empty($itempenho->qtd_nf)) class="danger" @elseif($itempenho->saldo_empenho > 0) class="warning" @endif>
 
         <td>{{ $itempenho->codigo or ''}}</td>
         <td><a href="{{ route('produto.show',$itempenho->produto_id) }}">{{ $itempenho->produto . ' - ' . $itempenho->unidade}}</a></td>
         <td>{{ $itempenho->qtd_empenho }}</td>
         <td>{{ 'R$ ' . $itempenho->preco_empenho }}</td>
-        <td>{{ $itempenho->qtd_nf }}</td>
+        <td>{{ $itempenho->qtd_nf or '0'}}</td>
         <td>{{ 'R$ ' . $itempenho->preco_nf }}</td>
         {{--<td>{{ 'R$ ' . number_format($itempenho->preco_empenho * $itempenho->qtd_empenho, 2,',','.') }}</td> --}}           
-        <td>{{ $itempenho->saldo_empenho  }} </td>
+        <td>{{ $itempenho->qtd_empenho - $itempenho->qtd_nf }}</td>
             <tr>
 
         </tbody>
                 
 @endforeach
-
+{{--
 <td class="active text-right" colspan="4" class="active"><b>TOTAL</b></td>
         <td class="active"><b>
             @foreach($total as $tot)
@@ -91,6 +91,7 @@
             @endforeach
             <td></td>
             <td></td>
+            --}}
 </tr>
 </table>
         </div></div>

@@ -129,27 +129,26 @@ class EmpenhoController extends Controller
       from
         empenhos as e
         left join item_empenhos as ie on e.id = ie.empenho_id
+        left join entradas as e2 on e.id = e2.empenho_id
+        left join produto_entradas as e3 on e2.id = e3.entrada_id and ie.produto_id = e3.produto_id
         left join produtos as p on ie.produto_id = p.id
-        left join entradas e2 on e.id = e2.empenho_id
-        left join produto_entradas e3 on e2.id = e3.entrada_id
       where e. id = $id
-        and ie.produto_id = e3.produto_id
-      group by
+        group by
         e.id
         ,e.nrempenho
         ,e.dataemissao
         ,e.valortotal
         ,e.modalidade
         ,ie.produto_id
-        ,ie.qtd
         ,ie.preco
         ,e2.numeroentrada
         ,e2.dataentrada
-        ,p.produto
-        ,e3.qtd
-        ,e3.preco
         ,p.codigo
-        ,p.unidade");
+        ,p.produto
+        ,p.unidade
+        ,ie.qtd
+        ,e3.qtd
+        ,e3.preco");
 
         $total = DB::select("select sum(item.total) as total_nf from
         (select

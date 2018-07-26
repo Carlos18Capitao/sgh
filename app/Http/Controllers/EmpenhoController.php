@@ -91,85 +91,79 @@ class EmpenhoController extends Controller
 
     public function edit($id)
     {
-        $atas = $this->ata->find($id);
-        $title = "Editar ARP: $atas->arp";
-        $objetos = $this->objeto->all()->sortBy("objeto");
-        $fornecedors = $this->fornecedor->all()->sortBy("nome");
 
-        return view('ata.cadAta', compact('title', 'atas','objetos','fornecedors'));
     }
 
     public function update(Request $request, $id)
     {
-        $dataForm = $request->all();
-        $atas = $this->ata->find($id);
-        $update = $atas->update($dataForm);
 
-        if ($update)
-            return redirect()->route('itemata.editar', $id);
-//            return redirect()->route('ata.index', $id);
-        else
-            return redirect()->route('ata.edit', $id)->with(['errors' => 'Falha ao editar']);
     }
 
     public function destroy($id)
     {
-        $atas = $this->ata->find($id);
-//        $itematas = $atas->itemata->all();
-//        actions()->detach();
-//        dd($atas);
-//        $delete2 = $itematas->delete();
-        $delete = $atas->delete();
 
-
-        if ($delete)
-            return redirect()->route('ata.index');
-        else
-            return redirect()->route('ata.show', $id)->with(['errors' => 'Falha ao editar']);
     }
 
-    public function ataObjeto($id)
+    public function relempenho($id)
     {
-        $hoje = Carbon::today();
-        $atas = $this->ata->all()->sortByDesc('vigencia')->where('objeto_id','=',$id)->where('vigencia','>=',$hoje);
-        $title = 'Lista de Atas Vigentes';
-        $objetos = $this->objeto->all()->sortBy('objeto');
-        return view('ata.consAta', compact('title', 'atas','hoje','objetos'));
+        $empenhos = Empenho::find($id);
+        $title = "Relatório de Acompanhamento de empenhos";
+
+        $itempenhos = DB::select("select
+        e.id
+        ,e.nrempenho
+        ,e.dataemissao
+        ,e.valortotal
+        ,e.modalidade
+        ,ie.produto_id
+        ,ie.preco as preco_empenho
+        ,e2.numeroentrada
+        ,e2.dataentrada
+        ,p.codigo
+        ,p.produto
+        ,p.unidade
+        ,ie.qtd as qtd_empenho
+        ,e3.qtd as qtd_nf
+        ,e3.preco as preco_nf
+        ,ie.qtd - e3.qtd as saldo_empenho
+      from
+        empenhos as e
+        left join item_empenhos as ie on e.id = ie.empenho_id
+        left join produtos as p on ie.produto_id = p.id
+        left join entradas e2 on e.id = e2.empenho_id
+        left join produto_entradas e3 on e2.id = e3.entrada_id
+      where e. id = $id
+        and ie.produto_id = e3.produto_id
+      group by
+        e.id
+        ,e.nrempenho
+        ,e.dataemissao
+        ,e.valortotal
+        ,e.modalidade
+        ,ie.produto_id
+        ,ie.qtd
+        ,ie.preco
+        ,e2.numeroentrada
+        ,e2.dataentrada
+        ,p.produto
+        ,e3.qtd
+        ,e3.preco
+        ,p.codigo
+        ,p.unidade");
+
+        $total = DB::select("select sum(item.total) as total_nf from
+        (select
+          i.id
+          ,i.produto_id
+          ,i.qtd
+          ,i.preco
+          ,i.qtd * i.preco as total
+        from
+          item_empenhos i
+        where i.empenho_id = $id) as item");
+
+        return view('empenho.relEmpenho', compact('empenhos', 'title','itempenhos','total'));
+
     }
 
-    public function atasVencidas()
-    {
-        $hoje = Carbon::today();
-        $atas = $this->ata->all()->sortByDesc('vigencia')->where('vigencia','<=',$hoje);
-        $title = 'Lista de Atas Vencidas';
-        $objetos = $this->objeto->all()->sortBy('objeto');
-        return view('ata.consAta', compact('title', 'atas','hoje','objetos'));
-    }
-
-    public function ataObjetoVenc($id)
-    {
-        $hoje = Carbon::today();
-        $atas = $this->ata->all()->sortBy('vigencia')->where('objeto_id','=',$id)->where('vigencia','<=',$hoje);
-        $title = 'Lista de Atas Vencidas';
-        $objetos = $this->objeto->all()->sortBy('objeto');
-        return view('ata.consAta', compact('title', 'atas','hoje','objetos'));
-    }
-
-    public function emailAta($id)
-    {
-        $atas = $this->ata->find($id);
-        $title = "ATA AMGESP";
-        $hoje = Carbon::today();
-        $fimAta = $atas->vigencia->diffInDays($hoje);
-
-        return view('ata.emailAta', compact('atas', 'title','fimAta'));
-    }
-
-    public function memo($id)
-    {
-        $atas = $this->ata->find($id);
-        $title = "MODELO PARA COPIAR E COLAR EM MEMO PARA ENVIO DO EMPENHO";
-
-        return view('fornecedor.memoFornecedor', compact('atas', 'title'));
-    }
 }

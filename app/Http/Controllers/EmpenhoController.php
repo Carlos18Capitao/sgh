@@ -107,7 +107,7 @@ class EmpenhoController extends Controller
     public function relempenho($id)
     {
         $empenhos = Empenho::find($id);
-        $title = "Relatório de Acompanhamento de empenhos";
+        $title = "Acompanhamento de Entregas";
 
         $itempenhos = DB::select("select
         e.id

@@ -163,4 +163,69 @@ class EmpenhoController extends Controller
 
     }
 
+    public function relempenhogeral()
+    {
+        $empenhos = Empenho::all();
+        $title = "Acompanhamento de Entregas";
+
+        $itempenhos = DB::select("select
+        proc.numero     as processo
+        ,proc.id        as processo_id
+        ,e.id           as empenho_id
+        ,e.nrempenho
+        ,e.dataemissao
+        ,e.valortotal
+        ,e.modalidade
+        ,ie.produto_id
+        ,ie.preco       as preco_empenho
+        ,e2.numeroentrada
+        ,e2.dataentrada
+        ,p.codigo
+        ,p.produto
+        ,p.unidade
+        ,ie.qtd         as qtd_empenho
+        ,sum(e3.qtd)    as qtd_nf
+        ,e3.preco       as preco_nf
+        ,emp.nome       as fornecedor
+        ,emp.id         as fornecedor_id
+        ,e2.id          as entrada_id
+        ,c.descricao    as categoria
+      from
+        processos as proc
+        left join empenhos          as e    on proc.id          = e.processo_id
+        left join item_empenhos     as ie   on e.id             = ie.empenho_id
+        left join entradas          as e2   on e.id             = e2.empenho_id
+        left join produto_entradas  as e3   on e2.id            = e3.entrada_id and ie.produto_id = e3.produto_id
+        left join produtos          as p    on ie.produto_id    = p.id
+        left join empresas          as emp  on e.empresa_id     = emp.id
+        left join categorias        as c    on proc.categoria_id   = c.id
+      where e.id <> 1
+            and ie.qtd > 0
+        group by
+            e.id
+            ,e.nrempenho
+            ,e.dataemissao
+            ,e.valortotal
+            ,e.modalidade
+            ,ie.produto_id
+            ,ie.preco
+            ,e2.dataentrada
+            ,p.codigo
+            ,p.produto
+            ,p.unidade
+            ,ie.qtd
+            ,e3.preco
+            ,proc.numero
+            ,emp.nome
+            ,emp.id
+            ,e2.numeroentrada
+            ,e2.id
+            ,c.descricao");
+
+        //dd($itempenhos);
+        
+        return view('empenho.relEmpenhoGeral', compact('empenhos', 'title','itempenhos'));
+
+    }
+
 }

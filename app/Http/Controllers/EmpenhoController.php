@@ -220,7 +220,8 @@ class EmpenhoController extends Controller
             ,emp.id
             ,e2.numeroentrada
             ,e2.id
-            ,c.descricao");
+            ,c.descricao
+            ,proc.id");
 
         //dd($itempenhos);
         

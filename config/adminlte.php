@@ -203,8 +203,17 @@ return [
         ],
         [
             'text' => 'Empenhos',
-            'url'  => 'estoque/empenho',
             'icon' => 'file-text',
+            'submenu' => [
+                [
+                    'text' => 'Listar Empenhos',
+                    'url'  => 'estoque/empenho',
+                ],
+                [
+                    'text'  => 'Acompanhamento',
+                    'url'   => 'estoque/relempenhogeral'
+                ]  
+            ]
         ],
 //        [
 //            'text' => 'Prestador',

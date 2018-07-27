@@ -77,7 +77,7 @@
         <td>{{ $itempenho->qtd_nf or '0'}}</td>
         <td>{{ 'R$ ' . $itempenho->preco_nf }}</td>
         {{--<td>{{ 'R$ ' . number_format($itempenho->preco_empenho * $itempenho->qtd_empenho, 2,',','.') }}</td> --}}           
-        <td>{{ $itempenho->qtd_empenho - $itempenho->qtd_nf }}</td>
+        <td>@if(($itempenho->qtd_empenho - $itempenho->qtd_nf)==0) Entrega Total @else {{ $itempenho->qtd_empenho - $itempenho->qtd_nf }} @endif</td>
             <tr>
 
         </tbody>

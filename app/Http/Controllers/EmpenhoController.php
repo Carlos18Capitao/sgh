@@ -123,9 +123,8 @@ class EmpenhoController extends Controller
         ,p.produto
         ,p.unidade
         ,ie.qtd as qtd_empenho
-        ,e3.qtd as qtd_nf
+        ,sum(e3.qtd) as qtd_nf
         ,e3.preco as preco_nf
-        ,ie.qtd - e3.qtd as saldo_empenho
       from
         empenhos as e
         left join item_empenhos as ie on e.id = ie.empenho_id
@@ -147,7 +146,6 @@ class EmpenhoController extends Controller
         ,p.produto
         ,p.unidade
         ,ie.qtd
-        ,e3.qtd
         ,e3.preco");
 
         $total = DB::select("select sum(item.total) as total_nf from

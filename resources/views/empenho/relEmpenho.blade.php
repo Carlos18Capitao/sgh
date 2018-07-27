@@ -68,7 +68,7 @@
     </thead>
     @foreach ($itempenhos as $itempenho)
         <tbody>
-            <tr @if(empty($itempenho->qtd_nf)) class="danger" @elseif($itempenho->saldo_empenho > 0) class="warning" @endif>
+            <tr @if(empty($itempenho->qtd_nf)) class="danger" @elseif(($itempenho->qtd_empenho - $itempenho->qtd_nf) > 0) class="warning" @endif>
 
         <td>{{ $itempenho->codigo or ''}}</td>
         <td><a href="{{ route('produto.show',$itempenho->produto_id) }}">{{ $itempenho->produto . ' - ' . $itempenho->unidade}}</a></td>
